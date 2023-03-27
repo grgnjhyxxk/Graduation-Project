@@ -45,4 +45,27 @@ class initView: UIView {
 
         return shapeLayer
     }
+    
+    func subTextLabelInInitViewRingShapeLayer() -> UIView {
+        let label = UILabel()
+        
+        label.text = "삶의 원동력, 하루의 활력소"
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.numberOfLines = 0
+        
+        return label
+    }
+    
+    func loginButton() -> UIButton {
+        let button = UIButton()
+        
+        button.backgroundColor = UIColor.customColor
+        button.setTitle("기존 계정으로 로그인", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13.5)
+        button.layer.cornerRadius = 5
+        
+        return button
+    }
 }
