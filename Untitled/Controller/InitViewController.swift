@@ -10,10 +10,11 @@ import SnapKit
 
 class initViewController: UIViewController {
     
-    var uiViewList: [UIView] = []
+    var uiViewList: [UIView] = [] 
     
     let mainTextLabel = initView().mainTextLabel()
     let subTextLabel = initView().subTextLabel()
+    let initViewRingShapeLayer = initView().initViewRingShapeLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,9 @@ class initViewController: UIViewController {
             make.top.equalTo(mainTextLabel.snp.bottom).offset(22)
             make.leading.equalTo(mainTextLabel)
         }
+        
+        let center = CGPoint(x: view.bounds.midX-100, y: view.bounds.midY-80)
+        initViewRingShapeLayer.position = center
     }
     
     private func addSubview() {
@@ -43,5 +47,7 @@ class initViewController: UIViewController {
         for uiView in uiViewList {
             view.addSubview(uiView)
         }
+        
+        view.layer.addSublayer(initViewRingShapeLayer)
     }
 }
