@@ -25,11 +25,14 @@ class initViewController: UIViewController {
         addSubview()
         viewLayout()
         setSameBackgroundColor()
-        
+        action()
     }
     
     private func viewLayout() {
         view.backgroundColor = UIColor.white
+        
+        let center = CGPoint(x: view.bounds.midX-100, y: view.bounds.midY-100)
+        initViewRingShapeLayer.position = center
         
         mainTextLabel.snp.makeConstraints { make in
             make.top.equalTo(view).offset(90)
@@ -40,9 +43,6 @@ class initViewController: UIViewController {
             make.top.equalTo(mainTextLabel.snp.bottom).offset(22)
             make.leading.equalTo(mainTextLabel)
         }
-        
-        let center = CGPoint(x: view.bounds.midX-100, y: view.bounds.midY-100)
-        initViewRingShapeLayer.position = center
         
         subTextLabelInInitViewRingShapeLayer.snp.makeConstraints { make in
             make.center.equalTo(view)
@@ -71,8 +71,30 @@ class initViewController: UIViewController {
         
         for uiView in uiViewList {
             view.addSubview(uiView)
+            
         }
         
         view.layer.addSublayer(initViewRingShapeLayer)
+    }
+    
+    private func action() {
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
+        loginButton.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside])
+    }
+
+    @objc func loginButtonTapped(_ sender : UIButton) {
+        let destinationVC = homeViewController()
+        destinationVC.modalPresentationStyle = .fullScreen
+        sender.backgroundColor = UIColor.customColor
+        present(destinationVC, animated: true)
+    }
+
+    @objc func buttonTouchDown(_ sender: UIButton) {
+        sender.backgroundColor = UIColor.customColor2
+    }
+
+    @objc func buttonTouchUp(_ sender: UIButton) {
+        sender.backgroundColor = UIColor.customColor
     }
 }
