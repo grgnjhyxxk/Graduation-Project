@@ -68,4 +68,24 @@ class initView: UIView {
         
         return button
     }
+    
+    func findIdPasswordTextLabel() -> UILabel {
+        let label = UILabel()
+        
+        label.text = "아이디 / 비밀번호 찾기"
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 8)
+        
+        return label
+    }
+    
+    func signUpTextLabel() -> UILabel {
+        let label = UILabel()
+        
+        label.text = "회원가입"
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 8)
+        
+        return label
+    }
 }
