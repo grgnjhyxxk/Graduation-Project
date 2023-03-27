@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class initViewController: UIViewController {
+    
+    let mainTextLabel = initView().mainTextLabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +22,11 @@ class initViewController: UIViewController {
     private func viewLayout() {
         view.backgroundColor = UIColor.white
         
-    }
-    
+        view.addSubview(mainTextLabel)
 
+        mainTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(view).offset(110)
+            make.leading.equalTo(view).offset(27)
+        }
+    }
 }
