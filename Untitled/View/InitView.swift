@@ -30,4 +30,19 @@ class initView: UIView {
         
         return label
     }
+    
+    func initViewRingShapeLayer() -> CAShapeLayer {
+        let radius: CGFloat = 50
+        let lineWidth: CGFloat = 10
+
+        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: radius * 4, height: radius * 4))
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.lineWidth = lineWidth
+        shapeLayer.strokeColor = UIColor.customColor.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
+
+        return shapeLayer
+    }
 }
