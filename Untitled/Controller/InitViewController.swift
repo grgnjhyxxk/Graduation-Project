@@ -15,6 +15,8 @@ class initViewController: UIViewController {
     let mainTextLabel = initView().mainTextLabel()
     let subTextLabel = initView().subTextLabel()
     let initViewRingShapeLayer = initView().initViewRingShapeLayer()
+    let subTextLabelInInitViewRingShapeLayer = initView().subTextLabelInInitViewRingShapeLayer()
+    let loginButton = initView().loginButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +30,7 @@ class initViewController: UIViewController {
         view.backgroundColor = UIColor.white
         
         mainTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(110)
+            make.top.equalTo(view).offset(90)
             make.leading.equalTo(view).offset(27)
         }
         
@@ -37,12 +39,23 @@ class initViewController: UIViewController {
             make.leading.equalTo(mainTextLabel)
         }
         
-        let center = CGPoint(x: view.bounds.midX-100, y: view.bounds.midY-80)
+        let center = CGPoint(x: view.bounds.midX-100, y: view.bounds.midY-100)
         initViewRingShapeLayer.position = center
+        
+        subTextLabelInInitViewRingShapeLayer.snp.makeConstraints { make in
+            make.center.equalTo(view)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(view).offset(654)
+            make.leading.equalTo(view).offset(91)
+            make.trailing.equalTo(view).offset(-91)
+            make.size.height.equalTo(33)
+        }
     }
     
     private func addSubview() {
-        uiViewList = [mainTextLabel, subTextLabel]
+        uiViewList = [mainTextLabel, subTextLabel, subTextLabelInInitViewRingShapeLayer, loginButton]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
