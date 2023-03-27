@@ -12,7 +12,7 @@ class alarmViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewLayout()
-        
+        setSameBackgroundColor()
     }
     
     private func viewLayout() {
