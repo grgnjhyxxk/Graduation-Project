@@ -17,6 +17,6 @@ class homeViewController: UIViewController {
     }
     
     private func viewLayout() {
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.white
     }
 }
