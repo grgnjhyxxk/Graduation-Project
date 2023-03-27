@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlramViewController: UIViewController {
+class alarmViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
