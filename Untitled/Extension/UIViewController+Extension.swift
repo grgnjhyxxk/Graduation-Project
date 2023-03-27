@@ -17,3 +17,7 @@ extension UIViewController {
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
+
+extension UIColor {
+    static let customColor = UIColor(red: 149/255, green: 161/255, blue: 177/255, alpha: 0.85)
+}
