@@ -10,10 +10,14 @@ import SnapKit
 
 class initViewController: UIViewController {
     
+    var uiViewList: [UIView] = []
+    
     let mainTextLabel = initView().mainTextLabel()
+    let subTextLabel = initView().subTextLabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubview()
         viewLayout()
         setSameBackgroundColor()
         
@@ -22,11 +26,22 @@ class initViewController: UIViewController {
     private func viewLayout() {
         view.backgroundColor = UIColor.white
         
-        view.addSubview(mainTextLabel)
-
         mainTextLabel.snp.makeConstraints { make in
             make.top.equalTo(view).offset(110)
             make.leading.equalTo(view).offset(27)
+        }
+        
+        subTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(22)
+            make.leading.equalTo(mainTextLabel)
+        }
+    }
+    
+    private func addSubview() {
+        uiViewList = [mainTextLabel, subTextLabel]
+        
+        for uiView in uiViewList {
+            view.addSubview(uiView)
         }
     }
 }

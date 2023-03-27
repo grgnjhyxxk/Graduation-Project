@@ -19,4 +19,15 @@ class initView: UIView {
         
         return label
     }
+    
+    func subTextLabel() -> UIView {
+        let label = UILabel()
+        
+        label.text = "저희가 삶의 원동력이 되어드릴게요."
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.numberOfLines = 0
+        
+        return label
+    }
 }
