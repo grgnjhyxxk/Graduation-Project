@@ -19,6 +19,6 @@ extension UIViewController {
 }
 
 extension UIColor {
-    static let customColor = UIColor(red: 149/255, green: 161/255, blue: 177/255, alpha: 0.85)
-    static let customColor2 = UIColor(red: 129/255, green: 141/255, blue: 157/255, alpha: 0.85)
+    static let applicationPointColor = UIColor(red: 149/255, green: 161/255, blue: 177/255, alpha: 0.85)
+    static let applicationPointColorHighlightColor = UIColor(red: 129/255, green: 141/255, blue: 157/255, alpha: 0.85)
 }
