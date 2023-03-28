@@ -26,14 +26,13 @@ class initView: UIView {
         label.text = "저희가 삶의 원동력이 되어드릴게요."
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 15)
-        label.numberOfLines = 0
         
         return label
     }
     
     func initViewRingShapeLayer() -> CAShapeLayer {
         let radius: CGFloat = 50
-        let lineWidth: CGFloat = 10
+        let lineWidth: CGFloat = 11
 
         let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: radius * 4, height: radius * 4))
 
@@ -52,7 +51,6 @@ class initView: UIView {
         label.text = "삶의 원동력, 하루의 활력소"
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 13)
-        label.numberOfLines = 0
         
         return label
     }
@@ -63,8 +61,8 @@ class initView: UIView {
         button.backgroundColor = UIColor.applicationPointColor
         button.setTitle("기존 계정으로 로그인", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        button.layer.cornerRadius = 5
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.5)
+        button.layer.cornerRadius = 7.5
         
         return button
     }

@@ -50,9 +50,9 @@ class initViewController: UIViewController {
         
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(view).offset(630)
-            make.leading.equalTo(view).offset(80)
-            make.trailing.equalTo(view).offset(-80)
-            make.size.height.equalTo(40)
+            make.leading.equalTo(view).offset(70)
+            make.trailing.equalTo(view).offset(-70)
+            make.size.height.equalTo(50)
         }
         
         findIdPasswordTextLabel.snp.makeConstraints { make in
