@@ -86,15 +86,15 @@ class initViewController: UIViewController {
     @objc func loginButtonTapped(_ sender : UIButton) {
         let destinationVC = homeViewController()
         destinationVC.modalPresentationStyle = .fullScreen
-        sender.backgroundColor = UIColor.customColor
+        sender.backgroundColor = UIColor.applicationPointColor
         present(destinationVC, animated: true)
     }
 
     @objc func buttonTouchDown(_ sender: UIButton) {
-        sender.backgroundColor = UIColor.customColor2
+        sender.backgroundColor = UIColor.applicationPointColorHighlightColor
     }
 
     @objc func buttonTouchUp(_ sender: UIButton) {
-        sender.backgroundColor = UIColor.customColor
+        sender.backgroundColor = UIColor.applicationPointColor
     }
 }

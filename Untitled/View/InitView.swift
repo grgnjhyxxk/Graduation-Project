@@ -40,7 +40,7 @@ class initView: UIView {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.lineWidth = lineWidth
-        shapeLayer.strokeColor = UIColor.customColor.cgColor
+        shapeLayer.strokeColor = UIColor.applicationPointColor.cgColor
         shapeLayer.fillColor = UIColor.clear.cgColor
 
         return shapeLayer
@@ -60,7 +60,7 @@ class initView: UIView {
     func loginButton() -> UIButton {
         let button = UIButton()
         
-        button.backgroundColor = UIColor.customColor
+        button.backgroundColor = UIColor.applicationPointColor
         button.setTitle("기존 계정으로 로그인", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
