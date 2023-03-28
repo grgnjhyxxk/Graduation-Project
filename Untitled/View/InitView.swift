@@ -63,7 +63,7 @@ class initView: UIView {
         button.backgroundColor = UIColor.customColor
         button.setTitle("기존 계정으로 로그인", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 13.5)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         button.layer.cornerRadius = 5
         
         return button
@@ -74,7 +74,7 @@ class initView: UIView {
         
         label.text = "아이디 / 비밀번호 찾기"
         label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 8)
+        label.font = UIFont.systemFont(ofSize: 11)
         
         return label
     }
@@ -84,7 +84,7 @@ class initView: UIView {
         
         label.text = "회원가입"
         label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 8)
+        label.font = UIFont.systemFont(ofSize: 11)
         
         return label
     }
