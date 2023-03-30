@@ -7,10 +7,13 @@
 
 import UIKit
 
+private let userProfileImageString = "TemporaryUserProfilePicture"
+private let appIconForViewImageString = "appIconForView"
+
 class mainView: UIView {
     
-    func userProfileImage() -> UIImage {
-        let originalImage = UIImage(named: "TemporaryUserProfilePicture")
+    func roundingImage(string: String) -> UIImage {
+        let originalImage = UIImage(named: "\(string)")
 
         // 이미지 크기와 동일한 새로운 이미지 생성
         let imageFrame = CGRect(x: 0, y: 0, width: originalImage!.size.width, height: originalImage!.size.height)
@@ -25,9 +28,10 @@ class mainView: UIView {
         
         return roundedImage
     }
-    func userProfileButton() -> UIView {
     
-        let image = userProfileImage()
+    func roundingButton() -> UIView {
+    
+        let image = roundingImage(string: userProfileImageString)
         
         let button = UIButton()
         button.setImage(image, for: .normal)
