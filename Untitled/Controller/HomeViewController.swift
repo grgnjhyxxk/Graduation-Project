@@ -10,7 +10,7 @@ import SnapKit
 
 class homeViewController: UIViewController {
     
-    let userProfileButton = mainView().userProfileButton()
+    let userProfileButton = mainView().roundingButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
