@@ -18,8 +18,8 @@ class CustomTabBarController: UITabBarController {
     }
     
     func configureLayout() {
-        self.tabBar.tintColor = UIColor.black.withAlphaComponent(0.6)
-        self.tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.5)
+        self.tabBar.tintColor = UIColor.black.withAlphaComponent(0.8)
+        self.tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.65)
         self.tabBar.shadowImage = UIImage()
         self.tabBar.backgroundImage = UIImage()
         
@@ -30,11 +30,11 @@ class CustomTabBarController: UITabBarController {
         firstViewController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         firstViewController.tabBarItem.image = UIImage(systemName: "house")
         
-        secondViewController.tabBarItem.selectedImage = UIImage(systemName: "shippingbox.fill")
-        secondViewController.tabBarItem.image = UIImage(systemName: "shippingbox")
+        secondViewController.tabBarItem.selectedImage = UIImage(systemName: "alarm.fill")
+        secondViewController.tabBarItem.image = UIImage(systemName: "alarm")
         
-        thirdViewController.tabBarItem.selectedImage = UIImage(systemName: "arrow.2.squarepath")
-        thirdViewController.tabBarItem.image = UIImage(systemName: "arrow.2.squarepath")
+        thirdViewController.tabBarItem.selectedImage = UIImage(systemName: "staroflife.fill")
+        thirdViewController.tabBarItem.image = UIImage(systemName: "staroflife.fill")
         
         viewControllers = [firstViewController, secondViewController, thirdViewController]
     }
