@@ -8,7 +8,6 @@
 import UIKit
 
 private let userProfileImageString = "TemporaryUserProfilePicture"
-private let appIconForViewImageString = "AppIconForOnView"
 
 class commonView: UIView {
     
@@ -41,14 +40,6 @@ class commonView: UIView {
         button.appButtonCommonStyle()
         
         return button
-    }
-    
-    func appIconForViewImageView() -> UIImageView {
-        let imageView = UIImageView()
-        
-        imageView.image = roundingImage(string: appIconForViewImageString)
-        
-        return imageView
     }
     
     func envelopeButton() -> UIButton {
