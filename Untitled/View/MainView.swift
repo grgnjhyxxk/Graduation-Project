@@ -8,7 +8,7 @@
 import UIKit
 
 private let userProfileImageString = "TemporaryUserProfilePicture"
-private let appIconForViewImageString = "appIconForView"
+private let appIconForViewImageString = "AppIconForOnView"
 
 class mainView: UIView {
     
@@ -45,7 +45,15 @@ class mainView: UIView {
         button.layer.masksToBounds = false
         button.layer.borderWidth = 1.8
         button.layer.borderColor = UIColor(red: 133/255, green: 185/255, blue: 255/255, alpha: 0.45).cgColor
-        return button
         
+        return button
+    }
+    
+    func appIconForViewImageView() -> UIImageView {
+        let imageView = UIImageView()
+        
+        imageView.image = roundingImage(string: appIconForViewImageString)
+        
+        return imageView
     }
 }
