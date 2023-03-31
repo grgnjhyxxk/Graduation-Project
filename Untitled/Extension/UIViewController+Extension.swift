@@ -22,3 +22,15 @@ extension UIColor {
     static let applicationPointColor = UIColor(red: 149/255, green: 161/255, blue: 177/255, alpha: 0.85)
     static let applicationPointColorHighlightColor = UIColor(red: 129/255, green: 141/255, blue: 157/255, alpha: 0.85)
 }
+
+extension UIButton {
+    func appButtonCommonStyle() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.25
+        layer.shadowOffset = CGSize(width: 0.5, height: 3)
+        layer.shadowRadius = 5
+        layer.masksToBounds = false
+        layer.borderWidth = 0.5
+        layer.borderColor = UIColor(red: 133/255, green: 185/255, blue: 255/255, alpha: 0.45).cgColor
+    }
+}
