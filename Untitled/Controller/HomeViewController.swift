@@ -13,7 +13,7 @@ class homeViewController: UIViewController {
     var uiViewList: [UIView] = []
 
     let userProfileButton = commonView().roundingButton()
-    let appIconForViewImageView = commonView().appIconForViewImageView()
+    let appIconForViewImageView = mainView().appIconForViewImageView()
     let envelopeButton = commonView().envelopeButton()
     
     override func viewDidLoad() {
