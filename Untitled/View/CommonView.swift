@@ -62,4 +62,23 @@ class commonView: UIView {
         
         return button
     }
+    
+    func titleTextButton(titleText: String) -> UIButton {
+        let button = UIButton()
+        
+        button.setTitle("\(titleText)", for: .normal)
+        button.titleButtonCommonStyle()
+        
+        return button
+    }
+    
+    func commonTextLabel(labelText: String, size: CGFloat) -> UILabel {
+        let label = UILabel()
+        
+        label.text = "\(labelText)"
+        label.font = UIFont.systemFont(ofSize: size)
+        label.labelTextCommonStyle()
+        
+        return label
+    }
 }
