@@ -45,6 +45,7 @@ extension UIButton {
 
 extension UILabel {
     func labelTextCommonStyle() {
+        self.textColor = UIColor.white
         layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 4
