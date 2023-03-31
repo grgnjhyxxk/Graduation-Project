@@ -33,4 +33,23 @@ extension UIButton {
         layer.borderWidth = 0.5
         layer.borderColor = UIColor(red: 133/255, green: 185/255, blue: 255/255, alpha: 0.45).cgColor
     }
+    
+    func titleButtonCommonStyle() {
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        self.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 0.20)
+        layer.cornerRadius = 25
+        layer.borderWidth = 1
+        layer.borderColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.14).cgColor
+    }
+}
+
+extension UILabel {
+    func labelTextCommonStyle() {
+        layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 1
+        layer.masksToBounds = false
+        self.numberOfLines = 0
+    }
 }
