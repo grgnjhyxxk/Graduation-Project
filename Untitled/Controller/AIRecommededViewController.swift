@@ -14,6 +14,8 @@ class aiRecommendedViewController: UIViewController {
     let userProfileButton = commonView().roundingButton()
     let envelopeButton = commonView().envelopeButton()
     let titleTextButton = commonView().titleTextButton(titleText: "맞춤추천")
+    let subTextLabel = commonView().commonTextLabel(labelText: "늘 효과적인 해답", size: 14)
+    let mainTextLabel = commonView().commonTextLabel(labelText: "AI 분석을 통한\n임재혁님의 솔루션", size: 30)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +44,20 @@ class aiRecommendedViewController: UIViewController {
             make.leading.equalTo(view).offset(31)
             make.size.equalTo(CGSize(width: 122, height: 44))
         }
+        
+        subTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleTextButton.snp.bottom).offset(45)
+            make.leading.equalTo(titleTextButton)
+        }
+        
+        mainTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(subTextLabel.snp.bottom).offset(15)
+            make.leading.equalTo(subTextLabel).offset(-1.8)
+        }
     }
     
     private func addSubview() {
-        uiViewList = [userProfileButton, envelopeButton, titleTextButton]
+        uiViewList = [userProfileButton, envelopeButton, titleTextButton, mainTextLabel, subTextLabel]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
