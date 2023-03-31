@@ -10,6 +10,8 @@ import SnapKit
 
 class initViewController: UIViewController {
     
+    var isLoggedInBool = false
+    
     var uiViewList: [UIView] = [] 
     
     let mainTextLabel = initView().mainTextLabel()
@@ -19,6 +21,18 @@ class initViewController: UIViewController {
     let loginButton = initView().loginButton()
     let findIdPasswordTextLabel = initView().findIdPasswordTextLabel()
     let signUpTextLabel = initView().signUpTextLabel()
+    
+    func isLoggedIn() -> UIViewController {
+        if isLoggedInBool {
+            let customTabBarController = CustomTabBarController()
+            let navigationController = UINavigationController(rootViewController: customTabBarController)
+            
+            return navigationController
+            
+        } else {
+            return initViewController()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,12 +97,15 @@ class initViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside])
     }
 
-    @objc func loginButtonTapped(_ sender : UIButton) {
-        let destinationVC = homeViewController()
-        destinationVC.modalPresentationStyle = .fullScreen
+    @objc func loginButtonTapped(_ sender: UIButton) {
         sender.backgroundColor = UIColor.applicationPointColor
-        present(destinationVC, animated: true)
+        isLoggedInBool = true
+        let tabBarController = isLoggedIn()
+        tabBarController.modalPresentationStyle = .fullScreen
+        
+        present(tabBarController, animated: true)
     }
+    
 
     @objc func buttonTouchDown(_ sender: UIButton) {
         sender.backgroundColor = UIColor.applicationPointColorHighlightColor
