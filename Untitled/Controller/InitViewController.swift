@@ -66,7 +66,7 @@ class initViewController: UIViewController {
             make.top.equalTo(view).offset(630)
             make.leading.equalTo(view).offset(70)
             make.trailing.equalTo(view).offset(-70)
-            make.size.height.equalTo(50)
+            make.height.equalTo(50)
         }
         
         findIdPasswordTextLabel.snp.makeConstraints { make in
