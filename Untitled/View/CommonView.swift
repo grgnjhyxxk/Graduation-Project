@@ -72,4 +72,15 @@ class commonView: UIView {
         
         return label
     }
+    
+    func scrollView() -> UIScrollView {
+        let scrollView = UIScrollView()
+        
+        scrollView.backgroundColor = UIColor(white: 1.0, alpha: 0.22)
+        scrollView.layer.borderWidth = 1
+        scrollView.layer.borderColor = UIColor(white: 1.0, alpha: 0.14).cgColor
+        scrollView.layer.cornerRadius = 30
+        
+        return scrollView
+    }
 }
