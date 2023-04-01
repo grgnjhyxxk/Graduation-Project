@@ -10,6 +10,7 @@ import UIKit
 class alarmViewController: UIViewController {
     
     var uiViewList: [UIView] = []
+    var commonViewList: [UIView] = []
 
     let userProfileButton = commonView().roundingButton()
     let envelopeButton = commonView().envelopeButton()
@@ -21,8 +22,10 @@ class alarmViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setSameBackgroundColor()
-        addSubview()
+        addOnView()
+        addOnCommonUiView()
         viewLayout()
+        commonUiViewLayout()
     }
     
     private func viewLayout() {
@@ -46,6 +49,23 @@ class alarmViewController: UIViewController {
             make.size.equalTo(CGSize(width: 122, height: 44))
         }
         
+        commonUiView.snp.makeConstraints { make in
+            make.top.equalTo(envelopeButton.snp.bottom).offset(40)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view)
+        }
+    }
+    
+    private func addOnView() {
+        uiViewList = [commonUiView, userProfileButton, envelopeButton, titleTextButton]
+        
+        for uiView in uiViewList {
+            view.addSubview(uiView)
+        }
+    }
+    
+    private func commonUiViewLayout() {
+        
         subTextLabel.snp.makeConstraints { make in
             make.top.equalTo(titleTextButton.snp.bottom).offset(45)
             make.leading.equalTo(titleTextButton)
@@ -55,23 +75,14 @@ class alarmViewController: UIViewController {
             make.top.equalTo(subTextLabel.snp.bottom).offset(15)
             make.leading.equalTo(subTextLabel).offset(-1.8)
         }
+    }
+    
+    private func addOnCommonUiView() {
+        commonViewList = [subTextLabel, mainTextLabel]
         
-        commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(mainTextLabel.snp.bottom).offset(15)
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(view)
+        for uiView in commonViewList {
+            commonUiView.addSubview(uiView)
         }
     }
     
-    private func addSubview() {
-        uiViewList = [commonUiView, userProfileButton, envelopeButton, titleTextButton, subTextLabel, mainTextLabel]
-        
-        for uiView in uiViewList {
-            view.addSubview(uiView)
-        }
-    }
-    
-    private func commonUiViewLayout() {
-        
-    }
 }
