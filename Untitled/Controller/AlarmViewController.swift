@@ -15,8 +15,12 @@ class alarmViewController: UIViewController {
     let userProfileButton = commonView().roundingButton()
     let envelopeButton = commonView().envelopeButton()
     let titleTextButton = commonView().titleTextButton(titleText: "알람관리")
+    let listButton = alarmView().listButton()
+    
     let subTextLabel = commonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
     let mainTextLabel = commonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 30)
+    
+    
     let commonUiView = commonView().commonUiView()
 
     override func viewDidLoad() {
@@ -75,10 +79,16 @@ class alarmViewController: UIViewController {
             make.top.equalTo(subTextLabel.snp.bottom).offset(15)
             make.leading.equalTo(subTextLabel).offset(-1.8)
         }
+        
+        listButton.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(34)
+            make.leading.equalTo(subTextLabel)
+            make.size.equalTo(CGSize(width: 28, height: 18))
+        }
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [subTextLabel, mainTextLabel]
+        commonViewList = [subTextLabel, mainTextLabel, listButton]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
