@@ -73,14 +73,14 @@ class commonView: UIView {
         return label
     }
     
-    func scrollView() -> UIScrollView {
-        let scrollView = UIScrollView()
+    func commonUiView() -> UIView {
+        let uiView = UIView()
         
-        scrollView.backgroundColor = UIColor(white: 1.0, alpha: 0.22)
-        scrollView.layer.borderWidth = 1
-        scrollView.layer.borderColor = UIColor(white: 1.0, alpha: 0.14).cgColor
-        scrollView.layer.cornerRadius = 30
+        uiView.backgroundColor = UIColor(white: 1.0, alpha: 0.22)
+        uiView.layer.borderWidth = 1
+        uiView.layer.borderColor = UIColor(white: 1.0, alpha: 0.14).cgColor
+        uiView.layer.cornerRadius = 30
         
-        return scrollView
+        return uiView
     }
 }
