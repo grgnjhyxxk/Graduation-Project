@@ -16,12 +16,17 @@ class alarmViewController: UIViewController {
     let titleTextButton = commonView().titleTextButton(titleText: "알람관리")
     let subTextLabel = commonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
     let mainTextLabel = commonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 30)
+    
+    let scrollView = commonView().scrollView()
+    let contentView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setSameBackgroundColor()
-        addSubview()
+        addSubView()
         viewLayout()
+        scrollViewLayout()
+        contentViewLayout()
     }
     
     private func viewLayout() {
@@ -54,13 +59,33 @@ class alarmViewController: UIViewController {
             make.top.equalTo(subTextLabel.snp.bottom).offset(15)
             make.leading.equalTo(subTextLabel).offset(-1.8)
         }
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(15)
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(view)
+        }
     }
     
-    private func addSubview() {
-        uiViewList = [userProfileButton, envelopeButton, titleTextButton, subTextLabel, mainTextLabel]
+    
+    private func addSubView() {
+        uiViewList = [userProfileButton, envelopeButton, titleTextButton, subTextLabel, mainTextLabel, scrollView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
         }
+    }
+    
+    private func scrollViewLayout() {
+        scrollView.addSubview(contentView)
+
+        contentView.snp.makeConstraints { make in
+            make.width.equalTo(view.snp.width)
+            make.height.equalTo(1000)
+        }
+    }
+    
+    private func contentViewLayout() {
+        
     }
 }
