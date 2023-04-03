@@ -1,4 +1,5 @@
-# ✨ Graduation-Project
+# ✨ Graduation-Project <br><hr> 영양제 디스펜서 어플리케이션
+
 <br>
 <br>
 <p align = "center"><img src="https://user-images.githubusercontent.com/129068544/229585417-f4b19b8b-9f5b-4840-9b93-cdfb70bf7f9a.png"  width="130" height="130"/>
