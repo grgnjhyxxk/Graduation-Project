@@ -19,4 +19,15 @@ class alarmView: UIView {
         
         return button
     }
+    
+    func plusButton() -> UIButton {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.tintColor = UIColor.white
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        
+        return button
+    }
 }
