@@ -16,12 +16,14 @@ class alarmViewController: UIViewController {
     let envelopeButton = commonView().envelopeButton()
     let titleTextButton = commonView().titleTextButton(titleText: "알람관리")
     let listButton = alarmView().listButton()
+    let plusButton = alarmView().plusButton()
     
     let subTextLabel = commonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
     let mainTextLabel = commonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 30)
     
     
     let commonUiView = commonView().commonUiView()
+    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,7 @@ class alarmViewController: UIViewController {
         addOnCommonUiView()
         viewLayout()
         commonUiViewLayout()
+        tableViewLayout()
     }
     
     private func viewLayout() {
@@ -71,13 +74,13 @@ class alarmViewController: UIViewController {
     private func commonUiViewLayout() {
         
         subTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleTextButton.snp.bottom).offset(45)
-            make.leading.equalTo(titleTextButton)
+            make.top.equalTo(titleTextButton.snp.bottom).offset(45.5)
+            make.leading.equalTo(20)
         }
         
         mainTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(subTextLabel.snp.bottom).offset(15)
-            make.leading.equalTo(subTextLabel).offset(-1.8)
+            make.top.equalTo(subTextLabel.snp.bottom).offset(11)
+            make.leading.equalTo(19)
         }
         
         listButton.snp.makeConstraints { make in
@@ -85,14 +88,84 @@ class alarmViewController: UIViewController {
             make.leading.equalTo(subTextLabel)
             make.size.equalTo(CGSize(width: 28, height: 18))
         }
+        
+        plusButton.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(34)
+            make.trailing.equalTo(commonUiView).offset(-20)
+            make.size.equalTo(CGSize(width: 23, height: 21.2))
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(listButton.snp.bottom).offset(10)
+            make.bottom.equalTo(commonUiView).offset(-100)
+            make.leading.equalTo(commonUiView).offset(20)
+            make.trailing.equalTo(commonUiView).offset(-20)
+        }
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [subTextLabel, mainTextLabel, listButton]
+        commonViewList = [subTextLabel, mainTextLabel, listButton, plusButton, tableView]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
         }
     }
     
+    private func tableViewLayout() {
+        tableView.register(alarmViewTableCell.self, forCellReuseIdentifier: "alarmViewTableCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.clear
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+    }
+    
+}
+
+extension alarmViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "alarmViewTableCell", for: indexPath) as! alarmViewTableCell
+        
+        cell.clipsToBounds = true
+        cell.backgroundColor = UIColor.clear
+        
+        cell.layer.cornerRadius = 10
+        cell.layer.borderWidth = 2.5
+        cell.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView(frame: CGRect.zero)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView(frame: CGRect.zero)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 93
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
