@@ -27,12 +27,13 @@ class alarmViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSameBackgroundColor()
+        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
         addOnView()
         addOnCommonUiView()
         viewLayout()
         commonUiViewLayout()
         tableViewLayout()
+        actionFuction()
     }
     
     private func viewLayout() {
@@ -101,6 +102,15 @@ class alarmViewController: UIViewController {
             make.leading.equalTo(commonUiView).offset(20)
             make.trailing.equalTo(commonUiView).offset(-20)
         }
+    }
+    
+    private func actionFuction() {
+        plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func plusButtonAction(_: UIButton) {
+        let alarmAddViewController = alarmAddViewController()
+        self.present(alarmAddViewController, animated: true, completion: nil)
     }
     
     private func addOnCommonUiView() {
