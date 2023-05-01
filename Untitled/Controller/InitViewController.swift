@@ -38,7 +38,7 @@ class initViewController: UIViewController {
         super.viewDidLoad()
         addSubview()
         viewLayout()
-        setSameBackgroundColor()
+        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
         action()
     }
     

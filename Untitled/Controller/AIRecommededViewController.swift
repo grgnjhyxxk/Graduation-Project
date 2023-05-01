@@ -19,7 +19,7 @@ class aiRecommendedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSameBackgroundColor()
+        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
         addSubview()
         viewLayout()
     }
