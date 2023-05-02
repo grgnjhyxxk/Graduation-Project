@@ -49,7 +49,6 @@ class commonView: UIView {
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.tintColor = UIColor.white
-        button.appButtonCommonStyle()
         
         return button
     }
