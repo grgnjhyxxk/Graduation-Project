@@ -14,7 +14,7 @@ class alarmAddView: UIView {
             
         label.text = "알람 추가"
         label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 23)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.textAlignment = .center
         
         return label
@@ -28,6 +28,7 @@ class alarmAddView: UIView {
         datePicker.maximumDate = nil
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.overrideUserInterfaceStyle = .dark
+        datePicker.tintColor = UIColor.applicationPointColorHighlightColor
         
         return datePicker
     }
