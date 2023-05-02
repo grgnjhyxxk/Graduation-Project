@@ -25,8 +25,9 @@ class alarmAddViewTableCell: UITableViewCell {
         
         textField.backgroundColor = UIColor.clear
         textField.placeholder = "알림"
-        textField.textColor = UIColor.darkGray
+        textField.textColor = UIColor.placeholderText
         textField.textAlignment = .right
+        textField.font = UIFont.boldSystemFont(ofSize: 17)
         
         return textField
     }()
@@ -37,12 +38,12 @@ class alarmAddViewTableCell: UITableViewCell {
         contentView.addSubview(textField)
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(10)
-            make.leading.equalTo(10)
+            make.top.equalTo(10.5)
+            make.leading.equalTo(12)
         }
         
         textField.snp.makeConstraints { make in
-            make.top.equalTo(10)
+            make.top.equalTo(9)
             make.trailing.equalTo(-10)
         }
     }
