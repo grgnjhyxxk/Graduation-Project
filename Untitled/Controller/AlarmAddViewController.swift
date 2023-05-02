@@ -15,6 +15,10 @@ class alarmAddViewController: UIViewController {
     
     let titleLabel = alarmAddView().titleLabel()
     let datePicker = alarmAddView().datePicker()
+    
+    let closeButton = alarmAddView().closeButton()
+    let nextButton = alarmAddView().nextButton()
+    
     let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 1, borderColor: UIColor(white: 1.0, alpha: 0.14), cornerRadius: 15)
     let tableView = UITableView()
     
@@ -26,6 +30,7 @@ class alarmAddViewController: UIViewController {
         addOnCommonUiView()
         commonUIViewLayout()
         tableViewLayout()
+        actionFuction()
     }
     
     private func viewLayout() {
@@ -34,6 +39,18 @@ class alarmAddViewController: UIViewController {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(20)
             make.width.equalTo(view)
+        }
+        
+        closeButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel).offset(4)
+            make.leading.equalTo(20)
+            make.size.equalTo(CGSize(width: 22.5, height: 20.5))
+        }
+        
+        nextButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel).offset(1.5)
+            make.trailing.equalTo(-20)
+            make.size.equalTo(CGSize(width: 18.5, height: 21.5))
         }
         
         datePicker.snp.makeConstraints { make in
@@ -52,7 +69,7 @@ class alarmAddViewController: UIViewController {
     }
     
     private func addSubview() {
-        uiViewList = [titleLabel, datePicker, commonUiView, tableView]
+        uiViewList = [titleLabel, closeButton, nextButton, datePicker, commonUiView, tableView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -84,6 +101,14 @@ class alarmAddViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.allowsSelection = false
     }
+    
+    private func actionFuction() {
+        closeButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func closeButtonAction(_: UIButton) {
+        dismiss(animated: true)
+    }
 }
 
 extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
@@ -100,6 +125,10 @@ extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         
         let data = AlarmAddViewCellData[indexPath.row]
         cell.titleLabel.text = data.title
+        
+        if indexPath.row != 1 {
+            cell.textField.isHidden = true
+        }
         
         return cell
     }
