@@ -64,7 +64,7 @@ class alarmAddViewController: UIViewController {
             make.top.equalTo(datePicker.snp.bottom).offset(10)
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
-            make.height.equalTo(160)
+            make.height.equalTo(180)
         }
     }
     
@@ -126,14 +126,23 @@ extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         let data = AlarmAddViewCellData[indexPath.row]
         cell.titleLabel.text = data.title
         
-        if indexPath.row != 1 {
-            cell.textField.isHidden = true
+        switch indexPath.row {
+        case 0:
+            break
+        case 1:
+            cell.textField.isHidden = false
+        case 2:
+            break
+        case 3:
+            cell.repeatSwitch.isHidden = false
+        default:
+            break
         }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 45
     }
 }
