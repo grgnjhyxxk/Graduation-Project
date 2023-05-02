@@ -22,7 +22,7 @@ class alarmViewController: UIViewController {
     let mainTextLabel = commonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 30)
     
     
-    let commonUiView = commonView().commonUiView()
+    let commonUiView = commonView().commonUiView(backgroundColor: UIColor(white: 1.0, alpha: 0.22), borderWidth: 1, borderColor: UIColor(white: 1.0, alpha: 0.14), cornerRadius: 30)
     let tableView = UITableView()
 
     override func viewDidLoad() {
