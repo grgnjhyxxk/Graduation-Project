@@ -93,7 +93,7 @@ class alarmViewController: UIViewController {
         plusButton.snp.makeConstraints { make in
             make.top.equalTo(mainTextLabel.snp.bottom).offset(34)
             make.trailing.equalTo(commonUiView).offset(-20)
-            make.size.equalTo(CGSize(width: 23, height: 21.2))
+            make.size.equalTo(CGSize(width: 24.5, height: 21.6))
         }
         
         tableView.snp.makeConstraints { make in
@@ -102,15 +102,6 @@ class alarmViewController: UIViewController {
             make.leading.equalTo(commonUiView).offset(20)
             make.trailing.equalTo(commonUiView).offset(-20)
         }
-    }
-    
-    private func actionFuction() {
-        plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
-    }
-    
-    @objc func plusButtonAction(_: UIButton) {
-        let alarmAddViewController = alarmAddViewController()
-        self.present(alarmAddViewController, animated: true, completion: nil)
     }
     
     private func addOnCommonUiView() {
@@ -130,6 +121,14 @@ class alarmViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
     }
     
+    private func actionFuction() {
+        plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func plusButtonAction(_: UIButton) {
+        let alarmAddViewController = alarmAddViewController()
+        self.present(alarmAddViewController, animated: true, completion: nil)
+    }
 }
 
 extension alarmViewController: UITableViewDataSource, UITableViewDelegate {
