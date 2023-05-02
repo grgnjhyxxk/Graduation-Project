@@ -73,13 +73,17 @@ class commonView: UIView {
         return label
     }
     
-    func commonUiView() -> UIView {
+    func commonUiView(backgroundColor: UIColor, borderWidth: CGFloat, borderColor: UIColor, cornerRadius: CGFloat) -> UIView {
         let uiView = UIView()
-        
-        uiView.backgroundColor = UIColor(white: 1.0, alpha: 0.22)
-        uiView.layer.borderWidth = 1
-        uiView.layer.borderColor = UIColor(white: 1.0, alpha: 0.14).cgColor
-        uiView.layer.cornerRadius = 30
+  
+        uiView.backgroundColor = backgroundColor
+        uiView.layer.borderWidth = borderWidth
+        uiView.layer.borderColor = borderColor.cgColor
+        uiView.layer.cornerRadius = cornerRadius
+//        uiView.backgroundColor = UIColor(white: 1.0, alpha: 0.22)
+//        uiView.layer.borderWidth = 1
+//        uiView.layer.borderColor = UIColor(white: 1.0, alpha: 0.14).cgColor
+//        uiView.layer.cornerRadius = 30
         
         return uiView
     }
