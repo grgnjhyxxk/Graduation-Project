@@ -14,7 +14,7 @@ class alarmAddView: UIView {
             
         label.text = "알람 추가"
         label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 23)
         label.textAlignment = .center
         
         return label
@@ -30,5 +30,27 @@ class alarmAddView: UIView {
         datePicker.overrideUserInterfaceStyle = .dark
         
         return datePicker
+    }
+    
+    func closeButton() -> UIButton {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.tintColor = UIColor.white
+        
+        return button
+    }
+    
+    func nextButton() -> UIButton {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "greaterthan"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.tintColor = UIColor.white
+        
+        return button
     }
 }
