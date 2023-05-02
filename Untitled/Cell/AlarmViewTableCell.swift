@@ -11,35 +11,43 @@ class alarmViewTableCell: UITableViewCell {
     
     let productImageView: UIImageView = {
         let imageView = UIImageView()
+        
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         imageView.backgroundColor = UIColor.white
+        
         return imageView
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
+        
         label.text = "Title"
         label.textColor = UIColor.white
         label.font = UIFont.boldSystemFont(ofSize: 20)
+        
         return label
     }()
     
     let brandLabel: UILabel = {
         let label = UILabel()
+        
         label.text = "brand"
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 10)
+        
         return label
     }()
     
     let timeLabel: UILabel = {
         let label = UILabel()
+        
         label.text = "10:30"
         label.font = UIFont.systemFont(ofSize: 45, weight: .bold)
         label.textColor = .white
         label.textAlignment = .right
+        
         return label
     }()
     
