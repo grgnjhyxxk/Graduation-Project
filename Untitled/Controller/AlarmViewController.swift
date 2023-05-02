@@ -85,22 +85,22 @@ class alarmViewController: UIViewController {
         }
         
         listButton.snp.makeConstraints { make in
-            make.top.equalTo(mainTextLabel.snp.bottom).offset(34)
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(30)
             make.leading.equalTo(subTextLabel)
-            make.size.equalTo(CGSize(width: 28, height: 18))
+            make.size.equalTo(CGSize(width: 30, height: 23))
         }
         
         plusButton.snp.makeConstraints { make in
-            make.top.equalTo(mainTextLabel.snp.bottom).offset(34)
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(25)
             make.trailing.equalTo(commonUiView).offset(-20)
-            make.size.equalTo(CGSize(width: 24.5, height: 21.6))
+            make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(listButton.snp.bottom).offset(10)
             make.bottom.equalTo(commonUiView).offset(-100)
-            make.leading.equalTo(commonUiView).offset(20)
-            make.trailing.equalTo(commonUiView).offset(-20)
+            make.leading.equalTo(commonUiView)
+            make.trailing.equalTo(commonUiView)
         }
     }
     
@@ -117,8 +117,9 @@ class alarmViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor.clear
-        tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
+        tableView.rowHeight = 93
+        tableView.separatorColor = UIColor.white
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
     private func actionFuction() {
@@ -134,10 +135,6 @@ class alarmViewController: UIViewController {
 extension alarmViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
         return 10
     }
     
@@ -147,31 +144,7 @@ extension alarmViewController: UITableViewDataSource, UITableViewDelegate {
         cell.clipsToBounds = true
         cell.backgroundColor = UIColor.clear
         
-        cell.layer.cornerRadius = 10
-        cell.layer.borderWidth = 2.5
-        cell.layer.borderColor = UIColor.white.withAlphaComponent(0.2).cgColor
-        
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView(frame: CGRect.zero)
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView(frame: CGRect.zero)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 93
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
