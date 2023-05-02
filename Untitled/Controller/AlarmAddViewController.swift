@@ -12,7 +12,9 @@ class alarmAddViewController: UIViewController {
     
     var uiViewList: [UIView] = []
     
+    let titleLabel = alarmAddView().titleLabel()
     let datePicker = alarmAddView().datePicker()
+    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 1, borderColor: UIColor(white: 1.0, alpha: 0.14), cornerRadius: 15)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,16 +26,28 @@ class alarmAddViewController: UIViewController {
     private func viewLayout() {
         view.backgroundColor = UIColor.white
         
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(20)
+            make.width.equalTo(view)
+        }
+        
         datePicker.snp.makeConstraints { make in
-            make.top.equalTo(100)
+            make.top.equalTo(titleLabel).offset(35)
             make.leading.equalTo(0)
-            make.bottom.equalTo(-400)
             make.trailing.equalTo(0)
+            make.height.equalTo(200)
+        }
+        
+        commonUiView.snp.makeConstraints { make in
+            make.top.equalTo(datePicker.snp.bottom).offset(10)
+            make.leading.equalTo(10)
+            make.trailing.equalTo(-10)
+            make.height.equalTo(200)
         }
     }
     
     private func addSubview() {
-        uiViewList = [datePicker]
+        uiViewList = [titleLabel, datePicker, commonUiView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
