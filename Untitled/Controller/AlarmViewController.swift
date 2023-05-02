@@ -37,7 +37,7 @@ class alarmViewController: UIViewController {
     }
     
     private func viewLayout() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.baseViewBackgroundColor
                 
         userProfileButton.snp.makeConstraints { make in
             make.top.equalTo(view).offset(74)

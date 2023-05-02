@@ -34,7 +34,7 @@ class alarmAddViewController: UIViewController {
     }
     
     private func viewLayout() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.baseViewBackgroundColor
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(20)
