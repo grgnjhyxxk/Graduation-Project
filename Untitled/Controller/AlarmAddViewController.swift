@@ -103,7 +103,9 @@ class alarmAddViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         tableView.isScrollEnabled = false
-        tableView.allowsSelection = false
+        tableView.rowHeight = 45
+//        tableView.allowsSelection = false
+        tableView.layer.cornerRadius = 15
     }
     
     private func actionFuction() {
@@ -112,6 +114,13 @@ class alarmAddViewController: UIViewController {
     
     @objc func closeButtonAction(_: UIButton) {
         dismiss(animated: true)
+    }
+    
+    func repeatDaysButtonAction() {
+        let repeatDaysSelectViewController = repeatDaysSelectViewController()
+        
+        repeatDaysSelectViewController.modalPresentationStyle = .pageSheet
+        self.present(repeatDaysSelectViewController, animated: true)
     }
 }
 
@@ -148,7 +157,14 @@ extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        switch indexPath.row {
+        case 0:
+            repeatDaysButtonAction()
+        default:
+            break
+        }
     }
 }
