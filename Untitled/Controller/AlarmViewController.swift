@@ -22,7 +22,7 @@ class alarmViewController: UIViewController {
     let mainTextLabel = commonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 30)
     
     
-    let commonUiView = commonView().commonUiView(backgroundColor: UIColor(white: 1.0, alpha: 0.22), borderWidth: 1, borderColor: UIColor(white: 1.0, alpha: 0.14), cornerRadius: 30)
+    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
     let tableView = UITableView()
 
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class alarmViewController: UIViewController {
                 
         userProfileButton.snp.makeConstraints { make in
             make.top.equalTo(view).offset(74)
-            make.trailing.equalTo(view).offset(-31)
+            make.trailing.equalTo(view).offset(-15)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
         
@@ -53,7 +53,7 @@ class alarmViewController: UIViewController {
         
         titleTextButton.snp.makeConstraints { make in
             make.top.equalTo(view).offset(76)
-            make.leading.equalTo(view).offset(31)
+            make.leading.equalTo(view).offset(15)
             make.size.equalTo(CGSize(width: 122, height: 44))
         }
         
