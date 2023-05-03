@@ -19,7 +19,7 @@ class alarmAddViewController: UIViewController {
     let closeButton = alarmAddView().closeButton()
     let nextButton = alarmAddView().nextButton()
     
-    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 1, borderColor: UIColor(white: 1.0, alpha: 0.14), cornerRadius: 15)
+    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -128,11 +128,13 @@ extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch indexPath.row {
         case 0:
-            break
+            cell.repeatDaysButton.isHidden = false
+            cell.repeatDaysLabel.isHidden = false
         case 1:
             cell.textField.isHidden = false
         case 2:
-            break
+            cell.userPickingButton.isHidden = false
+            cell.userPickingLabel.isHidden = false
         case 3:
             cell.repeatSwitch.isHidden = false
         default:
