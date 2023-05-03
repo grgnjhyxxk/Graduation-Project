@@ -13,11 +13,7 @@ class alarmAddViewController: UIViewController {
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
-    let titleLabel = alarmAddView().titleLabel()
     let datePicker = alarmAddView().datePicker()
-    
-    let closeButton = alarmAddView().closeButton()
-    let saveButton = alarmAddView().saveButton()
     
     let topBarView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 5)
     let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
@@ -31,7 +27,7 @@ class alarmAddViewController: UIViewController {
         addOnCommonUiView()
         commonUIViewLayout()
         tableViewLayout()
-        actionFuction()
+        navigationControllerLayout()
     }
     
     private func viewLayout() {
@@ -42,38 +38,23 @@ class alarmAddViewController: UIViewController {
 //            make.height.equalTo(45)
 //        }
         
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(11.8)
-            make.width.equalTo(view)
-        }
-        
-        closeButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel).offset(-6.2)
-            make.leading.equalTo(21)
-        }
-        
-        saveButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel).offset(-6.7)
-            make.trailing.equalTo(-21)
-        }
-        
         datePicker.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel).offset(35)
-            make.leading.equalTo(10)
-            make.trailing.equalTo(-10)
+            make.top.equalTo(46)
+            make.leading.equalTo(5)
+            make.trailing.equalTo(-5)
             make.height.equalTo(200)
         }
         
         commonUiView.snp.makeConstraints { make in
             make.top.equalTo(datePicker.snp.bottom).offset(10)
-            make.leading.equalTo(20)
-            make.trailing.equalTo(-20)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
             make.height.equalTo(180)
         }
     }
     
     private func addSubview() {
-        uiViewList = [topBarView, titleLabel, closeButton, saveButton, datePicker, commonUiView, tableView]
+        uiViewList = [topBarView, datePicker, commonUiView, tableView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -108,19 +89,36 @@ class alarmAddViewController: UIViewController {
         tableView.layer.cornerRadius = 15
     }
     
-    private func actionFuction() {
-        closeButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+    private func navigationControllerLayout() {
+        // Set navigation bar title
+        navigationItem.title = "알람 추가"
+        
+        // Set navigation bar button items
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonAction))
+        cancelButton.tintColor = .white
+        navigationItem.leftBarButtonItem = cancelButton
+        
+        let saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonAction))
+        saveButton.tintColor = .white
+        navigationItem.rightBarButtonItem = saveButton
+        
+        // Set navigation bar color
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
-    @objc func closeButtonAction(_: UIButton) {
-        dismiss(animated: true)
+    @objc func cancelButtonAction() {
+            dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func saveButtonAction() {
+        // Implement save button action here
     }
     
     func repeatDaysButtonAction() {
-        let repeatDaysSelectViewController = repeatDaysSelectViewController()
-        
-        repeatDaysSelectViewController.modalPresentationStyle = .pageSheet
-        self.present(repeatDaysSelectViewController, animated: true)
+        let rootViewController = repeatDaysSelectViewController()
+        show(rootViewController, sender: nil)
     }
 }
 
