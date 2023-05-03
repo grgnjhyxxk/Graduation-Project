@@ -9,13 +9,15 @@ import SnapKit
 
 class alarmViewTableCell: UITableViewCell {
     
-    let productImageView: UIImageView = {
+    var contentViewList: [UIView] = []
+    
+    let userImage: UIImageView = {
         let imageView = UIImageView()
         
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = UIColor.white
+        imageView.backgroundColor = UIColor.alarmViewUserImageBaseColor
         
         return imageView
     }()
@@ -23,17 +25,17 @@ class alarmViewTableCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "Title"
+        label.text = "label"
         label.textColor = UIColor.white
         label.font = UIFont.boldSystemFont(ofSize: 20)
         
         return label
     }()
     
-    let brandLabel: UILabel = {
+    let userNameLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "brand"
+        label.text = "username"
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 10)
         
@@ -52,23 +54,18 @@ class alarmViewTableCell: UITableViewCell {
     }()
     
     private func layout() {
-        contentView.addSubview(productImageView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(brandLabel)
-        contentView.addSubview(timeLabel)
-        
-        productImageView.snp.makeConstraints { make in
+        userImage.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(15)
             make.left.equalTo(contentView).offset(15)
             make.width.height.equalTo(64)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(productImageView).offset(10)
-            make.left.equalTo(productImageView.snp.right).offset(10)
+            make.top.equalTo(userImage).offset(10)
+            make.left.equalTo(userImage.snp.right).offset(10)
         }
         
-        brandLabel.snp.makeConstraints { make in
+        userNameLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(1)
             make.left.equalTo(titleLabel)
         }
@@ -80,8 +77,17 @@ class alarmViewTableCell: UITableViewCell {
         }
     }
     
+    private func addSubview() {
+        contentViewList = [userImage, titleLabel, userNameLabel, timeLabel]
+        
+        for uiView in contentViewList {
+            contentView.addSubview(uiView)
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubview()
         layout()
     }
     
