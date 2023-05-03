@@ -138,7 +138,7 @@ class alarmAddViewTableCell: UITableViewCell {
         userPickingButton.isHidden = true
         userPickingLabel.isHidden = true
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
