@@ -28,7 +28,7 @@ class alarmAddViewTableCell: UITableViewCell {
         textField.placeholder = "알람"
         textField.textColor = UIColor.placeholderText
         textField.textAlignment = .right
-        textField.font = UIFont.boldSystemFont(ofSize: 17)
+        textField.font = UIFont.systemFont(ofSize: 17)
         
         return textField
     }()
@@ -100,7 +100,7 @@ class alarmAddViewTableCell: UITableViewCell {
         }
         
         repeatDaysButton.snp.makeConstraints { make in
-            make.top.equalTo(13.5)
+            make.top.equalTo(13.7)
             make.trailing.equalTo(-10)
             make.size.equalTo(CGSize(width: 12.5, height: 15.5))
         }
@@ -111,7 +111,7 @@ class alarmAddViewTableCell: UITableViewCell {
         }
         
         userPickingButton.snp.makeConstraints { make in
-            make.top.equalTo(13.5)
+            make.top.equalTo(13.7)
             make.trailing.equalTo(-10)
             make.size.equalTo(CGSize(width: 12.5, height: 15.5))
         }
