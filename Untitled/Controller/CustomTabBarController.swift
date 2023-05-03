@@ -18,7 +18,7 @@ class CustomTabBarController: UITabBarController {
     }
     
     func configureLayout() {
-        self.tabBar.tintColor = UIColor.black.withAlphaComponent(0.8)
+        self.tabBar.tintColor = UIColor.customTabBarControllerItemTintColor
         self.tabBar.unselectedItemTintColor = UIColor.white.withAlphaComponent(0.65)
         self.tabBar.shadowImage = UIImage()
         self.tabBar.backgroundImage = UIImage()
