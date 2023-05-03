@@ -14,7 +14,7 @@ class alarmAddView: UIView {
             
         label.text = "알람 추가"
         label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 18)
         label.textAlignment = .center
         
         return label
@@ -36,21 +36,17 @@ class alarmAddView: UIView {
     func closeButton() -> UIButton {
         let button = UIButton()
         
-        button.setImage(UIImage(systemName: "xmark"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.tintColor = UIColor.white
+        button.setTitle("취소", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         
         return button
     }
     
-    func nextButton() -> UIButton {
+    func saveButton() -> UIButton {
         let button = UIButton()
         
-        button.setImage(UIImage(systemName: "greaterthan"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.tintColor = UIColor.white
+        button.setTitle("저장", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 17.5)
         
         return button
     }
