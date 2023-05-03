@@ -127,8 +127,10 @@ class alarmViewController: UIViewController {
     }
     
     @objc func plusButtonAction(_: UIButton) {
-        let alarmAddViewController = alarmAddViewController()
-        self.present(alarmAddViewController, animated: true, completion: nil)
+        let rootViewController = alarmAddViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        present(navigationController, animated: true, completion: nil)
     }
 }
 
