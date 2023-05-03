@@ -39,11 +39,8 @@ extension UIButton {
     
     func titleButtonCommonStyle() {
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-//        self.backgroundColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 0.20)
         self.backgroundColor = UIColor.alarmViewUserImageBaseColor
         layer.cornerRadius = 22
-//        layer.borderWidth = 1
-//        layer.borderColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.14).cgColor
     }
 }
 
