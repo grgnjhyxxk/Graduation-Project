@@ -8,7 +8,10 @@
 import UIKit
 
 struct AlarmViewCellDataModel {
-    let label: String
+    let date: String
     let repeatDays: String
+    let label: String
+    let user: Int
     let repeatSwitchState: Bool
+    let userImage: UIImage
 }
