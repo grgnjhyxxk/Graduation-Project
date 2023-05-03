@@ -13,7 +13,6 @@ class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureLayout()
     }
     
