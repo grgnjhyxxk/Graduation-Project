@@ -17,8 +17,9 @@ class alarmAddViewController: UIViewController {
     let datePicker = alarmAddView().datePicker()
     
     let closeButton = alarmAddView().closeButton()
-    let nextButton = alarmAddView().nextButton()
+    let saveButton = alarmAddView().saveButton()
     
+    let topBarView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 5)
     let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
     
@@ -36,21 +37,24 @@ class alarmAddViewController: UIViewController {
     private func viewLayout() {
         view.backgroundColor = UIColor.baseViewBackgroundColor
         
+//        topBarView.snp.makeConstraints { make in
+//            make.top.leading.trailing.equalTo(view)
+//            make.height.equalTo(45)
+//        }
+        
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(20)
+            make.top.equalTo(11.8)
             make.width.equalTo(view)
         }
         
         closeButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel).offset(4)
-            make.leading.equalTo(20)
-            make.size.equalTo(CGSize(width: 22.5, height: 20.5))
+            make.top.equalTo(titleLabel).offset(-6.2)
+            make.leading.equalTo(21)
         }
         
-        nextButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel).offset(1.5)
-            make.trailing.equalTo(-20)
-            make.size.equalTo(CGSize(width: 18.5, height: 21.5))
+        saveButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel).offset(-6.7)
+            make.trailing.equalTo(-21)
         }
         
         datePicker.snp.makeConstraints { make in
@@ -69,7 +73,7 @@ class alarmAddViewController: UIViewController {
     }
     
     private func addSubview() {
-        uiViewList = [titleLabel, closeButton, nextButton, datePicker, commonUiView, tableView]
+        uiViewList = [topBarView, titleLabel, closeButton, saveButton, datePicker, commonUiView, tableView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
