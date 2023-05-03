@@ -15,7 +15,6 @@ class alarmAddViewTableCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "설정"
         label.textColor = UIColor.white
         label.font = UIFont.systemFont(ofSize: 17)
         
@@ -42,10 +41,52 @@ class alarmAddViewTableCell: UITableViewCell {
         return repeatSwitch
     }()
     
+    let repeatDaysButton: UIButton = {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "greaterthan"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.tintColor = UIColor.placeholderText
+        
+        return button
+    }()
+    
+    let repeatDaysLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "안 함"
+        label.textColor = UIColor.placeholderText
+        label.font = UIFont.systemFont(ofSize: 17)
+        
+        return label
+    }()
+    
+    let userPickingButton: UIButton = {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "greaterthan"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.tintColor = UIColor.placeholderText
+        
+        return button
+    }()
+    
+    let userPickingLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "사용자"
+        label.textColor = UIColor.placeholderText
+        label.font = UIFont.systemFont(ofSize: 17)
+        
+        return label
+    }()
+    
     private func layout() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(12)
-            make.leading.equalTo(12)
+            make.leading.equalTo(12.5)
         }
         
         textField.snp.makeConstraints { make in
@@ -57,10 +98,32 @@ class alarmAddViewTableCell: UITableViewCell {
             make.top.equalTo(6.5)
             make.trailing.equalTo(-10)
         }
+        
+        repeatDaysButton.snp.makeConstraints { make in
+            make.top.equalTo(13.5)
+            make.trailing.equalTo(-10)
+            make.size.equalTo(CGSize(width: 12.5, height: 15.5))
+        }
+        
+        repeatDaysLabel.snp.makeConstraints { make in
+            make.top.equalTo(10.85)
+            make.trailing.equalTo(repeatDaysButton.snp.leading).offset(-8)
+        }
+        
+        userPickingButton.snp.makeConstraints { make in
+            make.top.equalTo(13.5)
+            make.trailing.equalTo(-10)
+            make.size.equalTo(CGSize(width: 12.5, height: 15.5))
+        }
+        
+        userPickingLabel.snp.makeConstraints { make in
+            make.top.equalTo(10.85)
+            make.trailing.equalTo(repeatDaysButton.snp.leading).offset(-8)
+        }
     }
     
     private func addSubview() {
-        contentViewList = [titleLabel, textField, repeatSwitch]
+        contentViewList = [titleLabel, textField, repeatSwitch, repeatDaysButton, repeatDaysLabel, userPickingButton, userPickingLabel]
         
         for uiView in contentViewList {
             contentView.addSubview(uiView)
@@ -70,6 +133,10 @@ class alarmAddViewTableCell: UITableViewCell {
     private func allHidenInit() {
         textField.isHidden = true
         repeatSwitch.isHidden = true
+        repeatDaysButton.isHidden = true
+        repeatDaysLabel.isHidden = true
+        userPickingButton.isHidden = true
+        userPickingLabel.isHidden = true
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
