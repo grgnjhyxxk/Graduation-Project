@@ -10,9 +10,6 @@ import SnapKit
 
 class repeatDaysSelectViewController: UIViewController {
     
-    let titleLabel = repeatDaysSelectView().titleLabel()
-    let backButton = repeatDaysSelectView().backButton()
-    
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
@@ -25,31 +22,22 @@ class repeatDaysSelectViewController: UIViewController {
         viewLayout()
         addOnCommonUiView()
         commonUIViewLayout()
+        navigationControllerLayout()
     }
     
     private func viewLayout() {
         view.backgroundColor = UIColor.baseViewBackgroundColor
         
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(11.8)
-            make.width.equalTo(view)
-        }
-        
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel).offset(-6.2)
-            make.leading.equalTo(21)
-        }
-        
         commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel).offset(35)
-            make.leading.equalTo(20)
-            make.trailing.equalTo(-20)
-            make.height.equalTo(180)
+            make.top.equalTo(76)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
+            make.height.equalTo(220)
         }
     }
     
     private func addSubview() {
-        uiViewList = [commonUiView, titleLabel, backButton]
+        uiViewList = [commonUiView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -62,5 +50,24 @@ class repeatDaysSelectViewController: UIViewController {
     
     private func addOnCommonUiView() {
 
+    }
+    
+    private func navigationControllerLayout() {
+        // Set navigation bar title
+        navigationItem.title = "반복"
+        
+        // Set navigation bar button items
+        let cancelButton = UIBarButtonItem(title: "뒤로", style: .plain, target: self, action: #selector(cancelButtonAction))
+        cancelButton.tintColor = .white
+        navigationItem.leftBarButtonItem = cancelButton
+        
+        // Set navigation bar color
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+    
+    @objc func cancelButtonAction() {
+        navigationController?.popViewController(animated: true)
     }
 }
