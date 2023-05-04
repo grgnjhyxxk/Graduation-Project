@@ -117,14 +117,13 @@ class alarmAddViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
         let timeString = dateFormatter.string(from: datePicker.date)
-        let repeatDaysString = "주말"
-        let labelString = "없음"
         
-        alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysString, label: labelString, user: 1, repeatSwitchState: true, userImage: UIImage(named: "TemporaryUserProfilePicture")!))
+        alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, user: 1, repeatSwitchState: true, userImage: UIImage(named: "TemporaryUserProfilePicture")!))
+        
+        alarmTextFieldTextInit()
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
-
-
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -155,6 +154,7 @@ extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
             cell.repeatDaysLabel.text = repeatDaysDataContraction(data: data)
         case 1:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: false, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: true)
+            cell.textField.text = alarmTextFieldText
         case 2:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: true, userPickingLabelBool: false, userPickingButtonBool: false, repeatSwitchBool: true)
         case 3:
