@@ -15,7 +15,6 @@ class alarmAddViewController: UIViewController {
     
     let datePicker = alarmAddView().datePicker()
     
-    let topBarView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 5)
     let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
     
@@ -30,13 +29,13 @@ class alarmAddViewController: UIViewController {
         navigationControllerLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     private func viewLayout() {
         view.backgroundColor = UIColor.baseViewBackgroundColor
-        
-//        topBarView.snp.makeConstraints { make in
-//            make.top.leading.trailing.equalTo(view)
-//            make.height.equalTo(45)
-//        }
         
         datePicker.snp.makeConstraints { make in
             make.top.equalTo(46)
@@ -54,7 +53,7 @@ class alarmAddViewController: UIViewController {
     }
     
     private func addSubview() {
-        uiViewList = [topBarView, datePicker, commonUiView, tableView]
+        uiViewList = [datePicker, commonUiView, tableView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -85,8 +84,12 @@ class alarmAddViewController: UIViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
         tableView.isScrollEnabled = false
         tableView.rowHeight = 45
-//        tableView.allowsSelection = false
         tableView.layer.cornerRadius = 15
+        
+        tableView.tableHeaderView = UIView(frame: .zero)
+        tableView.tableHeaderView?.backgroundColor = .clear
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.tableFooterView?.backgroundColor = .clear
     }
     
     private func navigationControllerLayout() {
