@@ -79,15 +79,12 @@ class repeatDaysSelectViewController: UIViewController {
     }
     
     private func navigationControllerLayout() {
-        // Set navigation bar title
         navigationItem.title = "반복"
         
-        // Set navigation bar button items
         let cancelButton = UIBarButtonItem(title: "뒤로", style: .plain, target: self, action: #selector(cancelButtonAction))
         cancelButton.tintColor = .white
         navigationItem.leftBarButtonItem = cancelButton
         
-        // Set navigation bar color
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
