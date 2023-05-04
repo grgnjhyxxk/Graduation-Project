@@ -26,7 +26,7 @@ class alarmAddViewTableCell: UITableViewCell {
         
         textField.backgroundColor = UIColor.clear
         textField.placeholder = "알람"
-        textField.textColor = UIColor.placeholderText
+        textField.textColor = UIColor.white
         textField.textAlignment = .right
         textField.font = UIFont.systemFont(ofSize: 17)
         
@@ -153,9 +153,14 @@ class alarmAddViewTableCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
         layout()
+        textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func textFieldDidChange(_ sender: Any?) {
+        alarmTextFieldText = textField.text ?? "없음"
     }
 }
