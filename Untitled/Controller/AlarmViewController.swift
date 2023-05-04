@@ -34,6 +34,20 @@ class alarmViewController: UIViewController {
         commonUiViewLayout()
         tableViewLayout()
         actionFuction()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmAddedNotification), name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
+
+    }
+    
+    @objc func handleAlarmAddedNotification(_ noti: Notification) {
+//        requestComments()
+      // 이 부분을 해주어야 다시 comment들을 api로 가져올 수 있었다.
+      // 즉, reload할 데이터를 불러와야 바뀌는 게 있다는 의미다.
+      // 안 해서 고생함...
+        OperationQueue.main.addOperation { // DispatchQueue도 가능.
+            self.tableView.reloadData()
+        }
+
     }
     
     private func viewLayout() {
@@ -139,7 +153,7 @@ class alarmViewController: UIViewController {
 extension alarmViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return alarmViewCellDataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -147,6 +161,12 @@ extension alarmViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.clipsToBounds = true
         cell.backgroundColor = UIColor.clear
+        
+        cell.userImage.image = alarmViewCellDataList[indexPath.row].userImage
+        cell.titleLabel.text = alarmViewCellDataList[indexPath.row].label
+        cell.userNameLabel.text = String(alarmViewCellDataList[indexPath.row].user)
+        cell.timeLabel.text = alarmViewCellDataList[indexPath.row].date
+        cell.dateLabel.text = alarmViewCellDataList[indexPath.row].repeatDays
         
         return cell
     }
