@@ -10,10 +10,10 @@ import UIKit
 var alarmViewCellDataList = [AlarmViewCellDataModel]()
 
 struct AlarmViewCellDataModel {
-    let date: String
-    let repeatDays: String
-    let label: String
-    let user: Int
-    let repeatSwitchState: Bool
-    let userImage: UIImage
+    var date: String
+    var repeatDays: String
+    var label: String
+    var user: Int
+    var repeatSwitchState: Bool
+    var userImage: UIImage
 }
