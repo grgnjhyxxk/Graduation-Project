@@ -40,11 +40,7 @@ class alarmViewController: UIViewController {
     }
     
     @objc func handleAlarmAddedNotification(_ noti: Notification) {
-//        requestComments()
-      // 이 부분을 해주어야 다시 comment들을 api로 가져올 수 있었다.
-      // 즉, reload할 데이터를 불러와야 바뀌는 게 있다는 의미다.
-      // 안 해서 고생함...
-        OperationQueue.main.addOperation { // DispatchQueue도 가능.
+        OperationQueue.main.addOperation {
             self.tableView.reloadData()
         }
 
