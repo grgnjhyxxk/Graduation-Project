@@ -26,3 +26,16 @@ func repeatDaysSelectListInitFunction() {
         RepeatDaysSelectViewDataModel(title: "일", checkState: false)
     ]
 }
+
+func repeatDaysDataContraction(data: String) -> String {
+    switch data {
+    case "월 화 수 목 금":
+        return "주중"
+    case "월 화 수 목 금 토 일":
+        return "매일"
+    case "토 일":
+        return "주말"
+    default:
+        return data
+    }
+}
