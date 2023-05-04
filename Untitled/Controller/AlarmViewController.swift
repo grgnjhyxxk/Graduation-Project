@@ -118,7 +118,6 @@ class alarmViewController: UIViewController {
         tableView.delegate = self
         tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = 93
-        tableView.separatorColor = UIColor.white
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     
@@ -129,6 +128,9 @@ class alarmViewController: UIViewController {
     @objc func plusButtonAction(_: UIButton) {
         let rootViewController = alarmAddViewController()
         let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        repeatDaysSelectListInitFunction()
+        print("List init!!")
         
         present(navigationController, animated: true, completion: nil)
     }
