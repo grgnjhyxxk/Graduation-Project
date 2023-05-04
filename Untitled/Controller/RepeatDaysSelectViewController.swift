@@ -14,6 +14,7 @@ class repeatDaysSelectViewController: UIViewController {
     var commonViewList: [UIView] = []
     
     let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,7 @@ class repeatDaysSelectViewController: UIViewController {
         viewLayout()
         addOnCommonUiView()
         commonUIViewLayout()
+        tableViewLayout()
         navigationControllerLayout()
     }
     
@@ -32,7 +34,7 @@ class repeatDaysSelectViewController: UIViewController {
             make.top.equalTo(76)
             make.leading.equalTo(15)
             make.trailing.equalTo(-15)
-            make.height.equalTo(220)
+            make.height.equalTo(315)
         }
     }
     
@@ -45,11 +47,35 @@ class repeatDaysSelectViewController: UIViewController {
     }
     
     private func commonUIViewLayout() {
-
+        tableView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalTo(commonUiView)
+        }
     }
     
     private func addOnCommonUiView() {
-
+        commonViewList = [tableView]
+        
+        for uiView in commonViewList {
+            commonUiView.addSubview(uiView)
+        }
+    }
+    
+    private func tableViewLayout() {
+        tableView.register(repeatDaysSelectViewTableCell.self, forCellReuseIdentifier: "repeatDaysSelectViewTableCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.clear
+        tableView.separatorStyle = .singleLine
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        tableView.isScrollEnabled = false
+        tableView.rowHeight = 45
+        tableView.layer.cornerRadius = 15
+        
+        tableView.tableHeaderView = UIView(frame: .zero)
+        tableView.tableHeaderView?.backgroundColor = .clear
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.tableFooterView?.backgroundColor = .clear
     }
     
     private func navigationControllerLayout() {
@@ -69,5 +95,39 @@ class repeatDaysSelectViewController: UIViewController {
     
     @objc func cancelButtonAction() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension repeatDaysSelectViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return repeatDaysSelectList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "repeatDaysSelectViewTableCell", for: indexPath) as! repeatDaysSelectViewTableCell
+        
+        cell.clipsToBounds = true
+        cell.backgroundColor = UIColor.clear
+        
+        let data = repeatDaysSelectList[indexPath.row]
+        cell.titleLabel.text = data.title + "요일마다"
+        
+        cell.checkStateImageView.isHidden = !repeatDaysSelectList[indexPath.row].checkState
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? repeatDaysSelectViewTableCell else {
+                return
+        }
+        
+        repeatDaysSelectList[indexPath.row].checkState = !repeatDaysSelectList[indexPath.row].checkState
+        cell.checkStateImageView.isHidden = !repeatDaysSelectList[indexPath.row].checkState
+        
+        print(repeatDaysSelectList[indexPath.row].checkState)
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
