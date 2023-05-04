@@ -137,20 +137,18 @@ extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         cell.clipsToBounds = true
         cell.backgroundColor = UIColor.clear
         
-        let data = AlarmAddViewCellData[indexPath.row]
-        cell.titleLabel.text = data.title
+        let titlaLabelText = AlarmAddViewCellData[indexPath.row].title
         
         switch indexPath.row {
         case 0:
-            cell.repeatDaysButton.isHidden = false
-            cell.repeatDaysLabel.isHidden = false
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: false, repeatDaysButtonBool: false, textFieldBool: true, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: true)
+            cell.repeatDaysLabel.text = repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ").isEmpty ? "안함" : repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ")
         case 1:
-            cell.textField.isHidden = false
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: false, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: true)
         case 2:
-            cell.userPickingButton.isHidden = false
-            cell.userPickingLabel.isHidden = false
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: true, userPickingLabelBool: false, userPickingButtonBool: false, repeatSwitchBool: true)
         case 3:
-            cell.repeatSwitch.isHidden = false
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: true, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: false)
         default:
             break
         }
