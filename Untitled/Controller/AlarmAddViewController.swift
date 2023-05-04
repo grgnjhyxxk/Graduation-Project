@@ -93,10 +93,8 @@ class alarmAddViewController: UIViewController {
     }
     
     private func navigationControllerLayout() {
-        // Set navigation bar title
         navigationItem.title = "알람 추가"
         
-        // Set navigation bar button items
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonAction))
         cancelButton.tintColor = .white
         navigationItem.leftBarButtonItem = cancelButton
@@ -105,18 +103,29 @@ class alarmAddViewController: UIViewController {
         saveButton.tintColor = .white
         navigationItem.rightBarButtonItem = saveButton
         
-        // Set navigation bar color
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
     @objc func cancelButtonAction() {
-            dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func saveButtonAction() {
-        // Implement save button action here
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "HH:mm"
+        let timeString = dateFormatter.string(from: datePicker.date)
+        let repeatDaysString = "주말"
+        let labelString = "없음"
+        
+        alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysString, label: labelString, user: 1, repeatSwitchState: true, userImage: UIImage(named: "TemporaryUserProfilePicture")!))
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
+
+
+        dismiss(animated: true, completion: nil)
     }
     
     func repeatDaysButtonAction() {
@@ -142,7 +151,8 @@ extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
         case 0:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: false, repeatDaysButtonBool: false, textFieldBool: true, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: true)
-            cell.repeatDaysLabel.text = repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ").isEmpty ? "안함" : repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ")
+            let data = repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ").isEmpty ? "안함" : repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ")
+            cell.repeatDaysLabel.text = repeatDaysDataContraction(data: data)
         case 1:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: false, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: true)
         case 2:
