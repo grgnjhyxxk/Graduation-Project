@@ -55,7 +55,6 @@ class alarmAddViewTableCell: UITableViewCell {
     let repeatDaysLabel: UILabel = {
         let label = UILabel()
         
-        label.text = "안 함"
         label.textColor = UIColor.placeholderText
         label.font = UIFont.systemFont(ofSize: 17)
         
@@ -130,20 +129,30 @@ class alarmAddViewTableCell: UITableViewCell {
         }
     }
     
-    private func allHidenInit() {
+    override func prepareForReuse() {
+        super.prepareForReuse()
         textField.isHidden = true
         repeatSwitch.isHidden = true
         repeatDaysButton.isHidden = true
         repeatDaysLabel.isHidden = true
         userPickingButton.isHidden = true
-        userPickingLabel.isHidden = true
+        userPickingLabel.isHidden = true 
     }
-
+    
+    func hiddenFucntion(titleLabelText: String,repeatDaysLabelBool: Bool, repeatDaysButtonBool: Bool, textFieldBool: Bool, userPickingLabelBool: Bool, userPickingButtonBool: Bool, repeatSwitchBool: Bool) {
+        titleLabel.text = titleLabelText
+        repeatDaysLabel.isHidden = repeatDaysLabelBool
+        repeatDaysButton.isHidden = repeatDaysButtonBool
+        textField.isHidden = textFieldBool
+        userPickingLabel.isHidden = userPickingLabelBool
+        userPickingButton.isHidden = userPickingButtonBool
+        repeatSwitch.isHidden = repeatSwitchBool
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
         layout()
-        allHidenInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
