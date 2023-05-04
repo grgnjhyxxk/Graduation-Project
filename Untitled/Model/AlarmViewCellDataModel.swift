@@ -7,6 +7,8 @@
 
 import UIKit
 
+var alarmViewCellDataList = [AlarmViewCellDataModel]()
+
 struct AlarmViewCellDataModel {
     let date: String
     let repeatDays: String
