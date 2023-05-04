@@ -7,14 +7,21 @@
 
 import UIKit
 
-struct AlarmAddViewCellDataModel {
+var alarmTextFieldText = String()
+var repeatDaysDataContractionText = String()
+
+struct AlarmAddViewCellDataInitModel {
     let title: String
     let isHidden: Bool
 }
 
 let AlarmAddViewCellData = [
-    AlarmAddViewCellDataModel(title: "반복", isHidden: false),
-    AlarmAddViewCellDataModel(title: "레이블", isHidden: false),
-    AlarmAddViewCellDataModel(title: "사용자", isHidden: false),
-    AlarmAddViewCellDataModel(title: "다시 알림", isHidden: false)
+    AlarmAddViewCellDataInitModel(title: "반복", isHidden: false),
+    AlarmAddViewCellDataInitModel(title: "레이블", isHidden: false),
+    AlarmAddViewCellDataInitModel(title: "사용자", isHidden: false),
+    AlarmAddViewCellDataInitModel(title: "다시 알림", isHidden: false)
 ]
+
+func alarmTextFieldTextInit() {
+    alarmTextFieldText = String()
+}
