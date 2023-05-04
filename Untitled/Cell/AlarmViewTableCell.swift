@@ -53,6 +53,16 @@ class alarmViewTableCell: UITableViewCell {
         return label
     }()
     
+    let dateLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "date"
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 11.5)
+        
+        return label
+    }()
+    
     private func layout() {
         userImage.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(15)
@@ -71,14 +81,19 @@ class alarmViewTableCell: UITableViewCell {
         }
         
         timeLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).offset(10)
+            make.top.equalTo(contentView)
             make.right.equalTo(contentView).offset(-10)
             make.bottom.equalTo(contentView).offset(-10)
+        }
+        
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(timeLabel.snp.bottom).offset(-18)
+            make.trailing.equalTo(timeLabel).offset(-2.5)
         }
     }
     
     private func addSubview() {
-        contentViewList = [userImage, titleLabel, userNameLabel, timeLabel]
+        contentViewList = [userImage, titleLabel, userNameLabel, timeLabel, dateLabel]
         
         for uiView in contentViewList {
             contentView.addSubview(uiView)
