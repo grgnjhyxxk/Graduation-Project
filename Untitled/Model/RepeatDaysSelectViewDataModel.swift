@@ -7,7 +7,8 @@
 
 import UIKit
 
-var repeatDaysSelectList = [RepeatDaysSelectViewDataModel]()
+var repeatDaysSelectList = [RepeatDaysSelectViewDataModel](repeating: RepeatDaysSelectViewDataModel(title: "", checkState: false), count: 7)
+
 
 struct RepeatDaysSelectViewDataModel {
     let title: String
@@ -15,11 +16,13 @@ struct RepeatDaysSelectViewDataModel {
 }
 
 func repeatDaysSelectListInitFunction() {
-    repeatDaysSelectList.append(RepeatDaysSelectViewDataModel(title: "월", checkState: false))
-    repeatDaysSelectList.append(RepeatDaysSelectViewDataModel(title: "화", checkState: false))
-    repeatDaysSelectList.append(RepeatDaysSelectViewDataModel(title: "수", checkState: false))
-    repeatDaysSelectList.append(RepeatDaysSelectViewDataModel(title: "목", checkState: false))
-    repeatDaysSelectList.append(RepeatDaysSelectViewDataModel(title: "금", checkState: false))
-    repeatDaysSelectList.append(RepeatDaysSelectViewDataModel(title: "토", checkState: false))
-    repeatDaysSelectList.append(RepeatDaysSelectViewDataModel(title: "일", checkState: false))
+    repeatDaysSelectList = [
+        RepeatDaysSelectViewDataModel(title: "월", checkState: false),
+        RepeatDaysSelectViewDataModel(title: "화", checkState: false),
+        RepeatDaysSelectViewDataModel(title: "수", checkState: false),
+        RepeatDaysSelectViewDataModel(title: "목", checkState: false),
+        RepeatDaysSelectViewDataModel(title: "금", checkState: false),
+        RepeatDaysSelectViewDataModel(title: "토", checkState: false),
+        RepeatDaysSelectViewDataModel(title: "일", checkState: false)
+    ]
 }
