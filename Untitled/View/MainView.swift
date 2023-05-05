@@ -10,6 +10,7 @@ import UIKit
 private let appIconForViewImageString = "AppIconForOnView"
 
 class mainView: UIView {
+    
     func appIconForViewImageView() -> UIImageView {
         let imageView = UIImageView()
         
