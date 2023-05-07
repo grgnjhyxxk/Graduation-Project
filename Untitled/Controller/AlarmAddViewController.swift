@@ -15,7 +15,7 @@ class alarmAddViewController: UIViewController {
     
     let datePicker = alarmAddView().datePicker()
     
-    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
     
     override func viewDidLoad() {

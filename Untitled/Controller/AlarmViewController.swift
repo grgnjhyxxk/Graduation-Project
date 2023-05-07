@@ -21,8 +21,7 @@ class alarmViewController: UIViewController {
     let subTextLabel = commonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
     let mainTextLabel = commonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 30)
     
-    
-    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
+    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
     let tableView = UITableView()
 
     override func viewDidLoad() {
