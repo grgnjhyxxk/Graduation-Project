@@ -37,7 +37,7 @@ class alarmAddViewTableCell: UITableViewCell {
         let repeatSwitch = UISwitch()
         
         repeatSwitch.isOn = false
-        repeatSwitch.onTintColor = UIColor.applicationPointColorHighlightColor
+        repeatSwitch.onTintColor = UIColor.systemBlue
         return repeatSwitch
     }()
     
