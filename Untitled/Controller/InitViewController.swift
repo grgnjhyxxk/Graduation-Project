@@ -12,7 +12,52 @@ class initViewController: UIViewController {
     
     var isLoggedInBool = false
     
-    var uiViewList: [UIView] = [] 
+    var uiViewList: [UIView] = []
+    
+    let idInputTextFelid = initView().idInputTextField()
+    let passwordTextFelid = initView().PasswordInputTextField()
+    let loginButton = initView().loginButton()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
+        addSubview()
+        viewLayout()
+        actionFunction()
+    }
+    
+    private func viewLayout() {
+        view.backgroundColor = UIColor.baseViewBackgroundColor
+        
+        idInputTextFelid.snp.makeConstraints { make in
+            make.top.equalTo(300)
+            make.leading.equalTo(40)
+            make.trailing.equalTo(-40)
+            make.height.equalTo(40)
+        }
+        
+        passwordTextFelid.snp.makeConstraints { make in
+            make.top.equalTo(idInputTextFelid.snp.bottom).offset(5)
+            make.leading.equalTo(40)
+            make.trailing.equalTo(-40)
+            make.height.equalTo(40)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextFelid.snp.bottom).offset(10)
+            make.leading.equalTo(40)
+            make.trailing.equalTo(-40)
+            make.height.equalTo(35)
+        }
+    }
+    
+    private func addSubview() {
+        uiViewList = [idInputTextFelid, passwordTextFelid, loginButton]
+        
+        for uiView in uiViewList {
+            view.addSubview(uiView)
+        }
+    }
     
     func isLoggedIn() -> UIViewController {
         if isLoggedInBool {
@@ -26,27 +71,12 @@ class initViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
-        addSubview()
-        viewLayout()
+    private func actionFunction() {
+        loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
     }
     
-    private func viewLayout() {
-        view.backgroundColor = UIColor.baseViewBackgroundColor
-    }
-    
-    private func addSubview() {
-        uiViewList = []
-        
-        for uiView in uiViewList {
-            view.addSubview(uiView)
-        }
-    }
-
     @objc func loginButtonTapped(_ sender: UIButton) {
-        sender.backgroundColor = UIColor.applicationPointColor
+//        sender.backgroundColor = UIColor.applicationPointColor
         isLoggedInBool = true
         let tabBarController = isLoggedIn()
         tabBarController.modalPresentationStyle = .fullScreen
