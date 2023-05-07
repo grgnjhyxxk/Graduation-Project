@@ -19,11 +19,10 @@ extension UIViewController {
 }
 
 extension UIColor {
-    static let applicationPointColor = UIColor(red: 149/255, green: 161/255, blue: 177/255, alpha: 0.85)
-    static let applicationPointColorHighlightColor = UIColor(red: 129/255, green: 141/255, blue: 157/255, alpha: 0.85)
     static let baseViewBackgroundColor = UIColor(named: "baseViewBackgroundColor")
     static let customTabBarControllerItemTintColor = UIColor(named: "customTabBarControllerItemTintColor")
     static let alarmViewUserImageBaseColor = UIColor(named: "alarmViewUserImageBaseColor")
+    static let layerViewBackgroundColor = UIColor(named: "layerViewBackgroundColor")
 }
 
 extension UIButton {
@@ -39,7 +38,7 @@ extension UIButton {
     
     func titleButtonCommonStyle() {
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        self.backgroundColor = UIColor.alarmViewUserImageBaseColor
+        self.backgroundColor = UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07)
         layer.cornerRadius = 22
     }
 }
