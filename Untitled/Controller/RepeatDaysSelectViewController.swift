@@ -13,7 +13,7 @@ class repeatDaysSelectViewController: UIViewController {
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
-    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
 
     override func viewDidLoad() {
