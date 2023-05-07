@@ -17,7 +17,7 @@ class alarmAddView: UIView {
         datePicker.maximumDate = nil
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.overrideUserInterfaceStyle = .dark
-        datePicker.tintColor = UIColor.applicationPointColorHighlightColor
+        datePicker.tintColor = UIColor.systemBlue
         
         return datePicker
     }
