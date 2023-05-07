@@ -25,16 +25,16 @@ class homeViewController: UIViewController {
     
     private func viewLayout() {
         view.backgroundColor = UIColor.baseViewBackgroundColor
-                
-        userProfileButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(74)
-            make.trailing.equalTo(view).offset(-31)
-            make.size.equalTo(CGSize(width: 45, height: 45))
-        }
         
         appIconForViewImageView.snp.makeConstraints { make in
             make.top.equalTo(view).offset(74)
             make.leading.equalTo(view).offset(31)
+            make.size.equalTo(CGSize(width: 45, height: 45))
+        }
+        
+        userProfileButton.snp.makeConstraints { make in
+            make.top.equalTo(view).offset(74)
+            make.trailing.equalTo(view).offset(-15)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
         
@@ -46,7 +46,7 @@ class homeViewController: UIViewController {
     }
     
     private func addSubview() {
-        uiViewList = [userProfileButton, appIconForViewImageView, envelopeButton]
+        uiViewList = [appIconForViewImageView, userProfileButton, envelopeButton]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
