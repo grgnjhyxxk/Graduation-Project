@@ -153,9 +153,6 @@ class InitViewController: UIViewController {
         let rootViewController = RegisterViewController()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
-        repeatDaysSelectListInitFunction()
-        print("List init!!")
-        
         present(navigationController, animated: true, completion: nil)
     }
 }
