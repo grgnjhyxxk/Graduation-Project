@@ -22,6 +22,7 @@ class initViewController: UIViewController {
     let idInputTextFelid = initView().idInputTextField()
     let passwordTextFelid = initView().PasswordInputTextField()
     
+    let passwordVisibilityButton = initView().passwordVisibilityButton()
     let loginButton = initView().loginButton()
     let registerButton = initView().registerButton()
     
@@ -78,6 +79,11 @@ class initViewController: UIViewController {
             make.height.equalTo(40)
         }
         
+        passwordVisibilityButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextFelid).offset(8.5)
+            make.trailing.equalTo(passwordTextFelid).offset(-8.5)
+        }
+        
         loginButton.snp.makeConstraints { make in
             make.top.equalTo(passwordTextFelid.snp.bottom).offset(30)
             make.leading.equalTo(30)
@@ -97,7 +103,7 @@ class initViewController: UIViewController {
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [mainTextLabel, subTextLabel, idInputTextFelid, passwordTextFelid, loginButton, registerLabel, registerButton]
+        commonViewList = [mainTextLabel, subTextLabel, idInputTextFelid, passwordTextFelid, passwordVisibilityButton, loginButton, registerLabel, registerButton]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -118,6 +124,7 @@ class initViewController: UIViewController {
     
     private func actionFunction() {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        passwordVisibilityButton.addTarget(self, action: #selector(passwordVisibilityButtonTapped), for: .touchUpInside)
     }
     
     @objc func loginButtonTapped(_ sender: UIButton) {
@@ -127,5 +134,11 @@ class initViewController: UIViewController {
         tabBarController.modalPresentationStyle = .fullScreen
         
         present(tabBarController, animated: true)
+    }
+    
+    @objc func passwordVisibilityButtonTapped(_ sender: UIButton) {
+        passwordTextFelid.isSecureTextEntry.toggle()
+        let imageName = passwordTextFelid.isSecureTextEntry ? "eye.slash" : "eye"
+        sender.setImage(UIImage(systemName: imageName), for: .normal)
     }
 }

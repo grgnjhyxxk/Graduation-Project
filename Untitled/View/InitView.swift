@@ -97,4 +97,13 @@ class initView: UIView {
         
         return button
     }
+    
+    func passwordVisibilityButton() -> UIButton {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        button.tintColor = UIColor.lightGray
+        
+        return button
+    }
 }
