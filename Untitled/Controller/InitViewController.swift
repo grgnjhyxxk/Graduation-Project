@@ -93,7 +93,7 @@ class InitViewController: UIViewController {
         }
         
         registerLabel.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(290)
+            make.top.equalTo(loginButton.snp.bottom).offset(330)
             make.leading.equalTo(116)
         }
         
