@@ -9,6 +9,27 @@ import UIKit
 
 class initView: UIView {
     
+    func mainTextLabel() -> UIView {
+        let label = UILabel()
+        
+        label.text = "더 편리하고\n가볍게"
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 40)
+        label.numberOfLines = 0
+        
+        return label
+    }
+    
+    func subTextLabel() -> UIView {
+        let label = UILabel()
+        
+        label.text = "저희가 삶의 원동력이 되어드릴게요."
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 15)
+        
+        return label
+    }
+    
     func idInputTextField() -> UITextField {
         let textField = UITextField()
         
@@ -36,6 +57,8 @@ class initView: UIView {
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.black.withAlphaComponent(0.1).cgColor
         
+        textField.isSecureTextEntry = true
+        
         return textField
     }
     
@@ -54,23 +77,24 @@ class initView: UIView {
         return button
     }
     
-    func findIdPasswordTextLabel() -> UILabel {
+    func registerLabel() -> UILabel {
         let label = UILabel()
         
-        label.text = "아이디 / 비밀번호 찾기"
-        label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 11)
+        label.text = "회원이 아니신가요?"
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = UIColor.lightGray
+        label.textAlignment = .right
         
         return label
     }
     
-    func signUpTextLabel() -> UILabel {
-        let label = UILabel()
+    func registerButton() -> UIButton {
+        let button = UIButton()
         
-        label.text = "회원가입"
-        label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 11)
+        button.setTitle("가입하기", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.textAlignment = .left
         
-        return label
+        return button
     }
 }

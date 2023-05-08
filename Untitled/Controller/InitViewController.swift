@@ -14,10 +14,16 @@ class initViewController: UIViewController {
     
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
-
+    
+    let mainTextLabel = initView().mainTextLabel()
+    let subTextLabel = initView().subTextLabel()
+    let registerLabel = initView().registerLabel()
+    
     let idInputTextFelid = initView().idInputTextField()
     let passwordTextFelid = initView().PasswordInputTextField()
+    
     let loginButton = initView().loginButton()
+    let registerButton = initView().registerButton()
     
     let commonUiView = commonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     
@@ -35,10 +41,6 @@ class initViewController: UIViewController {
         view.backgroundColor = UIColor.baseViewBackgroundColor
         
         commonUiView.snp.makeConstraints { make in
-//            make.top.equalTo(view).offset(330)
-//            make.leading.equalTo(25)
-//            make.trailing.equalTo(-25)
-//            make.height.equalTo(180)
             make.top.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -52,6 +54,16 @@ class initViewController: UIViewController {
     }
     
     private func commonUIViewLayout() {
+        mainTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(view).offset(90)
+            make.leading.equalTo(view).offset(27)
+        }
+
+        subTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(22)
+            make.leading.equalTo(mainTextLabel)
+        }
+        
         idInputTextFelid.snp.makeConstraints { make in
             make.top.equalTo(355)
             make.leading.equalTo(30)
@@ -60,22 +72,32 @@ class initViewController: UIViewController {
         }
         
         passwordTextFelid.snp.makeConstraints { make in
-            make.top.equalTo(idInputTextFelid.snp.bottom).offset(5)
+            make.top.equalTo(idInputTextFelid.snp.bottom).offset(10)
             make.leading.equalTo(30)
             make.trailing.equalTo(-30)
             make.height.equalTo(40)
         }
         
         loginButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextFelid.snp.bottom).offset(10)
+            make.top.equalTo(passwordTextFelid.snp.bottom).offset(30)
             make.leading.equalTo(30)
             make.trailing.equalTo(-30)
             make.height.equalTo(35)
         }
+        
+        registerLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(290)
+            make.leading.equalTo(116)
+        }
+        
+        registerButton.snp.makeConstraints { make in
+            make.top.equalTo(registerLabel).offset(-5.8)
+            make.leading.equalTo(registerLabel.snp.trailing).offset(5)
+        }
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [idInputTextFelid, passwordTextFelid, loginButton]
+        commonViewList = [mainTextLabel, subTextLabel, idInputTextFelid, passwordTextFelid, loginButton, registerLabel, registerButton]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
