@@ -14,7 +14,7 @@ class initView: UIView {
         
         textField.placeholder = "아이디"
         textField.textColor = UIColor.white
-        textField.backgroundColor = UIColor.white.withAlphaComponent(0.07)
+        textField.backgroundColor = UIColor.layerViewBackgroundColor
         textField.layer.cornerRadius = 5
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10.0, height: 0.0))
         textField.leftViewMode = .always
@@ -29,7 +29,7 @@ class initView: UIView {
         
         textField.placeholder = "비밀번호"
         textField.textColor = UIColor.white
-        textField.backgroundColor = UIColor.white.withAlphaComponent(0.07)
+        textField.backgroundColor = UIColor.layerViewBackgroundColor
         textField.layer.cornerRadius = 5
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10.0, height: 0.0))
         textField.leftViewMode = .always
