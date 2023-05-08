@@ -19,8 +19,8 @@ class initViewController: UIViewController {
     let subTextLabel = initView().subTextLabel()
     let registerLabel = initView().registerLabel()
     
-    let idInputTextFelid = initView().idInputTextField()
-    let passwordTextFelid = initView().PasswordInputTextField()
+    let idInputTextField = initView().idInputTextField()
+    let PasswordInputTextField = initView().PasswordInputTextField()
     
     let passwordVisibilityButton = initView().passwordVisibilityButton()
     let loginButton = initView().loginButton()
@@ -36,6 +36,7 @@ class initViewController: UIViewController {
         addOnCommonUiView()
         commonUIViewLayout()
         actionFunction()
+        delegateFunction()
     }
     
     private func viewLayout() {
@@ -65,27 +66,27 @@ class initViewController: UIViewController {
             make.leading.equalTo(mainTextLabel)
         }
         
-        idInputTextFelid.snp.makeConstraints { make in
-            make.top.equalTo(355)
+        idInputTextField.snp.makeConstraints { make in
+            make.top.equalTo(305)
             make.leading.equalTo(30)
             make.trailing.equalTo(-30)
             make.height.equalTo(40)
         }
         
-        passwordTextFelid.snp.makeConstraints { make in
-            make.top.equalTo(idInputTextFelid.snp.bottom).offset(10)
+        PasswordInputTextField.snp.makeConstraints { make in
+            make.top.equalTo(idInputTextField.snp.bottom).offset(10)
             make.leading.equalTo(30)
             make.trailing.equalTo(-30)
             make.height.equalTo(40)
         }
         
         passwordVisibilityButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextFelid).offset(8.5)
-            make.trailing.equalTo(passwordTextFelid).offset(-8.5)
+            make.top.equalTo(PasswordInputTextField).offset(8.5)
+            make.trailing.equalTo(PasswordInputTextField).offset(-8.5)
         }
         
         loginButton.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextFelid.snp.bottom).offset(30)
+            make.top.equalTo(PasswordInputTextField.snp.bottom).offset(30)
             make.leading.equalTo(30)
             make.trailing.equalTo(-30)
             make.height.equalTo(35)
@@ -103,7 +104,7 @@ class initViewController: UIViewController {
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [mainTextLabel, subTextLabel, idInputTextFelid, passwordTextFelid, passwordVisibilityButton, loginButton, registerLabel, registerButton]
+        commonViewList = [mainTextLabel, subTextLabel, idInputTextField, PasswordInputTextField, passwordVisibilityButton, loginButton, registerLabel, registerButton]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -127,6 +128,11 @@ class initViewController: UIViewController {
         passwordVisibilityButton.addTarget(self, action: #selector(passwordVisibilityButtonTapped), for: .touchUpInside)
     }
     
+    private func delegateFunction() {
+        idInputTextField.delegate = self
+        PasswordInputTextField.delegate = self
+    }
+    
     @objc func loginButtonTapped(_ sender: UIButton) {
 //        sender.backgroundColor = UIColor.applicationPointColor
         isLoggedInBool = true
@@ -137,8 +143,21 @@ class initViewController: UIViewController {
     }
     
     @objc func passwordVisibilityButtonTapped(_ sender: UIButton) {
-        passwordTextFelid.isSecureTextEntry.toggle()
-        let imageName = passwordTextFelid.isSecureTextEntry ? "eye.slash" : "eye"
+        PasswordInputTextField.isSecureTextEntry.toggle()
+        let imageName = PasswordInputTextField.isSecureTextEntry ? "eye.slash" : "eye"
         sender.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+}
+
+extension initViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == idInputTextField {
+            PasswordInputTextField.becomeFirstResponder()
+            
+        } else if textField == PasswordInputTextField {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }
