@@ -150,7 +150,13 @@ class InitViewController: UIViewController {
     }
     
     @objc func registerButtonAction(_ sender: UIButton) {
-        present(RegisterViewController(), animated: true)
+        let rootViewController = RegisterViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        repeatDaysSelectListInitFunction()
+        print("List init!!")
+        
+        present(navigationController, animated: true, completion: nil)
     }
 }
 
