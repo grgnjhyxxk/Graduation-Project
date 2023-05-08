@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class repeatDaysSelectViewTableCell: UITableViewCell {
+class RepeatDaysSelectViewTableCell: UITableViewCell {
     
     var contentViewList: [UIView] = []
     

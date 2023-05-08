@@ -7,7 +7,7 @@
 
 import UIKit
 
-class alarmViewController: UIViewController {
+class AlarmViewController: UIViewController {
     
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
@@ -122,7 +122,7 @@ class alarmViewController: UIViewController {
     }
     
     private func tableViewLayout() {
-        tableView.register(alarmViewTableCell.self, forCellReuseIdentifier: "alarmViewTableCell")
+        tableView.register(AlarmViewTableCell.self, forCellReuseIdentifier: "AlarmViewTableCell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor.clear
@@ -135,7 +135,7 @@ class alarmViewController: UIViewController {
     }
     
     @objc func plusButtonAction(_: UIButton) {
-        let rootViewController = alarmAddViewController()
+        let rootViewController = AlarmAddViewController()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
         repeatDaysSelectListInitFunction()
@@ -145,14 +145,14 @@ class alarmViewController: UIViewController {
     }
 }
 
-extension alarmViewController: UITableViewDataSource, UITableViewDelegate {
+extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alarmViewCellDataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "alarmViewTableCell", for: indexPath) as! alarmViewTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmViewTableCell", for: indexPath) as! AlarmViewTableCell
         
         cell.clipsToBounds = true
         cell.backgroundColor = UIColor.clear

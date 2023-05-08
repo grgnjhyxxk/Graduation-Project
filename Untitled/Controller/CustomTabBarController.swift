@@ -22,9 +22,9 @@ class CustomTabBarController: UITabBarController {
         self.tabBar.shadowImage = UIImage()
         self.tabBar.backgroundImage = UIImage()
         
-        let firstViewController = homeViewController()
-        let secondViewController = alarmViewController()
-        let thirdViewController = aiRecommendedViewController()
+        let firstViewController = HomeViewController()
+        let secondViewController = AlarmViewController()
+        let thirdViewController = AiRecommendedViewController()
         
         firstViewController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
         firstViewController.tabBarItem.image = UIImage(systemName: "house")

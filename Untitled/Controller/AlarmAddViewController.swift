@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class alarmAddViewController: UIViewController {
+class AlarmAddViewController: UIViewController {
     
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
@@ -75,7 +75,7 @@ class alarmAddViewController: UIViewController {
     }
     
     private func tableViewLayout() {
-        tableView.register(alarmAddViewTableCell.self, forCellReuseIdentifier: "alarmAddViewTableCell")
+        tableView.register(AlarmAddViewTableCell.self, forCellReuseIdentifier: "AlarmAddViewTableCell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor.clear
@@ -128,19 +128,19 @@ class alarmAddViewController: UIViewController {
     }
     
     func repeatDaysButtonAction() {
-        let rootViewController = repeatDaysSelectViewController()
+        let rootViewController = RepeatDaysSelectViewController()
         show(rootViewController, sender: nil)
     }
 }
 
-extension alarmAddViewController: UITableViewDataSource, UITableViewDelegate {
+extension AlarmAddViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return AlarmAddViewCellData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "alarmAddViewTableCell", for: indexPath) as! alarmAddViewTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmAddViewTableCell", for: indexPath) as! AlarmAddViewTableCell
         
         cell.clipsToBounds = true
         cell.backgroundColor = UIColor.clear

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class alarmAddViewTableCell: UITableViewCell {
+class AlarmAddViewTableCell: UITableViewCell {
     
     var contentViewList: [UIView] = []
     

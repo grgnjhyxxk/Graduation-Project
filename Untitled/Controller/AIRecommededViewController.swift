@@ -7,7 +7,7 @@
 
 import UIKit
 
-class aiRecommendedViewController: UIViewController {
+class AiRecommendedViewController: UIViewController {
     
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []

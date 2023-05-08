@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class repeatDaysSelectViewController: UIViewController {
+class RepeatDaysSelectViewController: UIViewController {
     
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
@@ -61,7 +61,7 @@ class repeatDaysSelectViewController: UIViewController {
     }
     
     private func tableViewLayout() {
-        tableView.register(repeatDaysSelectViewTableCell.self, forCellReuseIdentifier: "repeatDaysSelectViewTableCell")
+        tableView.register(RepeatDaysSelectViewTableCell.self, forCellReuseIdentifier: "RepeatDaysSelectViewTableCell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.backgroundColor = UIColor.clear
@@ -95,14 +95,14 @@ class repeatDaysSelectViewController: UIViewController {
     }
 }
 
-extension repeatDaysSelectViewController: UITableViewDataSource, UITableViewDelegate {
+extension RepeatDaysSelectViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repeatDaysSelectList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "repeatDaysSelectViewTableCell", for: indexPath) as! repeatDaysSelectViewTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RepeatDaysSelectViewTableCell", for: indexPath) as! RepeatDaysSelectViewTableCell
         
         cell.clipsToBounds = true
         cell.backgroundColor = UIColor.clear
@@ -116,7 +116,7 @@ extension repeatDaysSelectViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? repeatDaysSelectViewTableCell else {
+        guard let cell = tableView.cellForRow(at: indexPath) as? RepeatDaysSelectViewTableCell else {
                 return
         }
         
