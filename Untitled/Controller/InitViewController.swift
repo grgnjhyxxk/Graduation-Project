@@ -93,7 +93,7 @@ class InitViewController: UIViewController {
         }
         
         registerLabel.snp.makeConstraints { make in
-            make.top.equalTo(loginButton.snp.bottom).offset(290)
+            make.top.equalTo(loginButton.snp.bottom).offset(330)
             make.leading.equalTo(116)
         }
         
@@ -126,6 +126,7 @@ class InitViewController: UIViewController {
     private func actionFunction() {
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         passwordVisibilityButton.addTarget(self, action: #selector(passwordVisibilityButtonTapped), for: .touchUpInside)
+        registerButton.addTarget(self, action: #selector(registerButtonAction), for: .touchUpInside)
     }
     
     private func delegateFunction() {
@@ -146,6 +147,10 @@ class InitViewController: UIViewController {
         PasswordInputTextField.isSecureTextEntry.toggle()
         let imageName = PasswordInputTextField.isSecureTextEntry ? "eye.slash" : "eye"
         sender.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+    
+    @objc func registerButtonAction(_ sender: UIButton) {
+        present(RegisterViewController(), animated: true)
     }
 }
 
