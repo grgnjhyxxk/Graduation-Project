@@ -65,7 +65,7 @@ class initView: UIView {
     func loginButton() -> UIButton {
         let button = UIButton()
         
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.25)
+        button.backgroundColor = UIColor.loginButtonColor
         button.setTitle("로그인", for: .normal)
         button.setTitleColor(UIColor.white.withAlphaComponent(0.7), for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18.5)
@@ -82,7 +82,7 @@ class initView: UIView {
         
         label.text = "회원이 아니신가요?"
         label.font = UIFont.systemFont(ofSize: 14)
-        label.textColor = UIColor.lightGray
+        label.textColor = UIColor.resigterLabelColor
         label.textAlignment = .right
         
         return label
@@ -102,7 +102,7 @@ class initView: UIView {
         let button = UIButton()
         
         button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
-        button.tintColor = UIColor.lightGray
+        button.tintColor = UIColor.passwordVisibilityButtonColor
         
         return button
     }
