@@ -19,10 +19,16 @@ extension UIViewController {
 }
 
 extension UIColor {
-    static let baseViewBackgroundColor = UIColor(named: "baseViewBackgroundColor")
-    static let customTabBarControllerItemTintColor = UIColor(named: "customTabBarControllerItemTintColor")
-    static let alarmViewUserImageBaseColor = UIColor(named: "alarmViewUserImageBaseColor")
-    static let layerViewBackgroundColor = UIColor(named: "layerViewBackgroundColor")
+    static let baseViewBackgroundColor = UIColor(named: "BaseViewBackgroundColor")
+    static let layerViewBackgroundColor = UIColor(named: "LayerViewBackgroundColor")
+    
+    static let customTabBarControllerItemTintColor = UIColor(named: "CustomTabBarControllerItemTintColor")
+    
+    static let alarmViewUserImageBaseColor = UIColor(named: "AlarmViewUserImageBaseColor")
+    
+    static let resigterLabelColor = UIColor(named: "ResigterLabelColor")
+    static let passwordVisibilityButtonColor = UIColor(named: "PasswordVisibilityButtonColor")
+    static let loginButtonColor = UIColor(named: "LoginButtonColor")
 }
 
 extension UIButton {
