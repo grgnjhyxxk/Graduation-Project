@@ -93,6 +93,7 @@ class initView: UIView {
         
         button.setTitle("가입하기", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(UIColor.darkGray, for: .highlighted)
         button.titleLabel?.textAlignment = .left
         
         return button
