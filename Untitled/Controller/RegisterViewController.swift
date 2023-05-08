@@ -22,6 +22,7 @@ class RegisterViewController: UIViewController {
         viewLayout()
         addOnCommonUiView()
         commonUIViewLayout()
+        navigationControllerLayout()
     }
     
     private func viewLayout() {
@@ -50,6 +51,31 @@ class RegisterViewController: UIViewController {
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
         }
+    }
+    
+    private func navigationControllerLayout() {
+        navigationItem.title = "회원가입"
+        
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonAction))
+        cancelButton.tintColor = .white
+        navigationItem.leftBarButtonItem = cancelButton
+        
+        let nextButton = UIBarButtonItem(title: "다음", style: .plain, target: self, action: #selector(nextButtonAction))
+        nextButton.tintColor = .white
+        navigationItem.rightBarButtonItem = nextButton
+        
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    }
+    
+    @objc func cancelButtonAction() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func nextButtonAction() {
+        
+        dismiss(animated: true, completion: nil)
     }
 }
   
