@@ -13,12 +13,11 @@ class RepeatDaysSelectViewController: UIViewController {
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
-    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
         addSubview()
         viewLayout()
         addOnCommonUiView()
@@ -28,7 +27,7 @@ class RepeatDaysSelectViewController: UIViewController {
     }
     
     private func viewLayout() {
-        view.backgroundColor = UIColor.baseViewBackgroundColor
+        view.backgroundColor = UIColor.appMainBackgroundColor
         
         commonUiView.snp.makeConstraints { make in
             make.top.equalTo(76)
@@ -64,7 +63,7 @@ class RepeatDaysSelectViewController: UIViewController {
         tableView.register(RepeatDaysSelectViewTableCell.self, forCellReuseIdentifier: "RepeatDaysSelectViewTableCell")
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.appSubBackgroundColor
         tableView.separatorStyle = .singleLine
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
@@ -82,12 +81,12 @@ class RepeatDaysSelectViewController: UIViewController {
         navigationItem.title = "반복"
         
         let cancelButton = UIBarButtonItem(title: "뒤로", style: .plain, target: self, action: #selector(cancelButtonAction))
-        cancelButton.tintColor = .white
+        cancelButton.tintColor = .appTextColor
         navigationItem.leftBarButtonItem = cancelButton
         
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
     }
     
     @objc func cancelButtonAction() {

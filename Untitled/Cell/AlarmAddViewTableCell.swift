@@ -15,8 +15,8 @@ class AlarmAddViewTableCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         
-        label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.textColor = UIColor.appTextColor
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         
         return label
     }()
@@ -26,7 +26,7 @@ class AlarmAddViewTableCell: UITableViewCell {
         
         textField.backgroundColor = UIColor.clear
         textField.placeholder = "알람"
-        textField.textColor = UIColor.white
+        textField.textColor = UIColor.placeholderText
         textField.textAlignment = .right
         textField.font = UIFont.systemFont(ofSize: 17)
         
@@ -37,7 +37,7 @@ class AlarmAddViewTableCell: UITableViewCell {
         let repeatSwitch = UISwitch()
         
         repeatSwitch.isOn = false
-        repeatSwitch.onTintColor = UIColor.systemBlue
+        repeatSwitch.onTintColor = UIColor.appPointColor
         return repeatSwitch
     }()
     

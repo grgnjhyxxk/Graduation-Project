@@ -26,11 +26,10 @@ class InitViewController: UIViewController {
     let loginButton = InitView().loginButton()
     let registerButton = InitView().registerButton()
     
-    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
         addSubview()
         viewLayout()
         addOnCommonUiView()
@@ -40,7 +39,7 @@ class InitViewController: UIViewController {
     }
     
     private func viewLayout() {
-        view.backgroundColor = UIColor.baseViewBackgroundColor
+        view.backgroundColor = UIColor.appMainBackgroundColor
         
         commonUiView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()

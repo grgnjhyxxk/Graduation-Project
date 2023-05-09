@@ -26,7 +26,7 @@ class AlarmViewTableCell: UITableViewCell {
         let label = UILabel()
         
         label.text = "label"
-        label.textColor = UIColor.white
+        label.textColor = UIColor.appTextColor
         label.font = UIFont.boldSystemFont(ofSize: 20)
         
         return label
@@ -36,7 +36,7 @@ class AlarmViewTableCell: UITableViewCell {
         let label = UILabel()
         
         label.text = "username"
-        label.textColor = UIColor.white
+        label.textColor = UIColor.appTextColor
         label.font = UIFont.systemFont(ofSize: 10)
         
         return label
@@ -47,7 +47,7 @@ class AlarmViewTableCell: UITableViewCell {
         
         label.text = "10:30"
         label.font = UIFont.systemFont(ofSize: 45, weight: .bold)
-        label.textColor = .white
+        label.textColor = .appTextColor
         label.textAlignment = .right
         
         return label
@@ -57,7 +57,7 @@ class AlarmViewTableCell: UITableViewCell {
         let label = UILabel()
         
         label.text = "date"
-        label.textColor = UIColor.white
+        label.textColor = UIColor.appTextColor
         label.font = UIFont.systemFont(ofSize: 11.5)
         
         return label

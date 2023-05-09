@@ -9,22 +9,11 @@ import UIKit
 
 class AlarmView: UIView {
     
-    func listButton() -> UIButton {
-        let button = UIButton()
-        
-        button.setImage(UIImage(systemName: "list.bullet"), for: .normal)
-        button.tintColor = UIColor.white
-        button.contentHorizontalAlignment = .fill
-        button.contentVerticalAlignment = .fill
-        
-        return button
-    }
-    
     func plusButton() -> UIButton {
         let button = UIButton()
         
         button.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-        button.tintColor = UIColor.white
+        button.tintColor = UIColor.appPointColor
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         

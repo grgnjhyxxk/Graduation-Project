@@ -13,47 +13,48 @@ class RegisterView: UIView {
         let label = UILabel()
         
         label.text = "\(setText)"
-        label.textColor = UIColor.white
-        label.font = UIFont.systemFont(ofSize: 30)
+        label.textColor = UIColor.appTextColor
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.numberOfLines = 0
         
         return label
     }
     
-    func separatorView() -> UIView {
-        let view = UIView()
+    func subTextLabel(setText: String) -> UIView {
+        let label = UILabel()
         
-        view.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        label.text = "\(setText)"
+        label.textColor = UIColor.appPointColor
+        label.font = UIFont.boldSystemFont(ofSize: 13)
         
-        return view
+        return label
     }
     
-    func nameSetTextField() -> UITextField {
+    func textField(setPlaceholder: String) -> UITextField {
         let textField = UITextField()
         
-        textField.placeholder = "이름"
-        textField.textColor = UIColor.white
-        textField.backgroundColor = UIColor.layerViewBackgroundColor
+        textField.placeholder = "\(setPlaceholder)"
+        textField.textColor = UIColor.appTextColor
+        textField.backgroundColor = UIColor.appSubBackgroundColor
         textField.layer.cornerRadius = 5
-        textField.font = UIFont.systemFont(ofSize: 20)
+        textField.font = UIFont.systemFont(ofSize: 18)
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10.0, height: 0.0))
         textField.leftViewMode = .always
-        
-        return textField
-    }
-    
-    func idSetTextField() -> UITextField {
-        let textField = UITextField()
-        
-        textField.placeholder = "아이디"
-        textField.textColor = UIColor.white
-        textField.backgroundColor = UIColor.layerViewBackgroundColor
-        textField.layer.cornerRadius = 5
-        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10.0, height: 0.0))
-        textField.leftViewMode = .always
-        textField.layer.borderWidth = 0.5
+        textField.layer.borderWidth = 0.1
         textField.layer.borderColor = UIColor.black.withAlphaComponent(0.1).cgColor
         
         return textField
+    }
+    
+    func genderSegmentedControl() -> UISegmentedControl {
+        let segmentedControl = UISegmentedControl(items: ["남자", "여자"])
+        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.backgroundColor = UIColor.appMainBackgroundColor
+        segmentedControl.layer.cornerRadius = 5
+        segmentedControl.selectedSegmentTintColor = UIColor.appPointColor
+        
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.8), NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)], for: .normal)
+
+        return segmentedControl
     }
 }

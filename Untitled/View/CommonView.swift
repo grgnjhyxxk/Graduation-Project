@@ -42,13 +42,18 @@ class CommonView: UIView {
         return button
     }
     
-    func envelopeButton() -> UIButton {
+    func userInterfaceStyleToggleButton() -> UIButton {
         let button = UIButton()
         
-        button.setImage(UIImage(systemName: "envelope.fill"), for: .normal)
+        if traitCollection.userInterfaceStyle == .dark {
+            button.setImage(UIImage(systemName: "moon.circle.fill"), for: .normal)
+        } else {
+            button.setImage(UIImage(systemName: "sun.max.circle.fill"), for: .normal)
+        }
+        
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.tintColor = UIColor.white
+        button.tintColor = UIColor.appPointColor
         
         return button
     }

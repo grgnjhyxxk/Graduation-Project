@@ -14,23 +14,18 @@ class HomeViewController: UIViewController {
 
     let userProfileButton = CommonView().roundingButton()
     let appIconForViewImageView = MainView().appIconForViewImageView()
-    let envelopeButton = CommonView().envelopeButton()
+    let userInterfaceStyleToggleButton = CommonView().userInterfaceStyleToggleButton()
+    
+    let commonView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
         addSubview()
         viewLayout()
     }
     
     private func viewLayout() {
-        view.backgroundColor = UIColor.baseViewBackgroundColor
-        
-        appIconForViewImageView.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(74)
-            make.leading.equalTo(view).offset(31)
-            make.size.equalTo(CGSize(width: 45, height: 45))
-        }
+        view.backgroundColor = UIColor.appSubBackgroundColor
         
         userProfileButton.snp.makeConstraints { make in
             make.top.equalTo(view).offset(74)
@@ -38,15 +33,24 @@ class HomeViewController: UIViewController {
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
         
-        envelopeButton.snp.makeConstraints { make in
-            make.top.equalTo(userProfileButton.snp.top).offset(10)
+        userInterfaceStyleToggleButton.snp.makeConstraints { make in
+            make.top.equalTo(userProfileButton.snp.top).offset(5.5)
             make.trailing.equalTo(userProfileButton.snp.leading).offset(-10)
-            make.size.equalTo(CGSize(width: 36, height: 26))
+            make.size.equalTo(CGSize(width: 36, height: 36))
         }
+        
+        commonView.snp.makeConstraints { make in
+            make.top.equalTo(200)
+            make.leading.equalTo(30)
+            make.trailing.equalTo(-30)
+            make.height.equalTo(150)
+        }
+        
+        commonView.shadowLayer()
     }
     
     private func addSubview() {
-        uiViewList = [appIconForViewImageView, userProfileButton, envelopeButton]
+        uiViewList = [appIconForViewImageView, userProfileButton, userInterfaceStyleToggleButton, commonView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)

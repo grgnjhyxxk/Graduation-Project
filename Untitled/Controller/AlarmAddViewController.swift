@@ -15,12 +15,11 @@ class AlarmAddViewController: UIViewController {
     
     let datePicker = AlarmAddView().datePicker()
     
-    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSameBackgroundColor(firstAlpha: 0.57, secondAlpha: 0.57)
         addSubview()
         viewLayout()
         addOnCommonUiView()
@@ -35,7 +34,7 @@ class AlarmAddViewController: UIViewController {
     }
     
     private func viewLayout() {
-        view.backgroundColor = UIColor.baseViewBackgroundColor
+        view.backgroundColor = UIColor.appMainBackgroundColor
         
         datePicker.snp.makeConstraints { make in
             make.top.equalTo(46)
@@ -78,7 +77,7 @@ class AlarmAddViewController: UIViewController {
         tableView.register(AlarmAddViewTableCell.self, forCellReuseIdentifier: "AlarmAddViewTableCell")
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.appSubBackgroundColor
         tableView.separatorStyle = .singleLine
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
@@ -96,16 +95,16 @@ class AlarmAddViewController: UIViewController {
         navigationItem.title = "알람 추가"
         
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonAction))
-        cancelButton.tintColor = .white
+        cancelButton.tintColor = .appTextColor
         navigationItem.leftBarButtonItem = cancelButton
         
         let saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonAction))
-        saveButton.tintColor = .white
+        saveButton.tintColor = .appPointColor
         navigationItem.rightBarButtonItem = saveButton
         
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
     }
     
     @objc func cancelButtonAction() {

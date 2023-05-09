@@ -15,7 +15,7 @@ class RepeatDaysSelectViewTableCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         
-        label.textColor = UIColor.white
+        label.textColor = UIColor.appTextColor
         label.font = UIFont.systemFont(ofSize: 17)
         
         return label
@@ -25,7 +25,7 @@ class RepeatDaysSelectViewTableCell: UITableViewCell {
         let imageView = UIImageView()
         
         imageView.image = UIImage(systemName: "checkmark")
-        imageView.tintColor = UIColor.white
+        imageView.tintColor = UIColor.appPointColor
         
         return imageView
     }()
