@@ -15,18 +15,18 @@ class InitViewController: UIViewController {
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
-    let mainTextLabel = initView().mainTextLabel()
-    let subTextLabel = initView().subTextLabel()
-    let registerLabel = initView().registerLabel()
+    let mainTextLabel = InitView().mainTextLabel()
+    let subTextLabel = InitView().subTextLabel()
+    let registerLabel = InitView().registerLabel()
     
-    let idInputTextField = initView().idInputTextField()
-    let PasswordInputTextField = initView().PasswordInputTextField()
+    let idInputTextField = InitView().idInputTextField()
+    let PasswordInputTextField = InitView().PasswordInputTextField()
     
-    let passwordVisibilityButton = initView().passwordVisibilityButton()
-    let loginButton = initView().loginButton()
-    let registerButton = initView().registerButton()
+    let passwordVisibilityButton = InitView().passwordVisibilityButton()
+    let loginButton = InitView().loginButton()
+    let registerButton = InitView().registerButton()
     
-    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     
     override func viewDidLoad() {
         super.viewDidLoad()

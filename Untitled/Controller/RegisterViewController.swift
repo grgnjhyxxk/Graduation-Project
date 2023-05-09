@@ -13,7 +13,11 @@ class RegisterViewController: UIViewController {
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
 
-    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    
+    let mainTextLabel = RegisterView().mainTextLabel()
+    
+    let idSetTextField = RegisterView().idSetTextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +46,21 @@ class RegisterViewController: UIViewController {
     }
     
     private func commonUIViewLayout() {
+        mainTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(110)
+            make.leading.equalTo(30)
+        }
         
+        idSetTextField.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(10)
+            make.leading.equalTo(30)
+            make.trailing.equalTo(-30)
+            make.height.equalTo(40)
+        }
     }
     
     private func addOnCommonUiView() {
-        commonViewList = []
+        commonViewList = [mainTextLabel, idSetTextField]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)

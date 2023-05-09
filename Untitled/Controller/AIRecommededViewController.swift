@@ -12,14 +12,14 @@ class AiRecommendedViewController: UIViewController {
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
-    let userProfileButton = commonView().roundingButton()
-    let envelopeButton = commonView().envelopeButton()
-    let titleTextButton = commonView().titleTextButton(titleText: "맞춤추천")
+    let userProfileButton = CommonView().roundingButton()
+    let envelopeButton = CommonView().envelopeButton()
+    let titleTextButton = CommonView().titleTextButton(titleText: "맞춤추천")
     
-    let subTextLabel = commonView().commonTextLabel(labelText: "늘 효과적인 해답", size: 14)
-    let mainTextLabel = commonView().commonTextLabel(labelText: "AI 분석을 통한\n임재혁님의 솔루션", size: 30)
+    let subTextLabel = CommonView().commonTextLabel(labelText: "늘 효과적인 해답", size: 14)
+    let mainTextLabel = CommonView().commonTextLabel(labelText: "AI 분석을 통한\n임재혁님의 솔루션", size: 30)
 
-    let commonUiView = commonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
+    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.layerViewBackgroundColor ?? UIColor.black.withAlphaComponent(0.07), borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
 
     override func viewDidLoad() {
         super.viewDidLoad()

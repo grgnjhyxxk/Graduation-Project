@@ -12,9 +12,9 @@ class HomeViewController: UIViewController {
     
     var uiViewList: [UIView] = []
 
-    let userProfileButton = commonView().roundingButton()
-    let appIconForViewImageView = mainView().appIconForViewImageView()
-    let envelopeButton = commonView().envelopeButton()
+    let userProfileButton = CommonView().roundingButton()
+    let appIconForViewImageView = MainView().appIconForViewImageView()
+    let envelopeButton = CommonView().envelopeButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
