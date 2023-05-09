@@ -7,7 +7,7 @@
 
 import UIKit
 
-class alarmAddView: UIView {
+class AlarmAddView: UIView {
 
     func datePicker() -> UIDatePicker {
         let datePicker = UIDatePicker()

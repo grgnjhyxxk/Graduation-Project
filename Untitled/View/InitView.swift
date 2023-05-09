@@ -7,7 +7,7 @@
 
 import UIKit
 
-class initView: UIView {
+class InitView: UIView {
     
     func mainTextLabel() -> UIView {
         let label = UILabel()

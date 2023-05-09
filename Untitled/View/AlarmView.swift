@@ -7,7 +7,7 @@
 
 import UIKit
 
-class alarmView: UIView {
+class AlarmView: UIView {
     
     func listButton() -> UIButton {
         let button = UIButton()

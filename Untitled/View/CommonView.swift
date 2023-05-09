@@ -9,7 +9,7 @@ import UIKit
 
 private let userProfileImageString = "TemporaryUserProfilePicture"
 
-class commonView: UIView {
+class CommonView: UIView {
     
     func roundingImage(string: String) -> UIImage {
         let originalImage = UIImage(named: "\(string)")
