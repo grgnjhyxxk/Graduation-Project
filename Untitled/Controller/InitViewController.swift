@@ -150,7 +150,7 @@ class InitViewController: UIViewController {
     }
     
     @objc func registerButtonAction(_ sender: UIButton) {
-        let rootViewController = RegisterViewController()
+        let rootViewController = ProfileSetViewController()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
         present(navigationController, animated: true, completion: nil)
