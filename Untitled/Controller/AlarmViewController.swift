@@ -138,7 +138,6 @@ class AlarmViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
         repeatDaysSelectListInitFunction()
-        print("List init!!")
         
         present(navigationController, animated: true, completion: nil)
     }
