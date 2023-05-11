@@ -7,13 +7,12 @@
 
 import UIKit
 
-private let userProfileImageString = "TemporaryUserProfilePicture"
-
 class CommonView: UIView {
     
     func roundingButton() -> UIView {
-        
         let button = UIButton()
+        
+        button.setImage(UIImage(named: "TemporaryUserProfilePicture"), for: .normal)
         button.backgroundColor = UIColor.appSubBackgroundColor
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
