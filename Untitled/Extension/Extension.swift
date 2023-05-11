@@ -40,6 +40,10 @@ extension UIColor {
     static let loginButtonTextColor = UIColor(named: "LoginButtonTextColor")
 }
 
+extension UIFont {
+    
+}
+
 extension UIButton {
     func appButtonCommonStyle() {
         layer.shadowColor = UIColor.black.cgColor
@@ -53,20 +57,12 @@ extension UIButton {
         self.setTitleColor(UIColor.white, for: .normal)
         self.backgroundColor = UIColor.appPointColor
         layer.cornerRadius = 21
-//        layer.shadowColor = UIColor.black.cgColor
-//        layer.shadowOpacity = 0.25
-//        layer.shadowOffset = CGSize(width: 0.5, height: 3)
-//        layer.shadowRadius = 5
     }
 }
 
 extension UILabel {
     func labelTextCommonStyle() {
         self.textColor = UIColor.appTextColor
-//        layer.shadowColor = UIColor.black.withAlphaComponent(0.25).cgColor
-//        layer.shadowOffset = CGSize(width: 0, height: 2)
-//        layer.shadowRadius = 4
-//        layer.shadowOpacity = 1
         layer.masksToBounds = false
         self.numberOfLines = 0
     }
@@ -76,6 +72,7 @@ extension UILabel {
         let attribtuedString = NSMutableAttributedString(string: fullText)
         let range = (fullText as NSString).range(of: "\(text)")
         attribtuedString.addAttribute(.foregroundColor, value: UIColor.appPointColor!, range: range)
+        attribtuedString.addAttribute(.font, value: UIFont(name: "NotoSansKR-Bold", size: 30), range: range)
         self.attributedText = attribtuedString
     }
 }
