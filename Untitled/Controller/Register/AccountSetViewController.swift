@@ -16,6 +16,7 @@ class AccountSetViewController: RegisterRootViewController {
     let idSubTextLabel = RegisterView().subTextLabel(setText: "아이디")
     let passwordSubTextLabel = RegisterView().subTextLabel(setText: "비밀번호")
     let passwordCheckSubTextLabel = RegisterView().subTextLabel(setText: "비밀번호 재입력")
+    let warningLabel = RegisterView().warningLabel()
 
     let idSetTextField = RegisterView().textField(setPlaceholder: "아이디")
     let passwordSetTextField = RegisterView().textField(setPlaceholder: "비밀번호")
@@ -70,12 +71,17 @@ class AccountSetViewController: RegisterRootViewController {
             make.height.equalTo(40)
         }
         
+        warningLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordCheckSetTextField.snp.bottom).offset(15)
+            make.leading.equalTo(passwordCheckSubTextLabel)
+        }
+        
         passwordSetTextField.isSecureTextEntry = true
         passwordCheckSetTextField.isSecureTextEntry = true
     }
     
     private func addSubview() {
-        subViewList = [mainTextLabel, idSubTextLabel, idSetTextField, passwordSubTextLabel, passwordSetTextField, passwordCheckSubTextLabel, passwordCheckSetTextField]
+        subViewList = [mainTextLabel, idSubTextLabel, idSetTextField, passwordSubTextLabel, passwordSetTextField, passwordCheckSubTextLabel, passwordCheckSetTextField, warningLabel]
         
         for uiView in subViewList {
             view.addSubview(uiView)
@@ -98,12 +104,31 @@ class AccountSetViewController: RegisterRootViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
     }
     
+    private func checkTextFieldsAreFilled() -> Bool {
+        for textField in [idSetTextField, passwordSetTextField, passwordCheckSetTextField] {
+            if textField.text?.isEmpty ?? true {
+                return false
+            }
+        }
+        return true
+    }
+    
     @objc func backButtonAction() {
         navigationController?.popViewController(animated: true)
     }
     
     @objc func doneButtonAction() {
-        
+        if !checkTextFieldsAreFilled() {
+            warningLabel.text = "모든 값을 입력하셔야 합니다."
+            warningLabel.isHidden = false
+        } else {
+            userAccountDataList[userAccountDataList.count - 1].userid = idSetTextField.text!
+            userAccountDataList[userAccountDataList.count - 1].userpassword = passwordSetTextField.text!
+            
+            print(userAccountDataList)
+            
+            dismiss(animated: true)
+        }
     }
 }
   
