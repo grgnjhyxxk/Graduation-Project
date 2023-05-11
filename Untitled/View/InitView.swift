@@ -9,6 +9,14 @@ import UIKit
 
 class InitView: UIView {
     
+    func mainImageView() -> UIImageView {
+        let imageView = UIImageView()
+            
+        imageView.image = UIImage(named: "InitViewMainImage")
+        
+        return imageView
+    }
+    
     func mainTextLabel() -> UIView {
         let label = UILabel()
         
@@ -23,10 +31,11 @@ class InitView: UIView {
     func subTextLabel() -> UIView {
         let label = UILabel()
         
-        label.text = "저희가 삶의 원동력이 되어드릴게요."
+        label.text = "저희가 삶의 원동력이\n되어드릴게요."
         label.textColor = UIColor.appTextColor
         label.font = UIFont.systemFont(ofSize: 15)
-        
+        label.numberOfLines = 0
+
         return label
     }
     
@@ -105,7 +114,7 @@ class InitView: UIView {
         let button = UIButton()
         
         button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
-        button.tintColor = UIColor.passwordVisibilityButtonColor
+        button.tintColor = UIColor.appPointColor
         
         return button
     }
