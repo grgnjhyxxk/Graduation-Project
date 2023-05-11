@@ -18,6 +18,7 @@ class RegisterRootViewController: UIViewController {
         super.viewDidLoad()
         addSubview()
         viewLayout()
+        hideKeyboardWhenTappedAround()
     }
     
     private func viewLayout() {
