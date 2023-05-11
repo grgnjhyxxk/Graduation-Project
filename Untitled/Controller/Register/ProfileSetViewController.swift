@@ -135,7 +135,6 @@ class ProfileSetViewController: RegisterRootViewController {
 
         let saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonAction))
 
-        // Toolbar 아이템 설정
         let toolbarItems = [
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             saveButton
@@ -145,12 +144,13 @@ class ProfileSetViewController: RegisterRootViewController {
         toolbar.items = toolbarItems
         toolbar.tintColor = .appPointColor
         
-        dateTextField.inputAccessoryView = toolbar
-        dateTextField.inputView = datePicker
-        
-        datePicker.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 250.0)
+        datePicker.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+        datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
         datePicker.overrideUserInterfaceStyle = .unspecified
+        
+        dateTextField.inputAccessoryView = toolbar
+        dateTextField.inputView = datePicker
     }
     
     private func checkTextFieldsAreFilled() -> Bool {
@@ -209,13 +209,9 @@ class ProfileSetViewController: RegisterRootViewController {
             let rootViewController = AccountSetViewController()
 
             let selectedSegmentTitle = genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)
-            var newUserAccountData = UserAccountDataModel(userName: "", userBirth: "", userGender: "", userImage: UIImage(), userid: "", userpassword: "")
-            
-            newUserAccountData.userName = nameSetTextField.text!
-            newUserAccountData.userBirth = dateTextField.text!
-            newUserAccountData.userGender = selectedSegmentTitle!
-            newUserAccountData.userImage = selectUserProfileImageView.image!
-            
+            let newUser = User(userName: nameSetTextField.text!, userBirth: dateTextField.text!, userGender: selectedSegmentTitle!, userImage: selectUserProfileImageView.image!)
+            let newUserAccountData = UserAccountDataModel(userid: "", userpassword: "", users: [newUser])
+
             userAccountDataList.append(newUserAccountData)
             
             show(rootViewController, sender: nil)
