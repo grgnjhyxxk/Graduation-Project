@@ -26,6 +26,7 @@ class AlarmAddViewController: UIViewController {
         commonUIViewLayout()
         tableViewLayout()
         navigationControllerLayout()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {

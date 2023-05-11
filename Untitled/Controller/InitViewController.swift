@@ -38,6 +38,7 @@ class InitViewController: UIViewController {
         commonUIViewLayout()
         actionFunction()
         delegateFunction()
+        hideKeyboardWhenTappedAround()
     }
     
     private func viewLayout() {
