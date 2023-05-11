@@ -16,7 +16,8 @@ class AlarmAddViewTableCell: UITableViewCell {
         let label = UILabel()
         
         label.textColor = UIColor.appTextColor
-        label.font = UIFont.systemFont(ofSize: 17)
+//        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label
     }()
@@ -28,7 +29,8 @@ class AlarmAddViewTableCell: UITableViewCell {
         textField.placeholder = "알람"
         textField.textColor = UIColor.placeholderText
         textField.textAlignment = .right
-        textField.font = UIFont.systemFont(ofSize: 17)
+//        textField.font = UIFont.systemFont(ofSize: 17)
+        textField.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return textField
     }()
@@ -56,7 +58,8 @@ class AlarmAddViewTableCell: UITableViewCell {
         let label = UILabel()
         
         label.textColor = UIColor.placeholderText
-        label.font = UIFont.systemFont(ofSize: 17)
+//        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label
     }()
@@ -77,15 +80,29 @@ class AlarmAddViewTableCell: UITableViewCell {
         
         label.text = "사용자"
         label.textColor = UIColor.placeholderText
-        label.font = UIFont.systemFont(ofSize: 17)
+//        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label
     }()
     
     private func layout() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(12)
+            make.top.equalTo(10)
             make.leading.equalTo(12.5)
+        }
+        
+        repeatDaysLabel.snp.makeConstraints { make in
+//            make.top.equalTo(10.85)
+            make.top.equalTo(9)
+            make.trailing.equalTo(repeatDaysButton.snp.leading).offset(-3)
+        }
+        
+        repeatDaysButton.snp.makeConstraints { make in
+//            make.top.equalTo(13.7)
+            make.top.equalTo(repeatDaysLabel).offset(6.15)
+            make.trailing.equalTo(-10)
+            make.size.equalTo(CGSize(width: 12.5, height: 15.5))
         }
         
         textField.snp.makeConstraints { make in
@@ -93,32 +110,24 @@ class AlarmAddViewTableCell: UITableViewCell {
             make.trailing.equalTo(-10)
         }
         
+        userPickingLabel.snp.makeConstraints { make in
+//            make.top.equalTo(10.85)
+            make.top.equalTo(9)
+            make.trailing.equalTo(repeatDaysButton.snp.leading).offset(-3)
+        }
+        
+        userPickingButton.snp.makeConstraints { make in
+//            make.top.equalTo(13.7)
+            make.top.equalTo(repeatDaysLabel).offset(6.15)
+            make.trailing.equalTo(-10)
+            make.size.equalTo(CGSize(width: 12.5, height: 15.5))
+        }
+        
         repeatSwitch.snp.makeConstraints { make in
             make.top.equalTo(6.5)
             make.trailing.equalTo(-10)
         }
         
-        repeatDaysButton.snp.makeConstraints { make in
-            make.top.equalTo(13.7)
-            make.trailing.equalTo(-10)
-            make.size.equalTo(CGSize(width: 12.5, height: 15.5))
-        }
-        
-        repeatDaysLabel.snp.makeConstraints { make in
-            make.top.equalTo(10.85)
-            make.trailing.equalTo(repeatDaysButton.snp.leading).offset(-8)
-        }
-        
-        userPickingButton.snp.makeConstraints { make in
-            make.top.equalTo(13.7)
-            make.trailing.equalTo(-10)
-            make.size.equalTo(CGSize(width: 12.5, height: 15.5))
-        }
-        
-        userPickingLabel.snp.makeConstraints { make in
-            make.top.equalTo(10.85)
-            make.trailing.equalTo(repeatDaysButton.snp.leading).offset(-8)
-        }
     }
     
     private func addSubview() {

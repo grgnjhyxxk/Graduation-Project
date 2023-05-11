@@ -27,7 +27,8 @@ class AlarmViewTableCell: UITableViewCell {
         
         label.text = "label"
         label.textColor = UIColor.appTextColor
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+//        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont(name: "NotoSansKR-Bold", size: 20)
         
         return label
     }()
@@ -38,6 +39,7 @@ class AlarmViewTableCell: UITableViewCell {
         label.text = "username"
         label.textColor = UIColor.appTextColor
         label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 10)
         
         return label
     }()
@@ -46,7 +48,8 @@ class AlarmViewTableCell: UITableViewCell {
         let label = UILabel()
         
         label.text = "10:30"
-        label.font = UIFont.systemFont(ofSize: 45, weight: .bold)
+//        label.font = UIFont.systemFont(ofSize: 45, weight: .bold)
+        label.font = UIFont(name: "NotoSansKR-Bold", size: 45)
         label.textColor = .appTextColor
         label.textAlignment = .right
         
@@ -58,7 +61,8 @@ class AlarmViewTableCell: UITableViewCell {
         
         label.text = "date"
         label.textColor = UIColor.appTextColor
-        label.font = UIFont.systemFont(ofSize: 11.5)
+//        label.font = UIFont.systemFont(ofSize: 11.5)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 11.5)
         
         return label
     }()
@@ -76,8 +80,8 @@ class AlarmViewTableCell: UITableViewCell {
         }
         
         userNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(1)
-            make.left.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(0)
+            make.left.equalTo(titleLabel).offset(1.5)
         }
         
         timeLabel.snp.makeConstraints { make in
