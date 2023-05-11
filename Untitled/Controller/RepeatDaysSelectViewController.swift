@@ -33,7 +33,7 @@ class RepeatDaysSelectViewController: UIViewController {
             make.top.equalTo(76)
             make.leading.equalTo(15)
             make.trailing.equalTo(-15)
-            make.height.equalTo(315)
+            make.height.equalTo(314.82)
         }
     }
     

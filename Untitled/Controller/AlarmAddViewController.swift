@@ -48,7 +48,7 @@ class AlarmAddViewController: UIViewController {
             make.top.equalTo(datePicker.snp.bottom).offset(10)
             make.leading.equalTo(15)
             make.trailing.equalTo(-15)
-            make.height.equalTo(180)
+            make.height.equalTo(179.82)
         }
     }
     
@@ -118,7 +118,7 @@ class AlarmAddViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm"
         let timeString = dateFormatter.string(from: datePicker.date)
         
-        alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, user: 1, repeatSwitchState: true, userImage: UIImage(named: "TemporaryUserProfilePicture")!))
+        alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, user: "admin", repeatSwitchState: true, userImage: UIImage(named: "TemporaryUserProfilePicture")!))
         
         alarmTextFieldTextInit()
         

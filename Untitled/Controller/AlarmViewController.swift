@@ -18,7 +18,7 @@ class AlarmViewController: UIViewController {
     let plusButton = AlarmView().plusButton()
     
     let subTextLabel = CommonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
-    let mainTextLabel = CommonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 30)
+    let mainTextLabel = CommonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요", size: 25)
     
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
     let tableView = UITableView()
@@ -47,7 +47,7 @@ class AlarmViewController: UIViewController {
         view.backgroundColor = UIColor.appSubBackgroundColor
                 
         userProfileButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(73)
+            make.top.equalTo(view).offset(63)
             make.trailing.equalTo(view).offset(-15)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
@@ -59,7 +59,7 @@ class AlarmViewController: UIViewController {
         }
         
         titleTextButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(76)
+            make.top.equalTo(userProfileButton).offset(1)
             make.leading.equalTo(view).offset(15)
             make.size.equalTo(CGSize(width: 122, height: 44))
         }

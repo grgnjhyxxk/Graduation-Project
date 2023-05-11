@@ -17,7 +17,7 @@ class AiRecommendedViewController: UIViewController {
     let titleTextButton = CommonView().titleTextButton(titleText: "맞춤추천")
     
     let subTextLabel = CommonView().commonTextLabel(labelText: "늘 효과적인 해답", size: 14)
-    let mainTextLabel = CommonView().commonTextLabel(labelText: "AI 분석을 통한\n임재혁님의 솔루션", size: 30)
+    let mainTextLabel = CommonView().commonTextLabel(labelText: "AI 분석을 통한\n최적의 솔루션", size: 25)
 
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
 
@@ -33,13 +33,13 @@ class AiRecommendedViewController: UIViewController {
         view.backgroundColor = UIColor.appSubBackgroundColor
                 
         userProfileButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(73)
+            make.top.equalTo(view).offset(63)
             make.trailing.equalTo(view).offset(-15)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
         
         userInterfaceStyleToggleButton.snp.makeConstraints { make in
-            make.top.equalTo(userProfileButton.snp.top).offset(5.5)
+            make.top.equalTo(userProfileButton).offset(1)
             make.trailing.equalTo(userProfileButton.snp.leading).offset(-10)
             make.size.equalTo(CGSize(width: 36, height: 36))
         }

@@ -69,9 +69,9 @@ class InitViewController: UIViewController {
         }
         
         mainImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(80)
-            make.trailing.equalTo(0)
-            make.size.equalTo(CGSize(width: 200, height: 200))
+            make.top.equalToSuperview().offset(100)
+            make.trailing.equalTo(5)
+            make.size.equalTo(CGSize(width: 190, height: 190))
         }
         
         idInputTextField.snp.makeConstraints { make in
@@ -106,7 +106,7 @@ class InitViewController: UIViewController {
         }
         
         registerButton.snp.makeConstraints { make in
-            make.top.equalTo(registerLabel).offset(-5.8)
+            make.top.equalTo(registerLabel).offset(-6.8)
             make.leading.equalTo(registerLabel.snp.trailing).offset(5)
         }
     }
