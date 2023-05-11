@@ -18,6 +18,7 @@ class ProfileSetViewController: RegisterRootViewController {
     let nameSubTextLabel = RegisterView().subTextLabel(setText: "사용자 이름")
     let dateSubTextLabel = RegisterView().subTextLabel(setText: "생년월일")
     let genderSubTextLabel = RegisterView().subTextLabel(setText: "성별")
+    let warningLabel = RegisterView().warningLabel()
     
     let nameSetTextField = RegisterView().textField(setPlaceholder: "홍길동")
     let dateTextField = RegisterView().textField(setPlaceholder: "1999년7월29일")
@@ -91,12 +92,18 @@ class ProfileSetViewController: RegisterRootViewController {
             make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
+        warningLabel.snp.makeConstraints { make in
+            make.top.equalTo(genderSegmentedControl.snp.bottom).offset(15)
+            make.leading.equalTo(genderSubTextLabel)
+        }
+        
         dateTextField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 17.0, height: 0.0))
         dateTextField.leftViewMode = .always
+        warningLabel.isHidden = true
     }
     
     private func addSubview() {
-        subViewList = [mainTextLabel, nameSubTextLabel, nameSetTextField, dateSubTextLabel, dateTextField, genderSubTextLabel, genderSegmentedControl, selectUserProfileImageView, plusButton]
+        subViewList = [mainTextLabel, nameSubTextLabel, nameSetTextField, dateSubTextLabel, dateTextField, genderSubTextLabel, genderSegmentedControl, selectUserProfileImageView, plusButton, warningLabel]
         
         for uiView in subViewList {
             view.addSubview(uiView)
@@ -146,6 +153,23 @@ class ProfileSetViewController: RegisterRootViewController {
         datePicker.overrideUserInterfaceStyle = .unspecified
     }
     
+    private func checkTextFieldsAreFilled() -> Bool {
+        for textField in [nameSetTextField, dateTextField] {
+            if textField.text?.isEmpty ?? true {
+                return false
+            }
+        }
+        return true
+    }
+    
+    private func checkImageViewAreFilled() -> Bool {
+        if selectUserProfileImageView.image != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     @objc func plusButtonTapped() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -173,8 +197,29 @@ class ProfileSetViewController: RegisterRootViewController {
     }
     
     @objc func nextButtonAction() {
-        let rootViewController = AccountSetViewController()
-        show(rootViewController, sender: nil)
+        if !checkTextFieldsAreFilled() {
+            warningLabel.text = "모든 값을 입력하셔야 합니다."
+            warningLabel.isHidden = false
+            
+        } else if !checkImageViewAreFilled() {
+            warningLabel.text = "프로필 이미지를 선택해주세요."
+            warningLabel.isHidden = false
+            
+        } else {
+            let rootViewController = AccountSetViewController()
+
+            let selectedSegmentTitle = genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)
+            var newUserAccountData = UserAccountDataModel(userName: "", userBirth: "", userGender: "", userImage: UIImage(), userid: "", userpassword: "")
+            
+            newUserAccountData.userName = nameSetTextField.text!
+            newUserAccountData.userBirth = dateTextField.text!
+            newUserAccountData.userGender = selectedSegmentTitle!
+            newUserAccountData.userImage = selectUserProfileImageView.image!
+            
+            userAccountDataList.append(newUserAccountData)
+            
+            show(rootViewController, sender: nil)
+        }
     }
     
     @objc func saveButtonAction() {
