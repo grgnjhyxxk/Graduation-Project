@@ -33,7 +33,7 @@ class AiRecommendedViewController: UIViewController {
         view.backgroundColor = UIColor.appSubBackgroundColor
                 
         userProfileButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(74)
+            make.top.equalTo(view).offset(73)
             make.trailing.equalTo(view).offset(-15)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
@@ -51,7 +51,7 @@ class AiRecommendedViewController: UIViewController {
         }
         
         commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(userInterfaceStyleToggleButton.snp.bottom).offset(40)
+            make.top.equalTo(userInterfaceStyleToggleButton.snp.bottom).offset(30)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view)
         }
@@ -76,6 +76,8 @@ class AiRecommendedViewController: UIViewController {
             make.top.equalTo(subTextLabel.snp.bottom).offset(11)
             make.leading.equalTo(19)
         }
+        
+        mainTextLabel.attributedLabel(text: "AI 분석")
     }
     
     private func addOnCommonUiView() {
