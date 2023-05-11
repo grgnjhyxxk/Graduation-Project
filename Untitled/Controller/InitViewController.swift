@@ -15,6 +15,8 @@ class InitViewController: UIViewController {
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
+    let mainImageView = InitView().mainImageView()
+    
     let mainTextLabel = InitView().mainTextLabel()
     let subTextLabel = InitView().subTextLabel()
     let registerLabel = InitView().registerLabel()
@@ -65,6 +67,12 @@ class InitViewController: UIViewController {
             make.leading.equalTo(mainTextLabel)
         }
         
+        mainImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(80)
+            make.trailing.equalTo(0)
+            make.size.equalTo(CGSize(width: 200, height: 200))
+        }
+        
         idInputTextField.snp.makeConstraints { make in
             make.top.equalTo(305)
             make.leading.equalTo(30)
@@ -103,7 +111,7 @@ class InitViewController: UIViewController {
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [mainTextLabel, subTextLabel, idInputTextField, PasswordInputTextField, passwordVisibilityButton, loginButton, registerLabel, registerButton]
+        commonViewList = [mainImageView, mainTextLabel, subTextLabel, idInputTextField, PasswordInputTextField, passwordVisibilityButton, loginButton, registerLabel, registerButton]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -134,7 +142,6 @@ class InitViewController: UIViewController {
     }
     
     @objc func loginButtonTapped(_ sender: UIButton) {
-//        sender.backgroundColor = UIColor.applicationPointColor
         isLoggedInBool = true
         let tabBarController = isLoggedIn()
         tabBarController.modalPresentationStyle = .fullScreen
