@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class RegisterViewController: UIViewController {
+class RegisterRootViewController: UIViewController {
     
     var uiViewList: [UIView] = []
     
