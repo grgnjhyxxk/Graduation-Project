@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         view.backgroundColor = UIColor.appSubBackgroundColor
         
         userProfileButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(74)
+            make.top.equalTo(view).offset(73)
             make.trailing.equalTo(view).offset(-15)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
