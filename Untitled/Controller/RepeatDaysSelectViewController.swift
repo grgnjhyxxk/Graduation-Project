@@ -121,8 +121,6 @@ extension RepeatDaysSelectViewController: UITableViewDataSource, UITableViewDele
         
         repeatDaysSelectList[indexPath.row].checkState = !repeatDaysSelectList[indexPath.row].checkState
         cell.checkStateImageView.isHidden = !repeatDaysSelectList[indexPath.row].checkState
-        
-        print(repeatDaysSelectList[indexPath.row].checkState)
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
