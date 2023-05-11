@@ -40,12 +40,12 @@ class ProfileSetViewController: RegisterRootViewController {
     
     private func viewLayout() {
         mainTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(90)
+            make.top.equalTo(70)
             make.leading.equalTo(30)
         }
         
         nameSubTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(mainTextLabel.snp.bottom).offset(20)
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(30)
             make.leading.equalTo(30)
         }
         
@@ -87,7 +87,7 @@ class ProfileSetViewController: RegisterRootViewController {
         }
         
         plusButton.snp.makeConstraints { make in
-            make.top.equalTo(genderSegmentedControl).offset(18)
+            make.top.equalTo(genderSegmentedControl).offset(12.5)
             make.leading.equalTo(selectUserProfileImageView.snp.trailing).offset(-35)
             make.size.equalTo(CGSize(width: 30, height: 30))
         }

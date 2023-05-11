@@ -31,12 +31,12 @@ class AccountSetViewController: RegisterRootViewController {
     
     private func viewLayout() {
         mainTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(90)
+            make.top.equalTo(70)
             make.leading.equalTo(30)
         }
         
         idSubTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(mainTextLabel.snp.bottom).offset(20)
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(30)
             make.leading.equalTo(30)
         }
         
