@@ -12,7 +12,7 @@ class AlarmView: UIView {
     func plusButton() -> UIButton {
         let button = UIButton()
         
-        button.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+        button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         button.tintColor = UIColor.appPointColor
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
