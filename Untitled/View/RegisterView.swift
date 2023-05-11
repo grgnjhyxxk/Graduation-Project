@@ -69,4 +69,13 @@ class RegisterView: UIView {
         
         return imageView
     }
+    
+    func warningLabel() -> UILabel {
+        let label = UILabel()
+        
+        label.textColor = UIColor.systemRed
+        label.font = UIFont.systemFont(ofSize: 13)
+        
+        return label
+    }
 }
