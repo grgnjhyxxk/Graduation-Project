@@ -46,9 +46,6 @@ extension UIButton {
         layer.shadowOpacity = 0.25
         layer.shadowOffset = CGSize(width: 0.5, height: 3)
         layer.shadowRadius = 5
-        layer.masksToBounds = false
-        layer.borderWidth = 0.5
-        layer.borderColor = UIColor(red: 133/255, green: 185/255, blue: 255/255, alpha: 0.45).cgColor
     }
     
     func titleButtonCommonStyle() {
