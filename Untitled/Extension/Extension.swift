@@ -42,11 +42,11 @@ extension UIButton {
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         self.setTitleColor(UIColor.white, for: .normal)
         self.backgroundColor = UIColor.appPointColor
-        layer.cornerRadius = 22
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.25
-        layer.shadowOffset = CGSize(width: 0.5, height: 3)
-        layer.shadowRadius = 5
+        layer.cornerRadius = 21
+//        layer.shadowColor = UIColor.black.cgColor
+//        layer.shadowOpacity = 0.25
+//        layer.shadowOffset = CGSize(width: 0.5, height: 3)
+//        layer.shadowRadius = 5
     }
 }
 
@@ -59,5 +59,13 @@ extension UILabel {
 //        layer.shadowOpacity = 1
         layer.masksToBounds = false
         self.numberOfLines = 0
+    }
+    
+    func attributedLabel(text: String) {
+        let fullText = self.text ?? ""
+        let attribtuedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: "\(text)")
+        attribtuedString.addAttribute(.foregroundColor, value: UIColor.appPointColor!, range: range)
+        self.attributedText = attribtuedString
     }
 }
