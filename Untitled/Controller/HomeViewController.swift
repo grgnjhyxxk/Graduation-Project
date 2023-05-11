@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
     var uiViewList: [UIView] = []
 
     let userProfileButton = CommonView().roundingButton()
-    let appIconForViewImageView = MainView().appIconForViewImageView()
     let userInterfaceStyleToggleButton = CommonView().userInterfaceStyleToggleButton()
     
     let commonView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
@@ -50,7 +49,7 @@ class HomeViewController: UIViewController {
     }
     
     private func addSubview() {
-        uiViewList = [appIconForViewImageView, userProfileButton, userInterfaceStyleToggleButton, commonView]
+        uiViewList = [userProfileButton, userInterfaceStyleToggleButton, commonView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
