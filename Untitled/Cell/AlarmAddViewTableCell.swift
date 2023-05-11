@@ -16,7 +16,7 @@ class AlarmAddViewTableCell: UITableViewCell {
         let label = UILabel()
         
         label.textColor = UIColor.appTextColor
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = UIFont.systemFont(ofSize: 17)
         
         return label
     }()
