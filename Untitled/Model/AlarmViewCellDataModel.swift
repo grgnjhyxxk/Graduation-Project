@@ -13,7 +13,7 @@ struct AlarmViewCellDataModel {
     var date: String
     var repeatDays: String
     var label: String
-    var user: Int
+    var user: String
     var repeatSwitchState: Bool
     var userImage: UIImage
 }
