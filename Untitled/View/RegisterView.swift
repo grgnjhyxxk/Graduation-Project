@@ -14,7 +14,8 @@ class RegisterView: UIView {
         
         label.text = "\(setText)"
         label.textColor = UIColor.appTextColor
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+//        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = UIFont(name: "NotoSansKR-Bold", size: 30)
         label.numberOfLines = 0
         
         return label
@@ -25,7 +26,8 @@ class RegisterView: UIView {
         
         label.text = "\(setText)"
         label.textColor = UIColor.appPointColor
-        label.font = UIFont.boldSystemFont(ofSize: 13)
+//        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.font = UIFont(name: "NotoSansKR-Bold", size: 13)
         
         return label
     }
@@ -53,7 +55,8 @@ class RegisterView: UIView {
         segmentedControl.layer.cornerRadius = 5
         segmentedControl.selectedSegmentTintColor = UIColor.appPointColor
         
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.8), NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)], for: .normal)
+//        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.8), NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(1), NSAttributedString.Key.font: UIFont(name: "NotoSansKR-Bold", size: 15)!], for: .normal)
 
         return segmentedControl
     }
@@ -74,7 +77,8 @@ class RegisterView: UIView {
         let label = UILabel()
         
         label.textColor = UIColor.systemRed
-        label.font = UIFont.systemFont(ofSize: 13)
+//        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 13)
         
         return label
     }

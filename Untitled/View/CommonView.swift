@@ -52,7 +52,8 @@ class CommonView: UIView {
         let label = UILabel()
         
         label.text = "\(labelText)"
-        label.font = UIFont.boldSystemFont(ofSize: size)
+//        label.font = UIFont.systemFont(ofSize: size)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: size)
         label.labelTextCommonStyle()
         
         return label

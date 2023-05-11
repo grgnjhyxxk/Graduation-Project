@@ -22,7 +22,8 @@ class InitView: UIView {
         
         label.text = "더 편리하고\n가볍게"
         label.textColor = UIColor.appTextColor
-        label.font = UIFont.boldSystemFont(ofSize: 40)
+//        label.font = UIFont.boldSystemFont(ofSize: 40)
+        label.font = UIFont(name: "NotoSansKR-Bold", size: 40)
         label.numberOfLines = 0
         
         return label
@@ -33,7 +34,8 @@ class InitView: UIView {
         
         label.text = "저희가 삶의 원동력이\n되어드릴게요."
         label.textColor = UIColor.appTextColor
-        label.font = UIFont.systemFont(ofSize: 15)
+//        label.font = UIFont.systemFont(ofSize: 15)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 15)
         label.numberOfLines = 0
 
         return label
@@ -78,7 +80,8 @@ class InitView: UIView {
         button.backgroundColor = UIColor.appPointColor
         button.setTitle("로그인", for: .normal)
         button.setTitleColor(UIColor.loginButtonTextColor, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.5)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.5)
+        button.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 18.5)
         button.titleLabel?.textAlignment = .center
         button.layer.cornerRadius = 5
         button.layer.borderWidth = 0.5
@@ -91,7 +94,8 @@ class InitView: UIView {
         let label = UILabel()
         
         label.text = "회원이 아니신가요?"
-        label.font = UIFont.systemFont(ofSize: 14)
+//        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 14)
         label.textColor = UIColor.resigterLabelColor
         label.textAlignment = .right
         
@@ -103,7 +107,8 @@ class InitView: UIView {
         
         button.setTitle("가입하기", for: .normal)
         button.setTitleColor(UIColor.appPointColor, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont(name: "NotoSansKR-Bold", size: 14)
         button.setTitleColor(UIColor.darkGray, for: .highlighted)
         button.titleLabel?.textAlignment = .left
         
