@@ -47,7 +47,7 @@ class AlarmViewController: UIViewController {
         view.backgroundColor = UIColor.appSubBackgroundColor
                 
         userProfileButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(74)
+            make.top.equalTo(view).offset(73)
             make.trailing.equalTo(view).offset(-15)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
@@ -65,7 +65,7 @@ class AlarmViewController: UIViewController {
         }
         
         commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(userInterfaceStyleToggleButton.snp.bottom).offset(40)
+            make.top.equalTo(userInterfaceStyleToggleButton.snp.bottom).offset(30)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view)
         }
@@ -94,19 +94,20 @@ class AlarmViewController: UIViewController {
         }
         
         plusButton.snp.makeConstraints { make in
-            make.top.equalTo(subTextLabel)
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(-34)
             make.trailing.equalTo(commonUiView).offset(-20)
             make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(mainTextLabel.snp.bottom).offset(10)
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(20)
             make.bottom.equalTo(commonUiView).offset(-100)
             make.leading.equalTo(commonUiView).offset(15)
             make.trailing.equalTo(commonUiView).offset(-15)
         }
         
         tableView.shadowLayer()
+        mainTextLabel.attributedLabel(text: "섭취알람")
     }
     
     private func addOnCommonUiView() {
