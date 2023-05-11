@@ -10,7 +10,7 @@
 		4BD089FDD2D32BE24F72200A /* Pods_UntitledTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30279390F0B49C2BC8E66376 /* Pods_UntitledTests.framework */; };
 		A03DA679230FA600979F530F /* Pods_Untitled.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9AC4F43C9CED10C1276C7F9 /* Pods_Untitled.framework */; };
 		CACD9F270F8D1EB20B07C14B /* Pods_Untitled_UntitledUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C0EDED36458C7D26657E7AF /* Pods_Untitled_UntitledUITests.framework */; };
-		FA0F8B202A0980A6000D2570 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0F8B1F2A0980A6000D2570 /* RegisterViewController.swift */; };
+		FA0F8B202A0980A6000D2570 /* RegisterRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0F8B1F2A0980A6000D2570 /* RegisterRootViewController.swift */; };
 		FA1305F02A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1305EF2A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift */; };
 		FA1305F42A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1305F32A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift */; };
 		FA1305F82A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1305F72A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift */; };
@@ -33,6 +33,8 @@
 		FAB7860629D1ED7000816363 /* UntitledTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB7860529D1ED7000816363 /* UntitledTests.swift */; };
 		FAB7861029D1ED7000816363 /* UntitledUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB7860F29D1ED7000816363 /* UntitledUITests.swift */; };
 		FAB7861229D1ED7000816363 /* UntitledUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB7861129D1ED7000816363 /* UntitledUITestsLaunchTests.swift */; };
+		FABD09DF2A0D1D6F006EA4F3 /* ProfileSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD09DE2A0D1D6F006EA4F3 /* ProfileSetViewController.swift */; };
+		FABD09E12A0D1D8D006EA4F3 /* AccountSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD09E02A0D1D8D006EA4F3 /* AccountSetViewController.swift */; };
 		FAC6224029D1F3D800D75F7E /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6223F29D1F3D800D75F7E /* AlarmViewController.swift */; };
 		FAC6224229D1F3F900D75F7E /* AIRecommededViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */; };
 		FAC6224429D1F41A00D75F7E /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6224329D1F41A00D75F7E /* InitViewController.swift */; };
@@ -67,7 +69,7 @@
 		4FF0789B9AB385F135A4961F /* Pods-UntitledTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UntitledTests.debug.xcconfig"; path = "Target Support Files/Pods-UntitledTests/Pods-UntitledTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7951CBFE2A55FB48D929DD76 /* Pods-UntitledTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UntitledTests.release.xcconfig"; path = "Target Support Files/Pods-UntitledTests/Pods-UntitledTests.release.xcconfig"; sourceTree = "<group>"; };
 		C9AC4F43C9CED10C1276C7F9 /* Pods_Untitled.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Untitled.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA0F8B1F2A0980A6000D2570 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		FA0F8B1F2A0980A6000D2570 /* RegisterRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRootViewController.swift; sourceTree = "<group>"; };
 		FA1305EF2A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSelectViewController.swift; sourceTree = "<group>"; };
 		FA1305F32A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSelectViewTableCell.swift; sourceTree = "<group>"; };
 		FA1305F72A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSelectViewDataModel.swift; sourceTree = "<group>"; };
@@ -94,6 +96,8 @@
 		FAB7860B29D1ED7000816363 /* UntitledUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UntitledUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB7860F29D1ED7000816363 /* UntitledUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UntitledUITests.swift; sourceTree = "<group>"; };
 		FAB7861129D1ED7000816363 /* UntitledUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UntitledUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FABD09DE2A0D1D6F006EA4F3 /* ProfileSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetViewController.swift; sourceTree = "<group>"; };
+		FABD09E02A0D1D8D006EA4F3 /* AccountSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetViewController.swift; sourceTree = "<group>"; };
 		FAC6223F29D1F3D800D75F7E /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommededViewController.swift; sourceTree = "<group>"; };
 		FAC6224329D1F41A00D75F7E /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 		FA1416D329D1EF3A0060119D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FABD09DD2A0D1D30006EA4F3 /* Register */,
 				FA7FA26D29DC2C060011B242 /* CustomTabBarController.swift */,
 				FAC6224329D1F41A00D75F7E /* InitViewController.swift */,
 				FA1416D529D1F1710060119D /* HomeViewController.swift */,
@@ -187,7 +192,6 @@
 				FA609F3029FF1281005BE1F2 /* AlarmAddViewController.swift */,
 				FA1305EF2A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift */,
 				FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */,
-				FA0F8B1F2A0980A6000D2570 /* RegisterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -265,6 +269,16 @@
 				FAB7861129D1ED7000816363 /* UntitledUITestsLaunchTests.swift */,
 			);
 			path = UntitledUITests;
+			sourceTree = "<group>";
+		};
+		FABD09DD2A0D1D30006EA4F3 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				FA0F8B1F2A0980A6000D2570 /* RegisterRootViewController.swift */,
+				FABD09DE2A0D1D6F006EA4F3 /* ProfileSetViewController.swift */,
+				FABD09E02A0D1D8D006EA4F3 /* AccountSetViewController.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		FAC6224529D1FA3500D75F7E /* Extension */ = {
@@ -512,6 +526,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABD09DF2A0D1D6F006EA4F3 /* ProfileSetViewController.swift in Sources */,
+				FABD09E12A0D1D8D006EA4F3 /* AccountSetViewController.swift in Sources */,
 				FAC6224729D1FA5100D75F7E /* Extension.swift in Sources */,
 				FAC6224029D1F3D800D75F7E /* AlarmViewController.swift in Sources */,
 				FA7FA26A29DC2BEE0011B242 /* AlarmView.swift in Sources */,
@@ -526,7 +542,7 @@
 				FA7FA26B29DC2BEE0011B242 /* MainView.swift in Sources */,
 				FAC6224229D1F3F900D75F7E /* AIRecommededViewController.swift in Sources */,
 				FADCD54D2A00DEB6001D4AB0 /* AlarmAddViewTableCell.swift in Sources */,
-				FA0F8B202A0980A6000D2570 /* RegisterViewController.swift in Sources */,
+				FA0F8B202A0980A6000D2570 /* RegisterRootViewController.swift in Sources */,
 				FA609F2C29FEB404005BE1F2 /* AlarmViewCellDataModel.swift in Sources */,
 				FA169D4929D1FEAD0042DBC0 /* InitView.swift in Sources */,
 				FA609F3129FF1281005BE1F2 /* AlarmAddViewController.swift in Sources */,
@@ -705,7 +721,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.2;
+				CURRENT_PROJECT_VERSION = 1.1.4;
 				DEVELOPMENT_TEAM = 6578S57CDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Untitled/Info.plist;
@@ -737,7 +753,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.2;
+				CURRENT_PROJECT_VERSION = 1.1.4;
 				DEVELOPMENT_TEAM = 6578S57CDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Untitled/Info.plist;
