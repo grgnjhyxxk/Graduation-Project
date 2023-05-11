@@ -57,4 +57,16 @@ class RegisterView: UIView {
 
         return segmentedControl
     }
+    
+    func selectUserProfileImageView() -> UIImageView {
+        let imageView = UIImageView()
+        
+        imageView.backgroundColor = UIColor.appSubBackgroundColor
+        imageView.layer.cornerRadius = 75
+        imageView.clipsToBounds = true
+//        imageView.layer.borderWidth = 5
+//        imageView.layer.borderColor = UIColor.appPointColor?.cgColor
+        
+        return imageView
+    }
 }
