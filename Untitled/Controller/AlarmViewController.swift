@@ -18,7 +18,9 @@ class AlarmViewController: UIViewController {
     let plusButton = AlarmView().plusButton()
     
     let subTextLabel = CommonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
-    let mainTextLabel = CommonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요", size: 25)
+    let mainTextLabel = CommonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 25)
+    let emptyTextLabel = CommonView().commonTextLabel(labelText: "아직 알람을 추가하지 않으셨군요!\n지금 바로 알람을 설정해보세요!", size: 13)
+    let emptyAlarmImageView = AlarmView().emptyAlarmImageView()
     
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
     let tableView = UITableView()
@@ -33,14 +35,18 @@ class AlarmViewController: UIViewController {
         actionFuction()
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmAddedNotification), name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        alarmListisEmptyOrNot()
     }
     
     @objc func handleAlarmAddedNotification(_ noti: Notification) {
         OperationQueue.main.addOperation {
+            self.alarmListisEmptyOrNot()
             self.tableView.reloadData()
         }
-
     }
     
     private func viewLayout() {
@@ -65,11 +71,11 @@ class AlarmViewController: UIViewController {
         }
         
         commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(userInterfaceStyleToggleButton.snp.bottom).offset(30)
+            make.top.equalTo(userInterfaceStyleToggleButton.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view)
         }
-        
+    
         commonUiView.shadowLayer()
     }
     
@@ -82,14 +88,13 @@ class AlarmViewController: UIViewController {
     }
     
     private func commonUiViewLayout() {
-        
         subTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleTextButton.snp.bottom).offset(45.5)
+            make.top.equalTo(commonUiView).offset(10)
             make.leading.equalTo(20)
         }
         
         mainTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(subTextLabel.snp.bottom).offset(11)
+            make.top.equalTo(subTextLabel.snp.bottom).offset(0)
             make.leading.equalTo(19)
         }
         
@@ -99,19 +104,34 @@ class AlarmViewController: UIViewController {
             make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
+        emptyAlarmImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(commonUiView)
+            make.top.equalTo(commonUiView.snp.top).offset(180)
+            make.size.equalTo(CGSize(width: 300, height: 200))
+        }
+        
+        emptyTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyAlarmImageView.snp.bottom).offset(-30)
+            make.width.equalTo(commonUiView)
+        }
+        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(mainTextLabel.snp.bottom).offset(20)
-            make.bottom.equalTo(commonUiView).offset(-100)
-            make.leading.equalTo(commonUiView).offset(15)
-            make.trailing.equalTo(commonUiView).offset(-15)
+            make.bottom.equalTo(commonUiView).offset(-83)
+            make.leading.equalTo(commonUiView).offset(10)
+            make.trailing.equalTo(commonUiView).offset(-10)
         }
+        
         
         tableView.shadowLayer()
         mainTextLabel.attributedLabel(text: "섭취알람")
+        subTextLabel.textColor = UIColor.subTextColor
+        emptyTextLabel.textAlignment = .center
+        emptyTextLabel.textColor = UIColor.systemGray
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [subTextLabel, mainTextLabel, plusButton, tableView]
+        commonViewList = [subTextLabel, mainTextLabel, plusButton, tableView, emptyAlarmImageView, emptyTextLabel]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -122,7 +142,7 @@ class AlarmViewController: UIViewController {
         tableView.register(AlarmViewTableCell.self, forCellReuseIdentifier: "AlarmViewTableCell")
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor.appSubBackgroundColor
+        tableView.backgroundColor = UIColor.clear
         tableView.rowHeight = 93
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         tableView.layer.cornerRadius = 15
@@ -131,6 +151,16 @@ class AlarmViewController: UIViewController {
     private func actionFuction() {
         plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
         userInterfaceStyleToggleButton.addTarget(self, action: #selector(toggleTheme), for: .touchUpInside)
+    }
+    
+    private func alarmListisEmptyOrNot() {
+        if alarmViewCellDataList.isEmpty {
+            self.emptyTextLabel.isHidden = false
+            self.emptyAlarmImageView.isHidden = false
+        } else {
+            self.emptyTextLabel.isHidden = true
+            self.emptyAlarmImageView.isHidden = true
+        }
     }
     
     @objc func plusButtonAction(_: UIButton) {
@@ -165,6 +195,10 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         return alarmViewCellDataList.count
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1 // 두 개의 섹션을 사용하는 예시
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmViewTableCell", for: indexPath) as! AlarmViewTableCell
         
