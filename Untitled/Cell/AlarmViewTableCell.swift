@@ -70,12 +70,12 @@ class AlarmViewTableCell: UITableViewCell {
     private func layout() {
         userImage.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(15)
-            make.left.equalTo(contentView).offset(15)
+            make.left.equalTo(contentView).offset(10)
             make.width.height.equalTo(64)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(userImage).offset(10)
+            make.top.equalTo(userImage).offset(5)
             make.left.equalTo(userImage.snp.right).offset(10)
         }
         
@@ -85,8 +85,8 @@ class AlarmViewTableCell: UITableViewCell {
         }
         
         timeLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView)
-            make.right.equalTo(contentView).offset(-10)
+            make.top.equalTo(contentView).offset(-5)
+            make.trailing.equalTo(contentView).offset(-10)
             make.bottom.equalTo(contentView).offset(-10)
         }
         
