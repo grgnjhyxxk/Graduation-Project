@@ -90,10 +90,19 @@ class InitView: UIView {
         return button
     }
     
-    func registerLabel() -> UILabel {
+    func toggleButton() -> UIButton {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.tintColor = UIColor.placeholderText
+        
+        return button
+    }
+    
+    func serviceLabel(text: String) -> UILabel {
         let label = UILabel()
         
-        label.text = "회원이 아니신가요?"
+        label.text = "\(text)"
 //        label.font = UIFont.systemFont(ofSize: 14)
         label.font = UIFont(name: "NotoSansKR-Regular", size: 14)
         label.textColor = UIColor.resigterLabelColor
@@ -102,10 +111,10 @@ class InitView: UIView {
         return label
     }
     
-    func registerButton() -> UIButton {
+    func serviceButton(text: String) -> UIButton {
         let button = UIButton()
         
-        button.setTitle("가입하기", for: .normal)
+        button.setTitle("\(text)", for: .normal)
         button.setTitleColor(UIColor.appPointColor, for: .normal)
 //        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.titleLabel?.font = UIFont(name: "NotoSansKR-Bold", size: 14)
