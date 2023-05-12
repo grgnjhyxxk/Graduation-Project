@@ -1,16 +1,20 @@
 PODS:
+  - AnyFormatKit (2.5.2)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
+  - AnyFormatKit
   - SnapKit (~> 5.6.0)
 
 SPEC REPOS:
   trunk:
+    - AnyFormatKit
     - SnapKit
 
 SPEC CHECKSUMS:
+  AnyFormatKit: b0dbb2a5f2fe7a0fc97f401f8a219a47ee63a335
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 83480664b9a246c4c587f8293d0b8d75377b8766
+PODFILE CHECKSUM: 34ddc7af26f48157b46979c2ea6a8966254a7167
 
 COCOAPODS: 1.11.3
