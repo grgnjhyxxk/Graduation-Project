@@ -8,26 +8,58 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                    <view key="view" contentMode="scaleToFill" id="BSb-An-tMd">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="AppIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="Esc-23-Li7">
-                                <rect key="frame" x="95" y="203" width="203" height="390"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="AppIconImage" translatesAutoresizingMaskIntoConstraints="NO" id="csv-s1-3Y5">
+                                <rect key="frame" x="93" y="275" width="207" height="207"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="207" id="quq-Wn-p1X"/>
+                                    <constraint firstAttribute="width" constant="207" id="tsI-gB-oad"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRT-TS-20P">
+                                <rect key="frame" x="0.0" y="806" width="393" height="13"/>
+                                <string key="text">@ Graduation Project in 2023 at SCH University
+
+
+</string>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smart Vitamin Alarm Manager" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFB-PU-jM7">
+                                <rect key="frame" x="0.0" y="787" width="393" height="16"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="SDJ-Kj-ogf"/>
                         <color key="backgroundColor" name="AppPointColor"/>
                         <constraints>
-                            <constraint firstItem="Esc-23-Li7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="144" id="UJQ-bf-ABW"/>
-                            <constraint firstItem="Esc-23-Li7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95" id="gKQ-vv-zo0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Esc-23-Li7" secondAttribute="bottom" constant="225" id="k6m-aT-J9B"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Esc-23-Li7" secondAttribute="trailing" constant="95" id="pCX-c0-ZfX"/>
+                            <constraint firstItem="gRT-TS-20P" firstAttribute="leading" secondItem="SDJ-Kj-ogf" secondAttribute="leading" id="598-YH-fZT"/>
+                            <constraint firstItem="gRT-TS-20P" firstAttribute="top" secondItem="BSb-An-tMd" secondAttribute="top" constant="806" id="DCt-zr-JEd"/>
+                            <constraint firstItem="DFB-PU-jM7" firstAttribute="top" secondItem="BSb-An-tMd" secondAttribute="top" constant="787" id="DLD-3w-ZmC"/>
+                            <constraint firstItem="gRT-TS-20P" firstAttribute="trailing" secondItem="SDJ-Kj-ogf" secondAttribute="trailing" id="HzE-wR-Aw7"/>
+                            <constraint firstItem="DFB-PU-jM7" firstAttribute="leading" secondItem="SDJ-Kj-ogf" secondAttribute="leading" id="Rfs-Mg-DvG"/>
+                            <constraint firstItem="DFB-PU-jM7" firstAttribute="trailing" secondItem="SDJ-Kj-ogf" secondAttribute="trailing" id="XJj-z6-Cj9"/>
+                            <constraint firstItem="csv-s1-3Y5" firstAttribute="top" secondItem="SDJ-Kj-ogf" secondAttribute="top" constant="216" id="bee-5u-dqh"/>
+                            <constraint firstItem="SDJ-Kj-ogf" firstAttribute="trailing" secondItem="csv-s1-3Y5" secondAttribute="trailing" constant="93" id="dsF-In-FfJ"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,7 +71,7 @@
     <resources>
         <image name="AppIconImage" width="341.33334350585938" height="341.33334350585938"/>
         <namedColor name="AppPointColor">
-            <color red="0.30953347679999998" green="0.44338625669999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.15299999713897705" green="0.44699999690055847" blue="0.93900001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
