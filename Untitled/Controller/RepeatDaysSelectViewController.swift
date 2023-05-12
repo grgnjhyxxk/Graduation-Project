@@ -117,8 +117,8 @@ extension RepeatDaysSelectViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? RepeatDaysSelectViewTableCell else {
                 return
-        }
-        
+            }
+
         repeatDaysSelectList[indexPath.row].checkState = !repeatDaysSelectList[indexPath.row].checkState
         cell.checkStateImageView.isHidden = !repeatDaysSelectList[indexPath.row].checkState
 
