@@ -39,19 +39,19 @@ class AiRecommendedViewController: UIViewController {
         }
         
         userInterfaceStyleToggleButton.snp.makeConstraints { make in
-            make.top.equalTo(userProfileButton).offset(1)
+            make.top.equalTo(userProfileButton.snp.top).offset(5.5)
             make.trailing.equalTo(userProfileButton.snp.leading).offset(-10)
             make.size.equalTo(CGSize(width: 36, height: 36))
         }
         
         titleTextButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(76)
+            make.top.equalTo(userProfileButton).offset(1)
             make.leading.equalTo(view).offset(15)
             make.size.equalTo(CGSize(width: 122, height: 44))
         }
         
         commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(userInterfaceStyleToggleButton.snp.bottom).offset(30)
+            make.top.equalTo(userInterfaceStyleToggleButton.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view)
         }
@@ -66,18 +66,18 @@ class AiRecommendedViewController: UIViewController {
     }
     
     private func commonUiViewLayout() {
-        
         subTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleTextButton.snp.bottom).offset(45.5)
+            make.top.equalTo(commonUiView).offset(10)
             make.leading.equalTo(20)
         }
         
         mainTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(subTextLabel.snp.bottom).offset(11)
+            make.top.equalTo(subTextLabel.snp.bottom).offset(0)
             make.leading.equalTo(19)
         }
         
         mainTextLabel.attributedLabel(text: "AI 분석")
+        subTextLabel.textColor = UIColor.subTextColor
     }
     
     private func addOnCommonUiView() {

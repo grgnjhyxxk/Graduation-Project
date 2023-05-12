@@ -21,7 +21,7 @@ class CustomTabBarController: UITabBarController {
         self.tabBar.unselectedItemTintColor = UIColor.lightGray
         self.tabBar.shadowImage = UIImage()
         self.tabBar.backgroundImage = UIImage()
-        
+        self.tabBar.backgroundColor = UIColor.appMainBackgroundColor
         let firstViewController = HomeViewController()
         let secondViewController = AlarmViewController()
         let thirdViewController = AiRecommendedViewController()
