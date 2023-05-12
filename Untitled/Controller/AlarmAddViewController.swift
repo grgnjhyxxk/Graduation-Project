@@ -144,7 +144,7 @@ extension AlarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.clipsToBounds = true
         cell.backgroundColor = UIColor.clear
-        
+
         let titlaLabelText = AlarmAddViewCellData[indexPath.row].title
         
         switch indexPath.row {
@@ -163,17 +163,29 @@ extension AlarmAddViewController: UITableViewDataSource, UITableViewDelegate {
             break
         }
         
+        if indexPath.row == 1 || indexPath.row == 3 {
+            cell.selectionStyle = .none
+        } else {
+            cell.selectionStyle = .default
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
+        guard let cell = tableView.cellForRow(at: indexPath) as? AlarmAddViewTableCell else {
+            return
+        }
         switch indexPath.row {
         case 0:
             repeatDaysButtonAction()
+        case 1:
+            cell.textField.becomeFirstResponder()
         default:
             break
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+
     }
 }
