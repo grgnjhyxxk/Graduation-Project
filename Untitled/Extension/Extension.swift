@@ -23,10 +23,18 @@ extension UIViewController {
 extension UIView {
     func shadowLayer() {
         layer.shadowColor = UIColor.shadowColor?.cgColor
+//        layer.shadowOpacity = 0.25
+//        layer.shadowOffset = CGSize(width: -3, height: 3)
+//        layer.shadowRadius = 5
         layer.shadowOpacity = 0.25
-        layer.shadowOffset = CGSize(width: -3, height: 3)
+        layer.shadowOffset = CGSize(width: 0.5, height: 3)
         layer.shadowRadius = 5
     }
+    
+//    func appPointColorBorder() {
+//        layer.borderWidth = 1.5
+//        layer.borderColor = UIColor.appPointColor?.withAlphaComponent(0.2).cgColor
+//    }
 }
 
 extension UIColor {
@@ -47,18 +55,12 @@ extension UIFont {
 }
 
 extension UIButton {
-    func appButtonCommonStyle() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.25
-        layer.shadowOffset = CGSize(width: 0.5, height: 3)
-        layer.shadowRadius = 5
-    }
-    
     func titleButtonCommonStyle() {
         self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        self.setTitleColor(UIColor.white, for: .normal)
-        self.backgroundColor = UIColor.appPointColor
+        self.setTitleColor(UIColor.appTextColor, for: .normal)
+        self.backgroundColor = UIColor.appMainBackgroundColor
         layer.cornerRadius = 21
+        self.shadowLayer()
     }
 }
 
