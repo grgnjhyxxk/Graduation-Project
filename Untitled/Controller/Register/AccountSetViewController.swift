@@ -95,9 +95,9 @@ class AccountSetViewController: RegisterRootViewController {
         backButton.tintColor = .appTextColor
         navigationItem.leftBarButtonItem = backButton
         
-        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(doneButtonAction))
-        doneButton.tintColor = .appPointColor
-        navigationItem.rightBarButtonItem = doneButton
+        let nextButton = UIBarButtonItem(title: "다음", style: .done, target: self, action: #selector(nextButtonAction))
+        nextButton.tintColor = .appPointColor
+        navigationItem.rightBarButtonItem = nextButton
         
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = true
@@ -117,17 +117,17 @@ class AccountSetViewController: RegisterRootViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func doneButtonAction() {
+    @objc func nextButtonAction() {
+        let rootViewController = SerialNumberSetViewController()
+
         if !checkTextFieldsAreFilled() {
             warningLabel.text = "모든 값을 입력하셔야 합니다."
             warningLabel.isHidden = false
         } else {
             userAccountDataList[userAccountDataList.count - 1].userid = idSetTextField.text!
             userAccountDataList[userAccountDataList.count - 1].userpassword = passwordSetTextField.text!
-            
-            print(userAccountDataList)
-            
-            dismiss(animated: true)
+
+        show(rootViewController, sender: nil)
         }
     }
 }

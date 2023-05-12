@@ -148,7 +148,8 @@ class ProfileSetViewController: RegisterRootViewController {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
         datePicker.overrideUserInterfaceStyle = .unspecified
-        
+        datePicker.locale = Locale(identifier: "ko_KR")
+
         dateTextField.inputAccessoryView = toolbar
         dateTextField.inputView = datePicker
     }
@@ -193,6 +194,12 @@ class ProfileSetViewController: RegisterRootViewController {
     }
     
     @objc func cancelButtonAction() {
+        if userAccountDataList.count > 0 {
+            userAccountDataList.removeLast()
+        }
+        
+        print(userAccountDataList.count)
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -210,7 +217,7 @@ class ProfileSetViewController: RegisterRootViewController {
 
             let selectedSegmentTitle = genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)
             let newUser = User(userName: nameSetTextField.text!, userBirth: dateTextField.text!, userGender: selectedSegmentTitle!, userImage: selectUserProfileImageView.image!)
-            let newUserAccountData = UserAccountDataModel(userid: "", userpassword: "", users: [newUser])
+            let newUserAccountData = UserAccountDataModel(userid: "", userpassword: "", serialNumber: "", users: [newUser])
 
             userAccountDataList.append(newUserAccountData)
             
