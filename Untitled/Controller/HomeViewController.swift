@@ -11,33 +11,40 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     var uiViewList: [UIView] = []
-
+    var scrollViewList: [UIView] = []
+    var contentViewList: [UIView] = []
+    
     let AppIconImageView = HomeView().AppIconImageView()
         
-    let healthQuestionnaireTitleLabel = CommonView().commonTextLabel(labelText: "건강설문 지금 시작하세요!", size: 25)
     let userProfileButton = CommonView().roundingButton()
     let userInterfaceStyleToggleButton = CommonView().userInterfaceStyleToggleButton()
     
+    let scrollView = UIScrollView()
+    let contentView = UIView()
     let commonView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    
+    let commonView2 = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    
+    let commonView3 = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    
+    let commonView4 = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubview()
         viewLayout()
+        addOnScrollView()
+        scrollViewLayout()
+        addOnContentView()
+        contentViewLayout()
     }
     
     private func viewLayout() {
         view.backgroundColor = UIColor.appSubBackgroundColor
         
         userProfileButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(73)
+            make.top.equalTo(view).offset(63)
             make.trailing.equalTo(view).offset(-15)
-            make.size.equalTo(CGSize(width: 45, height: 45))
-        }
-        
-        AppIconImageView.snp.makeConstraints { make in
-            make.top.equalTo(userProfileButton).offset(2)
-            make.leading.equalTo(view).offset(15)
             make.size.equalTo(CGSize(width: 45, height: 45))
         }
         
@@ -47,26 +54,84 @@ class HomeViewController: UIViewController {
             make.size.equalTo(CGSize(width: 36, height: 36))
         }
         
-        healthQuestionnaireTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(150)
-            make.leading.equalTo(15)
+        AppIconImageView.snp.makeConstraints { make in
+            make.top.equalTo(userProfileButton).offset(2)
+            make.leading.equalTo(view).offset(15)
+            make.size.equalTo(CGSize(width: 45, height: 45))
         }
         
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(AppIconImageView.snp.bottom).offset(10)
+            make.bottom.equalTo(-83)
+            make.leading.trailing.equalToSuperview()
+        }
+    }
+    
+    private func addSubview() {
+        uiViewList = [scrollView, userProfileButton, AppIconImageView, userInterfaceStyleToggleButton]
+        
+        for uiView in uiViewList {
+            view.addSubview(uiView)
+        }
+    }
+    
+    private func scrollViewLayout() {
+        contentView.snp.makeConstraints { make in
+            make.top.equalTo(scrollView)
+            make.leading.trailing.bottom.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+            make.height.equalTo(800)
+        }
+    }
+    
+    private func addOnScrollView() {
+        scrollViewList = [contentView]
+        
+        for uiView in scrollViewList {
+            scrollView.addSubview(uiView)
+        }
+    }
+    
+    private func contentViewLayout() {
         commonView.snp.makeConstraints { make in
-            make.top.equalTo(healthQuestionnaireTitleLabel.snp.bottom).offset(15)
+            make.top.equalTo(contentView).offset(15)
             make.leading.equalTo(15)
             make.trailing.equalTo(-15)
             make.height.equalTo(150)
         }
         
+        commonView2.snp.makeConstraints { make in
+            make.top.equalTo(commonView.snp.bottom).offset(15)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
+            make.height.equalTo(100)
+        }
+        
+        commonView3.snp.makeConstraints { make in
+            make.top.equalTo(commonView2.snp.bottom).offset(15)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
+            make.height.equalTo(250)
+        }
+        
+        commonView4.snp.makeConstraints { make in
+            make.top.equalTo(commonView3.snp.bottom).offset(15)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
+            make.height.equalTo(200)
+        }
+        
         commonView.shadowLayer()
+        commonView2.shadowLayer()
+        commonView3.shadowLayer()
+        commonView4.shadowLayer()
     }
     
-    private func addSubview() {
-        uiViewList = [userProfileButton, AppIconImageView, userInterfaceStyleToggleButton, commonView, healthQuestionnaireTitleLabel]
+    private func addOnContentView() {
+        contentViewList = [commonView, commonView2, commonView3, commonView4]
         
-        for uiView in uiViewList {
-            view.addSubview(uiView)
+        for uiView in contentViewList {
+            contentView.addSubview(uiView)
         }
     }
 }
