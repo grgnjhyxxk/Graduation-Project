@@ -9,16 +9,13 @@ import UIKit
 
 class CommonView: UIView {
     
-    func roundingButton() -> UIView {
+    func roundingButton() -> UIButton {
         let button = UIButton()
         
         button.setImage(UIImage(named: "TemporaryUserProfilePicture"), for: .normal)
         button.backgroundColor = UIColor.appSubBackgroundColor
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
         button.layer.cornerRadius = 22.5
         button.clipsToBounds = true
-        button.appButtonCommonStyle()
         
         return button
     }
