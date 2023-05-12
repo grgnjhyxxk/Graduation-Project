@@ -202,6 +202,7 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.clipsToBounds = true
         cell.backgroundColor = UIColor.clear
+        cell.layer.cornerRadius = 15
         
         cell.userImage.image = alarmViewCellDataList[indexPath.row].userImage
         cell.titleLabel.text = alarmViewCellDataList[indexPath.row].label
