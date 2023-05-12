@@ -22,7 +22,7 @@
 		FA609F3129FF1281005BE1F2 /* AlarmAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA609F3029FF1281005BE1F2 /* AlarmAddViewController.swift */; };
 		FA609F3329FF128B005BE1F2 /* AlarmAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA609F3229FF128B005BE1F2 /* AlarmAddView.swift */; };
 		FA7FA26A29DC2BEE0011B242 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26729DC2BEE0011B242 /* AlarmView.swift */; };
-		FA7FA26B29DC2BEE0011B242 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26829DC2BEE0011B242 /* MainView.swift */; };
+		FA7FA26B29DC2BEE0011B242 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26829DC2BEE0011B242 /* HomeView.swift */; };
 		FA7FA26C29DC2BEE0011B242 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26929DC2BEE0011B242 /* CommonView.swift */; };
 		FA7FA26E29DC2C060011B242 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26D29DC2C060011B242 /* CustomTabBarController.swift */; };
 		FAB785EC29D1ED6F00816363 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB785EB29D1ED6F00816363 /* AppDelegate.swift */; };
@@ -35,6 +35,12 @@
 		FAB7861229D1ED7000816363 /* UntitledUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB7861129D1ED7000816363 /* UntitledUITestsLaunchTests.swift */; };
 		FABD09DF2A0D1D6F006EA4F3 /* ProfileSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD09DE2A0D1D6F006EA4F3 /* ProfileSetViewController.swift */; };
 		FABD09E12A0D1D8D006EA4F3 /* AccountSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD09E02A0D1D8D006EA4F3 /* AccountSetViewController.swift */; };
+		FABD09E52A0D3C66006EA4F3 /* UserAccountDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD09E42A0D3C66006EA4F3 /* UserAccountDataModel.swift */; };
+		FABD09E92A0D7995006EA4F3 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABD09E72A0D7995006EA4F3 /* Roboto-Bold.ttf */; };
+		FABD09EA2A0D7995006EA4F3 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FABD09E82A0D7995006EA4F3 /* Roboto-Regular.ttf */; };
+		FABD09ED2A0D79F0006EA4F3 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FABD09EB2A0D79F0006EA4F3 /* NotoSansKR-Bold.otf */; };
+		FABD09EE2A0D79F0006EA4F3 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FABD09EC2A0D79F0006EA4F3 /* NotoSansKR-Regular.otf */; };
+		FABD09F22A0E927A006EA4F3 /* SerialNumberSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD09F12A0E927A006EA4F3 /* SerialNumberSetViewController.swift */; };
 		FAC6224029D1F3D800D75F7E /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6223F29D1F3D800D75F7E /* AlarmViewController.swift */; };
 		FAC6224229D1F3F900D75F7E /* AIRecommededViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */; };
 		FAC6224429D1F41A00D75F7E /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6224329D1F41A00D75F7E /* InitViewController.swift */; };
@@ -81,7 +87,7 @@
 		FA609F3029FF1281005BE1F2 /* AlarmAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAddViewController.swift; sourceTree = "<group>"; };
 		FA609F3229FF128B005BE1F2 /* AlarmAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAddView.swift; sourceTree = "<group>"; };
 		FA7FA26729DC2BEE0011B242 /* AlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
-		FA7FA26829DC2BEE0011B242 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		FA7FA26829DC2BEE0011B242 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FA7FA26929DC2BEE0011B242 /* CommonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
 		FA7FA26D29DC2C060011B242 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		FAB785E829D1ED6F00816363 /* Untitled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Untitled.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +104,12 @@
 		FAB7861129D1ED7000816363 /* UntitledUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UntitledUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FABD09DE2A0D1D6F006EA4F3 /* ProfileSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetViewController.swift; sourceTree = "<group>"; };
 		FABD09E02A0D1D8D006EA4F3 /* AccountSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSetViewController.swift; sourceTree = "<group>"; };
+		FABD09E42A0D3C66006EA4F3 /* UserAccountDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountDataModel.swift; sourceTree = "<group>"; };
+		FABD09E72A0D7995006EA4F3 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Bold.ttf"; path = "../../../../../Downloads/개인 파일/App/Untitled/Roboto/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		FABD09E82A0D7995006EA4F3 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "../../../../../Downloads/개인 파일/App/Untitled/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		FABD09EB2A0D79F0006EA4F3 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Bold.otf"; path = "../../../../../Downloads/개인 파일/App/Untitled/Noto_Sans_KR/NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		FABD09EC2A0D79F0006EA4F3 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "NotoSansKR-Regular.otf"; path = "../../../../../Downloads/개인 파일/App/Untitled/Noto_Sans_KR/NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		FABD09F12A0E927A006EA4F3 /* SerialNumberSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialNumberSetViewController.swift; sourceTree = "<group>"; };
 		FAC6223F29D1F3D800D75F7E /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommededViewController.swift; sourceTree = "<group>"; };
 		FAC6224329D1F41A00D75F7E /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +175,7 @@
 			children = (
 				FA7FA26729DC2BEE0011B242 /* AlarmView.swift */,
 				FA7FA26929DC2BEE0011B242 /* CommonView.swift */,
-				FA7FA26829DC2BEE0011B242 /* MainView.swift */,
+				FA7FA26829DC2BEE0011B242 /* HomeView.swift */,
 				FA169D4829D1FEAD0042DBC0 /* InitView.swift */,
 				FA609F3229FF128B005BE1F2 /* AlarmAddView.swift */,
 				FA439F3D2A09AC68000819FF /* RegisterView.swift */,
@@ -177,6 +189,7 @@
 				FA609F2B29FEB404005BE1F2 /* AlarmViewCellDataModel.swift */,
 				FADCD54E2A00E4F5001D4AB0 /* AlarmAddViewCellDataModel.swift */,
 				FA1305F72A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift */,
+				FABD09E42A0D3C66006EA4F3 /* UserAccountDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,6 +231,7 @@
 		FAB785DF29D1ED6F00816363 = {
 			isa = PBXGroup;
 			children = (
+				FABD09E62A0D7987006EA4F3 /* Font */,
 				FAC6224529D1FA3500D75F7E /* Extension */,
 				FA1416D429D1EF410060119D /* Common */,
 				FA1416D329D1EF3A0060119D /* Controller */,
@@ -277,8 +291,20 @@
 				FA0F8B1F2A0980A6000D2570 /* RegisterRootViewController.swift */,
 				FABD09DE2A0D1D6F006EA4F3 /* ProfileSetViewController.swift */,
 				FABD09E02A0D1D8D006EA4F3 /* AccountSetViewController.swift */,
+				FABD09F12A0E927A006EA4F3 /* SerialNumberSetViewController.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		FABD09E62A0D7987006EA4F3 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				FABD09E72A0D7995006EA4F3 /* Roboto-Bold.ttf */,
+				FABD09E82A0D7995006EA4F3 /* Roboto-Regular.ttf */,
+				FABD09EB2A0D79F0006EA4F3 /* NotoSansKR-Bold.otf */,
+				FABD09EC2A0D79F0006EA4F3 /* NotoSansKR-Regular.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		FAC6224529D1FA3500D75F7E /* Extension */ = {
@@ -400,6 +426,10 @@
 			files = (
 				FAB785FB29D1ED7000816363 /* LaunchScreen.storyboard in Resources */,
 				FAB785F829D1ED7000816363 /* Assets.xcassets in Resources */,
+				FABD09EA2A0D7995006EA4F3 /* Roboto-Regular.ttf in Resources */,
+				FABD09E92A0D7995006EA4F3 /* Roboto-Bold.ttf in Resources */,
+				FABD09EE2A0D79F0006EA4F3 /* NotoSansKR-Regular.otf in Resources */,
+				FABD09ED2A0D79F0006EA4F3 /* NotoSansKR-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,13 +566,15 @@
 				FAB785EC29D1ED6F00816363 /* AppDelegate.swift in Sources */,
 				FA1305F42A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift in Sources */,
 				FAB785F629D1ED6F00816363 /* Untitled.xcdatamodeld in Sources */,
+				FABD09E52A0D3C66006EA4F3 /* UserAccountDataModel.swift in Sources */,
 				FA609F3329FF128B005BE1F2 /* AlarmAddView.swift in Sources */,
 				FA609F2F29FEDE74005BE1F2 /* AlarmViewTableCell.swift in Sources */,
 				FAB785EE29D1ED6F00816363 /* SceneDelegate.swift in Sources */,
-				FA7FA26B29DC2BEE0011B242 /* MainView.swift in Sources */,
+				FA7FA26B29DC2BEE0011B242 /* HomeView.swift in Sources */,
 				FAC6224229D1F3F900D75F7E /* AIRecommededViewController.swift in Sources */,
 				FADCD54D2A00DEB6001D4AB0 /* AlarmAddViewTableCell.swift in Sources */,
 				FA0F8B202A0980A6000D2570 /* RegisterRootViewController.swift in Sources */,
+				FABD09F22A0E927A006EA4F3 /* SerialNumberSetViewController.swift in Sources */,
 				FA609F2C29FEB404005BE1F2 /* AlarmViewCellDataModel.swift in Sources */,
 				FA169D4929D1FEAD0042DBC0 /* InitView.swift in Sources */,
 				FA609F3129FF1281005BE1F2 /* AlarmAddViewController.swift in Sources */,
@@ -721,7 +753,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.7;
 				DEVELOPMENT_TEAM = 6578S57CDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Untitled/Info.plist;
@@ -753,7 +785,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.4;
+				CURRENT_PROJECT_VERSION = 1.1.7;
 				DEVELOPMENT_TEAM = 6578S57CDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Untitled/Info.plist;
