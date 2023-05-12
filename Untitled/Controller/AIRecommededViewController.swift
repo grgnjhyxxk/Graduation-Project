@@ -55,6 +55,8 @@ class AiRecommendedViewController: UIViewController {
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view)
         }
+        
+        commonUiView.shadowLayer()
     }
     
     private func addOnView() {
