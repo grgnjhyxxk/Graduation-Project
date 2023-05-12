@@ -30,11 +30,6 @@ extension UIView {
         layer.shadowOffset = CGSize(width: 0.5, height: 3)
         layer.shadowRadius = 5
     }
-    
-//    func appPointColorBorder() {
-//        layer.borderWidth = 1.5
-//        layer.borderColor = UIColor.appPointColor?.withAlphaComponent(0.2).cgColor
-//    }
 }
 
 extension UIColor {
