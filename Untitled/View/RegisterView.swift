@@ -67,6 +67,7 @@ class RegisterView: UIView {
         imageView.backgroundColor = UIColor.appSubBackgroundColor
         imageView.layer.cornerRadius = 75
         imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
 //        imageView.layer.borderWidth = 5
 //        imageView.layer.borderColor = UIColor.appPointColor?.cgColor
         
@@ -81,5 +82,13 @@ class RegisterView: UIView {
         label.font = UIFont(name: "NotoSansKR-Regular", size: 13)
         
         return label
+    }
+    
+    func symbolImageView(imageName: String) -> UIImageView {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(named: "\(imageName)")
+        
+        return imageView
     }
 }
