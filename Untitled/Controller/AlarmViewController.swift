@@ -122,8 +122,6 @@ class AlarmViewController: UIViewController {
             make.trailing.equalTo(commonUiView).offset(-10)
         }
         
-        
-        tableView.shadowLayer()
         mainTextLabel.attributedLabel(text: "섭취알람")
         subTextLabel.textColor = UIColor.subTextColor
         emptyTextLabel.textAlignment = .center
