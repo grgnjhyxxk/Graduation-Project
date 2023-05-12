@@ -19,4 +19,12 @@ class AlarmView: UIView {
         
         return button
     }
+    
+    func emptyAlarmImageView() -> UIImageView {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(named: "Quriosity")
+        
+        return imageView
+    }
 }
