@@ -54,6 +54,7 @@ class CommonView: UIView {
         label.text = "\(labelText)"
 //        label.font = UIFont.systemFont(ofSize: size)
         label.font = UIFont(name: "NotoSansKR-Regular", size: size)
+        label.numberOfLines = 0
         label.labelTextCommonStyle()
         
         return label
