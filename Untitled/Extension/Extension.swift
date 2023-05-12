@@ -22,9 +22,9 @@ extension UIViewController {
 
 extension UIView {
     func shadowLayer() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.05
-        layer.shadowOffset = CGSize(width: 0.5, height: 3)
+        layer.shadowColor = UIColor.shadowColor?.cgColor
+        layer.shadowOpacity = 0.25
+        layer.shadowOffset = CGSize(width: -3, height: 3)
         layer.shadowRadius = 5
     }
 }
@@ -38,6 +38,8 @@ extension UIColor {
     static let appMainBackgroundColor = UIColor(named: "AppMainBackgroundColor")
     static let appTextColor = UIColor(named: "AppTextColor")
     static let loginButtonTextColor = UIColor(named: "LoginButtonTextColor")
+    static let subTextColor = UIColor(named: "SubTextColor")
+    static let shadowColor = UIColor(named: "ShadowColor")
 }
 
 extension UIFont {
