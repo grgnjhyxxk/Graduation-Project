@@ -20,6 +20,7 @@ class AlarmAddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("알람등록화면이 로드되었습니다.")
         addSubview()
         viewLayout()
         addOnCommonUiView()
@@ -118,16 +119,21 @@ class AlarmAddViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm"
         let timeString = dateFormatter.string(from: datePicker.date)
         
+        if alarmTextFieldText == "" {
+            alarmTextFieldText = "알람"
+        }
+        
         alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, user: "admin", repeatSwitchState: true, userImage: UIImage(named: "TemporaryUserProfilePicture")!))
         
         alarmTextFieldTextInit()
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: alarmViewCellDataList.count-1)
         
         dismiss(animated: true, completion: nil)
     }
     
     func repeatDaysButtonAction() {
+        print("사용자가 반복주기 Cell을 클릭하였습니다.")
         let rootViewController = RepeatDaysSelectViewController()
         show(rootViewController, sender: nil)
     }
