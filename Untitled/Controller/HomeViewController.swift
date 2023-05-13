@@ -31,6 +31,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("홈화면이 로드되었습니다.")
         addSubview()
         viewLayout()
         addOnScrollView()

@@ -31,6 +31,7 @@ class ProfileSetViewController: RegisterRootViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("프로필작성화면이 로드되었습니다.")
         addSubview()
         viewLayout()
         navigationControllerLayout()

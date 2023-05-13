@@ -23,6 +23,7 @@ class AiRecommendedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("AI추천화면이 로드되었습니다.")
         addOnView()
         viewLayout()
         addOnCommonUiView()

@@ -21,6 +21,7 @@ class SerialNumberSetViewController: RegisterRootViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("시리얼넘버등록화면이 로드되었습니다.")
         addSubview()
         viewLayout()
         navigationControllerLayout()

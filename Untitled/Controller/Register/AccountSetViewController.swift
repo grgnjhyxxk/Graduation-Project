@@ -24,6 +24,7 @@ class AccountSetViewController: RegisterRootViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("계정정보작성화면이 로드되었습니다.")
         addSubview()
         viewLayout()
         navigationControllerLayout()

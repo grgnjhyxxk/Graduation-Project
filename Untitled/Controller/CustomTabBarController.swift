@@ -13,6 +13,7 @@ class CustomTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("커스텀 탭바가 로드되었습니다.")
         configureLayout()
     }
     

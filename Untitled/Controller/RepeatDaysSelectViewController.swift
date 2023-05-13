@@ -18,6 +18,8 @@ class RepeatDaysSelectViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("반복주기설정화면이 로드되었습니다.")
+        print("반복주기설정과정이 시작되었습니다.")
         addSubview()
         viewLayout()
         addOnCommonUiView()

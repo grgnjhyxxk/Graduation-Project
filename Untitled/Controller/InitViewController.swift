@@ -37,6 +37,7 @@ class InitViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("로그인이 로드되었습니다.")
         addSubview()
         viewLayout()
         addOnCommonUiView()
