@@ -19,7 +19,7 @@ class AlarmViewController: UIViewController {
     
     let subTextLabel = CommonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
     let mainTextLabel = CommonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 25)
-    let emptyTextLabel = CommonView().commonTextLabel(labelText: "아직 알람을 추가하지 않으셨군요!\n지금 바로 알람을 설정해보세요!", size: 13)
+    let emptyTextLabel = CommonView().commonTextLabel(labelText: "아직 알람을 추가하지 않으셨군요!\n지금 바로 알람을 설정해보세요 :)", size: 13)
     let emptyAlarmImageView = AlarmView().emptyAlarmImageView()
     
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
@@ -215,5 +215,11 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let userInfo = ["indexPath": indexPath]
+           NotificationCenter.default.post(name: Notification.Name("EditAlarmNotification"), object: nil, userInfo: userInfo)
+        let rootViewController = AlarmEditViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }
