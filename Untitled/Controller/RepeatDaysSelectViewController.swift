@@ -30,7 +30,7 @@ class RepeatDaysSelectViewController: UIViewController {
         view.backgroundColor = UIColor.appMainBackgroundColor
         
         commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(76)
+            make.top.equalTo(66)
             make.leading.equalTo(15)
             make.trailing.equalTo(-15)
             make.height.equalTo(314.82)

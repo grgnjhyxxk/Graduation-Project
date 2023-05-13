@@ -45,16 +45,19 @@ extension UIColor {
     static let shadowColor = UIColor(named: "ShadowColor")
 }
 
-extension UIFont {
-    
+extension UITextField {
+    func textFont() {
+        self.font = UIFont(name: "Roboto-Regular", size: 15)
+    }
 }
 
 extension UIButton {
     func titleButtonCommonStyle() {
-        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+//        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        self.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 20)
         self.setTitleColor(UIColor.appTextColor, for: .normal)
         self.backgroundColor = UIColor.appMainBackgroundColor
-        layer.cornerRadius = 21
+        layer.cornerRadius = 24
         self.shadowLayer()
     }
 }

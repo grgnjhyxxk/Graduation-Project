@@ -143,7 +143,7 @@ class InitViewController: UIViewController {
         }
         
         findButton.titleLabel?.textAlignment = .right
-        findButton.titleLabel?.font = UIFont(name: "NotoSansKR-Bold", size: 13)
+        findButton.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 13)
     }
     
     private func addOnCommonUiView() {
