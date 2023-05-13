@@ -27,26 +27,53 @@ class AlarmViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("알람화면이 로드되었습니다.")
         addOnView()
         addOnCommonUiView()
         viewLayout()
         commonUiViewLayout()
         tableViewLayout()
         actionFuction()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmAddedNotification), name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         alarmListisEmptyOrNot()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmAddedNotification), name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmEditedNotification), name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: nil)
     }
     
     @objc func handleAlarmAddedNotification(_ noti: Notification) {
         OperationQueue.main.addOperation {
+            guard let index = noti.object as? Int else { return }
+            
+            print("알람이 정상적으로 등록되었습니다.")
+            
             self.alarmListisEmptyOrNot()
+            
+            self.printAlarmData(index: index)
+            
             self.tableView.reloadData()
         }
+    }
+    
+    @objc func handleAlarmEditedNotification(_ noti: Notification) {
+        OperationQueue.main.addOperation {
+            guard let index = noti.object as? Int else { return }
+            
+            print("알람이 정상적으로 수정되었습니다.")
+            
+            self.printAlarmData(index: index)
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    private func printAlarmData(index: Int) {
+        let alarm = alarmViewCellDataList[index]
+            
+        // 정보를 출력합니다.
+        print("Added Alarm Information: \(alarm.date), \(alarm.repeatDays), \(alarm.label), \(alarm.user), \(alarm.repeatSwitchState)")
     }
     
     private func viewLayout() {
@@ -193,10 +220,6 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         return alarmViewCellDataList.count
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1 // 두 개의 섹션을 사용하는 예시
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmViewTableCell", for: indexPath) as! AlarmViewTableCell
         
@@ -216,10 +239,11 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let userInfo = ["indexPath": indexPath]
-           NotificationCenter.default.post(name: Notification.Name("EditAlarmNotification"), object: nil, userInfo: userInfo)
-        let rootViewController = AlarmEditViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        self.present(navigationController, animated: true, completion: nil)
+        let editAlarmViewController = AlarmEditViewController()
+        let navigationController = UINavigationController(rootViewController: editAlarmViewController)
+        
+        editAlarmViewController.alarmIndex = indexPath.row
+        
+        present(navigationController, animated: true, completion: nil)
     }
 }
