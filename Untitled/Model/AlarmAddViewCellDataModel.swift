@@ -24,4 +24,5 @@ let AlarmAddViewCellData = [
 
 func alarmTextFieldTextInit() {
     alarmTextFieldText = String()
+    print("alarmTextFieldText가 초기화되었습니다.")
 }
