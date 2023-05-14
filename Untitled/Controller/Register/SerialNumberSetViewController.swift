@@ -117,10 +117,10 @@ class SerialNumberSetViewController: RegisterRootViewController {
             warningLabel.isHidden = false
         } else {
             let serialNumber = serialNumberSetTextField.text!.replacingOccurrences(of: "-", with: "")
-            userAccountDataList[userAccountDataList.count - 1].serialNumber = serialNumber
-        
+            userAccountDataList[userAccountDataList.count - 1].serialNumber = Int(serialNumber)!
         dismiss(animated: true)
         checkList()
+        sendUserDataToServer(userData: userAccountDataList)
         }
     }
 }

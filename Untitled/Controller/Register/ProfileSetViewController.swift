@@ -209,16 +209,19 @@ class ProfileSetViewController: RegisterRootViewController {
             warningLabel.text = "모든 값을 입력하셔야 합니다."
             warningLabel.isHidden = false
             
-        } else if !checkImageViewAreFilled() {
-            warningLabel.text = "프로필 이미지를 선택해주세요."
-            warningLabel.isHidden = false
+//        } else if !checkImageViewAreFilled() {
+//            warningLabel.text = "프로필 이미지를 선택해주세요."
+//            warningLabel.isHidden = false
             
         } else {
             let rootViewController = AccountSetViewController()
 
             let selectedSegmentTitle = genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)
-            let newUser = User(userName: nameSetTextField.text!, userBirth: dateTextField.text!, userGender: selectedSegmentTitle!, userImage: selectUserProfileImageView.image!)
-            let newUserAccountData = UserAccountDataModel(userid: "", userpassword: "", serialNumber: "", users: [newUser])
+            let isMale = (selectedSegmentTitle == "남자")
+            let birth = Int(dateTextField.text!)
+
+            let newUser = User(userName: nameSetTextField.text!, userBirth: birth!, userGender: isMale)
+            let newUserAccountData = UserAccountDataModel(userid: "", userpassword: "", serialNumber: Int(), users: [newUser])
 
             userAccountDataList.append(newUserAccountData)
             
@@ -228,7 +231,7 @@ class ProfileSetViewController: RegisterRootViewController {
     
     @objc func saveButtonAction() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy년M월d일"
+        dateFormatter.dateFormat = "yyyyMMdd"
         
         let dateString = dateFormatter.string(from: datePicker.date)
         dateTextField.text = dateString
