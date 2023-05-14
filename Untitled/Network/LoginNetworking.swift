@@ -46,7 +46,7 @@ func loginUserToServer(userid: String, userpassword: String, completion: @escapi
                 completion(false)
             }
         } else {
-            print("로그인 실패..")
+            networkErrorHandlingAlert()
             completion(false)
         }
     }
