@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     var contentViewList: [UIView] = []
     
     let AppIconImageView = HomeView().AppIconImageView()
-        
+    
     let userProfileButton = CommonView().roundingButton()
     let userInterfaceStyleToggleButton = CommonView().userInterfaceStyleToggleButton()
     
@@ -55,21 +55,15 @@ class HomeViewController: UIViewController {
             make.size.equalTo(CGSize(width: 36, height: 36))
         }
         
-        AppIconImageView.snp.makeConstraints { make in
-            make.top.equalTo(userProfileButton).offset(2)
-            make.leading.equalTo(view).offset(15)
-            make.size.equalTo(CGSize(width: 45, height: 45))
-        }
-        
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(AppIconImageView.snp.bottom).offset(10)
+            make.top.equalTo(userProfileButton.snp.bottom).offset(11)
             make.bottom.equalTo(-83)
             make.leading.trailing.equalToSuperview()
         }
     }
     
     private func addSubview() {
-        uiViewList = [scrollView, userProfileButton, AppIconImageView, userInterfaceStyleToggleButton]
+        uiViewList = [scrollView, userProfileButton, userInterfaceStyleToggleButton]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -122,10 +116,10 @@ class HomeViewController: UIViewController {
             make.height.equalTo(200)
         }
         
-        commonView.shadowLayer()
-        commonView2.shadowLayer()
-        commonView3.shadowLayer()
-        commonView4.shadowLayer()
+        commonView.subShadowLayer()
+        commonView2.subShadowLayer()
+        commonView3.subShadowLayer()
+        commonView4.subShadowLayer()
     }
     
     private func addOnContentView() {

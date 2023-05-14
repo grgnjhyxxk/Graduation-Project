@@ -34,13 +34,13 @@ class AlarmViewController: UIViewController {
         commonUiViewLayout()
         tableViewLayout()
         actionFuction()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmAddedNotification), name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmEditedNotification), name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         alarmListisEmptyOrNot()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmAddedNotification), name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmEditedNotification), name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: nil)
     }
     
     @objc func handleAlarmAddedNotification(_ noti: Notification) {

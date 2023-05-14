@@ -16,7 +16,7 @@ class AlarmEditViewController: AlarmAddViewController {
         print("알람수정화면이 로드되었습니다.")
         navigationControllerLayout()
         datePickerSetting()
-        repeatDaysDataReverseContraction(data: alarmViewCellDataList, index: alarmIndex)
+        repeatDaysDataReverseContraction(index: alarmIndex)
         tableView.dataSource = self
         tableView.delegate = self
     }
