@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Untitled/Pods-Untitled-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AnyFormatKit/AnyFormatKit.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
