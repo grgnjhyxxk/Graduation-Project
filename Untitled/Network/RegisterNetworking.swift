@@ -9,6 +9,8 @@ import Foundation
 import Alamofire
 
 func sendUserDataToServer(userData: Array<UserAccountDataModel>) {
+    showLoadingScreen()
+    
     guard let lastUserData = userData.last else {
         print("No user data to send")
         return
@@ -30,14 +32,15 @@ func sendUserDataToServer(userData: Array<UserAccountDataModel>) {
     ]
     
     AF.request(
-        serverURLString, // [주소]
-        method: .post, // [전송 타입]
-        parameters: bodyData, // [전송 데이터]
-        encoding: JSONEncoding.default, // [인코딩 스타일]
-        headers: header // [헤더 지정]
+        serverURLString,
+        method: .post,
+        parameters: bodyData,
+        encoding: JSONEncoding.default,
+        headers: header
     )
     .validate(statusCode: 200..<300)
     .responseData { response in
+        hideLoadingScreen()
         if response.response?.statusCode == 200 {
             print("등록 성공!")
         } else {
