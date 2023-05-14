@@ -20,6 +20,8 @@ class AiRecommendedViewController: UIViewController {
     let mainTextLabel = CommonView().commonTextLabel(labelText: "AI 분석을 통한\n최적의 솔루션", size: 25)
 
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
+    let commonUiView_2 = CommonView().commonUiView(backgroundColor: UIColor.appSubBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let aiRecommentTitleLabel = CommonView().commonTextLabel(labelText: "AI 분석", size: 15)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,12 +81,26 @@ class AiRecommendedViewController: UIViewController {
             make.leading.equalTo(19)
         }
         
+        commonUiView_2.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(15)
+            make.leading.equalTo(20)
+            make.width.equalTo(130)
+            make.height.equalTo(100)
+        }
+        
+        aiRecommentTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(commonUiView_2).offset(8)
+            make.leading.equalTo(commonUiView_2).offset(10)
+        }
+        
+        commonUiView_2.subShadowLayer()
+        aiRecommentTitleLabel.font = UIFont(name: "Roboto-Bold", size: 15)
         mainTextLabel.attributedLabel(text: "AI 분석")
         subTextLabel.textColor = UIColor.subTextColor
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [subTextLabel, mainTextLabel]
+        commonViewList = [subTextLabel, mainTextLabel, commonUiView_2, aiRecommentTitleLabel]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
