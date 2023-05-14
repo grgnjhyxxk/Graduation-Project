@@ -30,6 +30,13 @@ extension UIView {
         layer.shadowOffset = CGSize(width: 0.5, height: 3)
         layer.shadowRadius = 5
     }
+    
+    func subShadowLayer() {
+        layer.shadowColor = UIColor.shadowColor?.cgColor
+        layer.shadowOpacity = 0.15
+        layer.shadowOffset = CGSize(width: 0.5, height: 2)
+        layer.shadowRadius = 3
+    }
 }
 
 extension UIColor {
