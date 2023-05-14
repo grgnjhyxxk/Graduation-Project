@@ -182,7 +182,14 @@ class InitViewController: UIViewController {
         let tabBarController = isLoggedIn()
         tabBarController.modalPresentationStyle = .fullScreen
         
-        present(tabBarController, animated: true)
+        loginUserToServer(userid: idInputTextField.text!, userpassword: PasswordInputTextField.text!) { success in
+            if success {
+                print("로그인이 성공하였습니다.")
+                self.present(tabBarController, animated: true)
+            } else {
+                print("로그인이 실패하였습니다.")
+            }
+        }
     }
     
     @objc func passwordVisibilityButtonTapped(_ sender: UIButton) {
