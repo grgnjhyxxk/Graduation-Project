@@ -4,7 +4,7 @@ PODS:
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.5)
+  - Alamofire
   - AnyFormatKit
   - SnapKit (~> 5.6.0)
 
@@ -19,6 +19,6 @@ SPEC CHECKSUMS:
   AnyFormatKit: b0dbb2a5f2fe7a0fc97f401f8a219a47ee63a335
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 6b6187bdd979896c50d530fe1e44ec9bd9824f97
+PODFILE CHECKSUM: 306a6a4f84d4985822ccf8c2a73621c372dcaec8
 
 COCOAPODS: 1.11.3
