@@ -12,15 +12,14 @@ var userAccountDataList = [UserAccountDataModel]()
 struct UserAccountDataModel {
     var userid: String
     var userpassword: String
-    var serialNumber: String
+    var serialNumber: Int
     var users: [User] // User 구조체를 배열로 선언
 }
 
 struct User {
     var userName: String
-    var userBirth: String
-    var userGender: String
-    var userImage: UIImage
+    var userBirth: Int
+    var userGender: Bool
 }
 
 
