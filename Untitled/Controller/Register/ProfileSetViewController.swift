@@ -115,11 +115,11 @@ class ProfileSetViewController: RegisterRootViewController {
         navigationItem.title = "프로필 작성"
         
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonAction))
-        cancelButton.tintColor = .appTextColor
+        cancelButton.tintColor = UIColor.appTextColor
         navigationItem.leftBarButtonItem = cancelButton
         
         let nextButton = UIBarButtonItem(title: "다음", style: .done, target: self, action: #selector(nextButtonAction))
-        nextButton.tintColor = .appPointColor
+        nextButton.tintColor = UIColor.appPointColor
         navigationItem.rightBarButtonItem = nextButton
         
         navigationController?.navigationBar.barTintColor = .black
