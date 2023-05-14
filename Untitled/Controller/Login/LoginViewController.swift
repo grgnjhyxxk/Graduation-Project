@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InitViewController: UIViewController {
+class LoginViewController: UIViewController {
     
     var isLoggedInBool = false
     
@@ -160,7 +160,7 @@ class InitViewController: UIViewController {
             return CustomTabBarController()
             
         } else {
-            return InitViewController()
+            return LoginViewController()
         }
     }
     
@@ -222,7 +222,7 @@ class InitViewController: UIViewController {
     }
 }
 
-extension InitViewController: UITextFieldDelegate {
+extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == idInputTextField {
