@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = LoginViewController().isLoggedIn()
+//        window?.rootViewController = UserViewContoller()
         window?.makeKeyAndVisible()
     }
 
