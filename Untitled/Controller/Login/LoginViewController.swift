@@ -22,7 +22,8 @@ class LoginViewController: UIViewController {
     let registerLabel = InitView().serviceLabel(text: "회원이 아니신가요?")
     let autoLoginLabel = CommonView().commonTextLabel(labelText: "자동로그인", size: 13)
     let saveIdLabel = CommonView().commonTextLabel(labelText: "아이디 저장", size: 13)
-
+    let loginFailedWarningLabel = RegisterView().warningLabel()
+    
     let idInputTextField = InitView().idInputTextField()
     let PasswordInputTextField = InitView().PasswordInputTextField()
     
@@ -45,6 +46,11 @@ class LoginViewController: UIViewController {
         actionFunction()
         delegateFunction()
         hideKeyboardWhenTappedAround()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loginFailedWarningLabel.isHidden = true
     }
     
     private func viewLayout() {
@@ -99,9 +105,14 @@ class LoginViewController: UIViewController {
             make.trailing.equalTo(PasswordInputTextField).offset(-8.5)
         }
         
+        loginFailedWarningLabel.snp.makeConstraints { make in
+            make.top.equalTo(PasswordInputTextField.snp.bottom).offset(5)
+            make.leading.equalTo(PasswordInputTextField)
+        }
+        
         autoLoginButton.snp.makeConstraints { make in
-            make.top.equalTo(PasswordInputTextField.snp.bottom).offset(10)
-            make.leading.equalTo(25)
+            make.top.equalTo(loginFailedWarningLabel.snp.bottom).offset(5)
+            make.leading.equalTo(loginFailedWarningLabel)
             make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
@@ -139,16 +150,17 @@ class LoginViewController: UIViewController {
         }
         
         registerButton.snp.makeConstraints { make in
-            make.top.equalTo(registerLabel).offset(-6.8)
+            make.top.equalTo(view.snp.bottom).offset(-57.8)
             make.leading.equalTo(registerLabel.snp.trailing).offset(5)
         }
         
         findButton.titleLabel?.textAlignment = .right
         findButton.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 13)
+
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [mainImageView, mainTextLabel, subTextLabel, idInputTextField, PasswordInputTextField, passwordVisibilityButton, autoLoginButton, autoLoginLabel, saveIdButton, saveIdLabel, findButton, loginButton, registerLabel, registerButton]
+        commonViewList = [mainImageView, mainTextLabel, subTextLabel, idInputTextField, PasswordInputTextField, passwordVisibilityButton, autoLoginButton, autoLoginLabel, saveIdButton, saveIdLabel, findButton, loginButton, registerLabel, registerButton, loginFailedWarningLabel]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -177,18 +189,44 @@ class LoginViewController: UIViewController {
         PasswordInputTextField.delegate = self
     }
     
+    private func idPwdNilCheck() -> Bool {
+        if idInputTextField.text != "" && PasswordInputTextField.text != "" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private func loginFailedCheck() -> String {
+        if idInputTextField.text == "" {
+            return "아이디를 입력해주세요."
+        } else if PasswordInputTextField.text == "" {
+            return "비밀번호를 입력해주세요."
+        } else {
+            return "아이디, 비밀번호를 모두 입력해주세요."
+        }
+    }
+    
     @objc func loginButtonTapped(_ sender: UIButton) {
         isLoggedInBool = true
         let tabBarController = isLoggedIn()
         tabBarController.modalPresentationStyle = .fullScreen
         
-        loginUserToServer(userid: idInputTextField.text!, userpassword: PasswordInputTextField.text!) { success in
-            if success {
-                print("로그인이 성공하였습니다.")
-                self.present(tabBarController, animated: true)
-            } else {
-                print("로그인이 실패하였습니다.")
+        if idPwdNilCheck() {
+            loginUserToServer(userid: idInputTextField.text!, userpassword: PasswordInputTextField.text!) { success in
+                if success {
+                    print("로그인이 성공하였습니다.")
+                    self.present(tabBarController, animated: true)
+                } else {
+                    self.loginFailedWarningLabel.text = "아이디 혹은 비밀번호가 틀렸습니다."
+                    self.loginFailedWarningLabel.isHidden = false
+                    print("로그인이 실패하였습니다.")
+                }
             }
+        } else {
+            self.loginFailedWarningLabel.text = loginFailedCheck()
+            self.loginFailedWarningLabel.isHidden = false
+            print("로그인 입력이 비정상적입니다.")
         }
     }
     
