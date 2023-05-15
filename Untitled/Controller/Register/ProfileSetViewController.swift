@@ -70,22 +70,22 @@ class ProfileSetViewController: RegisterRootViewController {
         }
         
         genderSubTextLabel.snp.makeConstraints { make in
-            make.top.equalTo(dateTextField.snp.bottom).offset(20)
-            make.leading.equalTo(30)
+            make.top.equalTo(dateSubTextLabel)
+            make.leading.equalTo(dateTextField.snp.trailing).offset(10)
         }
         
         genderSegmentedControl.snp.makeConstraints { make in
             make.top.equalTo(genderSubTextLabel.snp.bottom).offset(10)
-            make.leading.equalTo(genderSubTextLabel).offset(-0.5)
-            make.trailing.equalTo(dateTextField)
+            make.leading.equalTo(dateTextField.snp.trailing).offset(10)
+            make.trailing.equalTo(-30)
             make.height.equalTo(40)
         }
         
-        selectUserProfileImageView.snp.makeConstraints { make in
-            make.top.equalTo(dateTextField).offset(-15)
-            make.trailing.equalTo(-30)
-            make.size.equalTo(CGSize(width: 150, height: 150))
-        }
+//        selectUserProfileImageView.snp.makeConstraints { make in
+//            make.top.equalTo(dateTextField).offset(-15)
+//            make.trailing.equalTo(-30)
+//            make.size.equalTo(CGSize(width: 150, height: 150))
+//        }
         
         plusButton.snp.makeConstraints { make in
             make.top.equalTo(genderSegmentedControl).offset(12.5)
@@ -94,8 +94,8 @@ class ProfileSetViewController: RegisterRootViewController {
         }
         
         warningLabel.snp.makeConstraints { make in
-            make.top.equalTo(genderSegmentedControl.snp.bottom).offset(15)
-            make.leading.equalTo(genderSubTextLabel)
+            make.top.equalTo(dateTextField.snp.bottom).offset(5)
+            make.leading.equalTo(dateSubTextLabel)
         }
         
         dateTextField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 17.0, height: 0.0))

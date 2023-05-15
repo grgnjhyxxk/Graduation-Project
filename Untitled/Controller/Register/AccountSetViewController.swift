@@ -73,7 +73,7 @@ class AccountSetViewController: RegisterRootViewController {
         }
         
         warningLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordCheckSetTextField.snp.bottom).offset(15)
+            make.top.equalTo(passwordCheckSetTextField.snp.bottom).offset(5)
             make.leading.equalTo(passwordCheckSubTextLabel)
         }
         
