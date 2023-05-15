@@ -47,6 +47,7 @@ func loginUserToServer(userid: String, userpassword: String, completion: @escapi
                         }
                     } catch {
                         print(error.localizedDescription)
+                        networkErrorHandlingAlert()
                         completion(false)
                     }
                 } else {
@@ -54,9 +55,9 @@ func loginUserToServer(userid: String, userpassword: String, completion: @escapi
                 }
             }
         } else {
-            print("로그인 열결 실패")
-            networkErrorHandlingAlert()
+            print("로그인 연결 실패")
             hideLoadingScreen()
+            networkErrorHandlingAlert()
         }
     }
 }

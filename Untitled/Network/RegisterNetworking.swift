@@ -46,6 +46,7 @@ func sendUserDataToServer(userData: Array<UserAccountDataModel>) {
                 if response.response?.statusCode == 200 {
                     print("등록 성공!")
                 } else {
+                    networkErrorHandlingAlert()
                     print("등록 실패..")
                 }
             }
