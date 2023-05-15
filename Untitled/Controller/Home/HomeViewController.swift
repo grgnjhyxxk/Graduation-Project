@@ -38,6 +38,7 @@ class HomeViewController: UIViewController {
         scrollViewLayout()
         addOnContentView()
         contentViewLayout()
+        actionFunction()
     }
     
     private func viewLayout() {
@@ -128,5 +129,18 @@ class HomeViewController: UIViewController {
         for uiView in contentViewList {
             contentView.addSubview(uiView)
         }
+    }
+    
+    private func actionFunction() {
+        userProfileButton.addTarget(self, action: #selector(roundingButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func roundingButtonAction(_ sender: UIButton) {
+        let rootViewController = UserViewContoller()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        present(navigationController, animated: true)
     }
 }

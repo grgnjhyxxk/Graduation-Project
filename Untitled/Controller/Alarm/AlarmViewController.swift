@@ -33,7 +33,7 @@ class AlarmViewController: UIViewController {
         viewLayout()
         commonUiViewLayout()
         tableViewLayout()
-        actionFuction()
+        actionFunction()
         NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmAddedNotification), name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmEditedNotification), name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: nil)
     }
@@ -173,9 +173,10 @@ class AlarmViewController: UIViewController {
         tableView.layer.cornerRadius = 15
     }
     
-    private func actionFuction() {
+    private func actionFunction() {
         plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
         userInterfaceStyleToggleButton.addTarget(self, action: #selector(toggleTheme), for: .touchUpInside)
+        userProfileButton.addTarget(self, action: #selector(roundingButtonAction), for: .touchUpInside)
     }
     
     private func alarmListisEmptyOrNot() {
@@ -211,6 +212,15 @@ class AlarmViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func roundingButtonAction(_ sender: UIButton) {
+        let rootViewController = UserViewContoller()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        navigationController.modalPresentationStyle = .fullScreen
+
+        present(navigationController, animated: true)
     }
 }
 

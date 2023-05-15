@@ -30,6 +30,7 @@ class AiRecommendedViewController: UIViewController {
         viewLayout()
         addOnCommonUiView()
         commonUiViewLayout()
+        actionFunction()
     }
     
     private func viewLayout() {
@@ -105,5 +106,18 @@ class AiRecommendedViewController: UIViewController {
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
         }
+    }
+    
+    private func actionFunction() {
+        userProfileButton.addTarget(self, action: #selector(roundingButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func roundingButtonAction(_ sender: UIButton) {
+        let rootViewController = UserViewContoller()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        navigationController.modalPresentationStyle = .fullScreen
+
+        present(navigationController, animated: true)
     }
 }
