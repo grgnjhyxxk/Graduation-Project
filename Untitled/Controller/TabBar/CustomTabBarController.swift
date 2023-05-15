@@ -36,7 +36,8 @@ class CustomTabBarController: UITabBarController {
         thirdViewController.tabBarItem.selectedImage = UIImage(systemName: "staroflife.fill")
         thirdViewController.tabBarItem.image = UIImage(systemName: "staroflife.fill")
         
-        viewControllers = [firstViewController, secondViewController, thirdViewController]
+//        viewControllers = [firstViewController, secondViewController, thirdViewController]
+        viewControllers = [secondViewController, thirdViewController]
     }
 }
 
