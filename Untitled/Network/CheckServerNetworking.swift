@@ -12,7 +12,7 @@ func checkServerConnection(completion: @escaping (Bool) -> Void) {
     let serverURLString = "\(serverURL)/connect" // 서버 주소
     
     AF.request(serverURLString, method: .get)
-        .validate(statusCode: 200..<300)
+        .validate(statusCode: 200...200)
         .response { response in
             if let error = response.error {
                 // 서버에 연결할 수 없는 경우
@@ -25,3 +25,28 @@ func checkServerConnection(completion: @escaping (Bool) -> Void) {
             }
         }
 }
+
+//func checkServerConnection(completion: @escaping (Bool) -> Void) {
+//    let serverURLString = "\(serverURL)/connect" // 서버 주소
+//
+//    let configuration = URLSessionConfiguration.default
+//    configuration.timeoutIntervalForRequest = 10000 // 타임아웃을 10초로 설정
+//
+//    let session = Session(configuration: configuration)
+//
+//    session.request(serverURLString, method: .get)
+//        .validate(statusCode: 200..<300)
+//        .response { response in
+//            if let error = response.error {
+//                // 서버에 연결할 수 없는 경우
+//                print("서버의 연결이 끊어졌거나 불안정합니다.")
+//                print(error.localizedDescription)
+//                completion(false)
+//            } else {
+//                // 서버에 연결 가능한 경우
+//                completion(true)
+//            }
+//        }
+//}
+
+
