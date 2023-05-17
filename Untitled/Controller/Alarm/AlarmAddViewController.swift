@@ -38,8 +38,12 @@ class AlarmAddViewController: UIViewController {
     private func viewLayout() {
         view.backgroundColor = UIColor.appMainBackgroundColor
         
+        let dividerView = UIView(frame: CGRect(x: 0, y: navigationController?.navigationBar.frame.maxY ?? 0, width: view.frame.width, height: 1))
+        dividerView.backgroundColor = UIColor.systemGray6
+        navigationController?.view.addSubview(dividerView)
+
         datePicker.snp.makeConstraints { make in
-            make.top.equalTo(46)
+            make.top.equalTo(66)
             make.leading.equalTo(5)
             make.trailing.equalTo(-5)
             make.height.equalTo(200)
@@ -86,11 +90,6 @@ class AlarmAddViewController: UIViewController {
         tableView.isScrollEnabled = false
         tableView.rowHeight = 45
         tableView.layer.cornerRadius = 15
-        
-        tableView.tableHeaderView = UIView(frame: .zero)
-        tableView.tableHeaderView?.backgroundColor = .clear
-        tableView.tableFooterView = UIView(frame: .zero)
-        tableView.tableFooterView?.backgroundColor = .clear
     }
     
     private func navigationControllerLayout() {

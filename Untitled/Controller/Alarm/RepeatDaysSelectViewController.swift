@@ -31,8 +31,12 @@ class RepeatDaysSelectViewController: UIViewController {
     private func viewLayout() {
         view.backgroundColor = UIColor.appMainBackgroundColor
         
+        let dividerView = UIView(frame: CGRect(x: 0, y: navigationController?.navigationBar.frame.maxY ?? 0, width: view.frame.width, height: 1))
+        dividerView.backgroundColor = UIColor.systemGray6
+        navigationController?.view.addSubview(dividerView)
+        
         commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(66)
+            make.top.equalTo(85)
             make.leading.equalTo(15)
             make.trailing.equalTo(-15)
             make.height.equalTo(314.82)
