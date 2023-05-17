@@ -67,4 +67,17 @@ class CommonView: UIView {
         
         return uiView
     }
+    
+    func birthToDate(birth: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+
+        if let date = dateFormatter.date(from: birth) {
+            dateFormatter.dateFormat = "yyyy년 MM월 dd일"
+            let formattedBirthday = dateFormatter.string(from: date)
+            return formattedBirthday
+        } else {
+            return "Invalid birthday format"
+        }
+    }
 }
