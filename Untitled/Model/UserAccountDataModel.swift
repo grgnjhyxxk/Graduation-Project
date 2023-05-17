@@ -8,6 +8,7 @@
 import UIKit
 
 var userAccountDataList = [UserAccountDataModel]()
+var userDataList = [UserDataAtServer]()
 
 struct UserAccountDataModel {
     var userid: String
@@ -22,6 +23,13 @@ struct User {
     var userGender: Bool
 }
 
-
+struct UserDataAtServer: Codable {
+    var seq: Int
+    var id : String
+    var name: String
+    var gender: Int
+    var birth: Int
+    var serial_id: Int
+}
 
 
