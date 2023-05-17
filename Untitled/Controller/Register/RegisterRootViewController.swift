@@ -24,6 +24,10 @@ class RegisterRootViewController: UIViewController {
     private func viewLayout() {
         view.backgroundColor = UIColor.appMainBackgroundColor
         
+        let dividerView = UIView(frame: CGRect(x: 0, y: navigationController?.navigationBar.frame.maxY ?? 0, width: view.frame.width, height: 1))
+        dividerView.backgroundColor = UIColor.systemGray6
+        navigationController?.view.addSubview(dividerView)
+        
         commonUiView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
