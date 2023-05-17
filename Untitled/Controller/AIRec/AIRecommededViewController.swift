@@ -110,6 +110,7 @@ class AiRecommendedViewController: UIViewController {
     
     private func actionFunction() {
         userProfileButton.addTarget(self, action: #selector(roundingButtonAction), for: .touchUpInside)
+        userInterfaceStyleToggleButton.addTarget(self, action: #selector(toggleTheme), for: .touchUpInside)
     }
     
     @objc func roundingButtonAction(_ sender: UIButton) {
@@ -119,5 +120,21 @@ class AiRecommendedViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
 
         present(navigationController, animated: true)
+    }
+    
+    @objc func toggleTheme(_ sender: UIButton) {
+        if #available(iOS 13.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                UIApplication.shared.windows.forEach { window in
+                    window.overrideUserInterfaceStyle = .light
+                    sender.setImage(UIImage(systemName: "sun.max.circle.fill"), for: .normal)
+                }
+            } else {
+                UIApplication.shared.windows.forEach { window in
+                    window.overrideUserInterfaceStyle = .dark
+                    sender.setImage(UIImage(systemName: "moon.circle.fill"), for: .normal)
+                }
+            }
+        }
     }
 }
