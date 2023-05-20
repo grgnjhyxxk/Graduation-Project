@@ -13,11 +13,13 @@ class AlarmViewTableCell: UITableViewCell {
     
     let userImage: UIImageView = {
         let imageView = UIImageView()
+        let image = userProfileImageList[0].image
         
+        imageView.image = image
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = UIColor.alarmViewUserImageBaseColor
+        imageView.backgroundColor = UIColor.appSubBackgroundColor
         
         return imageView
     }()
