@@ -17,49 +17,43 @@ class UserProfileEditViewTableCell: UITableViewCell {
         
         label.textColor = UIColor.appTextColor
 //        label.font = UIFont.systemFont(ofSize: 17)
-        label.font = UIFont(name: "NotoSansKR-Regular", size: 15)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label
     }()
 
-    let nameTextField: UILabel = {
-        let textField = UILabel()
+    let nameTextField: UITextField = {
+        let textField = UITextField()
         
         textField.backgroundColor = UIColor.clear
         textField.textColor = UIColor.subTextColor
         textField.textAlignment = .left
         textField.text = userDataList[0].name
-        textField.font = UIFont(name: "NotoSansKR-Regular", size: 15)
+        textField.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return textField
     }()
     
-    let birthTextField: UILabel = {
-        let textField = UILabel()
+    let birthTextField: UITextField = {
+        let textField = UITextField()
         let birth = CommonView().birthToDate(birth: String(userDataList[0].birth))
         
         textField.backgroundColor = UIColor.clear
         textField.textColor = UIColor.subTextColor
         textField.textAlignment = .left
         textField.text = birth
-        textField.font = UIFont(name: "NotoSansKR-Regular", size: 15)
+        textField.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return textField
     }()
     
     let genderLabel: UILabel = {
         let label = UILabel()
-        var gender = String()
-        
-        if userDataList[0].gender == 1 {
-            gender = "남자"
-        } else {
-            gender = "여자"
-        }
+        var gender = CommonView().genderToString()
         
         label.textColor = UIColor.systemGray3
         label.text = gender
-        label.font = UIFont(name: "NotoSansKR-Regular", size: 15)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label
     }()
@@ -69,7 +63,7 @@ class UserProfileEditViewTableCell: UITableViewCell {
         
         label.textColor = UIColor.systemGray3
         label.text = String(userDataList[0].serial_id)
-        label.font = UIFont(name: "NotoSansKR-Regular", size: 15)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label
     }()
