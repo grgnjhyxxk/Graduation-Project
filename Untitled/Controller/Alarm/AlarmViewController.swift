@@ -237,7 +237,6 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = UIColor.clear
         cell.layer.cornerRadius = 15
         
-        cell.userImage.image = alarmViewCellDataList[indexPath.row].userImage
         cell.titleLabel.text = alarmViewCellDataList[indexPath.row].label
         cell.userNameLabel.text = String(alarmViewCellDataList[indexPath.row].user)
         cell.timeLabel.text = alarmViewCellDataList[indexPath.row].date

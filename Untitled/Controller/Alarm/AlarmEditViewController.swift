@@ -61,7 +61,7 @@ class AlarmEditViewController: AlarmAddViewController {
             alarmTextFieldText = "알람"
         }
         
-        alarmViewCellDataList[alarmIndex] = (AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, user: "admin", repeatSwitchState: true, userImage: UIImage(named: "TemporaryUserProfilePicture")!))
+        alarmViewCellDataList[alarmIndex] = (AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, user: "admin", repeatSwitchState: true))
         
         alarmTextFieldTextInit()
         
