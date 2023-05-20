@@ -218,7 +218,11 @@ class ProfileSetViewController: RegisterRootViewController {
 
             let selectedSegmentTitle = genderSegmentedControl.titleForSegment(at: genderSegmentedControl.selectedSegmentIndex)
             let isMale = (selectedSegmentTitle == "남자")
-            let birth = Int(dateTextField.text!)
+            
+            let originalString = dateTextField.text
+            let components = originalString?.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            let filteredString = components?.joined()
+            let birth = Int(filteredString ?? "")
 
             let newUser = User(userName: nameSetTextField.text!, userBirth: birth!, userGender: isMale)
             let newUserAccountData = UserAccountDataModel(userid: "", userpassword: "", serialNumber: Int(), users: [newUser])
@@ -231,7 +235,7 @@ class ProfileSetViewController: RegisterRootViewController {
     
     @objc func saveButtonAction() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyyMMdd"
+        dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         
         let dateString = dateFormatter.string(from: datePicker.date)
         dateTextField.text = dateString
