@@ -16,7 +16,8 @@ class UserViewContoller: UIViewController {
     
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 20)
 
-    let userPofileImage = RegisterView().selectUserProfileImageView()
+//    let userPofileImage = RegisterView().selectUserProfileImageView()
+    let userPofileImage = CommonView().userProfileImageView()
 
     let mainTitleLabel = CommonView().commonTextLabel(labelText: "임재혁 님\n오늘도 와주셨네요!", size: 20)
     let pillViewTtileLabel = CommonView().commonTextLabel(labelText: "내 영양제", size: 20)
