@@ -24,9 +24,9 @@ class CommonView: UIView {
     
     func userProfileImageView() -> UIImageView {
         let imageView = UIImageView()
-//        let image = userProfileImageList[0].image
-//
-//        imageView.image = image
+        let image = userProfileImageList[0].image
+
+        imageView.image = image
         imageView.backgroundColor = UIColor.appSubBackgroundColor
         imageView.layer.cornerRadius = 75
         imageView.clipsToBounds = true
