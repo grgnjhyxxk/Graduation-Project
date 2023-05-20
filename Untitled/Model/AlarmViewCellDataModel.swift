@@ -15,5 +15,4 @@ struct AlarmViewCellDataModel {
     var label: String
     var user: String
     var repeatSwitchState: Bool
-    var userImage: UIImage
 }

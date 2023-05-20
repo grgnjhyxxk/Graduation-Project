@@ -9,6 +9,7 @@ import UIKit
 
 var userAccountDataList = [UserAccountDataModel]()
 var userDataList = [UserDataAtServer]()
+var userProfileImageList = [UserProfileImage]()
 
 struct UserAccountDataModel {
     var userid: String
@@ -30,6 +31,10 @@ struct UserDataAtServer: Codable {
     var gender: Int
     var birth: Int
     var serial_id: Int
+}
+
+struct UserProfileImage {
+    var image: UIImage
 }
 
 
