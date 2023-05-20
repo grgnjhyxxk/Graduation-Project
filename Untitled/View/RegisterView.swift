@@ -39,7 +39,7 @@ class RegisterView: UIView {
         textField.textColor = UIColor.appTextColor
         textField.backgroundColor = UIColor.appSubBackgroundColor
         textField.layer.cornerRadius = 5
-        textField.font = UIFont.systemFont(ofSize: 18)
+        textField.font = UIFont.systemFont(ofSize: 16)
         textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 10.0, height: 0.0))
         textField.leftViewMode = .always
         textField.layer.borderWidth = 0.1

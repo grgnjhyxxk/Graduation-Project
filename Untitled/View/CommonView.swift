@@ -12,12 +12,27 @@ class CommonView: UIView {
     func roundingButton() -> UIButton {
         let button = UIButton()
         
-        button.setImage(UIImage(named: "TemporaryUserProfilePicture"), for: .normal)
-        button.backgroundColor = UIColor.appSubBackgroundColor
+        let image = userProfileImageList[0].image
+//        button.setImage(UIImage(named: "TemporaryUserProfilePicture"), for: .normal)
+        button.setImage(image, for: .normal)
+        button.backgroundColor = UIColor.appMainBackgroundColor
         button.layer.cornerRadius = 22.5
         button.clipsToBounds = true
         
         return button
+    }
+    
+    func userProfileImageView() -> UIImageView {
+        let imageView = UIImageView()
+//        let image = userProfileImageList[0].image
+//
+//        imageView.image = image
+        imageView.backgroundColor = UIColor.appSubBackgroundColor
+        imageView.layer.cornerRadius = 75
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        
+        return imageView
     }
     
     func userInterfaceStyleToggleButton() -> UIButton {
@@ -68,6 +83,17 @@ class CommonView: UIView {
         return uiView
     }
     
+    func radioButton() -> UIButton {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.tintColor = UIColor.systemGray3
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        
+        return button
+    }
+    
     func birthToDate(birth: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
@@ -79,5 +105,17 @@ class CommonView: UIView {
         } else {
             return "Invalid birthday format"
         }
+    }
+    
+    func genderToString() -> String {
+        var gender = String()
+        
+        if userDataList[0].gender == 1 {
+            gender = "남자"
+        } else {
+            gender = "여자"
+        }
+        
+        return gender
     }
 }
