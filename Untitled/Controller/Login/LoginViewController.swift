@@ -39,6 +39,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("로그인이 로드되었습니다.")
+        getUserProfileImage()
         addSubview()
         viewLayout()
         addOnCommonUiView()
@@ -251,26 +252,30 @@ class LoginViewController: UIViewController {
         tabBarController.modalPresentationStyle = .fullScreen
         
         if (idInputTextField.text == "admin" || idInputTextField.text == "Admin") && PasswordInputTextField.text == "admin" {
+            UserDefaults.standard.set(true, forKey: "admin")
+            userDataList.append(UserDataAtServer(seq: 9999, id: "admin", name: "admin", gender: 1, birth: 19990729, serial_id: 0000000000000000))
+            userProfileImageList.append(UserProfileImage(image: UIImage()))
             self.present(tabBarController, animated: true)
-        }
-        
-        if idPwdNilCheck() {
-            loginUserToServer(userid: idInputTextField.text!, userpassword: PasswordInputTextField.text!) { success in
-                if success {
-                    print("로그인이 성공하였습니다.")
-                    self.loginFailedWarningLabel.isHidden = true
-                    self.autoLoginButtonStateCheck()
-                    self.present(tabBarController, animated: true)
-                } else {
-                    self.loginFailedWarningLabel.text = "아이디 혹은 비밀번호가 틀렸습니다."
-                    self.loginFailedWarningLabel.isHidden = false
-                    print("로그인이 실패하였습니다.")
-                }
-            }
         } else {
-            self.loginFailedWarningLabel.text = loginFailedCheck()
-            self.loginFailedWarningLabel.isHidden = false
-            print("로그인 입력이 비정상적입니다.")
+            UserDefaults.standard.set(false, forKey: "admin")
+            if idPwdNilCheck() {
+                loginUserToServer(userid: idInputTextField.text!, userpassword: PasswordInputTextField.text!) { success in
+                    if success {
+                        print("로그인이 성공하였습니다.")
+                        self.loginFailedWarningLabel.isHidden = true
+                        self.autoLoginButtonStateCheck()
+                        self.present(tabBarController, animated: true)
+                    } else {
+                        self.loginFailedWarningLabel.text = "아이디 혹은 비밀번호가 틀렸습니다."
+                        self.loginFailedWarningLabel.isHidden = false
+                        print("로그인이 실패하였습니다.")
+                    }
+                }
+            } else {
+                self.loginFailedWarningLabel.text = loginFailedCheck()
+                self.loginFailedWarningLabel.isHidden = false
+                print("로그인 입력이 비정상적입니다.")
+            }
         }
     }
     
