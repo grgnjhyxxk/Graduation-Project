@@ -30,7 +30,7 @@ class AlarmViewTableCell: UITableViewCell {
         label.text = "label"
         label.textColor = UIColor.appTextColor
 //        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.font = UIFont(name: "NotoSansKR-Bold", size: 20)
+        label.font = UIFont(name: "NotoSansKR-Bold", size: 15)
         
         return label
     }()
@@ -51,7 +51,7 @@ class AlarmViewTableCell: UITableViewCell {
         
         label.text = "10:30"
 //        label.font = UIFont.systemFont(ofSize: 45, weight: .bold)
-        label.font = UIFont(name: "NotoSansKR-Bold", size: 45)
+        label.font = UIFont(name: "NotoSansKR-Bold", size: 40)
         label.textColor = .appTextColor
         label.textAlignment = .right
         
@@ -64,7 +64,7 @@ class AlarmViewTableCell: UITableViewCell {
         label.text = "date"
         label.textColor = UIColor.appTextColor
 //        label.font = UIFont.systemFont(ofSize: 11.5)
-        label.font = UIFont(name: "NotoSansKR-Regular", size: 11.5)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 11)
         
         return label
     }()
@@ -72,28 +72,29 @@ class AlarmViewTableCell: UITableViewCell {
     private func layout() {
         userImage.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(15)
-            make.left.equalTo(contentView).offset(10)
+            make.leading.equalTo(contentView).offset(10)
             make.width.height.equalTo(64)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(userImage).offset(5)
-            make.left.equalTo(userImage.snp.right).offset(10)
+            make.top.equalTo(userImage)
+            make.leading.equalTo(userImage.snp.trailing).offset(10)
+            make.trailing.equalTo(contentView).offset(-150)
         }
         
         userNameLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(0)
-            make.left.equalTo(titleLabel).offset(1.5)
+            make.leading.equalTo(titleLabel).offset(1.5)
         }
         
         timeLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView).offset(-5)
+            make.top.equalTo(contentView).offset(-20)
             make.trailing.equalTo(contentView).offset(-10)
             make.bottom.equalTo(contentView).offset(-10)
         }
         
         dateLabel.snp.makeConstraints { make in
-            make.top.equalTo(timeLabel.snp.bottom).offset(-18)
+            make.top.equalTo(timeLabel.snp.bottom).offset(-30)
             make.trailing.equalTo(timeLabel).offset(-2.5)
         }
     }

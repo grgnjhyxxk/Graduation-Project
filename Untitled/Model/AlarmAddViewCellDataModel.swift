@@ -19,7 +19,7 @@ let AlarmAddViewCellData = [
     AlarmAddViewCellDataInitModel(title: "반복", isHidden: false),
     AlarmAddViewCellDataInitModel(title: "레이블", isHidden: false),
     AlarmAddViewCellDataInitModel(title: "사용자", isHidden: false),
-    AlarmAddViewCellDataInitModel(title: "다시 알림", isHidden: false)
+    AlarmAddViewCellDataInitModel(title: "영양제", isHidden: false)
 ]
 
 func alarmTextFieldTextInit() {

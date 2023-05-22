@@ -16,7 +16,8 @@ class CommonView: UIView {
 //        button.setImage(UIImage(named: "TemporaryUserProfilePicture"), for: .normal)
         button.setImage(image, for: .normal)
         button.backgroundColor = UIColor.appMainBackgroundColor
-        button.layer.cornerRadius = 22.5
+//        button.layer.cornerRadius = 22.5
+        button.layer.cornerRadius = 18
         button.clipsToBounds = true
         
         return button
