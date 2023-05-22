@@ -16,12 +16,15 @@ class UserProfileEditViewController: UIViewController {
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
     let topDivideView = UIView()
+    let middleDivideView = UIView()
     let bottomDivideView = UIView()
     
 //    let userPofileImage = RegisterView().selectUserProfileImageView()
     let userPofileImage = CommonView().userProfileImageView()
     
     let profileImageEditButton = InitView().serviceButton(text: "프로필 사진변경")
+    
+    let serialNumberNoticeLabel = CommonView().commonTextLabel(labelText: "기기번호는 사용자께서 소지하신 비타민 디스펜서 기기와의 연동 수단이며\n고유한 식별자이기 때문에 기능, 보안상 수정이 불가합니다. ", size: 10)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,14 +69,21 @@ class UserProfileEditViewController: UIViewController {
             make.height.equalTo(1)
         }
         
+        serialNumberNoticeLabel.snp.makeConstraints { make in
+            make.top.equalTo(bottomDivideView.snp.bottom).offset(10)
+            make.leading.equalTo(12.5)
+        }
+        
+        serialNumberNoticeLabel.textColor = UIColor.systemGray
         topDivideView.backgroundColor = UIColor.systemGray6
+        middleDivideView.backgroundColor = UIColor.systemGray6
         bottomDivideView.backgroundColor = UIColor.systemGray6
         userPofileImage.layer.cornerRadius = 42
         profileImageEditButton.titleLabel?.font = UIFont(name: "NotoSansKR-Bold", size: 14)
     }
     
     private func addSubview() {
-        uiViewList = [userPofileImage, profileImageEditButton, commonUiView, topDivideView, bottomDivideView]
+        uiViewList = [userPofileImage, profileImageEditButton, commonUiView, topDivideView, bottomDivideView, serialNumberNoticeLabel]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -84,10 +94,16 @@ class UserProfileEditViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalTo(commonUiView)
         }
+        
+        middleDivideView.snp.makeConstraints { make in
+            make.top.equalTo(134.82)
+            make.width.equalTo(view)
+            make.height.equalTo(1)
+        }
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [tableView]
+        commonViewList = [tableView, middleDivideView]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -174,15 +190,22 @@ extension UserProfileEditViewController: UITableViewDataSource, UITableViewDeleg
         
         switch indexPath.row {
         case 0:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: false, birthTextFieldBool: true, genderLabelBool: true, serialNumberLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: false, birthTextLabelBool: true, genderLabelBool: true, serialNumberLabelBool: true, greaterthanBool: false)
         case 1:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextFieldBool: false, genderLabelBool: true, serialNumberLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextLabelBool: false, genderLabelBool: true, serialNumberLabelBool: true, greaterthanBool: false)
         case 2:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextFieldBool: true, genderLabelBool: false, serialNumberLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextLabelBool: true, genderLabelBool: false, serialNumberLabelBool: true, greaterthanBool: false)
         case 3:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextFieldBool: true, genderLabelBool: true, serialNumberLabelBool: false)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextLabelBool: true, genderLabelBool: true, serialNumberLabelBool: false, greaterthanBool: true)
+            cell.titleLabel.textColor = UIColor.placeholderText
         default:
             break
+        }
+        
+        if indexPath.row == 3 {
+            cell.selectionStyle = .none
+        } else {
+            cell.selectionStyle = .default
         }
         
         return cell
