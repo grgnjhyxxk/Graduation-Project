@@ -27,8 +27,8 @@ class CustomTabBarController: UITabBarController {
         let secondViewController = AlarmViewController()
         let thirdViewController = AiRecommendedViewController()
         
-        firstViewController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
-        firstViewController.tabBarItem.image = UIImage(systemName: "house")
+        firstViewController.tabBarItem.selectedImage = UIImage(systemName: "pills.fill")
+        firstViewController.tabBarItem.image = UIImage(systemName: "pills")
         
         secondViewController.tabBarItem.selectedImage = UIImage(systemName: "alarm.fill")
         secondViewController.tabBarItem.image = UIImage(systemName: "alarm")
