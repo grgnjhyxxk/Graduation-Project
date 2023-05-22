@@ -8,63 +8,43 @@
 import Foundation
 import Alamofire
 
-func ProfileEditDataPost() {
-    let serverURLString = "\(serverURL)/register/changeinfo" // 서버 주소
-    
-    let image = UIImage(named: "TemporaryUserProfilePicture")
-    
-    checkServerConnection { isConnected in
-        if isConnected {
-            let parameters: Parameters = [
-                "seq" : 1,
-                "name" : "test재혁",
-                "birth" : "19991234",
-                "gender" : 0,
-                "profileImg" : image!.jpegData(compressionQuality: 0.8)!,
-                "profileImg_name" : "1_img"
-            ]
-
-            AF.request(serverURLString, method: .post, parameters: parameters)
-                .validate(statusCode: 200..<300)
-                .responseData { response in
-                    hideLoadingScreen()
-                    if response.response?.statusCode == 200 {
-                        print("전송 성공!")
-                    } else {
-                        print("전송 실패..")
-                    }
-                }
-        } else {
-            print("연결 실패")
-            networkErrorHandlingAlert()
-            hideLoadingScreen()
-        }
-    }
-}
-
-func sendProfileImageToServer() {
+func profileEditDataPost() {
     DispatchQueue.main.async {
         showLoadingScreen()
-        let serverURLString = "\(serverURL)/register/changeprofileimg" // 서버 주소
+        let serverURLString = "\(serverURL)/register/changeinfo" // 서버 주소
         
         checkServerConnection { isConnected in
             if isConnected {
                 guard let image = UIImage(named: "TemporaryUserProfilePicture"),
-                      let imageData = image.jpegData(compressionQuality: 0.8) else {
+                      let imageData = image.pngData() else {
                     print("프로필 이미지를 가져올 수 없습니다.")
                     return
                 }
                 
+                let seq = userDataList[0].seq
+                let name = userEditProfileDList[0].name
+                let birth = userEditProfileDList[0].birth
+                let gender = userEditProfileDList[0].gender
+                
                 AF.upload(multipartFormData: { multipartFormData in
-                    multipartFormData.append(imageData, withName: "profileImg", fileName: "profile_image.jpg", mimeType: "image/jpeg")
+                    multipartFormData.append(Data("\(seq)".utf8), withName: "seq")
+                    multipartFormData.append(Data("\(name)".utf8), withName: "name")
+                    multipartFormData.append(Data("\(birth)".utf8), withName: "birth")
+                    multipartFormData.append(Data("\(gender)".utf8), withName: "gender")
+                    multipartFormData.append(imageData, withName: "image", fileName: "1.png", mimeType: "image/png")
                 }, to: serverURLString, method: .post)
                 .validate(statusCode: 200..<300)
                 .responseData { response in
                     hideLoadingScreen()
                     if response.response?.statusCode == 200 {
-                        print("이미지 전송 성공!")
+                        print("프로필 편집 데이터 전송 성공!")
+                        print("\(userDataList[0].name) -> \(name)\n\(userDataList[0].birth) -> \(birth)\n\(userDataList[0].name) -> \(gender)")
+                        userDataList[0].name = name
+                        userDataList[0].birth = birth
+                        userDataList[0].gender = gender
+                        userEditProfileDList.removeAll()
                     } else {
-                        print("이미지 전송 실패..")
+                        print("프로필 편집 데이터 전송 실패..")
                     }
                 }
             } else {
@@ -75,5 +55,37 @@ func sendProfileImageToServer() {
         }
     }
 }
-
-
+//
+//func sendProfileImageToServer() {
+//    DispatchQueue.main.async {
+//        showLoadingScreen()
+//        let serverURLString = "\(serverURL)/register/changeprofileimg" // 서버 주소
+//
+//        checkServerConnection { isConnected in
+//            if isConnected {
+//                guard let image = UIImage(named: "TemporaryUserProfilePicture"),
+//                      let imageData = image.pngData() else {
+//                    print("프로필 이미지를 가져올 수 없습니다.")
+//                    return
+//                }
+//
+//                AF.upload(multipartFormData: { multipartFormData in
+//                    multipartFormData.append(imageData, withName: "image", fileName: "999.png", mimeType: "image/png")
+//                }, to: serverURLString, method: .post)
+//                .validate(statusCode: 200..<300)
+//                .responseData { response in
+//                    hideLoadingScreen()
+//                    if response.response?.statusCode == 200 {
+//                        print("이미지 전송 성공!")
+//                    } else {
+//                        print("이미지 전송 실패..")
+//                    }
+//                }
+//            } else {
+//                print("연결 실패")
+//                hideLoadingScreen()
+//                networkErrorHandlingAlert()
+//            }
+//        }
+//    }
+//}
