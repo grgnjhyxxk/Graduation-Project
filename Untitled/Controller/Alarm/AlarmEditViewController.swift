@@ -91,21 +91,21 @@ extension AlarmEditViewController {
         
         switch indexPath.row {
         case 0:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: false, repeatDaysButtonBool: false, textFieldBool: true, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: false, textFieldBool: true, userSelectLabelBool: true, selectVitaminLabelBool: true)
             let data = repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ").isEmpty ? "안함" : repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ")
             cell.repeatDaysLabel.text = repeatDaysDataContraction(data: data)
         case 1:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: false, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: false, userSelectLabelBool: true, selectVitaminLabelBool: true)
             cell.textField.text = alarmViewCellDataList[alarmIndex].label
         case 2:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: true, userPickingLabelBool: false, userPickingButtonBool: false, repeatSwitchBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, userSelectLabelBool: false, selectVitaminLabelBool: true)
         case 3:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, repeatDaysLabelBool: true, repeatDaysButtonBool: true, textFieldBool: true, userPickingLabelBool: true, userPickingButtonBool: true, repeatSwitchBool: false)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, userSelectLabelBool: true, selectVitaminLabelBool: false)
         default:
             break
         }
         
-        if indexPath.row == 1 || indexPath.row == 3 {
+        if indexPath.row == 1 {
             cell.selectionStyle = .none
         } else {
             cell.selectionStyle = .default
