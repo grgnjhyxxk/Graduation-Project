@@ -14,7 +14,7 @@ class UserViewContoller: UIViewController {
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
-    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 20)
+    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appSubBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 20)
 
 //    let userPofileImage = RegisterView().selectUserProfileImageView()
     let userPofileImage = CommonView().userProfileImageView()
@@ -40,7 +40,7 @@ class UserViewContoller: UIViewController {
     private func viewLayout() {
         view.backgroundColor = UIColor.appMainBackgroundColor
         
-        let dividerView = UIView(frame: CGRect(x: 0, y: (navigationController?.navigationBar.frame.maxY)! + 60, width: view.frame.width, height: 1))
+        let dividerView = UIView(frame: CGRect(x: 0, y: (navigationController?.navigationBar.frame.maxY)! + 53, width: view.frame.width, height: 1))
         dividerView.backgroundColor = UIColor.systemGray6
         navigationController?.view.addSubview(dividerView)
         
@@ -72,7 +72,6 @@ class UserViewContoller: UIViewController {
             make.centerX.equalTo(view)
         }
         
-        commonUiView.subShadowLayer()
         userPofileImage.backgroundColor = UIColor.appSubBackgroundColor
         userPofileImage.layer.cornerRadius = 35
         mainTitleLabel.attributedLabel(text: "임재혁")
@@ -80,7 +79,7 @@ class UserViewContoller: UIViewController {
         profileEditButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 13)
         profileEditButton.setTitleColor(UIColor.subTextColor, for: .normal)
         logoutButton.setTitleColor(UIColor.systemRed, for: .normal)
-        logoutButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 13)
+        logoutButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 14.5)
     }
     
     private func addSubview() {
