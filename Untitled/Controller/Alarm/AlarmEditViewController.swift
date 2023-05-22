@@ -42,16 +42,16 @@ class AlarmEditViewController: AlarmAddViewController {
         cancelButton.tintColor = .appTextColor
         navigationItem.leftBarButtonItem = cancelButton
         
-        let saveButton = UIBarButtonItem(title: "편집", style: .done, target: self, action: #selector(saveButtonAction))
-        saveButton.tintColor = .appPointColor
-        navigationItem.rightBarButtonItem = saveButton
+        let eidtButton = UIBarButtonItem(title: "편집", style: .done, target: self, action: #selector(eidtButtonAction))
+        eidtButton.tintColor = .appPointColor
+        navigationItem.rightBarButtonItem = eidtButton
         
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
     }
     
-    @objc override func saveButtonAction() {
+    @objc func eidtButtonAction() {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"

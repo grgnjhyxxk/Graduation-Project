@@ -23,7 +23,7 @@ class CustomTabBarController: UITabBarController {
         self.tabBar.shadowImage = UIImage()
         self.tabBar.backgroundImage = UIImage()
         self.tabBar.backgroundColor = UIColor.appMainBackgroundColor
-        let firstViewController = HomeViewController()
+        let firstViewController = VitaminViewController()
         let secondViewController = AlarmViewController()
         let thirdViewController = AiRecommendedViewController()
         
@@ -36,8 +36,8 @@ class CustomTabBarController: UITabBarController {
         thirdViewController.tabBarItem.selectedImage = UIImage(systemName: "staroflife.fill")
         thirdViewController.tabBarItem.image = UIImage(systemName: "staroflife.fill")
         
-//        viewControllers = [firstViewController, secondViewController, thirdViewController]
-        viewControllers = [secondViewController, thirdViewController]
+        viewControllers = [firstViewController, secondViewController, thirdViewController]
+//        viewControllers = [secondViewController, thirdViewController]
     }
 }
 

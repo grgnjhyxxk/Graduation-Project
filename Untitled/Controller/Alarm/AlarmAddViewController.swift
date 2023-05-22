@@ -99,9 +99,9 @@ class AlarmAddViewController: UIViewController {
         cancelButton.tintColor = .appTextColor
         navigationItem.leftBarButtonItem = cancelButton
         
-        let saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(saveButtonAction))
-        saveButton.tintColor = .appPointColor
-        navigationItem.rightBarButtonItem = saveButton
+        let addButton = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(addButtonAction))
+        addButton.tintColor = .appPointColor
+        navigationItem.rightBarButtonItem = addButton
         
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = true
@@ -112,7 +112,7 @@ class AlarmAddViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @objc func saveButtonAction() {
+    @objc func addButtonAction() {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "HH:mm"
