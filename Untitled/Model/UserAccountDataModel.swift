@@ -10,6 +10,7 @@ import UIKit
 var userAccountDataList = [UserAccountDataModel]()
 var userDataList = [UserDataAtServer]()
 var userProfileImageList = [UserProfileImage]()
+var userEditProfileDList = [UserEditProfileData]()
 
 struct UserAccountDataModel {
     var userid: String
@@ -37,4 +38,9 @@ struct UserProfileImage {
     var image: UIImage
 }
 
+struct UserEditProfileData {
+    var name: String
+    var gender: Int
+    var birth: Int
+}
 
