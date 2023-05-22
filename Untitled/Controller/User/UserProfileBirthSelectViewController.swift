@@ -79,6 +79,6 @@ class UserProfileBirthSelectViewController: UserProfileNameSelectViewController 
     }
     
     @objc override func saveButtonAction(_ sender: UIBarButtonItem) {
-        
+        navigationController?.popViewController(animated: true)
     }
 }
