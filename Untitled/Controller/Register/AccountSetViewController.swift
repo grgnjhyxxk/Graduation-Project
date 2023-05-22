@@ -22,12 +22,17 @@ class AccountSetViewController: RegisterRootViewController {
     let passwordSetTextField = RegisterView().textField(setPlaceholder: "비밀번호")
     let passwordCheckSetTextField = RegisterView().textField(setPlaceholder: "비밀번호 재입력")
     
+    let passwordVisibilityButton = InitView().passwordVisibilityButton()
+    let passwordCheckVisibilityButton = InitView().passwordVisibilityButton()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("계정정보작성화면이 로드되었습니다.")
         addSubview()
         viewLayout()
         navigationControllerLayout()
+        actionFunction()
+        delegateFunction()
     }
     
     private func viewLayout() {
@@ -77,12 +82,22 @@ class AccountSetViewController: RegisterRootViewController {
             make.leading.equalTo(passwordCheckSubTextLabel)
         }
         
+        passwordVisibilityButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordSetTextField).offset(8.5)
+            make.trailing.equalTo(passwordSetTextField).offset(-8.5)
+        }
+        
+        passwordCheckVisibilityButton.snp.makeConstraints { make in
+            make.top.equalTo(passwordCheckSetTextField).offset(8.5)
+            make.trailing.equalTo(passwordCheckSetTextField).offset(-8.5)
+        }
+        
         passwordSetTextField.isSecureTextEntry = true
         passwordCheckSetTextField.isSecureTextEntry = true
     }
     
     private func addSubview() {
-        subViewList = [mainTextLabel, idSubTextLabel, idSetTextField, passwordSubTextLabel, passwordSetTextField, passwordCheckSubTextLabel, passwordCheckSetTextField, warningLabel]
+        subViewList = [mainTextLabel, idSubTextLabel, idSetTextField, passwordSubTextLabel, passwordSetTextField, passwordCheckSubTextLabel, passwordCheckSetTextField, warningLabel, passwordVisibilityButton, passwordCheckVisibilityButton]
         
         for uiView in subViewList {
             view.addSubview(uiView)
@@ -114,6 +129,29 @@ class AccountSetViewController: RegisterRootViewController {
         return true
     }
     
+    private func actionFunction() {
+        passwordVisibilityButton.addTarget(self, action: #selector(passwordVisibilityButtonTapped), for: .touchUpInside)
+        passwordCheckVisibilityButton.addTarget(self, action: #selector(passwordCheckVisibilityButtonTapped), for: .touchUpInside)
+    }
+    
+    private func delegateFunction() {
+        idSetTextField.delegate = self
+        passwordSetTextField.delegate = self
+        passwordCheckSetTextField.delegate = self
+    }
+    
+    @objc func passwordVisibilityButtonTapped(_ sender: UIButton) {
+        passwordSetTextField.isSecureTextEntry.toggle()
+        let imageName = passwordSetTextField.isSecureTextEntry ? "eye.slash" : "eye"
+        sender.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+    
+    @objc func passwordCheckVisibilityButtonTapped(_ sender: UIButton) {
+        passwordCheckSetTextField.isSecureTextEntry.toggle()
+        let imageName = passwordCheckSetTextField.isSecureTextEntry ? "eye.slash" : "eye"
+        sender.setImage(UIImage(systemName: imageName), for: .normal)
+    }
+    
     @objc func backButtonAction() {
         navigationController?.popViewController(animated: true)
     }
@@ -124,6 +162,9 @@ class AccountSetViewController: RegisterRootViewController {
         if !checkTextFieldsAreFilled() {
             warningLabel.text = "모든 값을 입력하셔야 합니다."
             warningLabel.isHidden = false
+        } else if passwordSetTextField.text != passwordCheckSetTextField.text {
+            warningLabel.text = "비밀번호 입력이 서로 다릅니다."
+            warningLabel.isHidden = false
         } else {
             userAccountDataList[userAccountDataList.count - 1].userid = idSetTextField.text!
             userAccountDataList[userAccountDataList.count - 1].userpassword = passwordSetTextField.text!
@@ -132,4 +173,17 @@ class AccountSetViewController: RegisterRootViewController {
         }
     }
 }
-  
+
+extension AccountSetViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == idSetTextField {
+            passwordSetTextField.becomeFirstResponder()
+        } else if textField == passwordSetTextField {
+            passwordCheckSetTextField.becomeFirstResponder()
+        } else if textField == passwordCheckSetTextField {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
+}
