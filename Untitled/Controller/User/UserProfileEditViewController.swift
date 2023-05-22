@@ -35,6 +35,38 @@ class UserProfileEditViewController: UIViewController {
         tableViewLayout()
         navigationControllerLayout()
         actionFunction()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNameEditedNotification), name: NSNotification.Name(rawValue: "NameEdited"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleBirthEditededNotification), name: NSNotification.Name(rawValue: "BirthEdited"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleGenderEditedNotification), name: NSNotification.Name(rawValue: "GenderEdited"), object: nil)
+    }
+    
+    @objc func handleNameEditedNotification(_ noti: Notification) {
+        OperationQueue.main.addOperation {            
+            print("사용자명 수정")
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    @objc func handleBirthEditededNotification(_ noti: Notification) {
+        OperationQueue.main.addOperation {
+            print("사용자 생년월일 수정")
+                    
+            self.tableView.reloadData()
+        }
+    }
+    
+    @objc func handleGenderEditedNotification(_ noti: Notification) {
+        OperationQueue.main.addOperation {
+            print("사용자 성별 수정")
+                        
+            self.tableView.reloadData()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     private func viewLayout() {
@@ -166,10 +198,13 @@ class UserProfileEditViewController: UIViewController {
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
+        userEditProfileDList.removeAll()
+        print("userEditProfileDList 초기화")
         navigationController?.popViewController(animated: true)
     }
     
     @objc func saveButtonAction(_ sender: UIBarButtonItem) {
+        profileEditDataPost()
         dismiss(animated: true)
     }
 }
@@ -187,14 +222,20 @@ extension UserProfileEditViewController: UITableViewDataSource, UITableViewDeleg
         cell.backgroundColor = UIColor.clear
 
         let titlaLabelText = profileEditViewCellData[indexPath.row].title
+        cell.titleLabel.textColor = UIColor.appTextColor
         
         switch indexPath.row {
         case 0:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: false, birthTextLabelBool: true, genderLabelBool: true, serialNumberLabelBool: true, greaterthanBool: false)
+            cell.nameTextField.text = userEditProfileDList[0].name
         case 1:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextLabelBool: false, genderLabelBool: true, serialNumberLabelBool: true, greaterthanBool: false)
+            let birth = CommonView().birthToDate(birth: String(userEditProfileDList[0].birth))
+            cell.birthTextLabel.text = birth
         case 2:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextLabelBool: true, genderLabelBool: false, serialNumberLabelBool: true, greaterthanBool: false)
+            let gender = CommonView().genderToString(list: userEditProfileDList)
+            cell.genderLabel.text = gender
         case 3:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, birthTextLabelBool: true, genderLabelBool: true, serialNumberLabelBool: false, greaterthanBool: true)
             cell.titleLabel.textColor = UIColor.placeholderText

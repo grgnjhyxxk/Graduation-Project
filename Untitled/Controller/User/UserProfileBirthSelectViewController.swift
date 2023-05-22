@@ -79,6 +79,14 @@ class UserProfileBirthSelectViewController: UserProfileNameSelectViewController 
     }
     
     @objc override func saveButtonAction(_ sender: UIBarButtonItem) {
+        let originalString = textField.text
+        let components = originalString?.components(separatedBy: CharacterSet.decimalDigits.inverted)
+        let filteredString = components?.joined()
+        let birth = Int(filteredString ?? "")
+        
+        userEditProfileDList[0].birth = birth!
+        print("저장 \(String(describing: birth))")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "BirthEdited"), object: nil)
         navigationController?.popViewController(animated: true)
     }
 }

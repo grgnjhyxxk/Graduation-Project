@@ -80,6 +80,9 @@ class UserProfileNameSelectViewController: UIViewController {
     }
     
     @objc func saveButtonAction(_ sender: UIBarButtonItem) {
+        userEditProfileDList[0].name = textField.text!
+        print("저장 \(textField.text!)")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NameEdited"), object: nil)
         navigationController?.popViewController(animated: true)
     }
 }

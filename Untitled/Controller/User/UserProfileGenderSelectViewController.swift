@@ -10,6 +10,8 @@ import SnapKit
 
 class UserProfileGenderSelectViewController: UserProfileNameSelectViewController {
     
+    var genderSelectNumber = Int()
+    
     let maleButton = CommonView().radioButton()
     let femaleButton = CommonView().radioButton()
     
@@ -80,7 +82,7 @@ class UserProfileGenderSelectViewController: UserProfileNameSelectViewController
     }
     
     private func genderButtonInit() {
-        let gender = userDataList[0].gender
+        let gender = userEditProfileDList[0].gender
         
         if gender == 1 {
             maleButton.isSelected = true
@@ -125,8 +127,10 @@ class UserProfileGenderSelectViewController: UserProfileNameSelectViewController
         
             if maleButton.isSelected {
                 print("남자 선택")
+                genderSelectNumber = 1
             } else if femaleButton.isSelected {
                 print("여자 선택")
+                genderSelectNumber = 0
             }
         }
     
@@ -135,6 +139,9 @@ class UserProfileGenderSelectViewController: UserProfileNameSelectViewController
     }
     
     @objc override func saveButtonAction(_ sender: UIBarButtonItem) {
+        userEditProfileDList[0].gender = genderSelectNumber
+        print("저장 \(genderSelectNumber)")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "GenderEdited"), object: nil)
         navigationController?.popViewController(animated: true)
     }
 }
