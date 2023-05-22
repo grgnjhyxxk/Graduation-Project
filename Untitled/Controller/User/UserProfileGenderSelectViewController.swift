@@ -23,6 +23,11 @@ class UserProfileGenderSelectViewController: UserProfileNameSelectViewController
         actionFunction()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        genderButtonInit()
+    }
+    
     private func layout() {
         titleLabel.text = "변경할 성별을 선택해주세요"
         textField.isHidden = true
@@ -74,13 +79,36 @@ class UserProfileGenderSelectViewController: UserProfileNameSelectViewController
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
     }
     
+    private func genderButtonInit() {
+        let gender = userDataList[0].gender
+        
+        if gender == 1 {
+            maleButton.isSelected = true
+            femaleButton.isSelected = false
+        } else {
+            maleButton.isSelected = false
+            femaleButton.isSelected = true
+        }
+        
+        maleButton.setImage(UIImage(systemName: maleButton.isSelected ? "circle.inset.filled" : "circle"), for: .normal)
+        femaleButton.setImage(UIImage(systemName: femaleButton.isSelected ? "circle.inset.filled" : "circle"), for: .normal)
+    
+        maleButton.tintColor = maleButton.isSelected ? UIColor.appPointColor : UIColor.systemGray3
+        femaleButton.tintColor = femaleButton.isSelected ? UIColor.appPointColor : UIColor.systemGray3
+    
+        if maleButton.isSelected {
+            print("성별 초기화: 남자")
+        } else if femaleButton.isSelected {
+            print("성별 초기화: 남자")
+        }
+    }
+    
     private func actionFunction() {
         maleButton.addTarget(self, action: #selector(radioButtonTapped(_:)), for: .touchUpInside)
         femaleButton.addTarget(self, action: #selector(radioButtonTapped(_:)), for: .touchUpInside)
     }
     
     @objc func radioButtonTapped(_ sender: UIButton) {
-            // 선택한 버튼을 선택 상태로 변경하고, 다른 버튼들은 선택 해제
             if sender == maleButton {
                 maleButton.isSelected = true
                 femaleButton.isSelected = false
@@ -89,19 +117,15 @@ class UserProfileGenderSelectViewController: UserProfileNameSelectViewController
                 femaleButton.isSelected = true
             }
             
-            // 선택된 버튼에 따라 이미지 변경
             maleButton.setImage(UIImage(systemName: maleButton.isSelected ? "circle.inset.filled" : "circle"), for: .normal)
             femaleButton.setImage(UIImage(systemName: femaleButton.isSelected ? "circle.inset.filled" : "circle"), for: .normal)
         
             maleButton.tintColor = maleButton.isSelected ? UIColor.appPointColor : UIColor.systemGray3
             femaleButton.tintColor = femaleButton.isSelected ? UIColor.appPointColor : UIColor.systemGray3
         
-            // 선택된 버튼에 따른 동작 수행
             if maleButton.isSelected {
-                // 남자 선택 시 동작
                 print("남자 선택")
             } else if femaleButton.isSelected {
-                // 여자 선택 시 동작
                 print("여자 선택")
             }
         }
@@ -111,6 +135,6 @@ class UserProfileGenderSelectViewController: UserProfileNameSelectViewController
     }
     
     @objc override func saveButtonAction(_ sender: UIBarButtonItem) {
-        
+        navigationController?.popViewController(animated: true)
     }
 }
