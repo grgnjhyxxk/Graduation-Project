@@ -39,7 +39,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("로그인이 로드되었습니다.")
-        getUserProfileImage()
         addSubview()
         viewLayout()
         addOnCommonUiView()
@@ -185,13 +184,22 @@ class LoginViewController: UIViewController {
             
             loginUserToServer(userid: id, userpassword: pwd) { success in
                 if success {
-                    UserDefaults.standard.set(true, forKey: "auto")
-                    self.isLoggedInBool = true
-                    let tabBarController = self.isLoggedIn()
-                    tabBarController.modalPresentationStyle = .fullScreen
-                    self.present(tabBarController, animated: true)
+                    let seq = userDataList[0].seq
+                    getUserProfileImage(seq: seq) { success in
+                        if success {
+                            print("자동로그인이 성공하였습니다.")
+                            UserDefaults.standard.set(true, forKey: "auto")
+                            self.isLoggedInBool = true
+                            let tabBarController = self.isLoggedIn()
+                            tabBarController.modalPresentationStyle = .fullScreen
+                            self.present(tabBarController, animated: true)
+                        } else {
+                            print("자동로그인이 실패하였습니다.")
+                        }
+                    }
                 } else {
 //                    UserDefaults.standard.set(false, forKey: "auto")
+                    print("자동로그인이 실패하였습니다.")
                 }
             }
         } else {
@@ -247,11 +255,10 @@ class LoginViewController: UIViewController {
     }
     
     @objc func loginButtonTapped(_ sender: UIButton) {
-        isLoggedInBool = true
-        let tabBarController = isLoggedIn()
-        tabBarController.modalPresentationStyle = .fullScreen
-        
         if (idInputTextField.text == "admin" || idInputTextField.text == "Admin") && PasswordInputTextField.text == "admin" {
+            isLoggedInBool = true
+            let tabBarController = isLoggedIn()
+            tabBarController.modalPresentationStyle = .fullScreen
             UserDefaults.standard.set(true, forKey: "admin")
             userDataList.append(UserDataAtServer(seq: 9999, id: "admin", name: "admin", gender: 1, birth: 19990729, serial_id: 0000000000000000))
             userProfileImageList.append(UserProfileImage(image: UIImage()))
@@ -261,10 +268,20 @@ class LoginViewController: UIViewController {
             if idPwdNilCheck() {
                 loginUserToServer(userid: idInputTextField.text!, userpassword: PasswordInputTextField.text!) { success in
                     if success {
-                        print("로그인이 성공하였습니다.")
-                        self.loginFailedWarningLabel.isHidden = true
-                        self.autoLoginButtonStateCheck()
-                        self.present(tabBarController, animated: true)
+                        let seq = userDataList[0].seq
+                        getUserProfileImage(seq: seq) { success in
+                            if success {
+                                print("로그인이 성공하였습니다.")
+                                self.isLoggedInBool = true
+                                let tabBarController = self.isLoggedIn()
+                                tabBarController.modalPresentationStyle = .fullScreen
+                                self.loginFailedWarningLabel.isHidden = true
+                                self.autoLoginButtonStateCheck()
+                                self.present(tabBarController, animated: true)
+                            } else {
+                                print("로그인이 실패하였습니다.")
+                            }
+                        }
                     } else {
                         self.loginFailedWarningLabel.text = "아이디 혹은 비밀번호가 틀렸습니다."
                         self.loginFailedWarningLabel.isHidden = false
