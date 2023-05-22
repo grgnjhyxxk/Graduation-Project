@@ -21,13 +21,15 @@ class UserProfileNameSelectViewController: UIViewController {
         addSubview()
         viewLayout()
         navigationControllerLayout()
+        hideKeyboardWhenTappedAround()
+        delegateFunction()
     }
     
     private func viewLayout() {
         view.backgroundColor = UIColor.appMainBackgroundColor
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(130)
+            make.top.equalTo(120)
             make.leading.equalTo(15)
         }
         
@@ -40,9 +42,9 @@ class UserProfileNameSelectViewController: UIViewController {
        
         titleLabel.textColor = UIColor.systemGray
         titleLabel.text = "변경할 이름을 입력해주세요"
-        titleLabel.font = UIFont(name: "Roboto-Regular", size: 12)
+        titleLabel.font = UIFont(name: "Roboto-Regular", size: 14)
         textField.text = userDataList[0].name
-        textField.font = UIFont(name: "Roboto-Regular", size: 15)
+        textField.font = UIFont(name: "Roboto-Regular", size: 17)
     }
     
     private func addSubview() {
@@ -69,13 +71,25 @@ class UserProfileNameSelectViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
     }
     
+    private func delegateFunction() {
+        textField.delegate = self
+    }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
     
     @objc func saveButtonAction(_ sender: UIBarButtonItem) {
-        
+        navigationController?.popViewController(animated: true)
     }
 }
 
+extension UserProfileNameSelectViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.textField {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
+}
