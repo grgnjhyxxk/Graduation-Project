@@ -9,7 +9,6 @@ import UIKit
 import Alamofire
 
 func loginUserToServer(userid: String, userpassword: String, completion: @escaping (Bool) -> Void) {
-    
     DispatchQueue.main.async {
         showLoadingScreen()
         
@@ -17,7 +16,6 @@ func loginUserToServer(userid: String, userpassword: String, completion: @escapi
         
         checkServerConnection() { isConnected in
             if isConnected {
-                
                 let header: HTTPHeaders = [
                     "Content-Type": "application/json"
                 ]
@@ -58,8 +56,10 @@ func loginUserToServer(userid: String, userpassword: String, completion: @escapi
                 print("로그인 연결 실패")
                 networkErrorHandlingAlert()
                 hideLoadingScreen()
+                completion(false)
             }
         }
     }
 }
+
 
