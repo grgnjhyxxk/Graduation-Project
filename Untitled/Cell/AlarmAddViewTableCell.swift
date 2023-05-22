@@ -22,6 +22,15 @@ class AlarmAddViewTableCell: UITableViewCell {
         return label
     }()
     
+    let greaterthan: UIImageView = {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(systemName: "greaterthan")
+        imageView.tintColor = UIColor.placeholderText
+        
+        return imageView
+    }()
+    
     let textField: UITextField = {
         let textField = UITextField()
         
@@ -35,25 +44,6 @@ class AlarmAddViewTableCell: UITableViewCell {
         return textField
     }()
     
-    let repeatSwitch: UISwitch = {
-        let repeatSwitch = UISwitch()
-        
-        repeatSwitch.isOn = false
-        repeatSwitch.onTintColor = UIColor.appPointColor
-        return repeatSwitch
-    }()
-    
-    let repeatDaysButton: UIButton = {
-        let button = UIButton()
-        
-        button.setImage(UIImage(systemName: "greaterthan"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.tintColor = UIColor.placeholderText
-        
-        return button
-    }()
-    
     let repeatDaysLabel: UILabel = {
         let label = UILabel()
         
@@ -64,18 +54,7 @@ class AlarmAddViewTableCell: UITableViewCell {
         return label
     }()
     
-    let userPickingButton: UIButton = {
-        let button = UIButton()
-        
-        button.setImage(UIImage(systemName: "greaterthan"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
-        button.tintColor = UIColor.placeholderText
-        
-        return button
-    }()
-    
-    let userPickingLabel: UILabel = {
+    let userSelectLabel: UILabel = {
         let label = UILabel()
         
         label.text = "사용자"
@@ -86,82 +65,93 @@ class AlarmAddViewTableCell: UITableViewCell {
         return label
     }()
     
+    let selectVitaminLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "영양제"
+        label.textColor = UIColor.placeholderText
+//        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
+        
+        return label
+    }()
+    
     private func layout() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(10)
+//            make.top.equalTo(10)
+            make.centerY.equalTo(contentView)
             make.leading.equalTo(12.5)
+        }
+        
+        greaterthan.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(-10)
+            make.size.equalTo(CGSize(width: 13, height: 23))
         }
         
         repeatDaysLabel.snp.makeConstraints { make in
 //            make.top.equalTo(10.85)
-            make.top.equalTo(9)
-            make.trailing.equalTo(repeatDaysButton.snp.leading).offset(-3)
-        }
-        
-        repeatDaysButton.snp.makeConstraints { make in
-//            make.top.equalTo(13.7)
-            make.top.equalTo(repeatDaysLabel).offset(6.15)
-            make.trailing.equalTo(-10)
-            make.size.equalTo(CGSize(width: 12.5, height: 15.5))
+//            make.top.equalTo(9)
+            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(greaterthan.snp.leading).offset(-3)
         }
         
         textField.snp.makeConstraints { make in
-            make.top.equalTo(10.5)
+//            make.top.equalTo(10.5)
+            make.centerY.equalTo(contentView)
             make.trailing.equalTo(-10)
         }
         
-        userPickingLabel.snp.makeConstraints { make in
+        userSelectLabel.snp.makeConstraints { make in
 //            make.top.equalTo(10.85)
-            make.top.equalTo(9)
-            make.trailing.equalTo(repeatDaysButton.snp.leading).offset(-3)
+//            make.top.equalTo(9)
+            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(greaterthan.snp.leading).offset(-3)
         }
         
-        userPickingButton.snp.makeConstraints { make in
-//            make.top.equalTo(13.7)
-            make.top.equalTo(repeatDaysLabel).offset(6.15)
-            make.trailing.equalTo(-10)
-            make.size.equalTo(CGSize(width: 12.5, height: 15.5))
+        selectVitaminLabel.snp.makeConstraints { make in
+//            make.top.equalTo(10.85)
+//            make.top.equalTo(9)
+            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(greaterthan.snp.leading).offset(-3)
         }
-        
-        repeatSwitch.snp.makeConstraints { make in
-            make.top.equalTo(6.5)
-            make.trailing.equalTo(-10)
-        }
-        
     }
     
     private func addSubview() {
-        contentViewList = [titleLabel, textField, repeatSwitch, repeatDaysButton, repeatDaysLabel, userPickingButton, userPickingLabel]
+        contentViewList = [titleLabel, greaterthan, textField, repeatDaysLabel, userSelectLabel, selectVitaminLabel]
         
         for uiView in contentViewList {
             contentView.addSubview(uiView)
         }
     }
     
+    private func delegateFunction() {
+        textField.delegate = self
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         textField.isHidden = true
-        repeatSwitch.isHidden = true
-        repeatDaysButton.isHidden = true
+        greaterthan.isHidden = true
         repeatDaysLabel.isHidden = true
-        userPickingButton.isHidden = true
-        userPickingLabel.isHidden = true 
+        userSelectLabel.isHidden = true
+        selectVitaminLabel.isHidden = true
     }
     
-    func hiddenFucntion(titleLabelText: String,repeatDaysLabelBool: Bool, repeatDaysButtonBool: Bool, textFieldBool: Bool, userPickingLabelBool: Bool, userPickingButtonBool: Bool, repeatSwitchBool: Bool) {
+    func hiddenFucntion(titleLabelText: String, greaterthanBool: Bool, repeatDaysLabelBool: Bool, textFieldBool: Bool, userSelectLabelBool: Bool, selectVitaminLabelBool: Bool) {
         titleLabel.text = titleLabelText
+        greaterthan.isHidden = greaterthanBool
         repeatDaysLabel.isHidden = repeatDaysLabelBool
-        repeatDaysButton.isHidden = repeatDaysButtonBool
         textField.isHidden = textFieldBool
-        userPickingLabel.isHidden = userPickingLabelBool
-        userPickingButton.isHidden = userPickingButtonBool
-        repeatSwitch.isHidden = repeatSwitchBool
+        userSelectLabel.isHidden = userSelectLabelBool
+        selectVitaminLabel.isHidden = selectVitaminLabelBool
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
         layout()
+        delegateFunction()
         textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
     
@@ -171,5 +161,15 @@ class AlarmAddViewTableCell: UITableViewCell {
     
     @objc func textFieldDidChange(_ sender: Any?) {
         alarmTextFieldText = textField.text ?? "없음"
+    }
+}
+
+extension AlarmAddViewTableCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.textField {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
 }

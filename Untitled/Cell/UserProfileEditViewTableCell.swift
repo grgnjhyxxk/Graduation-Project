@@ -21,7 +21,16 @@ class UserProfileEditViewTableCell: UITableViewCell {
         
         return label
     }()
-
+    
+    let greaterthan: UIImageView = {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(systemName: "greaterthan")
+        imageView.tintColor = UIColor.placeholderText
+        
+        return imageView
+    }()
+    
     let nameTextField: UITextField = {
         let textField = UITextField()
         
@@ -34,8 +43,8 @@ class UserProfileEditViewTableCell: UITableViewCell {
         return textField
     }()
     
-    let birthTextField: UITextField = {
-        let textField = UITextField()
+    let birthTextLabel: UILabel = {
+        let textField = UILabel()
         let birth = CommonView().birthToDate(birth: String(userDataList[0].birth))
         
         textField.backgroundColor = UIColor.clear
@@ -51,7 +60,7 @@ class UserProfileEditViewTableCell: UITableViewCell {
         let label = UILabel()
         var gender = CommonView().genderToString()
         
-        label.textColor = UIColor.systemGray3
+        label.textColor = UIColor.subTextColor
         label.text = gender
         label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
@@ -61,7 +70,7 @@ class UserProfileEditViewTableCell: UITableViewCell {
     let serialNumberLabel: UILabel = {
         let label = UILabel()
         
-        label.textColor = UIColor.systemGray3
+        label.textColor = UIColor.placeholderText
         label.text = String(userDataList[0].serial_id)
         label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
@@ -74,12 +83,18 @@ class UserProfileEditViewTableCell: UITableViewCell {
             make.leading.equalTo(12.5)
         }
         
+        greaterthan.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(-12.5)
+            make.size.equalTo(CGSize(width: 13, height: 23))
+        }
+        
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(9)
             make.leading.equalTo(100)
         }
         
-        birthTextField.snp.makeConstraints { make in
+        birthTextLabel.snp.makeConstraints { make in
             make.top.equalTo(9)
             make.leading.equalTo(nameTextField)
         }
@@ -96,7 +111,7 @@ class UserProfileEditViewTableCell: UITableViewCell {
     }
     
     private func addSubview() {
-        contentViewList = [titleLabel, nameTextField, birthTextField, genderLabel, serialNumberLabel]
+        contentViewList = [titleLabel, greaterthan, nameTextField, birthTextLabel, genderLabel, serialNumberLabel]
         
         for uiView in contentViewList {
             contentView.addSubview(uiView)
@@ -106,16 +121,18 @@ class UserProfileEditViewTableCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         nameTextField.isHidden = true
-        birthTextField.isHidden = true
+        birthTextLabel.isHidden = true
         serialNumberLabel.isHidden = true
     }
     
-    func hiddenFucntion(titleLabelText: String, nameTextFieldBool: Bool, birthTextFieldBool: Bool, genderLabelBool: Bool, serialNumberLabelBool: Bool) {
+    func hiddenFucntion(titleLabelText: String, nameTextFieldBool: Bool, birthTextLabelBool: Bool, genderLabelBool: Bool, serialNumberLabelBool: Bool, greaterthanBool: Bool) {
         titleLabel.text = titleLabelText
         nameTextField.isHidden = nameTextFieldBool
-        birthTextField.isHidden = birthTextFieldBool
+        birthTextLabel.isHidden = birthTextLabelBool
         genderLabel.isHidden = genderLabelBool
         serialNumberLabel.isHidden = serialNumberLabelBool
+        
+        greaterthan.isHidden = greaterthanBool
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
