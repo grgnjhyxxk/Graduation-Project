@@ -132,6 +132,10 @@ class UserViewContoller: UIViewController {
     private func actionFunction() {
         logoutButton.addTarget(self, action: #selector(logoutButtonAction), for: .touchUpInside)
         profileEditButton.addTarget(self, action: #selector(profileEditButtonAction), for: .touchUpInside)
+        plusbutton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
+    }
+    
+    @objc func plusButtonAction(_ sender: UIButton) {
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
