@@ -81,7 +81,7 @@ extension UILabel {
         let attribtuedString = NSMutableAttributedString(string: fullText)
         let range = (fullText as NSString).range(of: "\(text)")
         attribtuedString.addAttribute(.foregroundColor, value: UIColor.appPointColor!, range: range)
-        attribtuedString.addAttribute(.font, value: UIFont(name: "NotoSansKR-Bold", size: 30)!, range: range)
+        attribtuedString.addAttribute(.font, value: UIFont(name: "NotoSansKR-Bold", size: 25)!, range: range)
         self.attributedText = attribtuedString
     }
 }
