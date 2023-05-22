@@ -80,19 +80,21 @@ class AlarmViewController: UIViewController {
         view.backgroundColor = UIColor.appSubBackgroundColor
                 
         userProfileButton.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(63)
+//            make.top.equalTo(view).offset(63)
+            make.top.equalTo(58.5)
             make.trailing.equalTo(view).offset(-15)
-            make.size.equalTo(CGSize(width: 45, height: 45))
+            make.size.equalTo(CGSize(width: 36, height: 36))
         }
         
         userInterfaceStyleToggleButton.snp.makeConstraints { make in
-            make.top.equalTo(userProfileButton.snp.top).offset(5.5)
+//            make.top.equalTo(userProfileButton.snp.top).offset(5.5)
+            make.top.equalTo(userProfileButton)
             make.trailing.equalTo(userProfileButton.snp.leading).offset(-10)
             make.size.equalTo(CGSize(width: 36, height: 36))
         }
         
         titleTextButton.snp.makeConstraints { make in
-            make.top.equalTo(userProfileButton).offset(1)
+            make.top.equalTo(userProfileButton).offset(-5)
             make.leading.equalTo(view).offset(15)
             make.size.equalTo(CGSize(width: 122, height: 44))
         }
@@ -133,7 +135,7 @@ class AlarmViewController: UIViewController {
         
         emptyAlarmImageView.snp.makeConstraints { make in
             make.centerX.equalTo(commonUiView)
-            make.top.equalTo(commonUiView.snp.top).offset(180)
+            make.top.equalTo(commonUiView.snp.top).offset(190)
             make.size.equalTo(CGSize(width: 300, height: 200))
         }
         
