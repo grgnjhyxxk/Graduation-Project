@@ -11,12 +11,10 @@ class CommonView: UIView {
     
     func roundingButton() -> UIButton {
         let button = UIButton()
-        
         let image = userProfileImageList[0].image
-//        button.setImage(UIImage(named: "TemporaryUserProfilePicture"), for: .normal)
+
         button.setImage(image, for: .normal)
         button.backgroundColor = UIColor.appMainBackgroundColor
-//        button.layer.cornerRadius = 22.5
         button.layer.cornerRadius = 18
         button.clipsToBounds = true
         
@@ -26,6 +24,7 @@ class CommonView: UIView {
     func userProfileImageView() -> UIImageView {
         let imageView = UIImageView()
         let image = userProfileImageList[0].image
+//        let image = UIImage()
 
         imageView.image = image
         imageView.backgroundColor = UIColor.appSubBackgroundColor
@@ -108,10 +107,10 @@ class CommonView: UIView {
         }
     }
     
-    func genderToString() -> String {
+    func genderToString(list: Array<Any>) -> String {
         var gender = String()
         
-        if userDataList[0].gender == 1 {
+        if userEditProfileDList[0].gender == 1 {
             gender = "남자"
         } else {
             gender = "여자"
