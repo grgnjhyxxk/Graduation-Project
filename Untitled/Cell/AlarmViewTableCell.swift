@@ -19,7 +19,7 @@ class AlarmViewTableCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
-        imageView.backgroundColor = UIColor.appSubBackgroundColor
+        imageView.backgroundColor = UIColor.clear
         
         return imageView
     }()

@@ -15,8 +15,6 @@ class UserProfileEditViewTableCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         
-        label.textColor = UIColor.appTextColor
-//        label.font = UIFont.systemFont(ofSize: 17)
         label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label
@@ -31,13 +29,12 @@ class UserProfileEditViewTableCell: UITableViewCell {
         return imageView
     }()
     
-    let nameTextField: UITextField = {
-        let textField = UITextField()
+    let nameTextField: UILabel = {
+        let textField = UILabel()
         
         textField.backgroundColor = UIColor.clear
         textField.textColor = UIColor.subTextColor
         textField.textAlignment = .left
-        textField.text = userDataList[0].name
         textField.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return textField
@@ -45,12 +42,10 @@ class UserProfileEditViewTableCell: UITableViewCell {
     
     let birthTextLabel: UILabel = {
         let textField = UILabel()
-        let birth = CommonView().birthToDate(birth: String(userDataList[0].birth))
         
         textField.backgroundColor = UIColor.clear
         textField.textColor = UIColor.subTextColor
         textField.textAlignment = .left
-        textField.text = birth
         textField.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return textField
@@ -58,10 +53,8 @@ class UserProfileEditViewTableCell: UITableViewCell {
     
     let genderLabel: UILabel = {
         let label = UILabel()
-        var gender = CommonView().genderToString()
         
         label.textColor = UIColor.subTextColor
-        label.text = gender
         label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label

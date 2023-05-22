@@ -20,8 +20,8 @@ class AlarmViewController: UIViewController {
     let subTextLabel = CommonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
     let mainTextLabel = CommonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 25)
     let emptyTextLabel = CommonView().commonTextLabel(labelText: "아직 알람을 추가하지 않으셨군요!\n지금 바로 알람을 설정해보세요 :)", size: 13)
-    let emptyAlarmImageView = AlarmView().emptyAlarmImageView()
     
+    let emptyAlarmImageView = AlarmView().emptyAlarmImageView()
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
     let tableView = UITableView()
 
