@@ -19,7 +19,7 @@ class UserViewContoller: UIViewController {
 //    let userPofileImage = RegisterView().selectUserProfileImageView()
     let userPofileImage = CommonView().userProfileImageView()
 
-    let mainTitleLabel = CommonView().commonTextLabel(labelText: "임재혁 님\n오늘도 와주셨네요!", size: 20)
+    let mainTitleLabel = CommonView().commonTextLabel(labelText: "", size: 20)
     let pillViewTtileLabel = CommonView().commonTextLabel(labelText: "내 영양제", size: 20)
 //    let serialNumber = CommonView().commonTextLabel(labelText: "", size: <#T##CGFloat#>)
 
@@ -72,9 +72,11 @@ class UserViewContoller: UIViewController {
             make.centerX.equalTo(view)
         }
         
+        let name = userDataList[0].name
         userPofileImage.backgroundColor = UIColor.appSubBackgroundColor
         userPofileImage.layer.cornerRadius = 35
-        mainTitleLabel.attributedLabel(text: "임재혁")
+        mainTitleLabel.text = "\(name) 님\n오늘도 와주셨네요!"
+        mainTitleLabel.attributedLabel(text: "\(name)")
         mainTitleLabel.font = UIFont(name: "Roboto-Bold", size: 25)
         profileEditButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 13)
         profileEditButton.setTitleColor(UIColor.subTextColor, for: .normal)
@@ -136,9 +138,12 @@ class UserViewContoller: UIViewController {
     }
     
     @objc func plusButtonAction(_ sender: UIButton) {
+//        sendProfileImageToServer()
+        profileEditDataPost()
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
+        print("userEditProfileDList 초기화")
         dismiss(animated: true)
     }
     
@@ -148,6 +153,10 @@ class UserViewContoller: UIViewController {
     
     @objc func profileEditButtonAction(_ sender: UIButton) {
         let rootViewControoler = UserProfileEditViewController()
+        let name = userDataList[0].name
+        let birth = userDataList[0].birth
+        let gender = userDataList[0].gender
+        userEditProfileDList.append(UserEditProfileData(name: name, gender: gender, birth: birth))
         show(rootViewControoler, sender: nil)
     }
     
