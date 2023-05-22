@@ -37,6 +37,7 @@ class ProfileSetViewController: RegisterRootViewController {
         navigationControllerLayout()
         actionFunction()
         createDatePicker()
+        delegateFunction()
     }
     
     private func viewLayout() {
@@ -98,8 +99,8 @@ class ProfileSetViewController: RegisterRootViewController {
             make.leading.equalTo(dateSubTextLabel)
         }
         
-        dateTextField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 17.0, height: 0.0))
-        dateTextField.leftViewMode = .always
+        dateTextField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 0.0))
+        dateTextField.textAlignment = .center
         warningLabel.isHidden = true
     }
     
@@ -170,6 +171,11 @@ class ProfileSetViewController: RegisterRootViewController {
         } else {
             return false
         }
+    }
+    
+    private func delegateFunction() {
+        nameSetTextField.delegate = self
+        dateTextField.delegate = self
     }
     
     @objc func plusButtonTapped() {
@@ -256,5 +262,15 @@ extension ProfileSetViewController: UIImagePickerControllerDelegate, UINavigatio
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ProfileSetViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == nameSetTextField {
+            // nameSetTextField에서 Return 키를 눌렀을 때 dateTextField로 포커스 이동
+            dateTextField.becomeFirstResponder()
+        }
+        return true
     }
 }
