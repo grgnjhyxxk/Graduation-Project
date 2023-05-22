@@ -115,6 +115,9 @@ class SerialNumberSetViewController: RegisterRootViewController {
         if !checkTextFieldsAreFilled() {
             warningLabel.text = "모든 값을 입력하셔야 합니다."
             warningLabel.isHidden = false
+        } else if serialNumberSetTextField.text?.count != 15 {
+            warningLabel.text = "시리얼 넘버의 길이는 14자리여야 합니다."
+            warningLabel.isHidden = false
         } else {
             let serialNumber = serialNumberSetTextField.text!.replacingOccurrences(of: "-", with: "")
             userAccountDataList[userAccountDataList.count - 1].serialNumber = Int(serialNumber)!
@@ -144,6 +147,3 @@ extension SerialNumberSetViewController: UITextFieldDelegate {
         return false
     }
 }
-
-
-
