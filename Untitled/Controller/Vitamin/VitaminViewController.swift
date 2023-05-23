@@ -35,6 +35,11 @@ class VitaminViewController: UIViewController {
         actionFunction()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let image = userProfileImageList[0].image
+        userProfileButton.setImage(image, for: .normal)
+    }
+    
     private func viewLayout() {
         view.backgroundColor = UIColor.appSubBackgroundColor
         

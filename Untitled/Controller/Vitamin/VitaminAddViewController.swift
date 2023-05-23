@@ -10,17 +10,23 @@ import SnapKit
 
 class VitaminAddViewController: UIViewController {
     
+    var uiViewList: [UIView] = []
+    var commonViewList: [UIView] = []
+    
     let vitaminImage = CommonView().userProfileImageView()
 
     let vitaminImageEditButton = InitView().serviceButton(text: "영양제 사진변경")
-
-    var uiViewList: [UIView] = []
-    var commonViewList: [UIView] = []
+    
+    let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
+    let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubview()
         viewLayout()
+        addOnCommonUiView()
+        commonUIViewLayout()
+        tableViewLayout()
         navigationControllerLayout()
         actionFunction()
     }
@@ -43,6 +49,13 @@ class VitaminAddViewController: UIViewController {
             make.width.equalTo(view)
         }
         
+        commonUiView.snp.makeConstraints { make in
+            make.top.equalTo(vitaminImageEditButton.snp.bottom).offset(20)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
+            make.height.equalTo(134.82)
+        }
+        
         vitaminImage.image = UIImage()
         vitaminImage.layer.cornerRadius = 42
         
@@ -50,11 +63,38 @@ class VitaminAddViewController: UIViewController {
     }
     
     private func addSubview() {
-        uiViewList = [vitaminImage, vitaminImageEditButton]
+        uiViewList = [vitaminImage, vitaminImageEditButton, commonUiView]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
         }
+    }
+    
+    private func commonUIViewLayout() {
+        tableView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalTo(commonUiView)
+        }
+    }
+    
+    private func addOnCommonUiView() {
+        commonViewList = [tableView]
+        
+        for uiView in commonViewList {
+            commonUiView.addSubview(uiView)
+        }
+    }
+    
+    private func tableViewLayout() {
+        tableView.register(VitaminAddViewTableCell.self, forCellReuseIdentifier: "VitaminAddViewTableCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.appSubBackgroundColor
+        tableView.separatorStyle = .singleLine
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        tableView.isScrollEnabled = false
+        tableView.rowHeight = 45
+        tableView.layer.cornerRadius = 15
     }
     
     private func navigationControllerLayout() {
@@ -109,6 +149,45 @@ class VitaminAddViewController: UIViewController {
     }
 }
 
+extension VitaminAddViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return vitaminAddViewCellData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VitaminAddViewTableCell", for: indexPath) as! VitaminAddViewTableCell
+        
+        cell.clipsToBounds = true
+        cell.backgroundColor = UIColor.clear
+        
+        let titlaLabelText = vitaminAddViewCellData[indexPath.row].title
+        
+        switch indexPath.row {
+        case 0:
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: false, ingredientsTextLabelBool: true, dosageTextFieldBool: true, greaterthanBool: true)
+        case 1:
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, ingredientsTextLabelBool: false, dosageTextFieldBool: true, greaterthanBool: false)
+        case 2:
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, ingredientsTextLabelBool: true, dosageTextFieldBool: false, greaterthanBool: true)
+        default:
+            break
+        }
+        
+        if indexPath.row == 1 {
+            cell.selectionStyle = .default
+        } else {
+            cell.selectionStyle = .none
+        }
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+    
 extension VitaminAddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
