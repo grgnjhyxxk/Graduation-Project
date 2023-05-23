@@ -42,5 +42,6 @@ struct UserEditProfileData {
     var name: String
     var gender: Int
     var birth: Int
+    var image: UIImage
 }
 

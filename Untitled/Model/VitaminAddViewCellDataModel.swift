@@ -13,8 +13,7 @@ struct VitaminAddViewCellDataModel {
 }
 
 let vitaminAddViewCellData = [
-    ProfileEditViewCellDataModel(title: "이름", isHidden: false),
-    ProfileEditViewCellDataModel(title: "생년월일", isHidden: false),
-    ProfileEditViewCellDataModel(title: "성별", isHidden: false),
-    ProfileEditViewCellDataModel(title: "기기번호", isHidden: false)
+    VitaminAddViewCellDataModel(title: "제품명", isHidden: false),
+    VitaminAddViewCellDataModel(title: "성분", isHidden: false),
+    VitaminAddViewCellDataModel(title: "섭취량", isHidden: false),
 ]
