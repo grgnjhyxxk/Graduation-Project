@@ -36,11 +36,15 @@ class AlarmViewController: UIViewController {
         actionFunction()
         NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmAddedNotification), name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmEditedNotification), name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlarmDeletedNotification), name: NSNotification.Name(rawValue: "AlarmDeletedNotification"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         alarmListisEmptyOrNot()
+        let image = userProfileImageList[0].image
+
+        userProfileButton.setImage(image, for: .normal)
     }
     
     @objc func handleAlarmAddedNotification(_ noti: Notification) {
@@ -65,6 +69,16 @@ class AlarmViewController: UIViewController {
             
             self.printAlarmData(index: index)
             
+            self.tableView.reloadData()
+        }
+    }
+    
+    @objc func handleAlarmDeletedNotification(_ noti: Notification) {
+        OperationQueue.main.addOperation {
+            print("알람이 정상적으로 삭제되었습니다.")
+                        
+            self.alarmListisEmptyOrNot()
+
             self.tableView.reloadData()
         }
     }

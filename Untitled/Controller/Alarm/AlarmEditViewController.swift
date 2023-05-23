@@ -11,14 +11,30 @@ class AlarmEditViewController: AlarmAddViewController {
     
     var alarmIndex = Int()
     
+    let deleteButton = CommonView().deleteButton(text: "알람 삭제")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("알람수정화면이 로드되었습니다.")
+        layout()
         navigationControllerLayout()
         datePickerSetting()
         repeatDaysDataReverseContraction(index: alarmIndex)
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    private func layout() {
+        view.addSubview(deleteButton)
+
+        deleteButton.snp.makeConstraints { make in
+            make.top.equalTo(commonUiView.snp.bottom).offset(30)
+            make.leading.equalTo(commonUiView)
+            make.trailing.equalTo(commonUiView)
+            make.height.equalTo(45)
+        }
+        
+        deleteButton.addTarget(self, action: #selector(deleteButtonAction), for: .touchUpInside)
     }
     
     private func datePickerSetting() {
@@ -67,6 +83,14 @@ class AlarmEditViewController: AlarmAddViewController {
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: alarmIndex)
         
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func deleteButtonAction(_ sender: UIButton) {
+        alarmViewCellDataList.remove(at: alarmIndex)
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmDeletedNotification"), object: alarmIndex)
+
         dismiss(animated: true, completion: nil)
     }
     
