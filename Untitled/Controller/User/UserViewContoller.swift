@@ -35,7 +35,20 @@ class UserViewContoller: UIViewController {
         commonUIViewLayout()
         navigationControllerLayout()
         actionFunction()
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleImageEditedNotification), name: NSNotification.Name(rawValue: "ImageEdited"), object: nil)
     }
+    
+//    @objc func handleImageEditedNotification(_ noti: Notification) {
+//        OperationQueue.main.addOperation {
+//            profileEditDataPost() { success in
+//                if success {
+//                    print("성공")
+//                } else {
+//                    print("실패")
+//                }
+//            }
+//        }
+//    }
     
     private func viewLayout() {
         view.backgroundColor = UIColor.appMainBackgroundColor
@@ -139,7 +152,7 @@ class UserViewContoller: UIViewController {
     
     @objc func plusButtonAction(_ sender: UIButton) {
 //        sendProfileImageToServer()
-        profileEditDataPost()
+//        profileEditDataPost()
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
@@ -156,7 +169,9 @@ class UserViewContoller: UIViewController {
         let name = userDataList[0].name
         let birth = userDataList[0].birth
         let gender = userDataList[0].gender
-        userEditProfileDList.append(UserEditProfileData(name: name, gender: gender, birth: birth))
+        let image = userPofileImage.image
+        userEditProfileDList.append(UserEditProfileData(name: name, gender: gender, birth: birth, image: image!))
+        print(userEditProfileDList)
         show(rootViewControoler, sender: nil)
     }
     
@@ -166,6 +181,8 @@ class UserViewContoller: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name("LogoutNotification"), object: nil)
         presentingViewController?.presentingViewController?.dismiss(animated: true)
         UserDefaults.standard.set(false, forKey: "auto")
+        UserDefaults.standard.set(String(), forKey: "id")
+        UserDefaults.standard.set(String(), forKey: "pwd")
         hideLoadingScreen()
     }
 

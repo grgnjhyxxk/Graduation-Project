@@ -204,8 +204,17 @@ class UserProfileEditViewController: UIViewController {
     }
     
     @objc func saveButtonAction(_ sender: UIBarButtonItem) {
-        profileEditDataPost()
-        dismiss(animated: true)
+        userEditProfileDList[0].image = userPofileImage.image!
+        print("저장 \(userPofileImage.image!)")
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ImageEdited"), object: nil)
+        profileEditDataPost() { success in
+            if success {
+                print("성공")
+                self.dismiss(animated: true)
+            } else {
+                print("실패")
+            }
+        }
     }
 }
 
