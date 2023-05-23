@@ -10,6 +10,7 @@ import Alamofire
 
 func loginUserToServer(userid: String, userpassword: String, completion: @escaping (Bool) -> Void) {
     DispatchQueue.main.async {
+        print("로그인한 아이디: \(userid)\n로그인한 비밀번호: \(userpassword)")
         showLoadingScreen()
         
         let serverURLString = "\(serverURL)/login" // 서버 주소

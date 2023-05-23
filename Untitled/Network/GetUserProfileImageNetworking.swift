@@ -10,6 +10,7 @@ import Alamofire
 
 func getUserProfileImage(seq: Int, completion: @escaping (Bool) -> Void) {
     DispatchQueue.main.async {
+        userProfileImageList.removeAll()
         showLoadingScreen()
         let imageUrl = "http://180.83.19.43:8001/showprofile?profile_img=\(seq)"
         
@@ -24,7 +25,6 @@ func getUserProfileImage(seq: Int, completion: @escaping (Bool) -> Void) {
             case .failure(let error):
                 userProfileImageList.append(UserProfileImage(image: UIImage()))
                 print("이미지 가져오기 실패: \(error)")
-                hideLoadingScreen()
                 networkErrorHandlingAlert()
                 completion(false)
             }
