@@ -198,7 +198,7 @@ class UserProfileEditViewController: UIViewController {
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
-        userEditProfileDList.removeAll()
+        userEditProfileDListInit()
         print("userEditProfileDList 초기화")
         navigationController?.popViewController(animated: true)
     }
@@ -210,6 +210,7 @@ class UserProfileEditViewController: UIViewController {
         profileEditDataPost() { success in
             if success {
                 print("성공")
+                userEditProfileDListInit()
                 self.dismiss(animated: true)
             } else {
                 print("실패")

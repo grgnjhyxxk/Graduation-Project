@@ -151,11 +151,12 @@ class UserViewContoller: UIViewController {
     }
     
     @objc func plusButtonAction(_ sender: UIButton) {
-//        sendProfileImageToServer()
-//        profileEditDataPost()
+//        let seq = userDataList[0].seq
+//        getVitaminInformation(seq: seq)
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
+        userEditProfileDListInit()
         print("userEditProfileDList 초기화")
         dismiss(animated: true)
     }
@@ -183,6 +184,8 @@ class UserViewContoller: UIViewController {
         UserDefaults.standard.set(false, forKey: "auto")
         UserDefaults.standard.set(String(), forKey: "id")
         UserDefaults.standard.set(String(), forKey: "pwd")
+        print(userDataList)
+        userDataListInit()
         hideLoadingScreen()
     }
 
