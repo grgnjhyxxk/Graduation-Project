@@ -14,7 +14,7 @@ class VitaminAddViewController: UIViewController {
     var commonViewList: [UIView] = []
     
     let vitaminImage = CommonView().userProfileImageView()
-
+    
     let vitaminImageEditButton = InitView().serviceButton(text: "영양제 사진변경")
     
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
@@ -29,6 +29,11 @@ class VitaminAddViewController: UIViewController {
         tableViewLayout()
         navigationControllerLayout()
         actionFunction()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     private func viewLayout() {
@@ -113,6 +118,26 @@ class VitaminAddViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
     }
     
+    private func ingredientsNameConcatenated() -> String {
+        var names: [String] = []
+
+        for item in ingredientsCellDataList {
+            names.append(item.name)
+        }
+
+        var concatenatedNames = ""
+
+        if names.count <= 3 {
+            concatenatedNames = names.joined(separator: ", ")
+        } else {
+            let firstThreeNames = names.prefix(3).joined(separator: ", ")
+            concatenatedNames = "\(firstThreeNames) + \(names.count - 3)"
+        }
+
+        return concatenatedNames
+    }
+
+    
     private func actionFunction() {
         vitaminImageEditButton.addTarget(self, action: #selector(vitaminImageEditButtonTapped), for: .touchUpInside)
     }
@@ -140,12 +165,30 @@ class VitaminAddViewController: UIViewController {
     }
     
     @objc func cancelButtonAction() {
+        vitaminBasicDataListInit()
+        ingredientsCellDataListInit()
         dismiss(animated: true, completion: nil)
     }
     
     @objc func addButtonAction() {
+        vitaminBasicDataList.append(VitaminBasicDataModel(name: vitaminNameTextFieldText, perday: Int(perdayTextFieldText)!))
+        print(vitaminBasicDataList)
+        print(ingredientsCellDataList)
+        sendRequestWithJSONPayload() { success in
+            if success {
+                vitaminBasicDataListInit()
+                ingredientsCellDataListInit()
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print("실패...")
+            }
+        }
+    }
         
-        dismiss(animated: true, completion: nil)
+    func repeatDaysButtonAction() {
+        print("사용자가 영양제 성분 Cell을 클릭하였습니다.")
+        let rootViewController = VitaminIngredientsViewController()
+        show(rootViewController, sender: nil)
     }
 }
 
@@ -165,11 +208,16 @@ extension VitaminAddViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch indexPath.row {
         case 0:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: false, ingredientsTextLabelBool: true, dosageTextFieldBool: true, greaterthanBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: false, ingredientsTextLabelBool: true, dosageTextFieldBool: true, greaterthanBool: true, unitLabelBool: true, pillLabelBool: true)
+            cell.nameTextField.text = vitaminNameTextFieldText
         case 1:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, ingredientsTextLabelBool: false, dosageTextFieldBool: true, greaterthanBool: false)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, ingredientsTextLabelBool: false, dosageTextFieldBool: true, greaterthanBool: false, unitLabelBool: true, pillLabelBool: true)
+            if !ingredientsCellDataList.isEmpty {
+                cell.ingredientsTextLabel.text = ingredientsNameConcatenated()
+            }
         case 2:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, ingredientsTextLabelBool: true, dosageTextFieldBool: false, greaterthanBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, ingredientsTextLabelBool: true, dosageTextFieldBool: false, greaterthanBool: true, unitLabelBool: false, pillLabelBool: false)
+            cell.dosageTextField.text = perdayTextFieldText
         default:
             break
         }
@@ -184,6 +232,14 @@ extension VitaminAddViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? VitaminAddViewTableCell else {
+            return
+        }
+        
+        if indexPath.row == 1 {
+            repeatDaysButtonAction()
+        }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
