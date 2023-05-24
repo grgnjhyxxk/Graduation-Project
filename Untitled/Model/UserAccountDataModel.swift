@@ -8,9 +8,6 @@
 import UIKit
 
 var userAccountDataList = [UserAccountDataModel]()
-var userDataList = [UserDataAtServer]()
-var userProfileImageList = [UserProfileImage]()
-var userEditProfileDList = [UserEditProfileData]()
 
 struct UserAccountDataModel {
     var userid: String
@@ -25,6 +22,15 @@ struct User {
     var userGender: Bool
 }
 
+func userAccountDataListInit() {
+    userAccountDataList.removeAll()
+    print("userAccountDataList 초기화")
+}
+
+// -----------------------------------------------------------------
+
+var userDataList = [UserDataAtServer]()
+
 struct UserDataAtServer: Codable {
     var seq: Int
     var id : String
@@ -34,9 +40,27 @@ struct UserDataAtServer: Codable {
     var serial_id: Int
 }
 
+func userDataListInit() {
+    userDataList.removeAll()
+    print("userDataList 초기화")
+}
+
+// -----------------------------------------------------------------
+
+var userProfileImageList = [UserProfileImage]()
+
 struct UserProfileImage {
     var image: UIImage
 }
+
+func userProfileImageListInit() {
+    userProfileImageList.removeAll()
+    print("userProfileImageList 초기화")
+}
+
+// -----------------------------------------------------------------
+
+var userEditProfileDList = [UserEditProfileData]()
 
 struct UserEditProfileData {
     var name: String
@@ -45,3 +69,7 @@ struct UserEditProfileData {
     var image: UIImage
 }
 
+func userEditProfileDListInit() {
+    userEditProfileDList.removeAll()
+    print("userEditProfileDList 초기화")
+}
