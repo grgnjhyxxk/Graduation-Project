@@ -110,6 +110,22 @@ class CommonView: UIView {
         return button
     }
     
+    func createButton(text: String) -> UIButton {
+        let button = UIButton()
+        
+        button.backgroundColor = UIColor.appSubBackgroundColor
+        button.setTitle("\(text)", for: .normal)
+        button.setTitleColor(UIColor.appTextColor, for: .normal)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.5)
+        button.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 16)
+        button.titleLabel?.textAlignment = .center
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 0.5
+        button.layer.borderColor = UIColor.black.withAlphaComponent(0.07).cgColor
+        
+        return button
+    }
+    
     func birthToDate(birth: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
