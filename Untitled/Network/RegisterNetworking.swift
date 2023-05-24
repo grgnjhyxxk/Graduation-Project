@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-func sendUserDataToServer(userData: Array<UserAccountDataModel>) {
+func sendUserDataToServer(userData: Array<UserAccountDataModel>, completion: @escaping (Bool) -> Void) {
     showLoadingScreen()
     
     guard let lastUserData = userData.last else {
@@ -45,12 +45,15 @@ func sendUserDataToServer(userData: Array<UserAccountDataModel>) {
                 hideLoadingScreen()
                 if response.response?.statusCode == 200 {
                     print("등록 성공!")
+                    completion(true)
                 } else {
                     print("등록 실패..")
+                    completion(false)
                 }
             }
         } else {
             print("회원등록 연결 실패")
+            completion(false)
             networkErrorHandlingAlert()
             hideLoadingScreen()
         }

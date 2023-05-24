@@ -86,7 +86,6 @@ func profileEditDataPost(completion: @escaping (Bool) -> Void) {
                             userDataList[0].birth = birth
                             userDataList[0].gender = gender
                             userProfileImageList[0].image = userEditProfileDList[0].image
-                            userEditProfileDList.removeAll()
                             hideLoadingScreen()
                             completion(true)
                         } else {
