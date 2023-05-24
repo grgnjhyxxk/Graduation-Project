@@ -121,9 +121,15 @@ class SerialNumberSetViewController: RegisterRootViewController {
         } else {
             let serialNumber = serialNumberSetTextField.text!.replacingOccurrences(of: "-", with: "")
             userAccountDataList[userAccountDataList.count - 1].serialNumber = Int(serialNumber)!
-            dismiss(animated: true)
             checkList()
-            sendUserDataToServer(userData: userAccountDataList)
+            sendUserDataToServer(userData: userAccountDataList) { success in
+                if success {
+                    self.dismiss(animated: true)
+                    userAccountDataListInit()
+                } else {
+                    
+                }
+            }
         }
     }
 }
