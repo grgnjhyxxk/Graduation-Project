@@ -9,7 +9,7 @@ import UIKit
 
 class RegisterView: UIView {
     
-    func mainTextLabel(setText: String) -> UIView {
+    func mainTextLabel(setText: String) -> UILabel {
         let label = UILabel()
         
         label.text = "\(setText)"
