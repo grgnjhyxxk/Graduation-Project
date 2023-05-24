@@ -118,11 +118,19 @@ class VitaminViewController: UIViewController {
         plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
     }
     
+//    @objc func plusButtonAction(_: UIButton) {
+//        let rootViewController = VitaminAddViewController()
+//        let navigationController = UINavigationController(rootViewController: rootViewController)
+//        vitaminBasicDataListInit()
+//        ingredientsCellDataListInit()
+//        present(navigationController, animated: true, completion: nil)
+//    }
+    
     @objc func plusButtonAction(_: UIButton) {
-        let rootViewController = VitaminAddViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-            
-        present(navigationController, animated: true, completion: nil)
+        let rootViewController = VitaminCaptureViewController()
+        let nvigationController = UINavigationController(rootViewController: rootViewController)
+        vitaminImageDataListInit()
+        present(nvigationController, animated: true)
     }
     
     @objc func toggleTheme(_ sender: UIButton) {
