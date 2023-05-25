@@ -66,7 +66,7 @@ install_framework()
     binary="${destination}/${basename}"
   elif [ -L "${binary}" ]; then
     echo "Destination binary is symlinked..."
-    dirname="$(dirname "${binary}")"
+    dirname="$(dirname -f "${binary}")"
     binary="${dirname}/$(readlink "${binary}")"
   fi
 
