@@ -20,7 +20,7 @@ class UserViewContoller: UIViewController {
     let userPofileImage = CommonView().userProfileImageView()
 
     let mainTitleLabel = CommonView().commonTextLabel(labelText: "", size: 20)
-    let pillViewTtileLabel = CommonView().commonTextLabel(labelText: "내 영양제", size: 20)
+    let pillViewTtileLabel = CommonView().commonTextLabel(labelText: "이 부분은 삭제할거임.", size: 20)
 //    let serialNumber = CommonView().commonTextLabel(labelText: "", size: <#T##CGFloat#>)
 
     let profileEditButton = InitView().serviceButton(text: "프로필 수정")
@@ -151,8 +151,7 @@ class UserViewContoller: UIViewController {
     }
     
     @objc func plusButtonAction(_ sender: UIButton) {
-//        let seq = userDataList[0].seq
-//        getVitaminInformation(seq: seq)
+ 
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
