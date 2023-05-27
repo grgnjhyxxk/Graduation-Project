@@ -12,7 +12,7 @@ class VitaminViewController: UIViewController {
     
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
-
+    
     let AppIconImageView = HomeView().AppIconImageView()
     
     let titleTextButton = CommonView().titleTextButton(titleText: "영양관리")
@@ -24,6 +24,7 @@ class VitaminViewController: UIViewController {
     let mainTextLabel = CommonView().commonTextLabel(labelText: "영양관리로\n쉽고 편하게 관리하세요.", size: 25)
 
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
+    let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class VitaminViewController: UIViewController {
         addOnCommonUiView()
         viewLayout()
         commonUiViewLayout()
+        tableViewLayout()
         actionFunction()
     }
     
@@ -56,7 +58,7 @@ class VitaminViewController: UIViewController {
             make.trailing.equalTo(userProfileButton.snp.leading).offset(-10)
             make.size.equalTo(CGSize(width: 36, height: 36))
         }
-        
+
         titleTextButton.snp.makeConstraints { make in
             make.top.equalTo(userProfileButton).offset(-5)
             make.leading.equalTo(view).offset(15)
@@ -100,16 +102,33 @@ class VitaminViewController: UIViewController {
             make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(commonUiView).offset(-83)
+            make.leading.equalTo(commonUiView).offset(10)
+            make.trailing.equalTo(commonUiView).offset(-10)
+        }
+        
         mainTextLabel.attributedLabel(text: "영양관리")
         subTextLabel.textColor = UIColor.subTextColor
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [subTextLabel, mainTextLabel, plusButton]
+        commonViewList = [subTextLabel, mainTextLabel, plusButton, tableView]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
         }
+    }
+    
+    private func tableViewLayout() {
+        tableView.register(VitaminViewTableCell.self, forCellReuseIdentifier: "VitaminViewTableCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.clear
+        tableView.rowHeight = 93
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        tableView.layer.cornerRadius = 15
     }
     
     private func actionFunction() {
@@ -134,7 +153,21 @@ class VitaminViewController: UIViewController {
     }
     
     @objc func toggleTheme(_ sender: UIButton) {
-        if #available(iOS 13.0, *) {
+        if #available(iOS 15.0, *) {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                if windowScene.windows.first?.traitCollection.userInterfaceStyle == .dark {
+                    windowScene.windows.forEach { window in
+                        window.overrideUserInterfaceStyle = .light
+                        sender.setImage(UIImage(systemName: "sun.max.circle.fill"), for: .normal)
+                    }
+                } else {
+                    windowScene.windows.forEach { window in
+                        window.overrideUserInterfaceStyle = .dark
+                        sender.setImage(UIImage(systemName: "moon.circle.fill"), for: .normal)
+                    }
+                }
+            }
+        } else {
             if self.traitCollection.userInterfaceStyle == .dark {
                 UIApplication.shared.windows.forEach { window in
                     window.overrideUserInterfaceStyle = .light
@@ -156,5 +189,80 @@ class VitaminViewController: UIViewController {
         navigationController.modalPresentationStyle = .fullScreen
         
         present(navigationController, animated: true)
+    }
+}
+
+extension VitaminViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userVitaminDataList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VitaminViewTableCell", for: indexPath) as! VitaminViewTableCell
+        
+        cell.clipsToBounds = true
+        cell.backgroundColor = UIColor.clear
+        cell.layer.cornerRadius = 10
+        
+        let image = userProfileImageList[0].image
+        let prod_name = userVitaminDataList[indexPath.row].prod_name
+    
+        cell.vitaminImage.image = image
+        cell.vitaminNameLabel.text = prod_name
+        
+        if vitaminNames[indexPath.row].count == 3 {
+            let ingredients_1 = vitaminNames[indexPath.row][0]
+            let ingredients_2 = vitaminNames[indexPath.row][1]
+            let ingredients_3 = vitaminNames[indexPath.row][2]
+
+            cell.firstIngredientsLabelButton.setTitle(ingredients_1, for: .normal)
+            cell.secondIngredientsLabelButton.setTitle(ingredients_2, for: .normal)
+            cell.thirdIngredientsLabelButton.setTitle(ingredients_3, for: .normal)
+        } else if vitaminNames[indexPath.row].count == 2 {
+            let ingredients_1 = vitaminNames[indexPath.row][0]
+            let ingredients_2 = vitaminNames[indexPath.row][1]
+
+            cell.firstIngredientsLabelButton.setTitle(ingredients_1, for: .normal)
+            cell.secondIngredientsLabelButton.setTitle(ingredients_2, for: .normal)
+            
+            cell.thirdIngredientsLabelButton.isHidden = true
+        } else if vitaminNames[indexPath.row].count == 1 {
+            let ingredients_1 = vitaminNames[indexPath.row][0]
+
+            cell.firstIngredientsLabelButton.setTitle(ingredients_1, for: .normal)
+            
+            cell.secondIngredientsLabelButton.isHidden = true
+            cell.thirdIngredientsLabelButton.isHidden = true
+        }
+        
+        if vitaminNames[indexPath.row].count > 3 {
+            let count = vitaminNames[indexPath.row].count - 3
+            cell.overCountLabel.text = "+ \(count)"
+            cell.overCountLabel.attributedLabel(text: "\(count)")
+            cell.overCountLabel.font = UIFont(name: "NotoSansKR-Regular", size: 10)
+        }
+        
+        cell.overCountLabel.snp.makeConstraints { make in
+            if !cell.thirdIngredientsLabelButton.isHidden {
+                make.top.equalTo(cell.thirdIngredientsLabelButton)
+                make.leading.equalTo(cell.thirdIngredientsLabelButton.snp.trailing).offset(5)
+            } else if !cell.secondIngredientsLabelButton.isHidden {
+                make.top.equalTo(cell.secondIngredientsLabelButton)
+                make.leading.equalTo(cell.secondIngredientsLabelButton.snp.trailing).offset(5)
+            } else {
+                make.top.equalTo(cell.firstIngredientsLabelButton)
+                make.leading.equalTo(cell.firstIngredientsLabelButton.snp.trailing).offset(5)
+            }
+            
+            make.width.equalTo(cell.overCountLabel.intrinsicContentSize.width)
+            make.height.equalTo(20)
+        }
+
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
