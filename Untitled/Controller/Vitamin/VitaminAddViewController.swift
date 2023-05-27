@@ -232,10 +232,6 @@ extension VitaminAddViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? VitaminAddViewTableCell else {
-            return
-        }
-        
         if indexPath.row == 1 {
             repeatDaysButtonAction()
         }
