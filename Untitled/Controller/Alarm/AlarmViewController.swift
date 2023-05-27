@@ -215,7 +215,21 @@ class AlarmViewController: UIViewController {
     }
     
     @objc func toggleTheme(_ sender: UIButton) {
-        if #available(iOS 13.0, *) {
+        if #available(iOS 15.0, *) {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                if windowScene.windows.first?.traitCollection.userInterfaceStyle == .dark {
+                    windowScene.windows.forEach { window in
+                        window.overrideUserInterfaceStyle = .light
+                        sender.setImage(UIImage(systemName: "sun.max.circle.fill"), for: .normal)
+                    }
+                } else {
+                    windowScene.windows.forEach { window in
+                        window.overrideUserInterfaceStyle = .dark
+                        sender.setImage(UIImage(systemName: "moon.circle.fill"), for: .normal)
+                    }
+                }
+            }
+        } else {
             if self.traitCollection.userInterfaceStyle == .dark {
                 UIApplication.shared.windows.forEach { window in
                     window.overrideUserInterfaceStyle = .light
