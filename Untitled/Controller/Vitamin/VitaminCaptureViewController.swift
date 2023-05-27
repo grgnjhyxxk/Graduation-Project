@@ -19,7 +19,8 @@ class VitaminCaptureViewController: UIViewController {
     let subTextLabel = CommonView().commonTextLabel(labelText: "촬영 시에는 정확한 정보제공을 위해 밝은 곳에서\n초점을 맞추어 촬영해주세요!", size: 12)
     let vitaminImageEditButton = InitView().serviceButton(text: "영양제 사진변경")
     let plusButton = AlarmView().plusButton()
-
+    let serviceButton = InitView().serviceButton(text: "수동으로 추가하기")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubview()
@@ -66,19 +67,49 @@ class VitaminCaptureViewController: UIViewController {
             make.size.equalTo(CGSize(width: 50, height: 50))
         }
         
+        serviceButton.snp.makeConstraints { make in
+            make.top.equalTo(view.snp.bottom).offset(-57.8)
+            make.centerX.equalTo(view)
+        }
+        
+        let colorAnimation1 = CABasicAnimation(keyPath: "borderColor")
+        colorAnimation1.fromValue = UIColor.appPointColor?.cgColor
+        colorAnimation1.toValue = UIColor.appSubBackgroundColor?.cgColor
+        colorAnimation1.duration = 2.0
+        colorAnimation1.autoreverses = true
+        colorAnimation1.repeatCount = .infinity
+
+        let colorAnimation2 = CABasicAnimation(keyPath: "borderColor")
+        colorAnimation2.fromValue = UIColor.appSubBackgroundColor?.cgColor
+        colorAnimation2.toValue = UIColor.appMainBackgroundColor?.cgColor
+        colorAnimation2.duration = 2.0
+        colorAnimation2.autoreverses = true
+        colorAnimation2.repeatCount = .infinity
+
+        let colorAnimation3 = CABasicAnimation(keyPath: "borderColor")
+        colorAnimation3.fromValue = UIColor.appMainBackgroundColor?.cgColor
+        colorAnimation3.toValue = UIColor.appPointColor?.cgColor
+        colorAnimation3.duration = 2.0
+        colorAnimation3.autoreverses = true
+        colorAnimation3.repeatCount = .infinity
+        
         vitaminImage.image = UIImage()
         vitaminImage.layer.cornerRadius = 175
         vitaminImage.layer.borderWidth = 2
-        vitaminImage.layer.borderColor = UIColor.appPointColor?.cgColor
+        vitaminImage.layer.borderColor = UIColor.red.cgColor
+        vitaminImage.layer.add(colorAnimation1, forKey: "colorAnimation1")
+        vitaminImage.layer.add(colorAnimation2, forKey: "colorAnimation2")
+        vitaminImage.layer.add(colorAnimation3, forKey: "colorAnimation3")
         subTextLabel.textColor = UIColor.subTextColor
         subTextLabel.attributedLabel(text: "촬영 시")
         subTextLabel.font = UIFont(name: "NotoSansKR-Regular", size: 11)
-
+        serviceButton.setTitleColor(UIColor.subTextColor, for: .normal)
+        
 //        vitaminImageEditButton.titleLabel?.font = UIFont(name: "NotoSansKR-Bold", size: 14)
     }
     
     private func addSubview() {
-        uiViewList = [subTextLabel, mainTextLabel, vitaminImage, plusButton, vitaminImageEditButton]
+        uiViewList = [subTextLabel, mainTextLabel, vitaminImage, plusButton, vitaminImageEditButton, serviceButton]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -125,6 +156,7 @@ class VitaminCaptureViewController: UIViewController {
     private func actionFunction() {
 //        vitaminImageEditButton.addTarget(self, action: #selector(vitaminImageEditButtonTapped), for: .touchUpInside)
         plusButton.addTarget(self, action: #selector(vitaminImageEditButtonTapped), for: .touchUpInside)
+        serviceButton.addTarget(self, action: #selector(serviceButtonAction), for: .touchUpInside)
     }
     
     @objc func vitaminImageEditButtonTapped() {
@@ -147,6 +179,12 @@ class VitaminCaptureViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    @objc func serviceButtonAction(_ sender: UIButton) {
+        let rootViewController = VitaminAddViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        present(navigationController, animated: true)
     }
     
     @objc func cancelButtonAction() {
