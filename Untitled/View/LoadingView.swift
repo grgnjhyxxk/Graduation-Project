@@ -8,7 +8,7 @@
 import UIKit
 
 var loadingView: UIView?
-
+//
 //func showLoadingScreen() {
 //    let screenSize = UIScreen.main.bounds.size
 //    loadingView = UIView(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height))
@@ -20,11 +20,11 @@ var loadingView: UIView?
 //
 //    loadingView?.addSubview(activityIndicator)
 //
-//    guard let keyWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else {
-//        return
+//    if let keyWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+//        keyWindow.addSubview(loadingView!)
+//    } else if let mainWindow = UIApplication.shared.windows.first {
+//        mainWindow.addSubview(loadingView!)
 //    }
-//
-//    keyWindow.addSubview(loadingView!)
 //}
 
 func showLoadingScreen() {
@@ -37,13 +37,16 @@ func showLoadingScreen() {
     activityIndicator.startAnimating()
     
     loadingView?.addSubview(activityIndicator)
-        
-    if let keyWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
-        keyWindow.addSubview(loadingView!)
-    } else if let mainWindow = UIApplication.shared.windows.first {
-        mainWindow.addSubview(loadingView!)
+    
+    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+        if let keyWindow = windowScene.windows.first(where: { $0.isKeyWindow }) {
+            keyWindow.addSubview(loadingView!)
+        } else if let mainWindow = windowScene.windows.first {
+            mainWindow.addSubview(loadingView!)
+        }
     }
 }
+
 
 
 func hideLoadingScreen() {
