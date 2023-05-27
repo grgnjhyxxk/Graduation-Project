@@ -12,7 +12,7 @@ func getUserProfileImage(seq: Int, completion: @escaping (Bool) -> Void) {
     DispatchQueue.main.async {
         userProfileImageList.removeAll()
         showLoadingScreen()
-        let imageUrl = "http://180.83.19.43:8001/showprofile?profile_img=\(seq)"
+        let imageUrl = "\(serverURL)/showprofile?profile_img=\(seq)"
         
         AF.request(imageUrl).responseData { response in
             switch response.result {
@@ -20,15 +20,16 @@ func getUserProfileImage(seq: Int, completion: @escaping (Bool) -> Void) {
                 if let image = UIImage(data: imageData) {
                     userProfileImageList.append(UserProfileImage(image: image))
                     print("이미지 가져오기 성공")
+                    hideLoadingScreen()
                     completion(true)
                 }
             case .failure(let error):
                 userProfileImageList.append(UserProfileImage(image: UIImage()))
                 print("이미지 가져오기 실패: \(error)")
+                hideLoadingScreen()
                 networkErrorHandlingAlert()
                 completion(false)
             }
         }
-        hideLoadingScreen()
     }
 }
