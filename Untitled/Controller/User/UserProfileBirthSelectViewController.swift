@@ -79,14 +79,25 @@ class UserProfileBirthSelectViewController: UserProfileNameSelectViewController 
     }
     
     @objc override func saveButtonAction(_ sender: UIBarButtonItem) {
-        let originalString = textField.text
-        let components = originalString?.components(separatedBy: CharacterSet.decimalDigits.inverted)
-        let filteredString = components?.joined()
-        let birth = Int(filteredString ?? "")
         
-        userEditProfileDList[0].birth = birth!
-        print("저장 \(String(describing: birth))")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "BirthEdited"), object: nil)
-        navigationController?.popViewController(animated: true)
+        if textField.text != "" {
+            let originalString = textField.text
+            let components = originalString?.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            let filteredString = components?.joined()
+            let birth = Int(filteredString ?? "")
+            
+            if birth != userDataList[0].birth {
+                userEditProfileDList[0].birth = birth!
+                print("저장 \(String(describing: birth))")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "BirthEdited"), object: nil)
+                navigationController?.popViewController(animated: true)
+            } else {
+                warningLabel.text = "변경할 생년월일이 기존 생년월일과 같습니다."
+                warningLabel.isHidden = false
+            }
+        } else {
+            warningLabel.text = "변경할 생년월일을 입력하셔야 합니다."
+            warningLabel.isHidden = false
+        }
     }
 }

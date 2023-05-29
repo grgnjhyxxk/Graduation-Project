@@ -82,7 +82,15 @@ class UserProfileGenderSelectViewController: UserProfileNameSelectViewController
     }
     
     private func genderButtonInit() {
-        let gender = userEditProfileDList[0].gender
+        var gender = Int()
+        
+        if userEditProfileDList.isEmpty {
+            gender = userDataList[0].gender
+        } else {
+            gender = userEditProfileDList[0].gender
+        }
+        
+        genderSelectNumber = gender
         
         if gender == 1 {
             maleButton.isSelected = true

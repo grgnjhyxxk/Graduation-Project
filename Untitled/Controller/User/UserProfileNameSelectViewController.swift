@@ -15,7 +15,8 @@ class UserProfileNameSelectViewController: UIViewController {
     let textField = RegisterView().textField(setPlaceholder: "")
     
     let titleLabel = CommonView().commonTextLabel(labelText: "", size: 12)
-    
+    let warningLabel = RegisterView().warningLabel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubview()
@@ -40,6 +41,11 @@ class UserProfileNameSelectViewController: UIViewController {
             make.height.equalTo(40)
         }
        
+        warningLabel.snp.makeConstraints { make in
+            make.top.equalTo(textField.snp.bottom).offset(5)
+            make.leading.equalTo(textField)
+        }
+        
         titleLabel.textColor = UIColor.systemGray
         titleLabel.text = "변경할 이름을 입력해주세요"
         titleLabel.font = UIFont(name: "Roboto-Regular", size: 14)
@@ -48,7 +54,7 @@ class UserProfileNameSelectViewController: UIViewController {
     }
     
     private func addSubview() {
-        uiViewList = [textField, titleLabel]
+        uiViewList = [textField, titleLabel, warningLabel]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -80,10 +86,20 @@ class UserProfileNameSelectViewController: UIViewController {
     }
     
     @objc func saveButtonAction(_ sender: UIBarButtonItem) {
-        userEditProfileDList[0].name = textField.text!
-        print("저장 \(textField.text!)")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NameEdited"), object: nil)
-        navigationController?.popViewController(animated: true)
+        if textField.text != "" && textField.text != userDataList[0].name {
+            userEditProfileDList[0].name = textField.text!
+            print("저장 \(textField.text!)")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NameEdited"), object: nil)
+            navigationController?.popViewController(animated: true)
+        } else {
+            if textField.text == "" {
+                warningLabel.text = "변경할 이름을 입력하셔야 합니다."
+                warningLabel.isHidden = false
+            } else if textField.text == userDataList[0].name {
+                warningLabel.text = "변경할 이름이 기존 이름과 같습니다."
+                warningLabel.isHidden = false
+            }
+        }
     }
 }
 

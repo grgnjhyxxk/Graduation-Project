@@ -186,6 +186,9 @@ class UserViewContoller: UIViewController {
         print(userDataList)
         userDataListInit()
         hideLoadingScreen()
+        userVitaminDataList.removeAll()
+        vitaminNames.removeAll()
+        vitaminValues.removeAll()
     }
 
 }
