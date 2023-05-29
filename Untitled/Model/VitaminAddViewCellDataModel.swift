@@ -67,9 +67,9 @@ func vitaminImageDataListInit() {
 var userVitaminDataList = [UserVitaminData]()
 
 struct UserVitaminData {
-    let prod_name: String
-    let intake_per_day: Int
-    let vitamin: [Vitamin]
+    var prod_name: String
+    var intake_per_day: Int
+    var vitamin: [Vitamin]
 }
 
 struct Vitamin {
