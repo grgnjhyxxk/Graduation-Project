@@ -20,6 +20,8 @@ class VitaminAddViewController: UIViewController {
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
     
+    let warningLabel = RegisterView().warningLabel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubview()
@@ -61,14 +63,20 @@ class VitaminAddViewController: UIViewController {
             make.height.equalTo(134.82)
         }
         
+        warningLabel.snp.makeConstraints { make in
+            make.top.equalTo(commonUiView.snp.bottom).offset(5)
+            make.leading.equalTo(commonUiView)
+        }
+        
         vitaminImage.image = UIImage()
         vitaminImage.layer.cornerRadius = 42
         
         vitaminImageEditButton.titleLabel?.font = UIFont(name: "NotoSansKR-Bold", size: 14)
+        warningLabel.isHidden = true
     }
     
     private func addSubview() {
-        uiViewList = [vitaminImage, vitaminImageEditButton, commonUiView]
+        uiViewList = [vitaminImage, vitaminImageEditButton, commonUiView, warningLabel]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -171,17 +179,41 @@ class VitaminAddViewController: UIViewController {
     }
     
     @objc func addButtonAction() {
-        vitaminBasicDataList.append(VitaminBasicDataModel(name: vitaminNameTextFieldText, perday: Int(perdayTextFieldText)!))
-        print(vitaminBasicDataList)
-        print(ingredientsCellDataList)
-        sendRequestWithJSONPayload() { success in
-            if success {
-                vitaminBasicDataListInit()
-                ingredientsCellDataListInit()
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                print("실패...")
+        if vitaminNameTextFieldText != "" && perdayTextFieldText != "" && !ingredientsCellDataList.isEmpty {
+            vitaminBasicDataList.append(VitaminBasicDataModel(name: vitaminNameTextFieldText, perday: Int(perdayTextFieldText)!))
+            print(vitaminBasicDataList)
+            print(ingredientsCellDataList)
+            sendRequestWithJSONPayload() { success in
+                if success {
+                    vitaminBasicDataListInit()
+                    ingredientsCellDataListInit()
+                    userVitaminDataList.removeAll()
+                    vitaminNames.removeAll()
+                    vitaminValues.removeAll()
+                    let seq = userDataList[0].seq
+                    getVitaminInformation(seq: seq) { success in
+                        if success {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "VitaminAddedNotification"), object: nil)
+                            self.dismiss(animated: true, completion: nil)
+                        } else {
+                            print("실패...")
+                        }
+                    }
+                } else {
+                    print("실패...")
+                }
             }
+        } else {
+            if vitaminNameTextFieldText == "" {
+                warningLabel.text = "영양제 이름을 입력하셔야 합니다."
+            } else if perdayTextFieldText == "" {
+                warningLabel.text = "섭취량을 입력하셔야 합니다."
+            } else if vitaminImage.image == nil {
+                warningLabel.text = "영양제 이미지을 선택하셔야 합니다."
+            } else if ingredientsCellDataList.count == 0 {
+                warningLabel.text = "영양제 성분을 추가하셔야 합니다."
+            }
+            warningLabel.isHidden = false
         }
     }
         

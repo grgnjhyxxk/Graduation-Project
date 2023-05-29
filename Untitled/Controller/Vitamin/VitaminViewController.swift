@@ -35,11 +35,27 @@ class VitaminViewController: UIViewController {
         commonUiViewLayout()
         tableViewLayout()
         actionFunction()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleVitaminAddedNotification), name: NSNotification.Name(rawValue: "VitaminAddedNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleVitaminDeleteNotification), name: NSNotification.Name(rawValue: "VitaminDeletedNotification"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let image = userProfileImageList[0].image
         userProfileButton.setImage(image, for: .normal)
+    }
+    
+    @objc func handleVitaminAddedNotification(_ noti: Notification) {
+        OperationQueue.main.addOperation {
+            print("영양제가 정상적으로 등록되었습니다.")
+            self.tableView.reloadData()
+        }
+    }
+    
+    @objc func handleVitaminDeleteNotification(_ noti: Notification) {
+        OperationQueue.main.addOperation {
+            print("영양제가 정상적으로 삭제되었습니다.")
+            self.tableView.reloadData()
+        }
     }
     
     private func viewLayout() {
@@ -137,20 +153,20 @@ class VitaminViewController: UIViewController {
         plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
     }
     
-//    @objc func plusButtonAction(_: UIButton) {
-//        let rootViewController = VitaminAddViewController()
-//        let navigationController = UINavigationController(rootViewController: rootViewController)
-//        vitaminBasicDataListInit()
-//        ingredientsCellDataListInit()
-//        present(navigationController, animated: true, completion: nil)
-//    }
-    
     @objc func plusButtonAction(_: UIButton) {
-        let rootViewController = VitaminCaptureViewController()
-        let nvigationController = UINavigationController(rootViewController: rootViewController)
-        vitaminImageDataListInit()
-        present(nvigationController, animated: true)
+        let rootViewController = VitaminAddViewController()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        vitaminBasicDataListInit()
+        ingredientsCellDataListInit()
+        present(navigationController, animated: true, completion: nil)
     }
+    
+//    @objc func plusButtonAction(_: UIButton) {
+//        let rootViewController = VitaminCaptureViewController()
+//        let nvigationController = UINavigationController(rootViewController: rootViewController)
+//        vitaminImageDataListInit()
+//        present(nvigationController, animated: true)
+//    }
     
     @objc func toggleTheme(_ sender: UIButton) {
         if #available(iOS 15.0, *) {
@@ -241,6 +257,8 @@ extension VitaminViewController: UITableViewDataSource, UITableViewDelegate {
             cell.overCountLabel.text = "+ \(count)"
             cell.overCountLabel.attributedLabel(text: "\(count)")
             cell.overCountLabel.font = UIFont(name: "NotoSansKR-Regular", size: 10)
+        } else {
+            cell.overCountLabel.isHidden = true
         }
         
         cell.overCountLabel.snp.makeConstraints { make in
@@ -264,5 +282,12 @@ extension VitaminViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let editAlarmViewController = VitaminEditViewController()
+        let navigationController = UINavigationController(rootViewController: editAlarmViewController)
+        
+        editAlarmViewController.vitaminIndex = indexPath.row
+        
+        present(navigationController, animated: true, completion: nil)
     }
 }
