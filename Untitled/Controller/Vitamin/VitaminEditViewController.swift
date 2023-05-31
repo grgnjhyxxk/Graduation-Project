@@ -17,7 +17,7 @@ class VitaminEditViewController: UIViewController {
     
     let vitaminImage = CommonView().userProfileImageView()
     
-    let deleteButton = CommonView().deleteButton(text: "알람 삭제")
+    let deleteButton = CommonView().deleteButton(text: "영양제 삭제")
 
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
@@ -65,7 +65,9 @@ class VitaminEditViewController: UIViewController {
             make.height.equalTo(45)
         }
         
-        vitaminImage.image = UIImage()
+        let image = UIImage(data: userVitaminDataList[vitaminIndex].image)
+//        vitaminImage.image = UIImage()
+        vitaminImage.image = image
         vitaminImage.layer.cornerRadius = 42
     }
     

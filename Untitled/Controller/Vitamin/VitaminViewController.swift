@@ -158,6 +158,7 @@ class VitaminViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
         vitaminBasicDataListInit()
         ingredientsCellDataListInit()
+        vitaminImageDataListInit()
         present(navigationController, animated: true, completion: nil)
     }
     
@@ -221,11 +222,27 @@ extension VitaminViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = UIColor.clear
         cell.layer.cornerRadius = 10
         
-        let image = userProfileImageList[0].image
+//        var image = UIImage()
+//
+//        if vitaminImageDataList.count != 0 {
+//            image = vitaminImageDataList[indexPath.row].image
+//        } else {
+//            image = UIImage()
+//        }
+        
+        let image = UIImage(data: userVitaminDataList[indexPath.row].image)
         let prod_name = userVitaminDataList[indexPath.row].prod_name
-    
+        let taken = userVitaminDataList[indexPath.row].taken
+        
+//        cell.vitaminImage.image = image
         cell.vitaminImage.image = image
         cell.vitaminNameLabel.text = prod_name
+        
+        if taken == 1 {
+            cell.checkButton.tintColor = UIColor.appPointColor
+        } else if taken == 2 {
+            cell.checkButton.tintColor = UIColor.systemRed
+        }
         
         if vitaminNames[indexPath.row].count == 3 {
             let ingredients_1 = vitaminNames[indexPath.row][0]

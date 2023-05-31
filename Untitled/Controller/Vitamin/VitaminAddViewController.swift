@@ -73,6 +73,7 @@ class VitaminAddViewController: UIViewController {
         
         vitaminImageEditButton.titleLabel?.font = UIFont(name: "NotoSansKR-Bold", size: 14)
         warningLabel.isHidden = true
+        vitaminImage.image = nil
     }
     
     private func addSubview() {
@@ -179,22 +180,32 @@ class VitaminAddViewController: UIViewController {
     }
     
     @objc func addButtonAction() {
-        if vitaminNameTextFieldText != "" && perdayTextFieldText != "" && !ingredientsCellDataList.isEmpty {
+        if vitaminNameTextFieldText != "" && perdayTextFieldText != "" && !ingredientsCellDataList.isEmpty && vitaminImage.image != nil {
+            
             vitaminBasicDataList.append(VitaminBasicDataModel(name: vitaminNameTextFieldText, perday: Int(perdayTextFieldText)!))
+            vitaminImageDataList.append(VitaminImageDataModel(image: vitaminImage.image!))
+            
             print(vitaminBasicDataList)
             print(ingredientsCellDataList)
-            sendRequestWithJSONPayload() { success in
+            
+            vitaminImageDataPost() { success in
                 if success {
-                    vitaminBasicDataListInit()
-                    ingredientsCellDataListInit()
-                    userVitaminDataList.removeAll()
-                    vitaminNames.removeAll()
-                    vitaminValues.removeAll()
-                    let seq = userDataList[0].seq
-                    getVitaminInformation(seq: seq) { success in
+                    sendRequestWithJSONPayload() { success in
                         if success {
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "VitaminAddedNotification"), object: nil)
-                            self.dismiss(animated: true, completion: nil)
+                            vitaminBasicDataListInit()
+                            ingredientsCellDataListInit()
+                            userVitaminDataList.removeAll()
+                            vitaminNames.removeAll()
+                            vitaminValues.removeAll()
+                            let seq = userDataList[0].seq
+                            getVitaminInformation(seq: seq) { success in
+                                if success {
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "VitaminAddedNotification"), object: nil)
+                                    self.dismiss(animated: true, completion: nil)
+                                } else {
+                                    print("실패...")
+                                }
+                            }
                         } else {
                             print("실패...")
                         }
