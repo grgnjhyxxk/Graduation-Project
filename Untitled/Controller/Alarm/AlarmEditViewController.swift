@@ -28,7 +28,7 @@ class AlarmEditViewController: AlarmAddViewController {
         view.addSubview(deleteButton)
 
         deleteButton.snp.makeConstraints { make in
-            make.top.equalTo(commonUiView.snp.bottom).offset(30)
+            make.top.equalTo(warningLabel.snp.bottom).offset(25)
             make.leading.equalTo(commonUiView)
             make.trailing.equalTo(commonUiView)
             make.height.equalTo(45)
@@ -43,7 +43,7 @@ class AlarmEditViewController: AlarmAddViewController {
         dateFormatter.dateFormat = "HH:mm"
 
         // "10:30"와 같은 시간 문자열
-        let timeString = alarmViewCellDataList[alarmIndex].date
+        let timeString = userAlarmDataList[alarmIndex].date
         
         if let date = dateFormatter.date(from: timeString) {
             // `dateFormatter.date(from:)` 메소드를 사용하여 `timeString`을 `Date` 객체로 변환
@@ -77,25 +77,71 @@ class AlarmEditViewController: AlarmAddViewController {
             alarmTextFieldText = "알람"
         }
         
-        alarmViewCellDataList[alarmIndex] = (AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, user: "admin", repeatSwitchState: true))
+        var vitamin = String()
         
-        alarmTextFieldTextInit()
+        for i in 0..<alarmViewVitaminSelectDataList.count {
+            if alarmViewVitaminSelectDataList[i].checkState == true {
+                vitamin = userVitaminDataList[i].prod_name
+                break
+            }
+        }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: alarmIndex)
-        
-        dismiss(animated: true, completion: nil)
+        if numOfBox != String() && vitamin != String() {
+            let numOfBotInt = Int(numOfBox)
+            
+            alarmEditDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, numOfBox: numOfBotInt!, vitamins: vitamin))
+            alarmEditNetworking(index: alarmIndex) { success in
+                if success {
+                    let seq = userDataList[0].seq
+                    userAlarmDataList.removeAll()
+                    getAlarmData(seq: seq) { success in
+                        if success {
+                            alarmAddDataInit()
+                            alarmViewCellDataListInit()
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: self.alarmIndex)
+                            
+                            self.dismiss(animated: true, completion: nil)
+                        } else {
+                            print("알람 편집 실패")
+                        }
+                    }
+                } else {
+                    print("알람 편집 실패")
+                }
+            }
+        } else {
+            if numOfBox == String() {
+                warningLabel.text = "보관함 번호가 잘못되었거나 입력되지 않았습니다."
+            } else if vitamin == String() {
+                warningLabel.text = "영양제를 선택하지 않으셨습니다."
+            }
+            warningLabel.isHidden = false
+        }
     }
     
+    // AlarmEditedNotification
     @objc func deleteButtonAction(_ sender: UIButton) {
-        alarmViewCellDataList.remove(at: alarmIndex)
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmDeletedNotification"), object: alarmIndex)
+        alarmDelete(index: alarmIndex) { success in
+            if success {
+                userAlarmDataList.remove(at: self.alarmIndex)
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmDeletedNotification"), object: self.alarmIndex)
 
-        dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
+            } else  {
+                print("알람 삭제 실패")
+            }
+        }
     }
     
     override func repeatDaysButtonAction() {
         let rootViewController = RepeatDaysSelectViewController()
+        show(rootViewController, sender: nil)
+    }
+    
+    override func vitaminSelectButtonAction() {
+        print("사용자가 영양제선택 Cell을 클릭하였습니다.")
+        let rootViewController = AlarmVitaminSelectViewController()
         show(rootViewController, sender: nil)
     }
 }
@@ -115,16 +161,17 @@ extension AlarmEditViewController {
         
         switch indexPath.row {
         case 0:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: false, textFieldBool: true, userSelectLabelBool: true, selectVitaminLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: false, textFieldBool: true, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: true)
             let data = repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ").isEmpty ? "안함" : repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ")
             cell.repeatDaysLabel.text = repeatDaysDataContraction(data: data)
         case 1:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: false, userSelectLabelBool: true, selectVitaminLabelBool: true)
-            cell.textField.text = alarmViewCellDataList[alarmIndex].label
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: false, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: true)
+            cell.textField.text = userAlarmDataList[alarmIndex].label
         case 2:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, userSelectLabelBool: false, selectVitaminLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: true, boxLabelHeadBool: false, numOfBoxTextFieldBool: false, boxLabelTailBool: false, selectVitaminLabelBool: true)
+            cell.numOfBoxTextField.text = String(userAlarmDataList[alarmIndex].numOfBox)
         case 3:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, userSelectLabelBool: true, selectVitaminLabelBool: false)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: false)
         default:
             break
         }
@@ -147,6 +194,8 @@ extension AlarmEditViewController {
             repeatDaysButtonAction()
         case 1:
             cell.textField.becomeFirstResponder()
+        case 3:
+            vitaminSelectButtonAction()
         default:
             break
         }

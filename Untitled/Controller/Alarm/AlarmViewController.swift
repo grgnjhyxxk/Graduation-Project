@@ -50,11 +50,14 @@ class AlarmViewController: UIViewController {
     @objc func handleAlarmAddedNotification(_ noti: Notification) {
         OperationQueue.main.addOperation {
             guard let index = noti.object as? Int else { return }
+            let time = userAlarmDataList.last?.date
+            let timeToString = String(time!)
             
             print("알람이 정상적으로 등록되었습니다.")
             
             self.alarmListisEmptyOrNot()
             
+            scheduleVitaminAlarm(time: timeToString)
             self.printAlarmData(index: index)
             
             self.tableView.reloadData()
@@ -84,10 +87,10 @@ class AlarmViewController: UIViewController {
     }
     
     private func printAlarmData(index: Int) {
-        let alarm = alarmViewCellDataList[index]
-            
+//        let alarm = alarmViewCellDataList[index]
+
         // 정보를 출력합니다.
-        print("Added Alarm Information: \(alarm.date), \(alarm.repeatDays), \(alarm.label), \(alarm.user), \(alarm.repeatSwitchState)")
+//        print("Added Alarm Information: \(alarm.date), \(alarm.repeatDays), \(alarm.label), \(alarm.user), \(alarm.repeatSwitchState)")
     }
     
     private func viewLayout() {
@@ -196,7 +199,7 @@ class AlarmViewController: UIViewController {
     }
     
     private func alarmListisEmptyOrNot() {
-        if alarmViewCellDataList.isEmpty {
+        if userAlarmDataList.isEmpty {
             self.emptyTextLabel.isHidden = false
             self.emptyAlarmImageView.isHidden = false
         } else {
@@ -209,8 +212,11 @@ class AlarmViewController: UIViewController {
         let rootViewController = AlarmAddViewController()
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
+        let count = userVitaminDataList.count
+        alarmViewVitaminSelectDataList.removeAll()
+        alarmViewVitaminSelectDataListInitFunction(count: count)
         repeatDaysSelectListInitFunction()
-        
+
         present(navigationController, animated: true, completion: nil)
     }
     
@@ -257,7 +263,7 @@ class AlarmViewController: UIViewController {
 extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return alarmViewCellDataList.count
+        return userAlarmDataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -267,10 +273,12 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = UIColor.clear
         cell.layer.cornerRadius = 15
         
-        cell.titleLabel.text = alarmViewCellDataList[indexPath.row].label
-        cell.userNameLabel.text = String(alarmViewCellDataList[indexPath.row].user)
-        cell.timeLabel.text = alarmViewCellDataList[indexPath.row].date
-        cell.dateLabel.text = alarmViewCellDataList[indexPath.row].repeatDays
+        cell.titleLabel.text = userAlarmDataList[indexPath.row].label
+//        cell.userNameLabel.text = String(alarmViewCellDataList[indexPath.row].user)
+        cell.timeLabel.text = userAlarmDataList[indexPath.row].date
+        cell.dateLabel.text = userAlarmDataList[indexPath.row].repeatDays
+        let vitamin = userAlarmDataList[indexPath.row].vitamins
+        cell.vitaminLabelButton.setTitle(vitamin, for: .normal)
         
         return cell
     }
@@ -280,8 +288,19 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         
         let editAlarmViewController = AlarmEditViewController()
         let navigationController = UINavigationController(rootViewController: editAlarmViewController)
+        let count = userVitaminDataList.count
         
+        alarmViewVitaminSelectDataList.removeAll()
+        alarmEditDataList.removeAll()
+        alarmViewVitaminSelectDataListInitFunction(count: count)
         editAlarmViewController.alarmIndex = indexPath.row
+        
+        for i in 0..<userVitaminDataList.count {
+            if userVitaminDataList[i].prod_name == userAlarmDataList[indexPath.row].vitamins {
+                alarmViewVitaminSelectDataList[i].checkState = true
+                break
+            }
+        }
         
         present(navigationController, animated: true, completion: nil)
     }
