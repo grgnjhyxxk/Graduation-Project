@@ -51,9 +51,9 @@ class VitaminViewTableCell: UITableViewCell {
         let button = UIButton()
         
         button.setTitle("vitaminC", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
-        button.setTitleColor(UIColor.appTextColor, for: .normal)
-        button.backgroundColor = UIColor.appSubBackgroundColor
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.appPointColor
         button.layer.cornerRadius = 10
         
         return button
@@ -63,9 +63,9 @@ class VitaminViewTableCell: UITableViewCell {
         let button = UIButton()
         
         button.setTitle("vitaminB1", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
-        button.setTitleColor(UIColor.appTextColor, for: .normal)
-        button.backgroundColor = UIColor.appSubBackgroundColor
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.appPointColor
         button.layer.cornerRadius = 10
 
         return button
@@ -75,9 +75,9 @@ class VitaminViewTableCell: UITableViewCell {
         let button = UIButton()
         
         button.setTitle("vitaminB2", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
-        button.setTitleColor(UIColor.appTextColor, for: .normal)
-        button.backgroundColor = UIColor.appSubBackgroundColor
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.appPointColor
         button.layer.cornerRadius = 10
 
         return button
@@ -87,7 +87,7 @@ class VitaminViewTableCell: UITableViewCell {
         let button = UIButton()
         
         button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
-        button.tintColor = UIColor.systemRed
+        button.tintColor = UIColor.systemGray3
         button.contentHorizontalAlignment = .fill
         button.contentVerticalAlignment = .fill
         

@@ -54,14 +54,35 @@ class AlarmAddViewTableCell: UITableViewCell {
         return label
     }()
     
-    let userSelectLabel: UILabel = {
+    let boxLabelHead: UILabel = {
         let label = UILabel()
         
-        label.text = "사용자"
+        label.text = "보관함"
         label.textColor = UIColor.placeholderText
-//        label.font = UIFont.systemFont(ofSize: 17)
-        label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
+        label.textAlignment = .center
+
+        return label
+    }()
+    
+    let numOfBoxTextField: UITextField = {
+        let textField = UITextField()
         
+        textField.backgroundColor = UIColor.clear
+        textField.text = "1"
+        textField.textColor = UIColor.placeholderText
+        textField.textAlignment = .right
+        textField.font = UIFont(name: "NotoSansKR-Regular", size: 17)
+        
+        return textField
+    }()
+    
+    let boxLabelTail: UILabel = {
+        let label = UILabel()
+        
+        label.text = "번"
+        label.textColor = UIColor.placeholderText
+        label.textAlignment = .center
+
         return label
     }()
     
@@ -102,11 +123,19 @@ class AlarmAddViewTableCell: UITableViewCell {
             make.trailing.equalTo(-10)
         }
         
-        userSelectLabel.snp.makeConstraints { make in
-//            make.top.equalTo(10.85)
-//            make.top.equalTo(9)
+        boxLabelHead.snp.makeConstraints { make in
             make.centerY.equalTo(contentView)
-            make.trailing.equalTo(greaterthan.snp.leading).offset(-3)
+            make.trailing.equalTo(numOfBoxTextField.snp.leading).offset(-5)
+        }
+        
+        numOfBoxTextField.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView).offset(-1.6)
+            make.trailing.equalTo(boxLabelTail.snp.leading).offset(-3)
+        }
+        
+        boxLabelTail.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView)
+            make.trailing.equalTo(-10)
         }
         
         selectVitaminLabel.snp.makeConstraints { make in
@@ -118,7 +147,7 @@ class AlarmAddViewTableCell: UITableViewCell {
     }
     
     private func addSubview() {
-        contentViewList = [titleLabel, greaterthan, textField, repeatDaysLabel, userSelectLabel, selectVitaminLabel]
+        contentViewList = [titleLabel, greaterthan, textField, repeatDaysLabel, selectVitaminLabel, boxLabelHead, numOfBoxTextField, boxLabelTail]
         
         for uiView in contentViewList {
             contentView.addSubview(uiView)
@@ -127,6 +156,7 @@ class AlarmAddViewTableCell: UITableViewCell {
     
     private func delegateFunction() {
         textField.delegate = self
+        numOfBoxTextField.delegate = self
     }
     
     override func prepareForReuse() {
@@ -134,16 +164,20 @@ class AlarmAddViewTableCell: UITableViewCell {
         textField.isHidden = true
         greaterthan.isHidden = true
         repeatDaysLabel.isHidden = true
-        userSelectLabel.isHidden = true
+        boxLabelHead.isHidden = true
+        numOfBoxTextField.isHidden = true
+        boxLabelTail.isHidden = true
         selectVitaminLabel.isHidden = true
     }
     
-    func hiddenFucntion(titleLabelText: String, greaterthanBool: Bool, repeatDaysLabelBool: Bool, textFieldBool: Bool, userSelectLabelBool: Bool, selectVitaminLabelBool: Bool) {
+    func hiddenFucntion(titleLabelText: String, greaterthanBool: Bool, repeatDaysLabelBool: Bool, textFieldBool: Bool, boxLabelHeadBool: Bool, numOfBoxTextFieldBool: Bool, boxLabelTailBool: Bool, selectVitaminLabelBool: Bool) {
         titleLabel.text = titleLabelText
         greaterthan.isHidden = greaterthanBool
         repeatDaysLabel.isHidden = repeatDaysLabelBool
         textField.isHidden = textFieldBool
-        userSelectLabel.isHidden = userSelectLabelBool
+        boxLabelHead.isHidden = boxLabelHeadBool
+        numOfBoxTextField.isHidden = numOfBoxTextFieldBool
+        boxLabelTail.isHidden = boxLabelTailBool
         selectVitaminLabel.isHidden = selectVitaminLabelBool
     }
     
@@ -153,6 +187,7 @@ class AlarmAddViewTableCell: UITableViewCell {
         layout()
         delegateFunction()
         textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        numOfBoxTextField.addTarget(self, action: #selector(numOfBoxTextFieldDidChange(_:)), for: .editingChanged)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -162,11 +197,19 @@ class AlarmAddViewTableCell: UITableViewCell {
     @objc func textFieldDidChange(_ sender: Any?) {
         alarmTextFieldText = textField.text ?? "없음"
     }
+    
+    @objc func numOfBoxTextFieldDidChange(_ sender: Any?) {
+        numOfBox = numOfBoxTextField.text ?? ""
+    }
 }
 
 extension AlarmAddViewTableCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.textField {
+            textField.resignFirstResponder()
+        }
+        
+        if textField == self.numOfBoxTextField {
             textField.resignFirstResponder()
         }
         

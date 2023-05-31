@@ -35,16 +35,16 @@ class AlarmViewTableCell: UITableViewCell {
         return label
     }()
     
-    let userNameLabel: UILabel = {
-        let label = UILabel()
-        
-        label.text = "username"
-        label.textColor = UIColor.appTextColor
-        label.font = UIFont.systemFont(ofSize: 10)
-        label.font = UIFont(name: "NotoSansKR-Regular", size: 10)
-        
-        return label
-    }()
+//    let userNameLabel: UILabel = {
+//        let label = UILabel()
+//
+//        label.text = "username"
+//        label.textColor = UIColor.appTextColor
+//        label.font = UIFont.systemFont(ofSize: 10)
+//        label.font = UIFont(name: "NotoSansKR-Regular", size: 10)
+//
+//        return label
+//    }()
     
     let timeLabel: UILabel = {
         let label = UILabel()
@@ -69,6 +69,18 @@ class AlarmViewTableCell: UITableViewCell {
         return label
     }()
     
+    let vitaminLabelButton: UIButton = {
+        let button = UIButton()
+        
+        button.setTitle("vitaminC", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.appPointColor
+        button.layer.cornerRadius = 10
+        
+        return button
+    }()
+    
     private func layout() {
         userImage.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(15)
@@ -77,15 +89,15 @@ class AlarmViewTableCell: UITableViewCell {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(userImage)
+            make.top.equalTo(userImage).offset(5)
             make.leading.equalTo(userImage.snp.trailing).offset(10)
             make.trailing.equalTo(contentView).offset(-150)
         }
         
-        userNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(0)
-            make.leading.equalTo(titleLabel).offset(1.5)
-        }
+//        userNameLabel.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(0)
+//            make.leading.equalTo(titleLabel).offset(1.5)
+//        }
         
         timeLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(-20)
@@ -97,10 +109,17 @@ class AlarmViewTableCell: UITableViewCell {
             make.top.equalTo(timeLabel.snp.bottom).offset(-30)
             make.trailing.equalTo(timeLabel).offset(-2.5)
         }
+        
+        vitaminLabelButton.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.leading.equalTo(titleLabel)
+            make.width.equalTo(vitaminLabelButton.titleLabel!.snp.width).offset(20)
+            make.height.equalTo(20)
+        }
     }
     
     private func addSubview() {
-        contentViewList = [userImage, titleLabel, userNameLabel, timeLabel, dateLabel]
+        contentViewList = [userImage, titleLabel, timeLabel, dateLabel, vitaminLabelButton]
         
         for uiView in contentViewList {
             contentView.addSubview(uiView)
