@@ -13,6 +13,16 @@ struct AlarmViewCellDataModel {
     var date: String
     var repeatDays: String
     var label: String
-    var user: String
-    var repeatSwitchState: Bool
+    var numOfBox: Int
+    var vitamins: String
 }
+
+func alarmViewCellDataListInit() {
+    alarmViewCellDataList.removeAll()
+    print("alarmViewCellDataList 초기화")
+}
+
+// ---------------------------------------------------
+
+var userAlarmDataList = [AlarmViewCellDataModel]()
+var alarmEditDataList = [AlarmViewCellDataModel]()

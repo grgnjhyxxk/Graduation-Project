@@ -151,7 +151,7 @@ class UserViewContoller: UIViewController {
     }
     
     @objc func plusButtonAction(_ sender: UIButton) {
- 
+
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
@@ -189,6 +189,7 @@ class UserViewContoller: UIViewController {
         userVitaminDataList.removeAll()
         vitaminNames.removeAll()
         vitaminValues.removeAll()
+        alarmViewCellDataList.removeAll()
     }
 
 }

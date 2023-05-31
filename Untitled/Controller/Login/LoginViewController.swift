@@ -189,15 +189,23 @@ class LoginViewController: UIViewController {
                         if success {
                             getVitaminInformation(seq: seq) { success in
                                 if success {
-                                    print("로그인이 성공하였습니다.")
-                                    self.isLoggedInBool = true
-                                    let tabBarController = self.isLoggedIn()
-                                    tabBarController.modalPresentationStyle = .fullScreen
-                                    self.loginFailedWarningLabel.isHidden = true
-                                    self.autoLoginButtonStateCheck()
-                                    self.present(tabBarController, animated: true)
+                                    let seq = userDataList[0].seq
+                                    getAlarmData(seq: seq) { success in
+                                        if success {
+                                            print("로그인이 성공하였습니다.")
+                                            UserDefaults.standard.set(true, forKey: "auto")
+                                            self.isLoggedInBool = true
+                                            let tabBarController = self.isLoggedIn()
+                                            tabBarController.modalPresentationStyle = .fullScreen
+                                            self.loginFailedWarningLabel.isHidden = true
+//                                            self.autoLoginButtonStateCheck()
+                                            self.present(tabBarController, animated: true)
+                                        } else {
+                                            print("자동로그인이 실패하였습니다.")
+                                        }
+                                    }
                                 } else {
-                                    print("로그인이 실패하였습니다.")
+                                    print("자동로그인이 실패하였습니다.")
                                 }
                             }
                         } else {
@@ -205,7 +213,6 @@ class LoginViewController: UIViewController {
                         }
                     }
                 } else {
-//                    UserDefaults.standard.set(false, forKey: "auto")
                     print("자동로그인이 실패하였습니다.")
                 }
             }
@@ -280,13 +287,21 @@ class LoginViewController: UIViewController {
                             if success {
                                 getVitaminInformation(seq: seq) { success in
                                     if success {
-                                        print("로그인이 성공하였습니다.")
-                                        self.isLoggedInBool = true
-                                        let tabBarController = self.isLoggedIn()
-                                        tabBarController.modalPresentationStyle = .fullScreen
-                                        self.loginFailedWarningLabel.isHidden = true
-                                        self.autoLoginButtonStateCheck()
-                                        self.present(tabBarController, animated: true)
+                                        let seq = userDataList[0].seq
+                                        
+                                        getAlarmData(seq: seq) { success in
+                                            if success {
+                                                print("로그인이 성공하였습니다.")
+                                                self.isLoggedInBool = true
+                                                let tabBarController = self.isLoggedIn()
+                                                tabBarController.modalPresentationStyle = .fullScreen
+                                                self.loginFailedWarningLabel.isHidden = true
+                                                self.autoLoginButtonStateCheck()
+                                                self.present(tabBarController, animated: true)
+                                            } else {
+                                                print("로그인이 실패하였습니다.")
+                                            }
+                                        }
                                     } else {
                                         print("로그인이 실패하였습니다.")
                                     }

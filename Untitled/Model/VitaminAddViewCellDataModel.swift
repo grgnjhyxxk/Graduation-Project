@@ -64,11 +64,21 @@ func vitaminImageDataListInit() {
 
 // -----------------------------------------------------------------
 
+var userVitaminImageDataList = [VitaminImageDataModel]()
+
+struct UserVitaminImageDataModel {
+    let image: UIImage
+}
+
+// -----------------------------------------------------------------
+
 var userVitaminDataList = [UserVitaminData]()
 
 struct UserVitaminData {
     var prod_name: String
     var intake_per_day: Int
+    var taken: Int
+    var image: Data
     var vitamin: [Vitamin]
 }
 

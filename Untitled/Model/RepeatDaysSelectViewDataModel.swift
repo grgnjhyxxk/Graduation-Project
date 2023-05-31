@@ -46,7 +46,7 @@ func repeatDaysDataContraction(data: String) -> String {
 func repeatDaysDataReverseContraction(index: Int) {
     repeatDaysSelectListInitFunction()
     
-    switch alarmViewCellDataList[index].repeatDays{
+    switch userAlarmDataList[index].repeatDays{
     case "주중":
         repeatDaysSelectList[0].checkState = true
         repeatDaysSelectList[1].checkState = true
@@ -65,7 +65,7 @@ func repeatDaysDataReverseContraction(index: Int) {
         repeatDaysSelectList[5].checkState = true
         repeatDaysSelectList[6].checkState = true
     default:
-        let days = alarmViewCellDataList[index].repeatDays.split(separator: " ")
+        let days = userAlarmDataList[index].repeatDays.split(separator: " ")
         for day in days {
             switch day {
             case "월":
