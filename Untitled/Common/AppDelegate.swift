@@ -13,8 +13,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        sleep(1)
-        scheduleNotification()
+        
+        let center = UNUserNotificationCenter.current()
+        center.delegate = self // push처리에 대한 delegate - UNUserNotificationCenterDelegate
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        center.requestAuthorization(options: options) { (granted, error) in
+
+            guard granted else {
+                return
+            }
+
+            DispatchQueue.main.async {
+                // 2. APNs에 디바이스 토큰 등록
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+        
         return true
     }
 
@@ -31,6 +45,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+//    private func registerForRemoteNotifications() {
+//        // 1. 푸시 center (유저에게 권한 요청 용도)
+//        let center = UNUserNotificationCenter.current()
+//        center.delegate = self // push처리에 대한 delegate - UNUserNotificationCenterDelegate
+//        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+//        center.requestAuthorization(options: options) { (granted, error) in
+//
+//            guard granted else {
+//                return
+//            }
+//
+//            DispatchQueue.main.async {
+//                // 2. APNs에 디바이스 토큰 등록
+//                UIApplication.shared.registerForRemoteNotifications()
+//            }
+//        }
+//    }
 
     // MARK: - Core Data stack
 
@@ -79,3 +111,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+
+    // 3. 앱이 foreground상태 일 때, 알림이 온 경우 어떻게 표현할 것인지 처리
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        // 푸시가 오면 alert, badge, sound표시를 하라는 의미
+        completionHandler([.alert, .badge, .banner])
+    }
+
+    // push를 탭한 경우 처리
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("알람클릭")
+        boxOperatingNumber = response.notification.request.identifier
+
+        for i in 0..<userAlarmDataList.count {
+            if Int(boxOperatingNumber) == userAlarmDataList[i].numOfBox {
+                let vitamins = userAlarmDataList[i].vitamins
+                for i in 0..<userVitaminDataList.count {
+                    if vitamins == userVitaminDataList[i].prod_name {
+                        print(userVitaminDataList[i].intake_per_day)
+                        intakePerDayNumber = userVitaminDataList[i].intake_per_day
+                        productnameString = userVitaminDataList[i].prod_name
+                        break
+                    }
+                }
+            }
+        }
+        alarmAlert()
+    }
+}
