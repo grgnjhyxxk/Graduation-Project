@@ -10,6 +10,7 @@ import Alamofire
 struct VitaminInformation: Decodable {
     let prod_name: String
     let intake_per_day: Int
+    let taken: Int
     let vitaminA: Int
     let vitaminD: Int
     let vitaminE: Int
@@ -32,6 +33,7 @@ struct VitaminInformation: Decodable {
     let manganese: Int
     let molybdenum: Int
     let chrome: Int
+    let image: String
 }
 
 func getVitaminInformation(seq: Int, completion: @escaping (Bool) -> Void) {
@@ -52,7 +54,7 @@ func getVitaminInformation(seq: Int, completion: @escaping (Bool) -> Void) {
                     print("받은 비타민 정보:")
                     
                     for index in 0..<vitaminInformation.count {
-                        userVitaminDataList.append(UserVitaminData(prod_name: vitaminInformation[index].prod_name, intake_per_day: vitaminInformation[index].intake_per_day, vitamin: [Vitamin(vitaminA: vitaminInformation[index].vitaminA, vitaminD: vitaminInformation[index].vitaminD, vitaminE: vitaminInformation[index].vitaminE, vitaminK: vitaminInformation[index].vitaminK, vitaminB1: vitaminInformation[index].vitaminB1, vitaminB2: vitaminInformation[index].vitaminB2, vitaminB6: vitaminInformation[index].vitaminB6, vitaminB12: vitaminInformation[index].vitaminB12, vitaminC: vitaminInformation[index].vitaminC, nicotinic_acid: vitaminInformation[index].nicotinic_acid, pantothenic: vitaminInformation[index].pantothenic, folic_acid: vitaminInformation[index].folic_acid, biotin: vitaminInformation[index].biotin, calcium: vitaminInformation[index].calcium, magnesium: vitaminInformation[index].magnesium, iron: vitaminInformation[index].iron, copper: vitaminInformation[index].copper, selenium: vitaminInformation[index].selenium, iodine: vitaminInformation[index].iodine, manganese: vitaminInformation[index].manganese, molybdenum: vitaminInformation[index].molybdenum, chrome: vitaminInformation[index].chrome)]))
+                        userVitaminDataList.append(UserVitaminData(prod_name: vitaminInformation[index].prod_name, intake_per_day: vitaminInformation[index].intake_per_day, taken: vitaminInformation[index].taken, image: Data(base64Encoded: vitaminInformation[index].image)!, vitamin: [Vitamin(vitaminA: vitaminInformation[index].vitaminA, vitaminD: vitaminInformation[index].vitaminD, vitaminE: vitaminInformation[index].vitaminE, vitaminK: vitaminInformation[index].vitaminK, vitaminB1: vitaminInformation[index].vitaminB1, vitaminB2: vitaminInformation[index].vitaminB2, vitaminB6: vitaminInformation[index].vitaminB6, vitaminB12: vitaminInformation[index].vitaminB12, vitaminC: vitaminInformation[index].vitaminC, nicotinic_acid: vitaminInformation[index].nicotinic_acid, pantothenic: vitaminInformation[index].pantothenic, folic_acid: vitaminInformation[index].folic_acid, biotin: vitaminInformation[index].biotin, calcium: vitaminInformation[index].calcium, magnesium: vitaminInformation[index].magnesium, iron: vitaminInformation[index].iron, copper: vitaminInformation[index].copper, selenium: vitaminInformation[index].selenium, iodine: vitaminInformation[index].iodine, manganese: vitaminInformation[index].manganese, molybdenum: vitaminInformation[index].molybdenum, chrome: vitaminInformation[index].chrome)]))
                     }
                     
                     for i in 0..<userVitaminDataList.count {
