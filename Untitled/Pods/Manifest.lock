@@ -1,24 +1,34 @@
 PODS:
   - Alamofire (5.6.2)
   - AnyFormatKit (2.5.2)
+  - CocoaMQTT (2.1.3):
+    - CocoaMQTT/Core (= 2.1.3)
+  - CocoaMQTT/Core (2.1.3):
+    - MqttCocoaAsyncSocket (~> 1.0.8)
+  - MqttCocoaAsyncSocket (1.0.8)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - Alamofire
   - AnyFormatKit
+  - CocoaMQTT
   - SnapKit (~> 5.6.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - AnyFormatKit
+    - CocoaMQTT
+    - MqttCocoaAsyncSocket
     - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   AnyFormatKit: b0dbb2a5f2fe7a0fc97f401f8a219a47ee63a335
+  CocoaMQTT: f91421327f100d64374792b96bc9787e983bfe29
+  MqttCocoaAsyncSocket: 77d3b74f76228dd5a05d1f9526eab101d415b30c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 306a6a4f84d4985822ccf8c2a73621c372dcaec8
+PODFILE CHECKSUM: cbdfe4f9e1476851132fd05754727576888d0b39
 
 COCOAPODS: 1.11.3
