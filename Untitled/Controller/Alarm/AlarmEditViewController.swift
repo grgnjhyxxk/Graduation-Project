@@ -52,7 +52,7 @@ class AlarmEditViewController: AlarmAddViewController {
     }
     
     private func navigationControllerLayout() {
-        navigationItem.title = "알람 추가"
+        navigationItem.title = "알람 편집"
         
         let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonAction))
         cancelButton.tintColor = .appTextColor
@@ -77,19 +77,19 @@ class AlarmEditViewController: AlarmAddViewController {
             alarmTextFieldText = "알람"
         }
         
-        var vitamin = String()
+        var box = String()
         
-        for i in 0..<alarmViewVitaminSelectDataList.count {
-            if alarmViewVitaminSelectDataList[i].checkState == true {
-                vitamin = userVitaminDataList[i].prod_name
-                break
+        for i in 0..<alarmViewBoxinSelectDataList.count {
+            if alarmViewBoxinSelectDataList[i].checkState == true {
+                if !box.isEmpty {
+                    box += " "
+                }
+                box += "\(i+1)"
             }
         }
-        
-        if numOfBox != String() && vitamin != String() {
-            let numOfBotInt = Int(numOfBox)
-            
-            alarmEditDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, numOfBox: numOfBotInt!, vitamins: vitamin))
+              
+        if !box.isEmpty {
+            alarmEditDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, box: box))
             alarmEditNetworking(index: alarmIndex) { success in
                 if success {
                     let seq = userDataList[0].seq
@@ -110,12 +110,35 @@ class AlarmEditViewController: AlarmAddViewController {
                 }
             }
         } else {
-            if numOfBox == String() {
-                warningLabel.text = "보관함 번호가 잘못되었거나 입력되지 않았습니다."
-            } else if vitamin == String() {
-                warningLabel.text = "영양제를 선택하지 않으셨습니다."
-            }
+            warningLabel.text = "보관함을 1개 이상 선택하셔야 합니다."
             warningLabel.isHidden = false
+        }
+    }
+    
+    private func ingredientsNameConcatenated() -> String {
+        var names: [String] = []
+        
+        for i in 0..<alarmViewBoxinSelectDataList.count {
+            if alarmViewBoxinSelectDataList[i].checkState == true {
+                names.append("\(i+1)번")
+            }
+        }
+        
+        print(names)
+        
+        var concatenatedNames = ""
+
+        if names.count <= 3 {
+            concatenatedNames = names.joined(separator: ", ")
+        } else {
+            let firstThreeNames = names.prefix(3).joined(separator: ", ")
+            concatenatedNames = "\(firstThreeNames) + \(names.count - 3)"
+        }
+
+        if concatenatedNames != "" {
+            return concatenatedNames
+        } else {
+            return "선택안함"
         }
     }
     
@@ -139,9 +162,9 @@ class AlarmEditViewController: AlarmAddViewController {
         show(rootViewController, sender: nil)
     }
     
-    override func vitaminSelectButtonAction() {
-        print("사용자가 영양제선택 Cell을 클릭하였습니다.")
-        let rootViewController = AlarmVitaminSelectViewController()
+    override func boxSelectButtonAction() {
+        print("사용자가 보관함 설정 Cell을 클릭하였습니다.")
+        let rootViewController = AlarmBoxSelectViewController()
         show(rootViewController, sender: nil)
     }
 }
@@ -161,18 +184,20 @@ extension AlarmEditViewController {
         
         switch indexPath.row {
         case 0:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: false, textFieldBool: true, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: false, textFieldBool: true, boxLabelBool: true)
             let data = repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ").isEmpty ? "안함" : repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ")
             cell.repeatDaysLabel.text = repeatDaysDataContraction(data: data)
         case 1:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: false, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: false, boxLabelBool: true)
             cell.textField.text = userAlarmDataList[alarmIndex].label
         case 2:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: true, boxLabelHeadBool: false, numOfBoxTextFieldBool: false, boxLabelTailBool: false, selectVitaminLabelBool: true)
-            cell.numOfBoxTextField.text = String(userAlarmDataList[alarmIndex].numOfBox)
-        case 3:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: false)
-        default:
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, boxLabelBool: false)
+//            cell.numOfBoxTextField.text = String(userAlarmDataList[alarmIndex].numOfBox)
+            if !alarmViewBoxinSelectDataList.isEmpty {
+                cell.boxLabel.text = ingredientsNameConcatenated()
+            } else {
+                cell.boxLabel.text = "안함"
+            }        default:
             break
         }
         
@@ -194,8 +219,8 @@ extension AlarmEditViewController {
             repeatDaysButtonAction()
         case 1:
             cell.textField.becomeFirstResponder()
-        case 3:
-            vitaminSelectButtonAction()
+        case 2:
+            boxSelectButtonAction()
         default:
             break
         }

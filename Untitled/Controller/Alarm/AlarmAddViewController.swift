@@ -55,7 +55,7 @@ class AlarmAddViewController: UIViewController {
             make.top.equalTo(datePicker.snp.bottom).offset(10)
             make.leading.equalTo(15)
             make.trailing.equalTo(-15)
-            make.height.equalTo(179.82)
+            make.height.equalTo(134.82)
         }
         
         warningLabel.snp.makeConstraints { make in
@@ -135,18 +135,19 @@ class AlarmAddViewController: UIViewController {
             alarmTextFieldText = "알람"
         }
         
-        var vitamin = String()
-        
-        for i in 0..<alarmViewVitaminSelectDataList.count {
-            if alarmViewVitaminSelectDataList[i].checkState == true {
-                vitamin = userVitaminDataList[i].prod_name
-                break
+        var box = String()
+                
+        for i in 0..<alarmViewBoxinSelectDataList.count {
+            if alarmViewBoxinSelectDataList[i].checkState == true {
+                if !box.isEmpty {
+                    box += " "
+                }
+                box += "\(i+1)"
             }
         }
         
-        if numOfBox != String() && vitamin != String() {
-            let numOfBotInt = Int(numOfBox)
-            alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, numOfBox: numOfBotInt!, vitamins: vitamin))
+        if !box.isEmpty {
+            alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, box: box))
             alarmDataPost() { success in
                 if success {
                     let seq = userDataList[0].seq
@@ -156,7 +157,7 @@ class AlarmAddViewController: UIViewController {
                             alarmAddDataInit()
                             alarmViewCellDataListInit()
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: alarmViewCellDataList.count-1)
-                            
+                            scheduleVitaminAlarm()
                             self.dismiss(animated: true, completion: nil)
                         } else {
                             print("알람 등록 실패")
@@ -167,12 +168,35 @@ class AlarmAddViewController: UIViewController {
                 }
             }
         } else {
-            if numOfBox == String() {
-                warningLabel.text = "보관함 번호가 잘못되었거나 입력되지 않았습니다."
-            } else if vitamin == String() {
-                warningLabel.text = "영양제를 선택하지 않으셨습니다."
-            }
+            warningLabel.text = "보관함을 1개 이상 선택하셔야 합니다."
             warningLabel.isHidden = false
+        }
+    }
+    
+    private func ingredientsNameConcatenated() -> String {
+        var names: [String] = []
+        
+        for i in 0..<alarmViewBoxinSelectDataList.count {
+            if alarmViewBoxinSelectDataList[i].checkState == true {
+                names.append("\(i+1)번")
+            }
+        }
+        
+        print(names)
+        
+        var concatenatedNames = ""
+
+        if names.count <= 3 {
+            concatenatedNames = names.joined(separator: ", ")
+        } else {
+            let firstThreeNames = names.prefix(3).joined(separator: ", ")
+            concatenatedNames = "\(firstThreeNames) + \(names.count - 3)"
+        }
+        
+        if concatenatedNames != "" {
+            return concatenatedNames
+        } else {
+            return "선택안함"
         }
     }
     
@@ -182,9 +206,15 @@ class AlarmAddViewController: UIViewController {
         show(rootViewController, sender: nil)
     }
     
-    func vitaminSelectButtonAction() {
-        print("사용자가 영양제선택 Cell을 클릭하였습니다.")
-        let rootViewController = AlarmVitaminSelectViewController()
+//    func vitaminSelectButtonAction() {
+//        print("사용자가 영양제선택 Cell을 클릭하였습니다.")
+//        let rootViewController = AlarmVitaminSelectViewController()
+//        show(rootViewController, sender: nil)
+//    }
+    
+    func boxSelectButtonAction() {
+        print("사용자가 보관함 설정 Cell을 클릭하였습니다.")
+        let rootViewController = AlarmBoxSelectViewController()
         show(rootViewController, sender: nil)
     }
 }
@@ -205,21 +235,24 @@ extension AlarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch indexPath.row {
         case 0:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: false, textFieldBool: true, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: false, textFieldBool: true, boxLabelBool: true)
             let data = repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ").isEmpty ? "안함" : repeatDaysSelectList.filter { $0.checkState }.map { $0.title }.joined(separator: " ")
             cell.repeatDaysLabel.text = repeatDaysDataContraction(data: data)
         case 1:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: false, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: true)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: false, boxLabelBool: true)
             cell.textField.text = alarmTextFieldText
         case 2:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: true, repeatDaysLabelBool: true, textFieldBool: true, boxLabelHeadBool: false, numOfBoxTextFieldBool: false, boxLabelTailBool: false, selectVitaminLabelBool: true)
-        case 3:
-            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, boxLabelHeadBool: true, numOfBoxTextFieldBool: true, boxLabelTailBool: true, selectVitaminLabelBool: false)
+            cell.hiddenFucntion(titleLabelText: titlaLabelText, greaterthanBool: false, repeatDaysLabelBool: true, textFieldBool: true, boxLabelBool: false)
+            if !alarmViewBoxinSelectDataList.isEmpty {
+                cell.boxLabel.text = ingredientsNameConcatenated()
+            } else {
+                cell.boxLabel.text = "안함"
+            }
         default:
             break
         }
         
-        if indexPath.row == 1 || indexPath.row == 2 {
+        if indexPath.row == 1 {
             cell.selectionStyle = .none
         } else {
             cell.selectionStyle = .default
@@ -237,8 +270,8 @@ extension AlarmAddViewController: UITableViewDataSource, UITableViewDelegate {
             repeatDaysButtonAction()
         case 1:
             cell.textField.becomeFirstResponder()
-        case 3:
-            vitaminSelectButtonAction()
+        case 2:
+            boxSelectButtonAction()
         default:
             break
         }

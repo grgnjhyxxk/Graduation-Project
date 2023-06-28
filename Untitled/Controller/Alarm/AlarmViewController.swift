@@ -16,6 +16,7 @@ class AlarmViewController: UIViewController {
     let userInterfaceStyleToggleButton = CommonView().userInterfaceStyleToggleButton()
     let titleTextButton = CommonView().titleTextButton(titleText: "알람관리")
     let plusButton = AlarmView().plusButton()
+    let boxButton = AlarmView().boxButton()
     
     let subTextLabel = CommonView().commonTextLabel(labelText: "매일 꾸준한 습관", size: 14)
     let mainTextLabel = CommonView().commonTextLabel(labelText: "섭취알람으로\n매일 섭취관리하세요.", size: 25)
@@ -57,7 +58,7 @@ class AlarmViewController: UIViewController {
             
             self.alarmListisEmptyOrNot()
             
-            scheduleVitaminAlarm(time: timeToString)
+//            scheduleVitaminAlarm(time: timeToString)
             self.printAlarmData(index: index)
             
             self.tableView.reloadData()
@@ -150,6 +151,12 @@ class AlarmViewController: UIViewController {
             make.size.equalTo(CGSize(width: 30, height: 30))
         }
         
+        boxButton.snp.makeConstraints { make in
+            make.top.equalTo(mainTextLabel.snp.bottom).offset(-34)
+            make.trailing.equalTo(plusButton.snp.leading).offset(-10)
+            make.size.equalTo(CGSize(width: 30, height: 30))
+        }
+        
         emptyAlarmImageView.snp.makeConstraints { make in
             make.centerX.equalTo(commonUiView)
             make.top.equalTo(commonUiView.snp.top).offset(190)
@@ -175,7 +182,7 @@ class AlarmViewController: UIViewController {
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [subTextLabel, mainTextLabel, plusButton, tableView, emptyAlarmImageView, emptyTextLabel]
+        commonViewList = [subTextLabel, mainTextLabel, plusButton, boxButton, tableView, emptyAlarmImageView, emptyTextLabel]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -196,6 +203,7 @@ class AlarmViewController: UIViewController {
         plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
         userInterfaceStyleToggleButton.addTarget(self, action: #selector(toggleTheme), for: .touchUpInside)
         userProfileButton.addTarget(self, action: #selector(roundingButtonAction), for: .touchUpInside)
+        boxButton.addTarget(self, action: #selector(boxButtonAction), for: .touchUpInside)
     }
     
     private func alarmListisEmptyOrNot() {
@@ -213,10 +221,18 @@ class AlarmViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: rootViewController)
         
         let count = userVitaminDataList.count
-        alarmViewVitaminSelectDataList.removeAll()
-        alarmViewVitaminSelectDataListInitFunction(count: count)
+        alarmViewBoxinSelectDataList.removeAll()
+        alarmViewBoxinSelectDataListInitFunction(count: 6)
         repeatDaysSelectListInitFunction()
 
+        present(navigationController, animated: true, completion: nil)
+    }
+    
+    @objc func boxButtonAction(_: UIButton) {
+        let rootViewController = UserViewContoller()
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        
+        navigationController.modalPresentationStyle = .fullScreen
         present(navigationController, animated: true, completion: nil)
     }
     
@@ -277,8 +293,17 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
 //        cell.userNameLabel.text = String(alarmViewCellDataList[indexPath.row].user)
         cell.timeLabel.text = userAlarmDataList[indexPath.row].date
         cell.dateLabel.text = userAlarmDataList[indexPath.row].repeatDays
-        let vitamin = userAlarmDataList[indexPath.row].vitamins
-        cell.vitaminLabelButton.setTitle(vitamin, for: .normal)
+        let vseq = boxAndVitaminDataList[indexPath.row].vseq
+        var prod_name = String()
+        
+        for vitamin in userVitaminDataList {
+            if vseq == vitamin.vseq {
+                prod_name = vitamin.prod_name
+                break
+            }
+        }
+        
+        cell.vitaminLabelButton.setTitle("\(prod_name)", for: .normal)
         
         return cell
     }
@@ -288,20 +313,22 @@ extension AlarmViewController: UITableViewDataSource, UITableViewDelegate {
         
         let editAlarmViewController = AlarmEditViewController()
         let navigationController = UINavigationController(rootViewController: editAlarmViewController)
-        let count = userVitaminDataList.count
+        var boxString = [String]()
         
-        alarmViewVitaminSelectDataList.removeAll()
-        alarmEditDataList.removeAll()
-        alarmViewVitaminSelectDataListInitFunction(count: count)
-        editAlarmViewController.alarmIndex = indexPath.row
+        alarmViewBoxinSelectDataListInitFunction(count: 6)
+
+        boxString = userAlarmDataList[indexPath.row].box.components(separatedBy: " ")
         
-        for i in 0..<userVitaminDataList.count {
-            if userVitaminDataList[i].prod_name == userAlarmDataList[indexPath.row].vitamins {
-                alarmViewVitaminSelectDataList[i].checkState = true
-                break
-            }
+        print(boxString)
+        
+        for i in boxString {
+            let boxIndex = Int(i)
+            alarmViewBoxinSelectDataList[boxIndex!-1].checkState = true
         }
-        
+
+        alarmEditDataList.removeAll()
+        editAlarmViewController.alarmIndex = indexPath.row
+
         present(navigationController, animated: true, completion: nil)
     }
 }
