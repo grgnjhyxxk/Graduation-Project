@@ -13,8 +13,7 @@ struct AlarmViewCellDataModel {
     var date: String
     var repeatDays: String
     var label: String
-    var numOfBox: Int
-    var vitamins: String
+    var box: String
 }
 
 func alarmViewCellDataListInit() {
@@ -26,3 +25,22 @@ func alarmViewCellDataListInit() {
 
 var userAlarmDataList = [AlarmViewCellDataModel]()
 var alarmEditDataList = [AlarmViewCellDataModel]()
+
+// ---------------------------------------------------
+
+struct BoxCellDataModel {
+    var title: String
+}
+
+let boxCellData = [
+    BoxCellDataModel(title: "1번 보관함"),
+    BoxCellDataModel(title: "2번 보관함"),
+    BoxCellDataModel(title: "3번 보관함"),
+    BoxCellDataModel(title: "4번 보관함"),
+    BoxCellDataModel(title: "5번 보관함"),
+    BoxCellDataModel(title: "6번 보관함"),
+]
+
+// ---------------------------------------------------
+
+

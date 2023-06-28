@@ -73,8 +73,16 @@ struct UserVitaminImageDataModel {
 // -----------------------------------------------------------------
 
 var userVitaminDataList = [UserVitaminData]()
+var userVitaminSearchDataList = [UserVitaminData]()
+var aiVitaminSearchDataList = [AIVitaminData]()
+
+struct AIVitaminData {
+    var prod_name: String
+    var vitamin: [Vitamin]
+}
 
 struct UserVitaminData {
+    var vseq: Int
     var prod_name: String
     var intake_per_day: Int
     var taken: Int
@@ -109,6 +117,21 @@ struct Vitamin {
 
 var vitaminNames: [[String]] = []
 var vitaminValues: [[Int]] = []
+
+var vitaminSearchNames: [[String]] = []
+var vitaminSearchValues: [[Int]] = []
+
+var aiVitaminNames: [[String]] = []
+var aiVitaminValues: [[Int]] = []
+
+func totalInit() {
+    userVitaminSearchDataList.removeAll()
+    vitaminSearchNames.removeAll()
+    vitaminSearchValues.removeAll()
+    print("userVitaminSearchDataList 초기화")
+    print("vitaminSearchNames 초기화")
+    print("vitaminSearchValues 초기화")
+}
 
 func noneZeroVitamin() {
     for vitaminData in userVitaminDataList {
@@ -235,6 +258,266 @@ func noneZeroVitamin() {
         print("\(i+1)번째 영양제 정보:")
         for j in 0..<vitaminNames[i].count {
             print("\(vitaminNames[i][j]): \(vitaminValues[i][j])")
+        }
+        print("----------------------")
+    }
+}
+
+func noneZeroVitaminSearch() {
+    for vitaminData in userVitaminSearchDataList {
+        var userVitaminNames: [String] = []
+        var userVitaminValues: [Int] = []
+        
+        for vitamin in vitaminData.vitamin {
+            if vitamin.vitaminA > 0 {
+                userVitaminNames.append("vitaminA")
+                userVitaminValues.append(vitamin.vitaminA)
+            }
+            
+            if vitamin.vitaminD > 0 {
+                userVitaminNames.append("vitaminD")
+                userVitaminValues.append(vitamin.vitaminD)
+            }
+            
+            if vitamin.vitaminE > 0 {
+                userVitaminNames.append("vitaminE")
+                userVitaminValues.append(vitamin.vitaminE)
+            }
+            
+            if vitamin.vitaminK > 0 {
+                userVitaminNames.append("vitaminK")
+                userVitaminValues.append(vitamin.vitaminK)
+            }
+            
+            if vitamin.vitaminB1 > 0 {
+                userVitaminNames.append("vitaminB1")
+                userVitaminValues.append(vitamin.vitaminB1)
+            }
+            
+            if vitamin.vitaminB2 > 0 {
+                userVitaminNames.append("vitaminB2")
+                userVitaminValues.append(vitamin.vitaminB2)
+            }
+            
+            if vitamin.vitaminB6 > 0 {
+                userVitaminNames.append("vitaminB6")
+                userVitaminValues.append(vitamin.vitaminB6)
+            }
+            
+            if vitamin.vitaminB12 > 0 {
+                userVitaminNames.append("vitaminB12")
+                userVitaminValues.append(vitamin.vitaminB12)
+            }
+            
+            if vitamin.vitaminC > 0 {
+                userVitaminNames.append("vitaminC")
+                userVitaminValues.append(vitamin.vitaminC)
+            }
+            
+            if vitamin.nicotinic_acid > 0 {
+                userVitaminNames.append("nicotinic_acid")
+                userVitaminValues.append(vitamin.nicotinic_acid)
+            }
+            
+            if vitamin.pantothenic > 0 {
+                userVitaminNames.append("pantothenic")
+                userVitaminValues.append(vitamin.pantothenic)
+            }
+            
+            if vitamin.folic_acid > 0 {
+                userVitaminNames.append("folic_acid")
+                userVitaminValues.append(vitamin.folic_acid)
+            }
+            
+            if vitamin.biotin > 0 {
+                userVitaminNames.append("biotin")
+                userVitaminValues.append(vitamin.biotin)
+            }
+            
+            if vitamin.calcium > 0 {
+                userVitaminNames.append("calcium")
+                userVitaminValues.append(vitamin.calcium)
+            }
+            
+            if vitamin.magnesium > 0 {
+                userVitaminNames.append("magnesium")
+                userVitaminValues.append(vitamin.magnesium)
+            }
+            
+            if vitamin.iron > 0 {
+                userVitaminNames.append("iron")
+                userVitaminValues.append(vitamin.iron)
+            }
+            
+            if vitamin.copper > 0 {
+                userVitaminNames.append("copper")
+                userVitaminValues.append(vitamin.copper)
+            }
+            
+            if vitamin.selenium > 0 {
+                userVitaminNames.append("selenium")
+                userVitaminValues.append(vitamin.selenium)
+            }
+            
+            if vitamin.iodine > 0 {
+                userVitaminNames.append("iodine")
+                userVitaminValues.append(vitamin.iodine)
+            }
+            
+            if vitamin.manganese > 0 {
+                userVitaminNames.append("manganese")
+                userVitaminValues.append(vitamin.manganese)
+            }
+            
+            if vitamin.molybdenum > 0 {
+                userVitaminNames.append("molybdenum")
+                userVitaminValues.append(vitamin.molybdenum)
+            }
+            
+            if vitamin.chrome > 0 {
+                userVitaminNames.append("chrome")
+                userVitaminValues.append(vitamin.chrome)
+            }
+        }
+        
+        vitaminSearchNames.append(userVitaminNames)
+        vitaminSearchValues.append(userVitaminValues)
+    }
+    
+    for i in 0..<vitaminSearchNames.count {
+        print("\(i+1)번째 영양제 정보:")
+        for j in 0..<vitaminSearchNames[i].count {
+            print("\(vitaminSearchNames[i][j]): \(vitaminSearchValues[i][j])")
+        }
+        print("----------------------")
+    }
+}
+
+func noneZeroVitaminAi() {
+    for vitaminData in aiVitaminSearchDataList {
+        var userVitaminNames: [String] = []
+        var userVitaminValues: [Int] = []
+        
+        for vitamin in vitaminData.vitamin {
+            if vitamin.vitaminA > 0 {
+                userVitaminNames.append("vitaminA")
+                userVitaminValues.append(vitamin.vitaminA)
+            }
+            
+            if vitamin.vitaminD > 0 {
+                userVitaminNames.append("vitaminD")
+                userVitaminValues.append(vitamin.vitaminD)
+            }
+            
+            if vitamin.vitaminE > 0 {
+                userVitaminNames.append("vitaminE")
+                userVitaminValues.append(vitamin.vitaminE)
+            }
+            
+            if vitamin.vitaminK > 0 {
+                userVitaminNames.append("vitaminK")
+                userVitaminValues.append(vitamin.vitaminK)
+            }
+            
+            if vitamin.vitaminB1 > 0 {
+                userVitaminNames.append("vitaminB1")
+                userVitaminValues.append(vitamin.vitaminB1)
+            }
+            
+            if vitamin.vitaminB2 > 0 {
+                userVitaminNames.append("vitaminB2")
+                userVitaminValues.append(vitamin.vitaminB2)
+            }
+            
+            if vitamin.vitaminB6 > 0 {
+                userVitaminNames.append("vitaminB6")
+                userVitaminValues.append(vitamin.vitaminB6)
+            }
+            
+            if vitamin.vitaminB12 > 0 {
+                userVitaminNames.append("vitaminB12")
+                userVitaminValues.append(vitamin.vitaminB12)
+            }
+            
+            if vitamin.vitaminC > 0 {
+                userVitaminNames.append("vitaminC")
+                userVitaminValues.append(vitamin.vitaminC)
+            }
+            
+            if vitamin.nicotinic_acid > 0 {
+                userVitaminNames.append("nicotinic_acid")
+                userVitaminValues.append(vitamin.nicotinic_acid)
+            }
+            
+            if vitamin.pantothenic > 0 {
+                userVitaminNames.append("pantothenic")
+                userVitaminValues.append(vitamin.pantothenic)
+            }
+            
+            if vitamin.folic_acid > 0 {
+                userVitaminNames.append("folic_acid")
+                userVitaminValues.append(vitamin.folic_acid)
+            }
+            
+            if vitamin.biotin > 0 {
+                userVitaminNames.append("biotin")
+                userVitaminValues.append(vitamin.biotin)
+            }
+            
+            if vitamin.calcium > 0 {
+                userVitaminNames.append("calcium")
+                userVitaminValues.append(vitamin.calcium)
+            }
+            
+            if vitamin.magnesium > 0 {
+                userVitaminNames.append("magnesium")
+                userVitaminValues.append(vitamin.magnesium)
+            }
+            
+            if vitamin.iron > 0 {
+                userVitaminNames.append("iron")
+                userVitaminValues.append(vitamin.iron)
+            }
+            
+            if vitamin.copper > 0 {
+                userVitaminNames.append("copper")
+                userVitaminValues.append(vitamin.copper)
+            }
+            
+            if vitamin.selenium > 0 {
+                userVitaminNames.append("selenium")
+                userVitaminValues.append(vitamin.selenium)
+            }
+            
+            if vitamin.iodine > 0 {
+                userVitaminNames.append("iodine")
+                userVitaminValues.append(vitamin.iodine)
+            }
+            
+            if vitamin.manganese > 0 {
+                userVitaminNames.append("manganese")
+                userVitaminValues.append(vitamin.manganese)
+            }
+            
+            if vitamin.molybdenum > 0 {
+                userVitaminNames.append("molybdenum")
+                userVitaminValues.append(vitamin.molybdenum)
+            }
+            
+            if vitamin.chrome > 0 {
+                userVitaminNames.append("chrome")
+                userVitaminValues.append(vitamin.chrome)
+            }
+        }
+        
+        aiVitaminNames.append(userVitaminNames)
+        aiVitaminValues.append(userVitaminValues)
+    }
+    
+    for i in 0..<aiVitaminNames.count {
+        print("\(i+1)번째 영양제 정보:")
+        for j in 0..<aiVitaminNames[i].count {
+            print("\(aiVitaminNames[i][j]): \(aiVitaminValues[i][j])")
         }
         print("----------------------")
     }
