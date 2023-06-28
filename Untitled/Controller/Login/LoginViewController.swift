@@ -82,9 +82,9 @@ class LoginViewController: UIViewController {
         }
         
         mainImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
-            make.trailing.equalTo(5)
-            make.size.equalTo(CGSize(width: 190, height: 190))
+            make.top.equalTo(mainTextLabel).offset(50)
+            make.trailing.equalTo(-30)
+            make.size.equalTo(CGSize(width: 105, height: 105))
         }
         
         idInputTextField.snp.makeConstraints { make in
@@ -192,14 +192,35 @@ class LoginViewController: UIViewController {
                                     let seq = userDataList[0].seq
                                     getAlarmData(seq: seq) { success in
                                         if success {
-                                            print("로그인이 성공하였습니다.")
-                                            UserDefaults.standard.set(true, forKey: "auto")
-                                            self.isLoggedInBool = true
-                                            let tabBarController = self.isLoggedIn()
-                                            tabBarController.modalPresentationStyle = .fullScreen
-                                            self.loginFailedWarningLabel.isHidden = true
-//                                            self.autoLoginButtonStateCheck()
-                                            self.present(tabBarController, animated: true)
+                                            getBoxAndVitamin() { success in
+                                                if success {
+                                                    if userVitaminDataList.count != 0 {
+                                                        getRecommened() { success in
+                                                            if success {
+                                                                print("로그인이 성공하였습니다.")
+                                                                UserDefaults.standard.set(true, forKey: "auto")
+                                                                self.isLoggedInBool = true
+                                                                let tabBarController = self.isLoggedIn()
+                                                                tabBarController.modalPresentationStyle = .fullScreen
+                                                                self.loginFailedWarningLabel.isHidden = true
+                                                                self.present(tabBarController, animated: true)
+                                                            } else {
+                                                                print("자동로그인이 실패하였습니다.")
+                                                            }
+                                                        }
+                                                    } else {
+                                                        print("로그인이 성공하였습니다.")
+                                                        UserDefaults.standard.set(true, forKey: "auto")
+                                                        self.isLoggedInBool = true
+                                                        let tabBarController = self.isLoggedIn()
+                                                        tabBarController.modalPresentationStyle = .fullScreen
+                                                        self.loginFailedWarningLabel.isHidden = true
+                                                        self.present(tabBarController, animated: true)
+                                                    }
+                                                } else {
+                                                    print("자동로그인이 실패하였습니다.")
+                                                }
+                                            }
                                         } else {
                                             print("자동로그인이 실패하였습니다.")
                                         }
@@ -270,12 +291,13 @@ class LoginViewController: UIViewController {
     
     @objc func loginButtonTapped(_ sender: UIButton) {
         if (idInputTextField.text == "admin" || idInputTextField.text == "Admin") && PasswordInputTextField.text == "admin" {
-            isLoggedInBool = true
-            let tabBarController = isLoggedIn()
-            tabBarController.modalPresentationStyle = .fullScreen
             UserDefaults.standard.set(true, forKey: "admin")
             userDataList.append(UserDataAtServer(seq: 9999, id: "admin", name: "admin", gender: 1, birth: 19990729, serial_id: 0000000000000000))
             userProfileImageList.append(UserProfileImage(image: UIImage()))
+            
+            isLoggedInBool = true
+            let tabBarController = isLoggedIn()
+            tabBarController.modalPresentationStyle = .fullScreen
             self.present(tabBarController, animated: true)
         } else {
             UserDefaults.standard.set(false, forKey: "admin")
@@ -288,16 +310,38 @@ class LoginViewController: UIViewController {
                                 getVitaminInformation(seq: seq) { success in
                                     if success {
                                         let seq = userDataList[0].seq
-                                        
+                                    
                                         getAlarmData(seq: seq) { success in
                                             if success {
-                                                print("로그인이 성공하였습니다.")
-                                                self.isLoggedInBool = true
-                                                let tabBarController = self.isLoggedIn()
-                                                tabBarController.modalPresentationStyle = .fullScreen
-                                                self.loginFailedWarningLabel.isHidden = true
-                                                self.autoLoginButtonStateCheck()
-                                                self.present(tabBarController, animated: true)
+                                                getBoxAndVitamin { success in
+                                                    if success {
+                                                        if userVitaminDataList.count != 0 {
+                                                            getRecommened { success in
+                                                                if success {
+                                                                    print("로그인이 성공하였습니다.")
+                                                                    self.isLoggedInBool = true
+                                                                    let tabBarController = self.isLoggedIn()
+                                                                    tabBarController.modalPresentationStyle = .fullScreen
+                                                                    self.loginFailedWarningLabel.isHidden = true
+                                                                    self.autoLoginButtonStateCheck()
+                                                                    self.present(tabBarController, animated: true)
+                                                                } else {
+                                                                    print("로그인이 실패하였습니다.")
+                                                                }
+                                                            }
+                                                        } else {
+                                                            print("로그인이 성공하였습니다.")
+                                                            self.isLoggedInBool = true
+                                                            let tabBarController = self.isLoggedIn()
+                                                            tabBarController.modalPresentationStyle = .fullScreen
+                                                            self.loginFailedWarningLabel.isHidden = true
+                                                            self.autoLoginButtonStateCheck()
+                                                            self.present(tabBarController, animated: true)
+                                                        }
+                                                    } else {
+                                                        print("로그인이 실패하였습니다.")
+                                                    }
+                                                }
                                             } else {
                                                 print("로그인이 실패하였습니다.")
                                             }
@@ -311,9 +355,17 @@ class LoginViewController: UIViewController {
                             }
                         }
                     } else {
-                        self.loginFailedWarningLabel.text = "아이디 혹은 비밀번호가 틀렸습니다."
-                        self.loginFailedWarningLabel.isHidden = false
-                        print("로그인이 실패하였습니다.")
+                        checkServerConnection() { success in
+                            if success {
+                                self.loginFailedWarningLabel.text = "아이디 혹은 비밀번호가 틀렸습니다."
+                                self.loginFailedWarningLabel.isHidden = false
+                                print("로그인이 실패하였습니다.")
+                            } else {
+                                self.loginFailedWarningLabel.text = "서버와의 연결이 불안정합니다. 잠시 후 다시 시도하세요."
+                                self.loginFailedWarningLabel.isHidden = false
+                                print("로그인이 실패하였습니다.")
+                            }
+                        }
                     }
                 }
             } else {
