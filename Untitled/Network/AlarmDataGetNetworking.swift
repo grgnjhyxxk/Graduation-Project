@@ -12,8 +12,7 @@ struct AlarmInformation: Decodable {
     let alarm_name: String
     let alarm_time: String
     let days: String
-    let box: Int
-    let vitamin: String
+    let box: String
 }
 
 func getAlarmData(seq: Int, completion: @escaping (Bool) -> Void) {
@@ -40,8 +39,7 @@ func getAlarmData(seq: Int, completion: @escaping (Bool) -> Void) {
                         let alarm_time = alarmInformation[index].alarm_time
                         let days = alarmInformation[index].days
                         let box = alarmInformation[index].box
-                        let vitamin = alarmInformation[index].vitamin
-                        userAlarmDataList.append(AlarmViewCellDataModel(date: alarm_time, repeatDays: days, label: alarm_name, numOfBox: box, vitamins: vitamin))
+                        userAlarmDataList.append(AlarmViewCellDataModel(date: alarm_time, repeatDays: days, label: alarm_name, box: box))
                     }
                     
                     hideLoadingScreen()

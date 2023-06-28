@@ -34,8 +34,7 @@ func alarmDataPost(completion: @escaping (Bool) -> Void) {
                     "time": data.date,
                     "days": data.repeatDays,
                     "alarmname": data.label,
-                    "box": data.numOfBox,
-                    "vitamin": data.vitamins
+                    "box": data.box,
                 ]
                 
                 print(bodyData)
