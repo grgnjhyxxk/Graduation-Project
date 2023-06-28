@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        sleep(1)
+        
         let center = UNUserNotificationCenter.current()
         center.delegate = self // push처리에 대한 delegate - UNUserNotificationCenterDelegate
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
@@ -126,21 +128,45 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     // push를 탭한 경우 처리
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("알람클릭")
-        boxOperatingNumber = response.notification.request.identifier
+        
+        let box = response.notification.request.identifier
+        
+        // 문자열 나누기
+        var boxList: [String] = []
 
-        for i in 0..<userAlarmDataList.count {
-            if Int(boxOperatingNumber) == userAlarmDataList[i].numOfBox {
-                let vitamins = userAlarmDataList[i].vitamins
-                for i in 0..<userVitaminDataList.count {
-                    if vitamins == userVitaminDataList[i].prod_name {
-                        print(userVitaminDataList[i].intake_per_day)
-                        intakePerDayNumber = userVitaminDataList[i].intake_per_day
-                        productnameString = userVitaminDataList[i].prod_name
-                        break
-                    }
+        if box.contains(" ") {
+            let components = box.components(separatedBy: " ")
+            boxList = components.map { String($0) }
+        } else {
+            boxList.append(box)
+        }
+        
+        // vseq 찾기
+        var vseqList = [Int]()
+        
+        for i in boxList {
+            vseqList.append(boxAndVitaminDataList[Int(i)!-1].vseq)
+        }
+        
+        // intake_per_day 찾기
+        var intakePerDayList = [Int]()
+        
+        for i in 0..<userVitaminDataList.count {
+            for j in 0..<vseqList.count {
+                if userVitaminDataList[i].vseq == vseqList[j] {
+                    intakePerDayList.append(userVitaminDataList[i].intake_per_day)
                 }
             }
         }
+        
+        print("\(boxList)")
+        print("\(vseqList)")
+        print("\(intakePerDayList)")
+        
+        boxNumHandlerList = boxList
+        vseqHandlerList = vseqList
+        intakePerdayHandlerList = intakePerDayList
+        completionHandler()
         alarmAlert()
     }
 }
