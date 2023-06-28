@@ -30,7 +30,7 @@ class AlarmViewTableCell: UITableViewCell {
         label.text = "label"
         label.textColor = UIColor.appTextColor
 //        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.font = UIFont(name: "NotoSansKR-Bold", size: 15)
+        label.font = UIFont(name: "NotoSansKR-Bold", size: 17)
         
         return label
     }()

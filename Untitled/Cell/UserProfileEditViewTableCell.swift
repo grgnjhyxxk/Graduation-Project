@@ -62,9 +62,11 @@ class UserProfileEditViewTableCell: UITableViewCell {
     
     let serialNumberLabel: UILabel = {
         let label = UILabel()
+        let intTostring = String(userDataList[0].serial_id)
+        let text = CommonView().addDashesToString(string: intTostring)
         
         label.textColor = UIColor.placeholderText
-        label.text = String(userDataList[0].serial_id)
+        label.text = String(text)
         label.font = UIFont(name: "NotoSansKR-Regular", size: 17)
         
         return label
