@@ -23,8 +23,7 @@ func alarmEditNetworking(index: Int, completion: @escaping (Bool) -> Void) {
                 let time = alarmEditDataList.last?.date
                 let days = alarmEditDataList.last?.repeatDays
                 let newalarmname = alarmEditDataList.last?.label
-                let box = alarmEditDataList.last?.numOfBox
-                let vitamin = alarmEditDataList.last?.vitamins
+                let box = alarmEditDataList.last?.box
                 let alarmname = userAlarmDataList[index].label
                 
                 let bodyData: Parameters = [
@@ -33,7 +32,6 @@ func alarmEditNetworking(index: Int, completion: @escaping (Bool) -> Void) {
                     "days": days!,
                     "newalarmname": newalarmname!,
                     "box": box!,
-                    "vitamin": vitamin!,
                     "alarmname": alarmname
                 ]
                 
