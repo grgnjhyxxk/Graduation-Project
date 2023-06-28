@@ -5,6 +5,7 @@ PODS:
     - CocoaMQTT/Core (= 2.1.3)
   - CocoaMQTT/Core (2.1.3):
     - MqttCocoaAsyncSocket (~> 1.0.8)
+  - KDCircularProgress (1.5.4)
   - MqttCocoaAsyncSocket (1.0.8)
   - SnapKit (5.6.0)
 
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - Alamofire
   - AnyFormatKit
   - CocoaMQTT
+  - KDCircularProgress
   - SnapKit (~> 5.6.0)
 
 SPEC REPOS:
@@ -19,6 +21,7 @@ SPEC REPOS:
     - Alamofire
     - AnyFormatKit
     - CocoaMQTT
+    - KDCircularProgress
     - MqttCocoaAsyncSocket
     - SnapKit
 
@@ -26,9 +29,10 @@ SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   AnyFormatKit: b0dbb2a5f2fe7a0fc97f401f8a219a47ee63a335
   CocoaMQTT: f91421327f100d64374792b96bc9787e983bfe29
+  KDCircularProgress: 98200c6b8e85d22bc04eb644721d3b1e12b0686b
   MqttCocoaAsyncSocket: 77d3b74f76228dd5a05d1f9526eab101d415b30c
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: cbdfe4f9e1476851132fd05754727576888d0b39
+PODFILE CHECKSUM: e1197a95a44b6a888ab38bd2a3d5d1b1d01c7c0e
 
 COCOAPODS: 1.11.3
