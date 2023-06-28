@@ -12,7 +12,7 @@ class InitView: UIView {
     func mainImageView() -> UIImageView {
         let imageView = UIImageView()
             
-        imageView.image = UIImage(named: "InitViewMainImage")
+        imageView.image = UIImage(named: "Private")
         
         return imageView
     }

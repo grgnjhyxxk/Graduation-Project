@@ -20,6 +20,17 @@ class AlarmView: UIView {
         return button
     }
     
+    func boxButton() -> UIButton {
+        let button = UIButton()
+        
+        button.setImage(UIImage(systemName: "shippingbox.fill"), for: .normal)
+        button.tintColor = UIColor.appPointColor
+        button.contentHorizontalAlignment = .fill
+        button.contentVerticalAlignment = .fill
+        
+        return button
+    }
+    
     func emptyAlarmImageView() -> UIImageView {
         let imageView = UIImageView()
         

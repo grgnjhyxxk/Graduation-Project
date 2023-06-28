@@ -17,7 +17,8 @@ class CommonView: UIView {
         button.backgroundColor = UIColor.appMainBackgroundColor
         button.layer.cornerRadius = 18
         button.clipsToBounds = true
-        
+        button.imageView?.contentMode = .scaleAspectFill
+
         return button
     }
     
@@ -126,6 +127,19 @@ class CommonView: UIView {
         return button
     }
     
+    func commonTitleButton(text: String) -> UIButton {
+        let button = UIButton()
+        
+        button.backgroundColor = UIColor.appPointColor
+        button.setTitle("\(text)", for: .normal)
+        button.setTitleColor(UIColor.appTextColor, for: .normal)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 18.5)
+        button.titleLabel?.font = UIFont(name: "NotoSansKR-Regular", size: 14)
+        button.titleLabel?.textAlignment = .center
+        
+        return button
+    }
+    
     func birthToDate(birth: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyyMMdd"
@@ -149,5 +163,19 @@ class CommonView: UIView {
         }
         
         return gender
+    }
+    
+    func addDashesToString(string: String) -> String {
+        let charArray = Array(string)  // 문자열을 문자 배열로 변환합니다.
+        var result = ""
+        
+        for (index, char) in charArray.enumerated() {
+            if index > 0 && index % 4 == 0 {
+                result.append("-")  // 4자리마다 "-"를 추가합니다.
+            }
+            result.append(char)
+        }
+        
+        return result
     }
 }
