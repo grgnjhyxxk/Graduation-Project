@@ -10,22 +10,21 @@ import SnapKit
 
 class UserViewContoller: UIViewController {
 //    var serialNumber = String()
-    
+    var isHidden = false
+
     var uiViewList: [UIView] = []
     var commonViewList: [UIView] = []
     
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appSubBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 20)
-
-//    let userPofileImage = RegisterView().selectUserProfileImageView()
+    let tableView = UITableView()
+    
     let userPofileImage = CommonView().userProfileImageView()
 
     let mainTitleLabel = CommonView().commonTextLabel(labelText: "", size: 20)
-    let pillViewTtileLabel = CommonView().commonTextLabel(labelText: "이 부분은 삭제할거임.", size: 20)
-//    let serialNumber = CommonView().commonTextLabel(labelText: "", size: <#T##CGFloat#>)
 
     let profileEditButton = InitView().serviceButton(text: "프로필 수정")
-    let plusbutton = AlarmView().plusButton()
     let logoutButton = InitView().serviceButton(text: "로그아웃")
+    let arrowButton = UserView().arrowButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,21 +33,11 @@ class UserViewContoller: UIViewController {
         addOnCommonUiView()
         commonUIViewLayout()
         navigationControllerLayout()
+        tableViewLayout()
         actionFunction()
-//        NotificationCenter.default.addObserver(self, selector: #selector(handleImageEditedNotification), name: NSNotification.Name(rawValue: "ImageEdited"), object: nil)
+        testBoxAndVitaminDataListInit()
+        print(testBoxAndVitaminDataList)
     }
-    
-//    @objc func handleImageEditedNotification(_ noti: Notification) {
-//        OperationQueue.main.addOperation {
-//            profileEditDataPost() { success in
-//                if success {
-//                    print("성공")
-//                } else {
-//                    print("실패")
-//                }
-//            }
-//        }
-//    }
     
     private func viewLayout() {
         view.backgroundColor = UIColor.appMainBackgroundColor
@@ -73,16 +62,22 @@ class UserViewContoller: UIViewController {
             make.leading.equalTo(mainTitleLabel)
         }
         
-        commonUiView.snp.makeConstraints { make in
-            make.top.equalTo(profileEditButton.snp.bottom).offset(30)
-            make.leading.equalTo(20)
-            make.trailing.equalTo(-20)
-            make.height.equalTo(120)
-        }
-        
         logoutButton.snp.makeConstraints { make in
             make.top.equalTo(view.snp.bottom).offset(-57.8)
             make.centerX.equalTo(view)
+        }
+        
+        arrowButton.snp.makeConstraints { make in
+            make.top.equalTo(profileEditButton.snp.bottom).offset(20)
+            make.trailing.equalTo(-20)
+            make.size.equalTo(CGSize(width: 23, height: 14))
+        }
+        
+        commonUiView.snp.makeConstraints { make in
+            make.top.equalTo(arrowButton.snp.bottom).offset(15)
+            make.leading.equalTo(20)
+            make.trailing.equalTo(-20)
+            make.height.equalTo(269.82)
         }
         
         let name = userDataList[0].name
@@ -95,10 +90,11 @@ class UserViewContoller: UIViewController {
         profileEditButton.setTitleColor(UIColor.subTextColor, for: .normal)
         logoutButton.setTitleColor(UIColor.systemRed, for: .normal)
         logoutButton.titleLabel?.font = UIFont(name: "Roboto-Regular", size: 14.5)
+        commonUiView.isHidden = isHidden
     }
     
     private func addSubview() {
-        uiViewList = [userPofileImage, mainTitleLabel, profileEditButton, commonUiView, logoutButton]
+        uiViewList = [userPofileImage, mainTitleLabel, profileEditButton, commonUiView, logoutButton, arrowButton]
         
         for uiView in uiViewList {
             view.addSubview(uiView)
@@ -106,22 +102,14 @@ class UserViewContoller: UIViewController {
     }
     
     private func commonUIViewLayout() {
-        plusbutton.snp.makeConstraints { make in
-            make.top.equalTo(15)
-            make.trailing.equalTo(-15)
-            make.size.equalTo(CGSize(width: 23, height: 23))
+        tableView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(commonUiView)
+            make.height.equalTo(commonUiView)
         }
-        
-        pillViewTtileLabel.snp.makeConstraints { make in
-            make.top.equalTo(15)
-            make.leading.equalTo(15)
-        }
-        
-        pillViewTtileLabel.font = UIFont(name: "Roboto-Bold", size: 15)
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [plusbutton, pillViewTtileLabel]
+        commonViewList = [tableView]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -144,14 +132,28 @@ class UserViewContoller: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
     }
     
+    private func tableViewLayout() {
+        tableView.register(MyHomeBoxSettingCell.self, forCellReuseIdentifier: "MyHomeBoxSettingCell")
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.backgroundColor = UIColor.appSubBackgroundColor
+        tableView.separatorStyle = .singleLine
+        tableView.showsVerticalScrollIndicator = false
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        tableView.isScrollEnabled = false
+        tableView.rowHeight = 45
+        tableView.layer.cornerRadius = 15
+        
+        tableView.tableHeaderView = UIView(frame: .zero)
+        tableView.tableHeaderView?.backgroundColor = .clear
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.tableFooterView?.backgroundColor = .clear
+    }
+    
     private func actionFunction() {
         logoutButton.addTarget(self, action: #selector(logoutButtonAction), for: .touchUpInside)
         profileEditButton.addTarget(self, action: #selector(profileEditButtonAction), for: .touchUpInside)
-        plusbutton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
-    }
-    
-    @objc func plusButtonAction(_ sender: UIButton) {
-
+        arrowButton.addTarget(self, action: #selector(arrowButtonTapped), for: .touchUpInside)
     }
     
     @objc func cancelButtonAction(_ sender: UIBarButtonItem) {
@@ -161,7 +163,17 @@ class UserViewContoller: UIViewController {
     }
     
     @objc func saveButtonAction(_ sender: UIBarButtonItem) {
-        
+        postBoxAndVitamin() { success in
+            if success {
+                getBoxAndVitamin { success in
+                    if success {
+                        self.dismiss(animated: true)
+                    }
+                }
+            } else {
+                
+            }
+        }
     }
     
     @objc func profileEditButtonAction(_ sender: UIButton) {
@@ -190,7 +202,62 @@ class UserViewContoller: UIViewController {
         vitaminNames.removeAll()
         vitaminValues.removeAll()
         alarmViewCellDataList.removeAll()
+        userAlarmDataList.removeAll()
+        boxAndVitaminDataList.removeAll()
+        testBoxAndVitaminDataList.removeAll()
     }
+    
+    @objc func arrowButtonTapped(_ sender: UIButton) {
+        if isHidden {
+            // 숨겨진 뷰를 보여줍니다.
+            UIView.animate(withDuration: 0.3) {
+                self.commonUiView.isHidden = false
+            }
+            isHidden = false
+        } else {
+            // 보여진 뷰를 숨깁니다.
+            UIView.animate(withDuration: 0.3) {
+                self.commonUiView.isHidden = true
+            }
+            isHidden = true
+        }
+    }
+}
 
+extension UserViewContoller: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return boxCellData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyHomeBoxSettingCell", for: indexPath) as! MyHomeBoxSettingCell
+        
+        cell.clipsToBounds = true
+        cell.backgroundColor = UIColor.clear
+        
+        cell.titleLabel.text = boxCellData[indexPath.row].title
+        
+        let vseq = boxAndVitaminDataList[indexPath.row].vseq
+        var prod_name = String()
+        
+        for i in 0..<userVitaminDataList.count {
+            if userVitaminDataList[i].vseq == vseq {
+                prod_name = userVitaminDataList[i].prod_name
+            }
+        }
+        
+        cell.vitaminTextField.text = prod_name
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? MyHomeBoxSettingCell else {
+            return
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
