@@ -54,7 +54,7 @@ class VitaminEditIngredientsViewController: UIViewController {
     private func commonUiViewLayout() {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(commonUiView)
-            make.bottom.equalTo(commonUiView).offset(-83)
+            make.bottom.equalTo(commonUiView).offset(-63)
             make.leading.equalTo(commonUiView).offset(15)
             make.trailing.equalTo(commonUiView).offset(-15)
         }
@@ -76,7 +76,7 @@ class VitaminEditIngredientsViewController: UIViewController {
         tableView.separatorStyle = .singleLine
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        tableView.isScrollEnabled = false
+        tableView.isScrollEnabled = true
         tableView.rowHeight = 45
         tableView.layer.cornerRadius = 10
         

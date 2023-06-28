@@ -200,8 +200,14 @@ class VitaminAddViewController: UIViewController {
                             let seq = userDataList[0].seq
                             getVitaminInformation(seq: seq) { success in
                                 if success {
-                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "VitaminAddedNotification"), object: nil)
-                                    self.dismiss(animated: true, completion: nil)
+                                    aiVitaminSearchDataList.removeAll()
+                                    getRecommened { success in
+                                        if success {
+                                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "VitaminAddedNotification"), object: nil)
+                                            self.dismiss(animated: true, completion: nil)
+                                        }
+                                    }
+
                                 } else {
                                     print("실패...")
                                 }
@@ -252,7 +258,7 @@ extension VitaminAddViewController: UITableViewDataSource, UITableViewDelegate {
         switch indexPath.row {
         case 0:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: false, ingredientsTextLabelBool: true, dosageTextFieldBool: true, greaterthanBool: true, unitLabelBool: true, pillLabelBool: true)
-            cell.nameTextField.text = vitaminNameTextFieldText
+            cell.nameTextField.text = "영양제"
         case 1:
             cell.hiddenFucntion(titleLabelText: titlaLabelText, nameTextFieldBool: true, ingredientsTextLabelBool: false, dosageTextFieldBool: true, greaterthanBool: false, unitLabelBool: true, pillLabelBool: true)
             if !ingredientsCellDataList.isEmpty {

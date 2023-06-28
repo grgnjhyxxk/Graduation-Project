@@ -22,7 +22,9 @@ class VitaminViewController: UIViewController {
     
     let subTextLabel = CommonView().commonTextLabel(labelText: "한눈에 보는 나의 영양제", size: 14)
     let mainTextLabel = CommonView().commonTextLabel(labelText: "영양관리로\n쉽고 편하게 관리하세요.", size: 25)
-
+    let emptyTextLabel = CommonView().commonTextLabel(labelText: "아직 영양제을 추가하지 않으셨군요!\n지금 바로 드시고 계신 영양제를 등록해보세요 :)", size: 13)
+    
+    let emptyAlarmImageView = AlarmView().emptyAlarmImageView()
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.appMainBackgroundColor!, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 30)
     let tableView = UITableView()
     
@@ -37,16 +39,32 @@ class VitaminViewController: UIViewController {
         actionFunction()
         NotificationCenter.default.addObserver(self, selector: #selector(handleVitaminAddedNotification), name: NSNotification.Name(rawValue: "VitaminAddedNotification"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleVitaminDeleteNotification), name: NSNotification.Name(rawValue: "VitaminDeletedNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SSS), name: NSNotification.Name(rawValue: "SSS"), object: nil)
+        
+        for i in 0..<userVitaminDataList.count {
+            userVitaminDataList[i].taken = 1
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let image = userProfileImageList[0].image
         userProfileButton.setImage(image, for: .normal)
+        alarmListisEmptyOrNot()
+        NotificationCenter.default.addObserver(self, selector: #selector(SSS), name: NSNotification.Name(rawValue: "SSS"), object: nil)
+    }
+    
+    @objc func SSS(_ noti: Notification) {
+        OperationQueue.main.addOperation {
+            print("성공...")
+            self.alarmListisEmptyOrNot()
+            self.tableView.reloadData()
+        }
     }
     
     @objc func handleVitaminAddedNotification(_ noti: Notification) {
         OperationQueue.main.addOperation {
             print("영양제가 정상적으로 등록되었습니다.")
+            self.alarmListisEmptyOrNot()
             self.tableView.reloadData()
         }
     }
@@ -54,6 +72,7 @@ class VitaminViewController: UIViewController {
     @objc func handleVitaminDeleteNotification(_ noti: Notification) {
         OperationQueue.main.addOperation {
             print("영양제가 정상적으로 삭제되었습니다.")
+            self.alarmListisEmptyOrNot()
             self.tableView.reloadData()
         }
     }
@@ -125,12 +144,26 @@ class VitaminViewController: UIViewController {
             make.trailing.equalTo(commonUiView).offset(-10)
         }
         
+        emptyAlarmImageView.snp.makeConstraints { make in
+            make.centerX.equalTo(commonUiView)
+            make.top.equalTo(commonUiView.snp.top).offset(190)
+            make.size.equalTo(CGSize(width: 300, height: 200))
+        }
+        
+        emptyTextLabel.snp.makeConstraints { make in
+            make.top.equalTo(emptyAlarmImageView.snp.bottom).offset(-30)
+            make.width.equalTo(commonUiView)
+        }
+        
+        emptyTextLabel.textAlignment = .center
+        emptyTextLabel.textColor = UIColor.systemGray
+        
         mainTextLabel.attributedLabel(text: "영양관리")
         subTextLabel.textColor = UIColor.subTextColor
     }
     
     private func addOnCommonUiView() {
-        commonViewList = [subTextLabel, mainTextLabel, plusButton, tableView]
+        commonViewList = [subTextLabel, mainTextLabel, plusButton, tableView, emptyTextLabel, emptyAlarmImageView]
         
         for uiView in commonViewList {
             commonUiView.addSubview(uiView)
@@ -153,21 +186,33 @@ class VitaminViewController: UIViewController {
         plusButton.addTarget(self, action: #selector(plusButtonAction), for: .touchUpInside)
     }
     
-    @objc func plusButtonAction(_: UIButton) {
-        let rootViewController = VitaminAddViewController()
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        vitaminBasicDataListInit()
-        ingredientsCellDataListInit()
-        vitaminImageDataListInit()
-        present(navigationController, animated: true, completion: nil)
+    private func alarmListisEmptyOrNot() {
+        if userVitaminDataList.isEmpty {
+            self.emptyTextLabel.isHidden = false
+            self.emptyAlarmImageView.isHidden = false
+        } else {
+            self.emptyTextLabel.isHidden = true
+            self.emptyAlarmImageView.isHidden = true
+        }
     }
     
 //    @objc func plusButtonAction(_: UIButton) {
-//        let rootViewController = VitaminCaptureViewController()
-//        let nvigationController = UINavigationController(rootViewController: rootViewController)
+//        let rootViewController = VitaminAddViewController()
+//        let navigationController = UINavigationController(rootViewController: rootViewController)
+//        vitaminBasicDataListInit()
+//        ingredientsCellDataListInit()
 //        vitaminImageDataListInit()
-//        present(nvigationController, animated: true)
+//        present(navigationController, animated: true, completion: nil)
 //    }
+    
+    @objc func plusButtonAction(_: UIButton) {
+        let rootViewController = VitaminProdNameInputViewController()
+        let nvigationController = UINavigationController(rootViewController: rootViewController)
+        vitaminBasicDataListInit()
+        ingredientsCellDataListInit()
+        vitaminImageDataListInit()
+        present(nvigationController, animated: true)
+    }
     
     @objc func toggleTheme(_ sender: UIButton) {
         if #available(iOS 15.0, *) {
@@ -273,20 +318,20 @@ extension VitaminViewController: UITableViewDataSource, UITableViewDelegate {
             let count = vitaminNames[indexPath.row].count - 3
             cell.overCountLabel.text = "+ \(count)"
             cell.overCountLabel.attributedLabel(text: "\(count)")
-            cell.overCountLabel.font = UIFont(name: "NotoSansKR-Regular", size: 10)
+            cell.overCountLabel.font = UIFont(name: "NotoSansKR-Bold", size: 17)
         } else {
             cell.overCountLabel.isHidden = true
         }
         
         cell.overCountLabel.snp.makeConstraints { make in
             if !cell.thirdIngredientsLabelButton.isHidden {
-                make.top.equalTo(cell.thirdIngredientsLabelButton)
+                make.top.equalTo(cell.thirdIngredientsLabelButton).offset(-1)
                 make.leading.equalTo(cell.thirdIngredientsLabelButton.snp.trailing).offset(5)
             } else if !cell.secondIngredientsLabelButton.isHidden {
-                make.top.equalTo(cell.secondIngredientsLabelButton)
+                make.top.equalTo(cell.secondIngredientsLabelButton).offset(-1)
                 make.leading.equalTo(cell.secondIngredientsLabelButton.snp.trailing).offset(5)
             } else {
-                make.top.equalTo(cell.firstIngredientsLabelButton)
+                make.top.equalTo(cell.firstIngredientsLabelButton).offset(-1)
                 make.leading.equalTo(cell.firstIngredientsLabelButton.snp.trailing).offset(5)
             }
             

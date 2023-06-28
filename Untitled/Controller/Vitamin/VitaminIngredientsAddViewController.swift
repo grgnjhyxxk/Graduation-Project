@@ -70,7 +70,6 @@ class VitaminIngredientsAddViewController: UIViewController {
         
         let toolbar = UIToolbar()
         toolbar.barStyle = .default
-        toolbar.isTranslucent = true
         toolbar.sizeToFit()
         toolbar.barTintColor = UIColor.appMainBackgroundColor
         
@@ -78,7 +77,7 @@ class VitaminIngredientsAddViewController: UIViewController {
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(tooBarDoneButtonAction))
         
-        toolbar.barTintColor = .black
+        toolbar.barTintColor = .appMainBackgroundColor
         toolbar.isTranslucent = true
 //        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.appTextColor!]
         
