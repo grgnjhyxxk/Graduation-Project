@@ -24,10 +24,10 @@
 
 # 🧑🏻‍💻 Team
 
-- iOS 1명         
-- 백엔드 1명    
-- 기기제작 1명      
-- DB 1명
+- <a href="https://github.com/grgnjhyxxk">iOS 1명</a>       
+- <a href="https://github.com/nzkim1234">백엔드 1명</a>
+- <a href="https://github.com/yc424k">기기제작 1명</a>
+- - <a href="https://github.com/hyeonggeun0209">DB 1명</a>
 
 # ✋🏻 Part
 
