@@ -44,7 +44,7 @@ class AlarmViewController: UIViewController {
         super.viewWillAppear(animated)
         alarmListisEmptyOrNot()
         let image = userProfileImageList[0].image
-
+        getAllScheduledNotifications()
         userProfileButton.setImage(image, for: .normal)
     }
     
