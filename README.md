@@ -1,6 +1,10 @@
-# Graduation-Project
+# 
+<br>
+<p align = "center"><img src="https://github.com/grgnjhyxxk/Graduation-Project/assets/129068544/f07c9413-5e77-4133-9c69-b401b30fa0b7.jpg"  width="130" height="130"/>
 
-## 영양제 디스펜서 어플리케이션
+# Graduation-Project 
+
+# 영양제 디스펜서 어플리케이션
 
 ## 📄 서비스 개요
 
