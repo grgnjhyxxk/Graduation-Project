@@ -50,6 +50,11 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if !UserDefaults.standard.bool(forKey: "auto") {
+            autoLoginButton.setImage(UIImage(systemName: "circle"), for: .normal)
+            autoLoginButton.tintColor = UIColor.placeholderText
+        }
+        
         autoLogin()
         self.loginFailedWarningLabel.isHidden = true
     }
@@ -178,63 +183,62 @@ class LoginViewController: UIViewController {
         print("자동로그인 체크")
         if state {
             print("자동로그인을 시도합니다: \(state)")
-            
-            let id = UserDefaults.standard.string(forKey: "id")!
-            let pwd = UserDefaults.standard.string(forKey: "pwd")!
-            
-            loginUserToServer(userid: id, userpassword: pwd) { success in
-                if success {
-                    let seq = userDataList[0].seq
-                    getUserProfileImage(seq: seq) { success in
-                        if success {
-                            getVitaminInformation(seq: seq) { success in
-                                if success {
-                                    let seq = userDataList[0].seq
-                                    getAlarmData(seq: seq) { success in
-                                        if success {
-                                            getBoxAndVitamin() { success in
-                                                if success {
-                                                    if userVitaminDataList.count != 0 {
-                                                        getRecommened() { success in
-                                                            if success {
-                                                                print("로그인이 성공하였습니다.")
-                                                                UserDefaults.standard.set(true, forKey: "auto")
-                                                                self.isLoggedInBool = true
-                                                                let tabBarController = self.isLoggedIn()
-                                                                tabBarController.modalPresentationStyle = .fullScreen
-                                                                self.loginFailedWarningLabel.isHidden = true
-                                                                self.present(tabBarController, animated: true)
-                                                            } else {
-                                                                print("자동로그인이 실패하였습니다.")
+
+            if let id = UserDefaults.standard.string(forKey: "id"), let pwd = UserDefaults.standard.string(forKey: "pwd") {
+                loginUserToServer(userid: id, userpassword: pwd) { success in
+                    if success {
+                        let seq = userDataList[0].seq
+                        getUserProfileImage(seq: seq) { success in
+                            if success {
+                                getVitaminInformation(seq: seq) { success in
+                                    if success {
+                                        let seq = userDataList[0].seq
+                                        getAlarmData(seq: seq) { success in
+                                            if success {
+                                                getBoxAndVitamin() { success in
+                                                    if success {
+                                                        if userVitaminDataList.count != 0 {
+                                                            getRecommened() { success in
+                                                                if success {
+                                                                    print("로그인이 성공하였습니다.")
+                                                                    UserDefaults.standard.set(true, forKey: "auto")
+                                                                    self.isLoggedInBool = true
+                                                                    let tabBarController = self.isLoggedIn()
+                                                                    tabBarController.modalPresentationStyle = .fullScreen
+                                                                    self.loginFailedWarningLabel.isHidden = true
+                                                                    self.present(tabBarController, animated: true)
+                                                                } else {
+                                                                    print("자동로그인이 실패하였습니다.")
+                                                                }
                                                             }
+                                                        } else {
+                                                            print("로그인이 성공하였습니다.")
+                                                            UserDefaults.standard.set(true, forKey: "auto")
+                                                            self.isLoggedInBool = true
+                                                            let tabBarController = self.isLoggedIn()
+                                                            tabBarController.modalPresentationStyle = .fullScreen
+                                                            self.loginFailedWarningLabel.isHidden = true
+                                                            self.present(tabBarController, animated: true)
                                                         }
                                                     } else {
-                                                        print("로그인이 성공하였습니다.")
-                                                        UserDefaults.standard.set(true, forKey: "auto")
-                                                        self.isLoggedInBool = true
-                                                        let tabBarController = self.isLoggedIn()
-                                                        tabBarController.modalPresentationStyle = .fullScreen
-                                                        self.loginFailedWarningLabel.isHidden = true
-                                                        self.present(tabBarController, animated: true)
+                                                        print("자동로그인이 실패하였습니다.")
                                                     }
-                                                } else {
-                                                    print("자동로그인이 실패하였습니다.")
                                                 }
+                                            } else {
+                                                print("자동로그인이 실패하였습니다.")
                                             }
-                                        } else {
-                                            print("자동로그인이 실패하였습니다.")
                                         }
+                                    } else {
+                                        print("자동로그인이 실패하였습니다.")
                                     }
-                                } else {
-                                    print("자동로그인이 실패하였습니다.")
                                 }
+                            } else {
+                                print("자동로그인이 실패하였습니다.")
                             }
-                        } else {
-                            print("자동로그인이 실패하였습니다.")
                         }
+                    } else {
+                        print("자동로그인이 실패하였습니다.")
                     }
-                } else {
-                    print("자동로그인이 실패하였습니다.")
                 }
             }
         } else {
