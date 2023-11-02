@@ -14,17 +14,59 @@
 		FA1305F02A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1305EF2A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift */; };
 		FA1305F42A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1305F32A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift */; };
 		FA1305F82A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1305F72A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift */; };
-		FA1416D629D1F1710060119D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1416D529D1F1710060119D /* HomeViewController.swift */; };
+		FA1416D629D1F1710060119D /* VitaminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1416D529D1F1710060119D /* VitaminViewController.swift */; };
 		FA169D4929D1FEAD0042DBC0 /* InitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA169D4829D1FEAD0042DBC0 /* InitView.swift */; };
+		FA2CCFE72A2B239300C8E23D /* RecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CCFE62A2B239300C8E23D /* RecommendCell.swift */; };
+		FA2CCFE92A2B253F00C8E23D /* AIRecommendIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CCFE82A2B253F00C8E23D /* AIRecommendIngredientsViewController.swift */; };
+		FA34193A2A275DBB0096E233 /* AlarmBoxSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419392A275DBB0096E233 /* AlarmBoxSelectViewController.swift */; };
+		FA34193C2A275F640096E233 /* AlarmBoxViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34193B2A275F640096E233 /* AlarmBoxViewTableCell.swift */; };
+		FA3419442A276F4E0096E233 /* MyHomeBoxSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419432A276F4E0096E233 /* MyHomeBoxSettingCell.swift */; };
+		FA3419462A2787850096E233 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419452A2787850096E233 /* UserView.swift */; };
+		FA3419482A279DFB0096E233 /* GetBoxAndVitaminNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419472A279DFB0096E233 /* GetBoxAndVitaminNetworking.swift */; };
+		FA34194A2A27BE110096E233 /* PostBoxAndVitaminNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419492A27BE110096E233 /* PostBoxAndVitaminNetworking.swift */; };
+		FA34194C2A28B8C40096E233 /* MQTT.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34194B2A28B8C40096E233 /* MQTT.swift */; };
+		FA34194E2A29003B0096E233 /* AppIcon_final_2_invisible.png in Resources */ = {isa = PBXBuildFile; fileRef = FA34194D2A29003B0096E233 /* AppIcon_final_2_invisible.png */; };
+		FA3419502A29B02A0096E233 /* VitaminProdNameInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34194F2A29B02A0096E233 /* VitaminProdNameInputViewController.swift */; };
+		FA3419522A29D2B60096E233 /* GetSearchVitaminNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419512A29D2B60096E233 /* GetSearchVitaminNetworking.swift */; };
+		FA3419542A29E9FB0096E233 /* VitaminSearchAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419532A29E9FB0096E233 /* VitaminSearchAddViewController.swift */; };
+		FA3419562A29F0710096E233 /* VitaminSearchIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419552A29F0710096E233 /* VitaminSearchIngredientsViewController.swift */; };
+		FA3419582A2A35FE0096E233 /* GetRecommenedNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3419572A2A35FE0096E233 /* GetRecommenedNetworking.swift */; };
 		FA439F3E2A09AC68000819FF /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA439F3D2A09AC68000819FF /* RegisterView.swift */; };
 		FA609F2C29FEB404005BE1F2 /* AlarmViewCellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA609F2B29FEB404005BE1F2 /* AlarmViewCellDataModel.swift */; };
 		FA609F2F29FEDE74005BE1F2 /* AlarmViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA609F2E29FEDE74005BE1F2 /* AlarmViewTableCell.swift */; };
 		FA609F3129FF1281005BE1F2 /* AlarmAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA609F3029FF1281005BE1F2 /* AlarmAddViewController.swift */; };
 		FA609F3329FF128B005BE1F2 /* AlarmAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA609F3229FF128B005BE1F2 /* AlarmAddView.swift */; };
+		FA7501112A0FC6DA008D047B /* AlarmEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501102A0FC6DA008D047B /* AlarmEditViewController.swift */; };
+		FA7501142A110837008D047B /* RegisterNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501132A110837008D047B /* RegisterNetworking.swift */; };
+		FA7501162A1114A4008D047B /* LoginNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501152A1114A4008D047B /* LoginNetworking.swift */; };
+		FA7501182A1145E5008D047B /* ServerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501172A1145E5008D047B /* ServerAddress.swift */; };
+		FA75011A2A114858008D047B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501192A114858008D047B /* LoadingView.swift */; };
+		FA75011C2A114D78008D047B /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75011B2A114D78008D047B /* AlertView.swift */; };
+		FA7501262A115548008D047B /* UserProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501252A115548008D047B /* UserProfileEditViewController.swift */; };
+		FA7501282A12075F008D047B /* CheckServerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501272A12075F008D047B /* CheckServerNetworking.swift */; };
+		FA75012A2A127B6F008D047B /* UserViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501292A127B6F008D047B /* UserViewContoller.swift */; };
+		FA75012E2A1389F4008D047B /* ProfileEditViewCellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75012D2A1389F4008D047B /* ProfileEditViewCellDataModel.swift */; };
+		FA7501302A140D88008D047B /* UserProfileEditViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75012F2A140D88008D047B /* UserProfileEditViewTableCell.swift */; };
+		FA7501342A15036D008D047B /* UserProfileNameSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501332A15036D008D047B /* UserProfileNameSelectViewController.swift */; };
+		FA7501362A150400008D047B /* UserProfileBirthSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501352A150400008D047B /* UserProfileBirthSelectViewController.swift */; };
+		FA7501382A15040F008D047B /* UserProfileGenderSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501372A15040F008D047B /* UserProfileGenderSelectViewController.swift */; };
+		FA75013A2A1515A9008D047B /* GetUserProfileImageNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501392A1515A9008D047B /* GetUserProfileImageNetworking.swift */; };
+		FA7501412A1BC10E008D047B /* ProfileEditDataPostNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501402A1BC10E008D047B /* ProfileEditDataPostNetworking.swift */; };
+		FA7501432A1BE02D008D047B /* VitaminAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501422A1BE02D008D047B /* VitaminAddViewController.swift */; };
+		FA7501452A1BE2F0008D047B /* VitaminAddViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501442A1BE2F0008D047B /* VitaminAddViewTableCell.swift */; };
+		FA7501472A1C22AA008D047B /* VitaminAddViewCellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501462A1C22AA008D047B /* VitaminAddViewCellDataModel.swift */; };
+		FA75014B2A1CC3DB008D047B /* VitaminIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75014A2A1CC3DB008D047B /* VitaminIngredientsViewController.swift */; };
+		FA75014D2A1CFEAB008D047B /* VitaminIngredientsAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75014C2A1CFEAB008D047B /* VitaminIngredientsAddViewController.swift */; };
+		FA75014F2A1D0346008D047B /* IngredientsViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75014E2A1D0346008D047B /* IngredientsViewTableCell.swift */; };
+		FA7501512A1D1A85008D047B /* VitaminPostNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501502A1D1A85008D047B /* VitaminPostNetworking.swift */; };
+		FA7501532A1D34DC008D047B /* VitaminGetNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501522A1D34DC008D047B /* VitaminGetNetworking.swift */; };
+		FA7501552A1E3EC4008D047B /* VitaminCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7501542A1E3EC4008D047B /* VitaminCaptureViewController.swift */; };
 		FA7FA26A29DC2BEE0011B242 /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26729DC2BEE0011B242 /* AlarmView.swift */; };
 		FA7FA26B29DC2BEE0011B242 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26829DC2BEE0011B242 /* HomeView.swift */; };
 		FA7FA26C29DC2BEE0011B242 /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26929DC2BEE0011B242 /* CommonView.swift */; };
 		FA7FA26E29DC2C060011B242 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA26D29DC2C060011B242 /* CustomTabBarController.swift */; };
+		FA9318C42A257DA10073B139 /* AlarmSettingPostNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9318C32A257DA10073B139 /* AlarmSettingPostNetworking.swift */; };
+		FA9318C62A258EC40073B139 /* GetVitaminImageNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9318C52A258EC40073B139 /* GetVitaminImageNetworking.swift */; };
 		FAB785EC29D1ED6F00816363 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB785EB29D1ED6F00816363 /* AppDelegate.swift */; };
 		FAB785EE29D1ED6F00816363 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB785ED29D1ED6F00816363 /* SceneDelegate.swift */; };
 		FAB785F629D1ED6F00816363 /* Untitled.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FAB785F429D1ED6F00816363 /* Untitled.xcdatamodeld */; };
@@ -43,10 +85,20 @@
 		FABD09F22A0E927A006EA4F3 /* SerialNumberSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABD09F12A0E927A006EA4F3 /* SerialNumberSetViewController.swift */; };
 		FAC6224029D1F3D800D75F7E /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6223F29D1F3D800D75F7E /* AlarmViewController.swift */; };
 		FAC6224229D1F3F900D75F7E /* AIRecommededViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */; };
-		FAC6224429D1F41A00D75F7E /* InitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6224329D1F41A00D75F7E /* InitViewController.swift */; };
+		FAC6224429D1F41A00D75F7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6224329D1F41A00D75F7E /* LoginViewController.swift */; };
 		FAC6224729D1FA5100D75F7E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC6224629D1FA5100D75F7E /* Extension.swift */; };
 		FADCD54D2A00DEB6001D4AB0 /* AlarmAddViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCD54C2A00DEB6001D4AB0 /* AlarmAddViewTableCell.swift */; };
 		FADCD54F2A00E4F5001D4AB0 /* AlarmAddViewCellDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADCD54E2A00E4F5001D4AB0 /* AlarmAddViewCellDataModel.swift */; };
+		FAEED0412A1E882E00DE12CB /* VitaminViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED0402A1E882E00DE12CB /* VitaminViewTableCell.swift */; };
+		FAEED0442A2487A100DE12CB /* VitaminEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED0432A2487A100DE12CB /* VitaminEditViewController.swift */; };
+		FAEED0462A248D4E00DE12CB /* VitaminEditIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED0452A248D4E00DE12CB /* VitaminEditIngredientsViewController.swift */; };
+		FAEED0482A24A2A000DE12CB /* VitaminDeletePostNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED0472A24A2A000DE12CB /* VitaminDeletePostNetworking.swift */; };
+		FAEED04E2A24FDF100DE12CB /* AlarmDataPostNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED04D2A24FDF100DE12CB /* AlarmDataPostNetworking.swift */; };
+		FAEED0502A251B8000DE12CB /* AlarmDataGetNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED04F2A251B8000DE12CB /* AlarmDataGetNetworking.swift */; };
+		FAEED0522A25225E00DE12CB /* AlarmDeleteNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED0512A25225E00DE12CB /* AlarmDeleteNetworking.swift */; };
+		FAEED0542A25278500DE12CB /* AlarmEditNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED0532A25278500DE12CB /* AlarmEditNetworking.swift */; };
+		FAEED0562A25352A00DE12CB /* AlarmFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEED0552A25352A00DE12CB /* AlarmFunction.swift */; };
+		FAFD54FC2A1E545D0068E0CB /* VitaminImagePostNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFD54FB2A1E545D0068E0CB /* VitaminImagePostNetworking.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,17 +131,59 @@
 		FA1305EF2A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSelectViewController.swift; sourceTree = "<group>"; };
 		FA1305F32A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSelectViewTableCell.swift; sourceTree = "<group>"; };
 		FA1305F72A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSelectViewDataModel.swift; sourceTree = "<group>"; };
-		FA1416D529D1F1710060119D /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		FA1416D529D1F1710060119D /* VitaminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminViewController.swift; sourceTree = "<group>"; };
 		FA169D4829D1FEAD0042DBC0 /* InitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitView.swift; sourceTree = "<group>"; };
+		FA2CCFE62A2B239300C8E23D /* RecommendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCell.swift; sourceTree = "<group>"; };
+		FA2CCFE82A2B253F00C8E23D /* AIRecommendIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommendIngredientsViewController.swift; sourceTree = "<group>"; };
+		FA3419392A275DBB0096E233 /* AlarmBoxSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmBoxSelectViewController.swift; sourceTree = "<group>"; };
+		FA34193B2A275F640096E233 /* AlarmBoxViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmBoxViewTableCell.swift; sourceTree = "<group>"; };
+		FA3419432A276F4E0096E233 /* MyHomeBoxSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHomeBoxSettingCell.swift; sourceTree = "<group>"; };
+		FA3419452A2787850096E233 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		FA3419472A279DFB0096E233 /* GetBoxAndVitaminNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBoxAndVitaminNetworking.swift; sourceTree = "<group>"; };
+		FA3419492A27BE110096E233 /* PostBoxAndVitaminNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBoxAndVitaminNetworking.swift; sourceTree = "<group>"; };
+		FA34194B2A28B8C40096E233 /* MQTT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTT.swift; sourceTree = "<group>"; };
+		FA34194D2A29003B0096E233 /* AppIcon_final_2_invisible.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon_final_2_invisible.png; sourceTree = "<group>"; };
+		FA34194F2A29B02A0096E233 /* VitaminProdNameInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminProdNameInputViewController.swift; sourceTree = "<group>"; };
+		FA3419512A29D2B60096E233 /* GetSearchVitaminNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchVitaminNetworking.swift; sourceTree = "<group>"; };
+		FA3419532A29E9FB0096E233 /* VitaminSearchAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminSearchAddViewController.swift; sourceTree = "<group>"; };
+		FA3419552A29F0710096E233 /* VitaminSearchIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminSearchIngredientsViewController.swift; sourceTree = "<group>"; };
+		FA3419572A2A35FE0096E233 /* GetRecommenedNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRecommenedNetworking.swift; sourceTree = "<group>"; };
 		FA439F3D2A09AC68000819FF /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		FA609F2B29FEB404005BE1F2 /* AlarmViewCellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewCellDataModel.swift; sourceTree = "<group>"; };
 		FA609F2E29FEDE74005BE1F2 /* AlarmViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewTableCell.swift; sourceTree = "<group>"; };
 		FA609F3029FF1281005BE1F2 /* AlarmAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAddViewController.swift; sourceTree = "<group>"; };
 		FA609F3229FF128B005BE1F2 /* AlarmAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAddView.swift; sourceTree = "<group>"; };
+		FA7501102A0FC6DA008D047B /* AlarmEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmEditViewController.swift; sourceTree = "<group>"; };
+		FA7501132A110837008D047B /* RegisterNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterNetworking.swift; sourceTree = "<group>"; };
+		FA7501152A1114A4008D047B /* LoginNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworking.swift; sourceTree = "<group>"; };
+		FA7501172A1145E5008D047B /* ServerAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAddress.swift; sourceTree = "<group>"; };
+		FA7501192A114858008D047B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		FA75011B2A114D78008D047B /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		FA7501252A115548008D047B /* UserProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileEditViewController.swift; sourceTree = "<group>"; };
+		FA7501272A12075F008D047B /* CheckServerNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckServerNetworking.swift; sourceTree = "<group>"; };
+		FA7501292A127B6F008D047B /* UserViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewContoller.swift; sourceTree = "<group>"; };
+		FA75012D2A1389F4008D047B /* ProfileEditViewCellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewCellDataModel.swift; sourceTree = "<group>"; };
+		FA75012F2A140D88008D047B /* UserProfileEditViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileEditViewTableCell.swift; sourceTree = "<group>"; };
+		FA7501332A15036D008D047B /* UserProfileNameSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileNameSelectViewController.swift; sourceTree = "<group>"; };
+		FA7501352A150400008D047B /* UserProfileBirthSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileBirthSelectViewController.swift; sourceTree = "<group>"; };
+		FA7501372A15040F008D047B /* UserProfileGenderSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileGenderSelectViewController.swift; sourceTree = "<group>"; };
+		FA7501392A1515A9008D047B /* GetUserProfileImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfileImageNetworking.swift; sourceTree = "<group>"; };
+		FA7501402A1BC10E008D047B /* ProfileEditDataPostNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditDataPostNetworking.swift; sourceTree = "<group>"; };
+		FA7501422A1BE02D008D047B /* VitaminAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminAddViewController.swift; sourceTree = "<group>"; };
+		FA7501442A1BE2F0008D047B /* VitaminAddViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminAddViewTableCell.swift; sourceTree = "<group>"; };
+		FA7501462A1C22AA008D047B /* VitaminAddViewCellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminAddViewCellDataModel.swift; sourceTree = "<group>"; };
+		FA75014A2A1CC3DB008D047B /* VitaminIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminIngredientsViewController.swift; sourceTree = "<group>"; };
+		FA75014C2A1CFEAB008D047B /* VitaminIngredientsAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminIngredientsAddViewController.swift; sourceTree = "<group>"; };
+		FA75014E2A1D0346008D047B /* IngredientsViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsViewTableCell.swift; sourceTree = "<group>"; };
+		FA7501502A1D1A85008D047B /* VitaminPostNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminPostNetworking.swift; sourceTree = "<group>"; };
+		FA7501522A1D34DC008D047B /* VitaminGetNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminGetNetworking.swift; sourceTree = "<group>"; };
+		FA7501542A1E3EC4008D047B /* VitaminCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminCaptureViewController.swift; sourceTree = "<group>"; };
 		FA7FA26729DC2BEE0011B242 /* AlarmView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		FA7FA26829DC2BEE0011B242 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FA7FA26929DC2BEE0011B242 /* CommonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
 		FA7FA26D29DC2C060011B242 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		FA9318C32A257DA10073B139 /* AlarmSettingPostNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingPostNetworking.swift; sourceTree = "<group>"; };
+		FA9318C52A258EC40073B139 /* GetVitaminImageNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetVitaminImageNetworking.swift; sourceTree = "<group>"; };
 		FAB785E829D1ED6F00816363 /* Untitled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Untitled.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB785EB29D1ED6F00816363 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB785ED29D1ED6F00816363 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,10 +206,21 @@
 		FABD09F12A0E927A006EA4F3 /* SerialNumberSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialNumberSetViewController.swift; sourceTree = "<group>"; };
 		FAC6223F29D1F3D800D75F7E /* AlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewController.swift; sourceTree = "<group>"; };
 		FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommededViewController.swift; sourceTree = "<group>"; };
-		FAC6224329D1F41A00D75F7E /* InitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewController.swift; sourceTree = "<group>"; };
+		FAC6224329D1F41A00D75F7E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FAC6224629D1FA5100D75F7E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		FADCD54C2A00DEB6001D4AB0 /* AlarmAddViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAddViewTableCell.swift; sourceTree = "<group>"; };
 		FADCD54E2A00E4F5001D4AB0 /* AlarmAddViewCellDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAddViewCellDataModel.swift; sourceTree = "<group>"; };
+		FAEED0402A1E882E00DE12CB /* VitaminViewTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminViewTableCell.swift; sourceTree = "<group>"; };
+		FAEED0422A2482A300DE12CB /* Untitled.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Untitled.entitlements; sourceTree = "<group>"; };
+		FAEED0432A2487A100DE12CB /* VitaminEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminEditViewController.swift; sourceTree = "<group>"; };
+		FAEED0452A248D4E00DE12CB /* VitaminEditIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminEditIngredientsViewController.swift; sourceTree = "<group>"; };
+		FAEED0472A24A2A000DE12CB /* VitaminDeletePostNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminDeletePostNetworking.swift; sourceTree = "<group>"; };
+		FAEED04D2A24FDF100DE12CB /* AlarmDataPostNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDataPostNetworking.swift; sourceTree = "<group>"; };
+		FAEED04F2A251B8000DE12CB /* AlarmDataGetNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDataGetNetworking.swift; sourceTree = "<group>"; };
+		FAEED0512A25225E00DE12CB /* AlarmDeleteNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmDeleteNetworking.swift; sourceTree = "<group>"; };
+		FAEED0532A25278500DE12CB /* AlarmEditNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmEditNetworking.swift; sourceTree = "<group>"; };
+		FAEED0552A25352A00DE12CB /* AlarmFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmFunction.swift; sourceTree = "<group>"; };
+		FAFD54FB2A1E545D0068E0CB /* VitaminImagePostNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminImagePostNetworking.swift; sourceTree = "<group>"; };
 		FEE6A9018BC67920316051D1 /* Pods-Untitled-UntitledUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Untitled-UntitledUITests.debug.xcconfig"; path = "Target Support Files/Pods-Untitled-UntitledUITests/Pods-Untitled-UntitledUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -179,6 +284,9 @@
 				FA169D4829D1FEAD0042DBC0 /* InitView.swift */,
 				FA609F3229FF128B005BE1F2 /* AlarmAddView.swift */,
 				FA439F3D2A09AC68000819FF /* RegisterView.swift */,
+				FA7501192A114858008D047B /* LoadingView.swift */,
+				FA75011B2A114D78008D047B /* AlertView.swift */,
+				FA3419452A2787850096E233 /* UserView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -190,6 +298,8 @@
 				FADCD54E2A00E4F5001D4AB0 /* AlarmAddViewCellDataModel.swift */,
 				FA1305F72A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift */,
 				FABD09E42A0D3C66006EA4F3 /* UserAccountDataModel.swift */,
+				FA75012D2A1389F4008D047B /* ProfileEditViewCellDataModel.swift */,
+				FA7501462A1C22AA008D047B /* VitaminAddViewCellDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,14 +307,13 @@
 		FA1416D329D1EF3A0060119D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FA7501222A115525008D047B /* User */,
+				FA7501212A115403008D047B /* TabBar */,
+				FA75011F2A1153E3008D047B /* Login */,
 				FABD09DD2A0D1D30006EA4F3 /* Register */,
-				FA7FA26D29DC2C060011B242 /* CustomTabBarController.swift */,
-				FAC6224329D1F41A00D75F7E /* InitViewController.swift */,
-				FA1416D529D1F1710060119D /* HomeViewController.swift */,
-				FAC6223F29D1F3D800D75F7E /* AlarmViewController.swift */,
-				FA609F3029FF1281005BE1F2 /* AlarmAddViewController.swift */,
-				FA1305EF2A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift */,
-				FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */,
+				FA7501202A1153F6008D047B /* Vitamin */,
+				FA75011D2A1153B5008D047B /* Alarm */,
+				FA75011E2A1153C6008D047B /* AIRec */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -224,13 +333,116 @@
 				FA609F2E29FEDE74005BE1F2 /* AlarmViewTableCell.swift */,
 				FADCD54C2A00DEB6001D4AB0 /* AlarmAddViewTableCell.swift */,
 				FA1305F32A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift */,
+				FA75012F2A140D88008D047B /* UserProfileEditViewTableCell.swift */,
+				FAEED0402A1E882E00DE12CB /* VitaminViewTableCell.swift */,
+				FA7501442A1BE2F0008D047B /* VitaminAddViewTableCell.swift */,
+				FA75014E2A1D0346008D047B /* IngredientsViewTableCell.swift */,
+				FA34193B2A275F640096E233 /* AlarmBoxViewTableCell.swift */,
+				FA3419432A276F4E0096E233 /* MyHomeBoxSettingCell.swift */,
+				FA2CCFE62A2B239300C8E23D /* RecommendCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		FA7501122A110813008D047B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FA7501132A110837008D047B /* RegisterNetworking.swift */,
+				FA7501152A1114A4008D047B /* LoginNetworking.swift */,
+				FA7501272A12075F008D047B /* CheckServerNetworking.swift */,
+				FA7501392A1515A9008D047B /* GetUserProfileImageNetworking.swift */,
+				FA7501402A1BC10E008D047B /* ProfileEditDataPostNetworking.swift */,
+				FAFD54FB2A1E545D0068E0CB /* VitaminImagePostNetworking.swift */,
+				FA7501502A1D1A85008D047B /* VitaminPostNetworking.swift */,
+				FA7501522A1D34DC008D047B /* VitaminGetNetworking.swift */,
+				FAEED0472A24A2A000DE12CB /* VitaminDeletePostNetworking.swift */,
+				FAEED04D2A24FDF100DE12CB /* AlarmDataPostNetworking.swift */,
+				FAEED04F2A251B8000DE12CB /* AlarmDataGetNetworking.swift */,
+				FAEED0512A25225E00DE12CB /* AlarmDeleteNetworking.swift */,
+				FAEED0532A25278500DE12CB /* AlarmEditNetworking.swift */,
+				FA9318C32A257DA10073B139 /* AlarmSettingPostNetworking.swift */,
+				FA9318C52A258EC40073B139 /* GetVitaminImageNetworking.swift */,
+				FA3419472A279DFB0096E233 /* GetBoxAndVitaminNetworking.swift */,
+				FA3419492A27BE110096E233 /* PostBoxAndVitaminNetworking.swift */,
+				FA3419512A29D2B60096E233 /* GetSearchVitaminNetworking.swift */,
+				FA3419572A2A35FE0096E233 /* GetRecommenedNetworking.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FA75011D2A1153B5008D047B /* Alarm */ = {
+			isa = PBXGroup;
+			children = (
+				FAC6223F29D1F3D800D75F7E /* AlarmViewController.swift */,
+				FA609F3029FF1281005BE1F2 /* AlarmAddViewController.swift */,
+				FA7501102A0FC6DA008D047B /* AlarmEditViewController.swift */,
+				FA1305EF2A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift */,
+				FA3419392A275DBB0096E233 /* AlarmBoxSelectViewController.swift */,
+			);
+			path = Alarm;
+			sourceTree = "<group>";
+		};
+		FA75011E2A1153C6008D047B /* AIRec */ = {
+			isa = PBXGroup;
+			children = (
+				FAC6224129D1F3F900D75F7E /* AIRecommededViewController.swift */,
+				FA2CCFE82A2B253F00C8E23D /* AIRecommendIngredientsViewController.swift */,
+			);
+			path = AIRec;
+			sourceTree = "<group>";
+		};
+		FA75011F2A1153E3008D047B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FAC6224329D1F41A00D75F7E /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FA7501202A1153F6008D047B /* Vitamin */ = {
+			isa = PBXGroup;
+			children = (
+				FA1416D529D1F1710060119D /* VitaminViewController.swift */,
+				FA7501542A1E3EC4008D047B /* VitaminCaptureViewController.swift */,
+				FA34194F2A29B02A0096E233 /* VitaminProdNameInputViewController.swift */,
+				FA7501422A1BE02D008D047B /* VitaminAddViewController.swift */,
+				FA75014A2A1CC3DB008D047B /* VitaminIngredientsViewController.swift */,
+				FA75014C2A1CFEAB008D047B /* VitaminIngredientsAddViewController.swift */,
+				FAEED0432A2487A100DE12CB /* VitaminEditViewController.swift */,
+				FAEED0452A248D4E00DE12CB /* VitaminEditIngredientsViewController.swift */,
+				FA3419532A29E9FB0096E233 /* VitaminSearchAddViewController.swift */,
+				FA3419552A29F0710096E233 /* VitaminSearchIngredientsViewController.swift */,
+			);
+			path = Vitamin;
+			sourceTree = "<group>";
+		};
+		FA7501212A115403008D047B /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				FA7FA26D29DC2C060011B242 /* CustomTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		FA7501222A115525008D047B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				FA7501292A127B6F008D047B /* UserViewContoller.swift */,
+				FA7501252A115548008D047B /* UserProfileEditViewController.swift */,
+				FA7501332A15036D008D047B /* UserProfileNameSelectViewController.swift */,
+				FA7501352A150400008D047B /* UserProfileBirthSelectViewController.swift */,
+				FA7501372A15040F008D047B /* UserProfileGenderSelectViewController.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		FAB785DF29D1ED6F00816363 = {
 			isa = PBXGroup;
 			children = (
+				FA34194B2A28B8C40096E233 /* MQTT.swift */,
+				FAEED0552A25352A00DE12CB /* AlarmFunction.swift */,
+				FA7501172A1145E5008D047B /* ServerAddress.swift */,
+				FA7501122A110813008D047B /* Network */,
 				FABD09E62A0D7987006EA4F3 /* Font */,
 				FAC6224529D1FA3500D75F7E /* Extension */,
 				FA1416D429D1EF410060119D /* Common */,
@@ -260,6 +472,8 @@
 		FAB785EA29D1ED6F00816363 /* Untitled */ = {
 			isa = PBXGroup;
 			children = (
+				FA34194D2A29003B0096E233 /* AppIcon_final_2_invisible.png */,
+				FAEED0422A2482A300DE12CB /* Untitled.entitlements */,
 				FAB785F729D1ED7000816363 /* Assets.xcassets */,
 				FAB785F929D1ED7000816363 /* LaunchScreen.storyboard */,
 				FAB785FC29D1ED7000816363 /* Info.plist */,
@@ -430,6 +644,7 @@
 				FABD09E92A0D7995006EA4F3 /* Roboto-Bold.ttf in Resources */,
 				FABD09EE2A0D79F0006EA4F3 /* NotoSansKR-Regular.otf in Resources */,
 				FABD09ED2A0D79F0006EA4F3 /* NotoSansKR-Bold.otf in Resources */,
+				FA34194E2A29003B0096E233 /* AppIcon_final_2_invisible.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,33 +771,84 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA7501552A1E3EC4008D047B /* VitaminCaptureViewController.swift in Sources */,
+				FA3419502A29B02A0096E233 /* VitaminProdNameInputViewController.swift in Sources */,
 				FABD09DF2A0D1D6F006EA4F3 /* ProfileSetViewController.swift in Sources */,
 				FABD09E12A0D1D8D006EA4F3 /* AccountSetViewController.swift in Sources */,
+				FA75012A2A127B6F008D047B /* UserViewContoller.swift in Sources */,
 				FAC6224729D1FA5100D75F7E /* Extension.swift in Sources */,
+				FA3419442A276F4E0096E233 /* MyHomeBoxSettingCell.swift in Sources */,
 				FAC6224029D1F3D800D75F7E /* AlarmViewController.swift in Sources */,
 				FA7FA26A29DC2BEE0011B242 /* AlarmView.swift in Sources */,
-				FAC6224429D1F41A00D75F7E /* InitViewController.swift in Sources */,
+				FAEED04E2A24FDF100DE12CB /* AlarmDataPostNetworking.swift in Sources */,
+				FAC6224429D1F41A00D75F7E /* LoginViewController.swift in Sources */,
 				FADCD54F2A00E4F5001D4AB0 /* AlarmAddViewCellDataModel.swift in Sources */,
+				FA34193A2A275DBB0096E233 /* AlarmBoxSelectViewController.swift in Sources */,
 				FAB785EC29D1ED6F00816363 /* AppDelegate.swift in Sources */,
+				FA3419462A2787850096E233 /* UserView.swift in Sources */,
 				FA1305F42A02DF2000BFCBA3 /* RepeatDaysSelectViewTableCell.swift in Sources */,
+				FA2CCFE72A2B239300C8E23D /* RecommendCell.swift in Sources */,
+				FAEED0482A24A2A000DE12CB /* VitaminDeletePostNetworking.swift in Sources */,
+				FA7501432A1BE02D008D047B /* VitaminAddViewController.swift in Sources */,
+				FA3419522A29D2B60096E233 /* GetSearchVitaminNetworking.swift in Sources */,
 				FAB785F629D1ED6F00816363 /* Untitled.xcdatamodeld in Sources */,
+				FAEED0542A25278500DE12CB /* AlarmEditNetworking.swift in Sources */,
+				FA9318C42A257DA10073B139 /* AlarmSettingPostNetworking.swift in Sources */,
+				FA75011C2A114D78008D047B /* AlertView.swift in Sources */,
 				FABD09E52A0D3C66006EA4F3 /* UserAccountDataModel.swift in Sources */,
+				FA75014D2A1CFEAB008D047B /* VitaminIngredientsAddViewController.swift in Sources */,
+				FA7501182A1145E5008D047B /* ServerAddress.swift in Sources */,
 				FA609F3329FF128B005BE1F2 /* AlarmAddView.swift in Sources */,
+				FA75012E2A1389F4008D047B /* ProfileEditViewCellDataModel.swift in Sources */,
 				FA609F2F29FEDE74005BE1F2 /* AlarmViewTableCell.swift in Sources */,
+				FA7501362A150400008D047B /* UserProfileBirthSelectViewController.swift in Sources */,
+				FA34194A2A27BE110096E233 /* PostBoxAndVitaminNetworking.swift in Sources */,
+				FA75011A2A114858008D047B /* LoadingView.swift in Sources */,
+				FA7501262A115548008D047B /* UserProfileEditViewController.swift in Sources */,
 				FAB785EE29D1ED6F00816363 /* SceneDelegate.swift in Sources */,
+				FA7501142A110837008D047B /* RegisterNetworking.swift in Sources */,
 				FA7FA26B29DC2BEE0011B242 /* HomeView.swift in Sources */,
+				FAEED0462A248D4E00DE12CB /* VitaminEditIngredientsViewController.swift in Sources */,
 				FAC6224229D1F3F900D75F7E /* AIRecommededViewController.swift in Sources */,
+				FA7501382A15040F008D047B /* UserProfileGenderSelectViewController.swift in Sources */,
 				FADCD54D2A00DEB6001D4AB0 /* AlarmAddViewTableCell.swift in Sources */,
 				FA0F8B202A0980A6000D2570 /* RegisterRootViewController.swift in Sources */,
 				FABD09F22A0E927A006EA4F3 /* SerialNumberSetViewController.swift in Sources */,
+				FA3419582A2A35FE0096E233 /* GetRecommenedNetworking.swift in Sources */,
+				FA3419542A29E9FB0096E233 /* VitaminSearchAddViewController.swift in Sources */,
+				FAEED0442A2487A100DE12CB /* VitaminEditViewController.swift in Sources */,
+				FA7501472A1C22AA008D047B /* VitaminAddViewCellDataModel.swift in Sources */,
 				FA609F2C29FEB404005BE1F2 /* AlarmViewCellDataModel.swift in Sources */,
 				FA169D4929D1FEAD0042DBC0 /* InitView.swift in Sources */,
+				FA75014B2A1CC3DB008D047B /* VitaminIngredientsViewController.swift in Sources */,
+				FA75014F2A1D0346008D047B /* IngredientsViewTableCell.swift in Sources */,
+				FA3419482A279DFB0096E233 /* GetBoxAndVitaminNetworking.swift in Sources */,
+				FA75013A2A1515A9008D047B /* GetUserProfileImageNetworking.swift in Sources */,
+				FA7501452A1BE2F0008D047B /* VitaminAddViewTableCell.swift in Sources */,
+				FAFD54FC2A1E545D0068E0CB /* VitaminImagePostNetworking.swift in Sources */,
+				FA7501342A15036D008D047B /* UserProfileNameSelectViewController.swift in Sources */,
 				FA609F3129FF1281005BE1F2 /* AlarmAddViewController.swift in Sources */,
+				FA7501512A1D1A85008D047B /* VitaminPostNetworking.swift in Sources */,
+				FA7501282A12075F008D047B /* CheckServerNetworking.swift in Sources */,
+				FAEED0522A25225E00DE12CB /* AlarmDeleteNetworking.swift in Sources */,
+				FA7501532A1D34DC008D047B /* VitaminGetNetworking.swift in Sources */,
+				FA7501412A1BC10E008D047B /* ProfileEditDataPostNetworking.swift in Sources */,
+				FA3419562A29F0710096E233 /* VitaminSearchIngredientsViewController.swift in Sources */,
+				FAEED0562A25352A00DE12CB /* AlarmFunction.swift in Sources */,
+				FA9318C62A258EC40073B139 /* GetVitaminImageNetworking.swift in Sources */,
+				FA34194C2A28B8C40096E233 /* MQTT.swift in Sources */,
 				FA1305F02A0296AD00BFCBA3 /* RepeatDaysSelectViewController.swift in Sources */,
 				FA7FA26E29DC2C060011B242 /* CustomTabBarController.swift in Sources */,
-				FA1416D629D1F1710060119D /* HomeViewController.swift in Sources */,
+				FA1416D629D1F1710060119D /* VitaminViewController.swift in Sources */,
 				FA439F3E2A09AC68000819FF /* RegisterView.swift in Sources */,
+				FAEED0502A251B8000DE12CB /* AlarmDataGetNetworking.swift in Sources */,
+				FA7501112A0FC6DA008D047B /* AlarmEditViewController.swift in Sources */,
+				FA7501162A1114A4008D047B /* LoginNetworking.swift in Sources */,
+				FAEED0412A1E882E00DE12CB /* VitaminViewTableCell.swift in Sources */,
 				FA1305F82A02E0BE00BFCBA3 /* RepeatDaysSelectViewDataModel.swift in Sources */,
+				FA2CCFE92A2B253F00C8E23D /* AIRecommendIngredientsViewController.swift in Sources */,
+				FA34193C2A275F640096E233 /* AlarmBoxViewTableCell.swift in Sources */,
+				FA7501302A140D88008D047B /* UserProfileEditViewTableCell.swift in Sources */,
 				FA7FA26C29DC2BEE0011B242 /* CommonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -751,9 +1017,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Untitled/Untitled.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.9.2;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = 6578S57CDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Untitled/Info.plist;
@@ -762,12 +1029,12 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Jaehyeoklim.com.Untitled;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -783,9 +1050,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Untitled/Untitled.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1.9.2;
+				CURRENT_PROJECT_VERSION = 2.0.0;
 				DEVELOPMENT_TEAM = 6578S57CDT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Untitled/Info.plist;
@@ -794,12 +1062,12 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Jaehyeoklim.com.Untitled;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
