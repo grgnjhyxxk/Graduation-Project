@@ -131,7 +131,15 @@ class MyHomeBoxSettingCell: UITableViewCell {
             // 만약 중복인지 검사
             for i in 0..<testBoxAndVitaminDataList.count {
                 if testBoxAndVitaminDataList[i].vseq == vseq {
-                    return false
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                        if let topWindow = windowScene.windows.last {
+                            let alertController = UIAlertController(title: "알림", message: "이미 다른 보관함에 등록되어있는 영양제입니다.", preferredStyle: .alert)
+                            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                            alertController.addAction(okAction)
+                            topWindow.rootViewController?.present(alertController, animated: true, completion: nil)
+                            return false
+                        }
+                    }
                 }
             }
             
