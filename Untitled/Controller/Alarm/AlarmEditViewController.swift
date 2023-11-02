@@ -87,15 +87,17 @@ class AlarmEditViewController: AlarmAddViewController {
                 box += "\(i+1)"
             }
         }
-              
+        
         if !box.isEmpty {
             alarmEditDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, box: box))
+            editVitaminAlarm(label: alarmTextFieldText)
             alarmEditNetworking(index: alarmIndex) { success in
                 if success {
                     let seq = userDataList[0].seq
                     userAlarmDataList.removeAll()
                     getAlarmData(seq: seq) { success in
                         if success {
+                            print("성공")
                             alarmAddDataInit()
                             alarmViewCellDataListInit()
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmEditedNotification"), object: self.alarmIndex)
@@ -113,6 +115,8 @@ class AlarmEditViewController: AlarmAddViewController {
             warningLabel.text = "보관함을 1개 이상 선택하셔야 합니다."
             warningLabel.isHidden = false
         }
+        
+        alarmViewBoxinSelectDataList.removeAll()
     }
     
     private func ingredientsNameConcatenated() -> String {
@@ -146,10 +150,11 @@ class AlarmEditViewController: AlarmAddViewController {
     @objc func deleteButtonAction(_ sender: UIButton) {
         alarmDelete(index: alarmIndex) { success in
             if success {
+                cancelVitaminAlarm(index: self.alarmIndex)
                 userAlarmDataList.remove(at: self.alarmIndex)
                 
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmDeletedNotification"), object: self.alarmIndex)
-
+                alarmViewBoxinSelectDataList.removeAll()
                 self.dismiss(animated: true, completion: nil)
             } else  {
                 print("알람 삭제 실패")
@@ -162,11 +167,11 @@ class AlarmEditViewController: AlarmAddViewController {
         show(rootViewController, sender: nil)
     }
     
-    override func boxSelectButtonAction() {
-        print("사용자가 보관함 설정 Cell을 클릭하였습니다.")
-        let rootViewController = AlarmBoxSelectViewController()
-        show(rootViewController, sender: nil)
-    }
+//    override func boxSelectButtonAction() {
+//        print("사용자가 보관함 설정 Cell을 클릭하였습니다.")
+//        let rootViewController = AlarmBoxSelectViewController()
+//        show(rootViewController, sender: nil)
+//    }
 }
 
 extension AlarmEditViewController {
@@ -220,7 +225,12 @@ extension AlarmEditViewController {
         case 1:
             cell.textField.becomeFirstResponder()
         case 2:
-            boxSelectButtonAction()
+//            boxSelectButtonAction()
+            print("사용자가 보관함 설정 Cell을 클릭하였습니다.")
+            let rootViewController = AlarmBoxSelectViewController()
+            rootViewController.state = "Edit"
+            rootViewController.index = alarmIndex
+            show(rootViewController, sender: nil)
         default:
             break
         }

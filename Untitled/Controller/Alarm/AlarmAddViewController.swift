@@ -122,6 +122,8 @@ class AlarmAddViewController: UIViewController {
     }
     
     @objc func cancelButtonAction() {
+        alarmViewBoxinSelectDataList.removeAll()
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -148,6 +150,8 @@ class AlarmAddViewController: UIViewController {
         
         if !box.isEmpty {
             alarmViewCellDataList.append(AlarmViewCellDataModel(date: timeString, repeatDays: repeatDaysDataContractionText, label: alarmTextFieldText, box: box))
+
+            scheduleVitaminAlarm(label: alarmTextFieldText)
             alarmDataPost() { success in
                 if success {
                     let seq = userDataList[0].seq
@@ -157,7 +161,6 @@ class AlarmAddViewController: UIViewController {
                             alarmAddDataInit()
                             alarmViewCellDataListInit()
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AlarmAddedNotification"), object: alarmViewCellDataList.count-1)
-                            scheduleVitaminAlarm()
                             self.dismiss(animated: true, completion: nil)
                         } else {
                             print("알람 등록 실패")
@@ -171,6 +174,8 @@ class AlarmAddViewController: UIViewController {
             warningLabel.text = "보관함을 1개 이상 선택하셔야 합니다."
             warningLabel.isHidden = false
         }
+        
+        alarmViewBoxinSelectDataList.removeAll()
     }
     
     private func ingredientsNameConcatenated() -> String {
@@ -212,11 +217,11 @@ class AlarmAddViewController: UIViewController {
 //        show(rootViewController, sender: nil)
 //    }
     
-    func boxSelectButtonAction() {
-        print("사용자가 보관함 설정 Cell을 클릭하였습니다.")
-        let rootViewController = AlarmBoxSelectViewController()
-        show(rootViewController, sender: nil)
-    }
+//    func boxSelectButtonAction() {
+//        print("사용자가 보관함 설정 Cell을 클릭하였습니다.")
+//        let rootViewController = AlarmBoxSelectViewController()
+//        show(rootViewController, sender: nil)
+//    }
 }
 
 extension AlarmAddViewController: UITableViewDataSource, UITableViewDelegate {
@@ -271,7 +276,10 @@ extension AlarmAddViewController: UITableViewDataSource, UITableViewDelegate {
         case 1:
             cell.textField.becomeFirstResponder()
         case 2:
-            boxSelectButtonAction()
+            print("사용자가 보관함 설정 Cell을 클릭하였습니다.")
+            let rootViewController = AlarmBoxSelectViewController()
+            rootViewController.state = "Add"
+            show(rootViewController, sender: nil)
         default:
             break
         }

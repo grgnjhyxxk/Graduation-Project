@@ -16,6 +16,11 @@ class AlarmBoxSelectViewController: UIViewController {
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
 
+    var state: String?
+    var index: Int?
+    var checkList: [Bool] = [false, false, false, false, false, false]
+    var lockList: [Bool] = [false, false, false, false, false, false]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("박스설정화면이 로드되었습니다.")
@@ -119,21 +124,75 @@ extension AlarmBoxSelectViewController: UITableViewDataSource, UITableViewDelega
         
         cell.titleLabel.text = AlarmBoxSelectViewCellData[indexPath.row].title
         cell.checkStateImageView.isHidden = !alarmViewBoxinSelectDataList[indexPath.row].checkState
+        
+        for i in 0..<userAlarmDataList.count {
+            if let state = state, state == "Edit" {
+                if let index = index {
+                    if i != index {
+                        if userAlarmDataList[i].box.contains("\(indexPath.row + 1)") {
+                            checkList[indexPath.row] = true
+                        } else {
+                            if checkList[indexPath.row] == true {
+                                
+                            } else {
+                                checkList[indexPath.row] = false
+                            }
+                        }
+                    }
+                }
+            } else if let state = state, state == "Add" {
+                if userAlarmDataList[i].box.contains("\(indexPath.row + 1)") {
+                    checkList[indexPath.row] = true
+                } else {
+                    if checkList[indexPath.row] == true {
+                        
+                    } else {
+                        checkList[indexPath.row] = false
+                    }
+                }
+            }
+        }
+        
+        if boxAndVitaminDataList[indexPath.row].vseq == 0 {
+            cell.lock.isHidden = false
+            lockList[indexPath.row] = true
+        } else {
+            cell.lock.isHidden = true
+            lockList[indexPath.row] = false
+        }
+
+        // 색깔을 설정하는 부분은 checkList를 기반으로 설정합니다.
+        if checkList[indexPath.row] || lockList[indexPath.row] {
+            cell.titleLabel.textColor = UIColor.placeholderText
+        } else {
+            cell.titleLabel.textColor = UIColor.appTextColor
+        }
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? AlarmBoxViewTableCell else {
-                return
-            }
+            return
+        }
         
-        alarmViewBoxinSelectDataList[indexPath.row].checkState = !alarmViewBoxinSelectDataList[indexPath.row].checkState
-        
-        tableView.reloadData()
-        
-        print(alarmViewBoxinSelectDataList)
-        
-        tableView.deselectRow(at: indexPath, animated: true)
+        if checkList[indexPath.row] == true {
+            let alertController = UIAlertController(title: "알림", message: "이미 다른 알람에서 사용하고 있는 보관함입니다.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else if lockList[indexPath.row] == true {
+            let alertController = UIAlertController(title: "알림", message: "영양제가 설정되어있지 않은 보관함입니다.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            alarmViewBoxinSelectDataList[indexPath.row].checkState = !alarmViewBoxinSelectDataList[indexPath.row].checkState
+            tableView.reloadData()
+            print(alarmViewBoxinSelectDataList)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 }
