@@ -14,8 +14,10 @@ struct BoxAndVitaminInformation: Decodable {
 }
 
 func getBoxAndVitamin(completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "박스 데이터 가져오는 중")
+    
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/box/getbox"
         
         let seq = userDataList[0].seq
@@ -36,11 +38,13 @@ func getBoxAndVitamin(completion: @escaping (Bool) -> Void) {
                         boxAndVitaminDataList.append(BoxAndVitaminDataModel(box: box, vseq: vseq))
                     }
                     
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     completion(true)
                 case .failure(let error):
                     print("박스 정보 가져오기 실패: \(error)")
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     networkErrorHandlingAlert()
                     completion(false)
                 }

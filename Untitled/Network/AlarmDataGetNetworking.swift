@@ -16,8 +16,10 @@ struct AlarmInformation: Decodable {
 }
 
 func getAlarmData(seq: Int, completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "알람 데이터 가져오는 중")
+
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/alarm/get"
         
         let parameters: Parameters = [
@@ -42,11 +44,13 @@ func getAlarmData(seq: Int, completion: @escaping (Bool) -> Void) {
                         userAlarmDataList.append(AlarmViewCellDataModel(date: alarm_time, repeatDays: days, label: alarm_name, box: box))
                     }
                     
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     completion(true)
                 case .failure(let error):
                     print("알람정보를 받아오는 데 실패했습니다: \(error.localizedDescription)")
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     networkErrorHandlingAlert()
                     completion(false)
                 }

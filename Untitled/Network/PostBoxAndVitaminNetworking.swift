@@ -9,8 +9,10 @@ import UIKit
 import Alamofire
 
 func postBoxAndVitamin(completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "박스&영양제 데이터 가져오는 중")
+
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/box/postbox" // 서버 주소
         
         guard let seq = userDataList.first?.seq else {
@@ -51,7 +53,8 @@ func postBoxAndVitamin(completion: @escaping (Bool) -> Void) {
                 )
                 .validate(statusCode: 200..<300)
                 .responseData { response in
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     if response.response?.statusCode == 200 {
                         completion(true)
                         boxAndVitaminDataList.removeAll()
@@ -66,7 +69,8 @@ func postBoxAndVitamin(completion: @escaping (Bool) -> Void) {
                 completion(false)
                 print("박스&영양제 네트워킹 연결 실패")
                 networkErrorHandlingAlert()
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
             }
         }
     }

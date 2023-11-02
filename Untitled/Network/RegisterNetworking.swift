@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 func sendUserDataToServer(userData: Array<UserAccountDataModel>, completion: @escaping (Bool) -> Void) {
-    showLoadingScreen()
+//    showLoadingScreen()
     
     guard let lastUserData = userData.last else {
         print("No user data to send")

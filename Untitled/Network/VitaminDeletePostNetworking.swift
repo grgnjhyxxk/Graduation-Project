@@ -9,8 +9,9 @@ import UIKit
 import Alamofire
 
 func vitaminDelete(index: Int, completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "영양제 데이터 삭제 요청 중")
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/vitamin/remove" // 서버 주소
         
         guard let seq = userDataList.first?.seq else {
@@ -42,7 +43,8 @@ func vitaminDelete(index: Int, completion: @escaping (Bool) -> Void) {
                 )
                 .validate(statusCode: 200..<300)
                 .responseData { response in
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     if response.response?.statusCode == 200 {
                         completion(true)
                         print("영양제 삭제 네트워킹 성공!")
@@ -55,7 +57,8 @@ func vitaminDelete(index: Int, completion: @escaping (Bool) -> Void) {
                 completion(false)
                 print("영양제 삭제 네트워킹 연결 실패")
                 networkErrorHandlingAlert()
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
             }
         }
     }

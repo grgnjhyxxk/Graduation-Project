@@ -9,8 +9,10 @@ import UIKit
 import Alamofire
 
 func alarmSettingPost(boxList: Array<Int>, vseqList: Array<Int>, intakePerDayList: Array<Int>, completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "알람 설정 데이터 전송 중")
+
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/device/send" // 서버 주소
         
         guard let seq = userDataList.first?.seq else {
@@ -51,7 +53,8 @@ func alarmSettingPost(boxList: Array<Int>, vseqList: Array<Int>, intakePerDayLis
                 )
                 .validate(statusCode: 200..<300)
                 .responseData { response in
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     if response.response?.statusCode == 200 {
                         completion(true)
                         print("알람 설정 정보 네트워킹 성공!")
@@ -64,7 +67,8 @@ func alarmSettingPost(boxList: Array<Int>, vseqList: Array<Int>, intakePerDayLis
                 completion(false)
                 print("알람 설정 정보 네트워킹 연결 실패")
                 networkErrorHandlingAlert()
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
             }
         }
     }

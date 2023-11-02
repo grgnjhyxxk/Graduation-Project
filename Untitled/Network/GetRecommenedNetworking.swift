@@ -35,8 +35,10 @@ struct RecommendedInfo: Decodable {
 }
 
 func getRecommened(completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "AI추천 데이터 가져오는 중")
+    
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/vitamin/recommend"
         
         let sumOfValuesList = sumAllOfValues()
@@ -61,7 +63,7 @@ func getRecommened(completion: @escaping (Bool) -> Void) {
             "vitamincontain": sumOfNamesList,
             "vitaminlist": jsonString // JSON 문자열을 요청에 첨부
         ]
-        
+
         AF.request(serverURLString, method: .get, parameters: parameters)
             .validate(statusCode: 200..<300)
             .responseDecodable(of: [RecommendedInfo].self) { response in
@@ -82,11 +84,13 @@ func getRecommened(completion: @escaping (Bool) -> Void) {
                     
                     noneZeroVitaminAi()
                     
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     completion(true)
                 case .failure(let error):
                     print("AI 추천정보를 받아오는 데 실패했습니다: \(error.localizedDescription)")
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     networkErrorHandlingAlert()
                     completion(false)
                 }

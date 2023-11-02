@@ -35,8 +35,10 @@ struct VitaminAiInformation: Decodable {
 }
 
 func getSearchVitamin(prodname: String, completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "영양제 검색 중")
+    
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/vitamin/search"
         
         let parameters: Parameters = [
@@ -62,11 +64,13 @@ func getSearchVitamin(prodname: String, completion: @escaping (Bool) -> Void) {
 
                     noneZeroVitaminSearch()
                     
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     completion(true)
                 case .failure(let error):
                     print("비타민 검색 정보를 받아오는 데 실패했습니다: \(error.localizedDescription)")
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     networkErrorHandlingAlert()
                     completion(false)
                 }

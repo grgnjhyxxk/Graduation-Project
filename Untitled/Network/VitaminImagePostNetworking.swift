@@ -9,8 +9,9 @@ import UIKit
 import Alamofire
 
 func vitaminImageDataPost(completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "영양제 이미지 데이터 전송 중")
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/sendimage" // 서버 주소
         
         checkServerConnection { isConnected in
@@ -31,12 +32,14 @@ func vitaminImageDataPost(completion: @escaping (Bool) -> Void) {
                         if response.response?.statusCode == 200 {
                             print("비타민 이미지 데이터 전송 성공!")
                             vitaminImageDataListInit()
-                            hideLoadingScreen()
+//                            hideLoadingScreen()
+                            LoadingView.hide()
                             completion(true)
                         } else {
                             completion(false)
                             networkErrorHandlingAlert()
-                            hideLoadingScreen()
+//                            hideLoadingScreen()
+                            LoadingView.hide()
                             print("비타민 이미지 데이터 전송 실패..")
                         }
                     }
@@ -45,11 +48,13 @@ func vitaminImageDataPost(completion: @escaping (Bool) -> Void) {
                     print("이미지 데이터 변환 실패")
                     networkErrorHandlingAlert()
                     hideLoadingScreen()
+                    LoadingView.hide()
                 }
             } else {
                 completion(false)
                 print("연결 실패")
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
                 networkErrorHandlingAlert()
             }
         }
@@ -58,7 +63,7 @@ func vitaminImageDataPost(completion: @escaping (Bool) -> Void) {
 
 func vitaminSearchImageDataPost(completion: @escaping (Bool) -> Void) {
     DispatchQueue.main.async {
-        showLoadingScreen()
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/sendimage" // 서버 주소
         
         checkServerConnection { isConnected in

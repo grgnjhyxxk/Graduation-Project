@@ -9,9 +9,11 @@ import UIKit
 import Alamofire
 
 func getVitaminImage(seq: Int, completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
+    LoadingView.show(loadingText: "영양제 이미지 데이터 가져오는 중")
+
+    DispatchQueue.global().async {
         userProfileImageList.removeAll()
-        showLoadingScreen()
+//        showLoadingScreen()
         let imageUrl = "\(serverURL)/sendimage"
         
         AF.request(imageUrl).responseData { response in
@@ -20,13 +22,15 @@ func getVitaminImage(seq: Int, completion: @escaping (Bool) -> Void) {
                 if let image = UIImage(data: imageData) {
                     userProfileImageList.append(UserProfileImage(image: image))
                     print("영양제 이미지 가져오기 성공")
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     completion(true)
                 }
             case .failure(let error):
                 userProfileImageList.append(UserProfileImage(image: UIImage()))
                 print("영양제 이미지 가져오기 실패: \(error)")
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
                 networkErrorHandlingAlert()
                 completion(false)
             }

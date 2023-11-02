@@ -9,9 +9,10 @@ import UIKit
 import Alamofire
 
 func getUserProfileImage(seq: Int, completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
+    LoadingView.show(loadingText: "사용자 이미지 정보 가져오는 중")
+    DispatchQueue.global().async {
         userProfileImageList.removeAll()
-        showLoadingScreen()
+//        showLoadingScreen()
         let imageUrl = "\(serverURL)/showprofile?profile_img=\(seq)"
         
         AF.request(imageUrl).responseData { response in
@@ -20,13 +21,15 @@ func getUserProfileImage(seq: Int, completion: @escaping (Bool) -> Void) {
                 if let image = UIImage(data: imageData) {
                     userProfileImageList.append(UserProfileImage(image: image))
                     print("이미지 가져오기 성공")
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     completion(true)
                 }
             case .failure(let error):
                 userProfileImageList.append(UserProfileImage(image: UIImage()))
                 print("이미지 가져오기 실패: \(error)")
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
                 networkErrorHandlingAlert()
                 completion(false)
             }

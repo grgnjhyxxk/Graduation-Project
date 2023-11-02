@@ -9,8 +9,10 @@ import UIKit
 import Alamofire
 
 func alarmDataPost(completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "알람 데이터 전송 중")
+
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/alarm/add" // 서버 주소
         
         guard let seq = userDataList.first?.seq else {
@@ -48,7 +50,8 @@ func alarmDataPost(completion: @escaping (Bool) -> Void) {
                 )
                 .validate(statusCode: 200..<300)
                 .responseData { response in
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     if response.response?.statusCode == 200 {
                         completion(true)
                         print("알람 등록 네트워킹 성공!")
@@ -62,7 +65,8 @@ func alarmDataPost(completion: @escaping (Bool) -> Void) {
                 completion(false)
                 print("알람 등록 네트워킹 연결 실패")
                 networkErrorHandlingAlert()
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
             }
         }
     }

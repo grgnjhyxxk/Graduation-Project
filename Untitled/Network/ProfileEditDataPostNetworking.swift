@@ -57,8 +57,9 @@ import Alamofire
 //}
 
 func profileEditDataPost(completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "프로필 편집 데이터 전송 중")
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/register/changeinfo" // 서버 주소
         
         checkServerConnection { isConnected in
@@ -86,12 +87,14 @@ func profileEditDataPost(completion: @escaping (Bool) -> Void) {
                             userDataList[0].birth = birth
                             userDataList[0].gender = gender
                             userProfileImageList[0].image = userEditProfileDList[0].image
-                            hideLoadingScreen()
+//                            hideLoadingScreen()
+                            LoadingView.hide()
                             completion(true)
                         } else {
                             completion(false)
                             networkErrorHandlingAlert()
-                            hideLoadingScreen()
+//                            hideLoadingScreen()
+                            LoadingView.hide()
                             print("프로필 편집 데이터 전송 실패..")
                         }
                     }
@@ -99,12 +102,14 @@ func profileEditDataPost(completion: @escaping (Bool) -> Void) {
                     completion(false)
                     print("이미지 데이터 변환 실패")
                     networkErrorHandlingAlert()
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                 }
             } else {
                 completion(false)
                 print("연결 실패")
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
                 networkErrorHandlingAlert()
             }
         }

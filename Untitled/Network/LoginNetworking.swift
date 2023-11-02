@@ -9,9 +9,10 @@ import UIKit
 import Alamofire
 
 func loginUserToServer(userid: String, userpassword: String, completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
+    LoadingView.show(loadingText: "로그인 정보 가져오는 중")
+    DispatchQueue.global().async {
         print("로그인한 아이디: \(userid)\n로그인한 비밀번호: \(userpassword)")
-        showLoadingScreen()
+//        showLoadingScreen()
         
         let serverURLString = "\(serverURL)/login" // 서버 주소
         
@@ -51,12 +52,14 @@ func loginUserToServer(userid: String, userpassword: String, completion: @escapi
                         completion(false)
                     }
                     
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                 }
             } else {
                 print("로그인 연결 실패")
                 networkErrorHandlingAlert()
-                hideLoadingScreen()
+//                hideLoadingScreen()
+                LoadingView.hide()
                 completion(false)
             }
         }

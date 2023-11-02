@@ -38,8 +38,9 @@ struct VitaminInformation: Decodable {
 }
 
 func getVitaminInformation(seq: Int, completion: @escaping (Bool) -> Void) {
-    DispatchQueue.main.async {
-        showLoadingScreen()
+    LoadingView.show(loadingText: "영양제 데이터 가져오는 중")
+    DispatchQueue.global().async {
+//        showLoadingScreen()
         let serverURLString = "\(serverURL)/vitamin/get"
         
         let parameters: Parameters = [
@@ -66,11 +67,13 @@ func getVitaminInformation(seq: Int, completion: @escaping (Bool) -> Void) {
                     
                     noneZeroVitamin()
                     
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     completion(true)
                 case .failure(let error):
                     print("비타민 정보를 받아오는 데 실패했습니다: \(error.localizedDescription)")
-                    hideLoadingScreen()
+//                    hideLoadingScreen()
+                    LoadingView.hide()
                     networkErrorHandlingAlert()
                     completion(false)
                 }
