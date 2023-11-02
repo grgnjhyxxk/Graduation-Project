@@ -30,6 +30,15 @@ class AlarmBoxViewTableCell: UITableViewCell {
         return imageView
     }()
     
+    let lock: UIImageView = {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(systemName: "lock.fill")
+        imageView.tintColor = UIColor.appPointColor
+        
+        return imageView
+    }()
+    
     private func layout() {
         titleLabel.snp.makeConstraints { make in
 //            make.top.equalTo(10)
@@ -42,10 +51,15 @@ class AlarmBoxViewTableCell: UITableViewCell {
             make.trailing.equalTo(-15)
             make.size.equalTo(CGSize(width: 18, height: 20))
         }
+        
+        lock.snp.makeConstraints { make in
+            make.centerY.equalTo(contentView)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(12.5)
+        }
     }
     
     private func addSubview() {
-        contentViewList = [titleLabel, checkStateImageView]
+        contentViewList = [titleLabel, checkStateImageView, lock]
         
         for uiView in contentViewList {
             contentView.addSubview(uiView)
