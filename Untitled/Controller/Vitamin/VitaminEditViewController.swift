@@ -22,6 +22,8 @@ class VitaminEditViewController: UIViewController {
     let commonUiView = CommonView().commonUiView(backgroundColor: UIColor.clear, borderWidth: 0, borderColor: UIColor.clear, cornerRadius: 15)
     let tableView = UITableView()
     
+    var check: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSubview()
@@ -123,17 +125,37 @@ class VitaminEditViewController: UIViewController {
     }
     
     @objc func deleteButtonAction(_ sender: UIButton) {
-        vitaminDelete(index: vitaminIndex) { success in
-            if success {
-                vitaminNames.remove(at: self.vitaminIndex)
-                vitaminValues.remove(at: self.vitaminIndex)
-                userVitaminDataList.remove(at: self.vitaminIndex)
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "VitaminDeletedNotification"), object: self.vitaminIndex)
-                
-                self.dismiss(animated: true, completion: nil)
+        let targetVseq = userVitaminDataList[vitaminIndex].vseq
+
+        if let matchedIndex = boxAndVitaminDataList.firstIndex(where: { $0.vseq == targetVseq }) {
+            var check = false
+            
+            for i in 0..<userAlarmDataList.count {
+                if userAlarmDataList[i].box.contains(String(boxAndVitaminDataList[matchedIndex].box)) {
+                    check = true
+                    break
+                }
+            }
+            
+            if !check {
+                vitaminDelete(index: vitaminIndex) { success in
+                    if success {
+                        vitaminNames.remove(at: self.vitaminIndex)
+                        vitaminValues.remove(at: self.vitaminIndex)
+                        userVitaminDataList.remove(at: self.vitaminIndex)
+                        
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "VitaminDeletedNotification"), object: self.vitaminIndex)
+                        
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        print("영양제 삭제 실패")
+                    }
+                }
             } else {
-                print("영양제 삭제 실패")
+                let alertController = UIAlertController(title: "알림", message: "아직 삭제하시려는 영양제가 설정되어있는 알람이 있습니다.\n해당하는 알람을 삭제한 후 다시 시도해주세요.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                present(alertController, animated: true, completion: nil)
             }
         }
     }
