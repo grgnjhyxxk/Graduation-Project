@@ -10,7 +10,7 @@ target 'Untitled' do
   pod 'Alamofire'
   pod 'AnyFormatKit'
   pod 'KDCircularProgress'
-  pod 'Moscapsule'
+  pod 'Charts'
   target 'UntitledTests' do
     inherit! :search_paths
     # Pods for testing
