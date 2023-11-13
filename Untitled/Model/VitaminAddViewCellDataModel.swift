@@ -10,6 +10,10 @@ import UIKit
 var vitaminNameTextFieldText = String()
 var perdayTextFieldText = String()
 
+internal var data = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+internal let day_male_values = [1000.0, 25.0, 15.0, 75.0, 3.0, 3.0, 5.0, 5.0, 1000.0, 25.0, 10.0, 600.0, 50.0, 800.0, 360.0, 10.0, 1.0, 60.0, 300.0, 4.0, 30.0, 30.0]
+internal let barLabels = ["비타민A", "비타민D", "비타민E", "비타민K", "비타민B1", "비타민B2", "비타민B6", "비타민B12", "비타민C", "니코틴산", "판토텐산", "엽산", "비오틴", "칼슘", "마그네슘", "철", "구리", "셀레늄", "아이오딘", "망간", "몰리브덴", "크롬"]
+
 struct VitaminAddViewCellDataModel {
     let title: String
     let isHidden: Bool
