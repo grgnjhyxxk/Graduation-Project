@@ -71,7 +71,7 @@ func getSearchVitamin(prodname: String, completion: @escaping (Bool) -> Void) {
                     print("비타민 검색 정보를 받아오는 데 실패했습니다: \(error.localizedDescription)")
 //                    hideLoadingScreen()
                     LoadingView.hide()
-                    networkErrorHandlingAlert()
+//                    networkErrorHandlingAlert()
                     completion(false)
                 }
             }
