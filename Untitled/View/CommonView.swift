@@ -61,6 +61,31 @@ class CommonView: UIView {
         return button
     }
     
+    func subtitleTextButton(titleText: String) -> UIButton {
+        let button = UIButton()
+        
+        button.setTitle("\(titleText)", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Roboto-Bold", size: 16)
+        button.setTitleColor(UIColor.appTextColor, for: .normal)
+        button.backgroundColor = UIColor.appSubBackgroundColor
+        button.layer.cornerRadius = 20
+        
+        return button
+    }
+    
+    func subTextButton() -> UILabel {
+        let button = UILabel()
+        
+        button.backgroundColor = UIColor.appMainBackgroundColor
+        button.textAlignment = .left
+        button.textColor = UIColor.appTextColor
+        button.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        button.numberOfLines = 0
+        button.lineBreakMode = .byCharWrapping
+
+        return button
+    }
+    
     func commonTextLabel(labelText: String, size: CGFloat) -> UILabel {
         let label = UILabel()
         
@@ -75,6 +100,17 @@ class CommonView: UIView {
     
     func commonUiView(backgroundColor: UIColor, borderWidth: CGFloat, borderColor: UIColor, cornerRadius: CGFloat) -> UIView {
         let uiView = UIView()
+  
+        uiView.backgroundColor = backgroundColor
+        uiView.layer.borderWidth = borderWidth
+        uiView.layer.borderColor = borderColor.cgColor
+        uiView.layer.cornerRadius = cornerRadius
+        
+        return uiView
+    }
+    
+    func scrollView(backgroundColor: UIColor, borderWidth: CGFloat, borderColor: UIColor, cornerRadius: CGFloat) -> UIScrollView {
+        let uiView = UIScrollView()
   
         uiView.backgroundColor = backgroundColor
         uiView.layer.borderWidth = borderWidth
